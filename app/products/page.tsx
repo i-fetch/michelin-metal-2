@@ -23,7 +23,7 @@ const products = [
   { id:2, cat:'aluminium',   name:'Aluminium Scrap (Loose)', tag:'Available',
     imageUrl:'https://images.unsplash.com/photo-1610440162764-4c3e5d8ea50e?w=900&q=80',
     desc:'Loose sorted aluminium from household appliances, vehicles and building materials.',
-    specs:['Source: Mixed post-consumer','Form: Loose / Uncompressed','Grade: Extrusion / Cast Mix','MOQ: 500 kg'],
+    specs:['Source: Mixed post-consumers','Form: Loose / Uncompressed','Grade: Extrusion / Cast Mix','MOQ: 500 kg'],
     uses:['Die casting','Secondary smelters','Export'] },
   { id:3, cat:'ferrous',     name:'Heavy Melting Steel (HMS)', tag:'Industrial Grade',
     imageUrl:'https://images.unsplash.com/photo-1563364210-ec1f7f1c801b?w=900&q=80',
