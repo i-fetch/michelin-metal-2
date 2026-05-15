@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle, Package, Tag, Truck } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
+import ProductGallery from '@/components/ProductGallery'
 
 export const metadata: Metadata = { title:'Products' }
 
@@ -14,41 +16,83 @@ const cats = [
 
 const products = [
   { id:1, cat:'aluminium',   name:'Aluminium Bales',     tag:'Most Requested',
+    imageUrl:'https://images.unsplash.com/photo-1602455151248-0dc8d746d4bf?w=900&q=80',
     desc:'High-density baled aluminium waste, sorted and compressed ready for smelting.',
     specs:['Grade: Industrial / Mixed Alloy','Form: Compressed Bales','Purity: 95–99% post-sorting','MOQ: 1 Tonne'],
     uses:['Aluminium smelters','Rolling mills','Foundries'] },
   { id:2, cat:'aluminium',   name:'Aluminium Scrap (Loose)', tag:'Available',
+    imageUrl:'https://images.unsplash.com/photo-1610440162764-4c3e5d8ea50e?w=900&q=80',
     desc:'Loose sorted aluminium from household appliances, vehicles and building materials.',
     specs:['Source: Mixed post-consumer','Form: Loose / Uncompressed','Grade: Extrusion / Cast Mix','MOQ: 500 kg'],
     uses:['Die casting','Secondary smelters','Export'] },
   { id:3, cat:'ferrous',     name:'Heavy Melting Steel (HMS)', tag:'Industrial Grade',
+    imageUrl:'https://images.unsplash.com/photo-1563364210-ec1f7f1c801b?w=900&q=80',
     desc:'Heavy gauge steel scrap from demolition and machinery — high iron content.',
     specs:['Grade: HMS 1 & HMS 2','Thickness: ≥ 6mm','Iron Content: 90%+','MOQ: 5 Tonnes'],
     uses:['Electric arc furnaces','Steel mills','Re-rollers'] },
   { id:4, cat:'ferrous',     name:'Vehicle Body Scrap',  tag:'High Volume',
+    imageUrl:'https://images.unsplash.com/photo-1532574337480-99693111f6b7?w=900&q=80',
     desc:'Ferrous scrap from end-of-life vehicles — shredded and de-contaminated.',
     specs:['Source: End-of-life vehicles','Form: Shredded / Cut','Residual: < 2% non-metal','MOQ: 2 Tonnes'],
     uses:['Steel production','Scrap dealers','Foundries'] },
   { id:5, cat:'ferrous',     name:'Cast Iron Scrap',     tag:'Foundry Grade',
+    imageUrl:'https://images.unsplash.com/photo-1513093635060-3047252c3fdd?w=900&q=80',
     desc:'High-carbon cast iron from industrial machinery, suitable for grey iron foundry use.',
     specs:['Carbon Content: 2–4%','Grade: Foundry / No.2 Cast','Cleanliness: Oil-free batches','MOQ: 1 Tonne'],
     uses:['Grey iron foundries','Ingot production','Pipe casting'] },
   { id:6, cat:'non-ferrous', name:'Copper Scrap',        tag:'Premium',
+    imageUrl:'https://images.unsplash.com/photo-1518873890627-d4f8efcdc23b?w=900&q=80',
     desc:'Clean and mixed copper scrap from electrical wire, plumbing and industrial equipment.',
     specs:['Grade: Bare Bright / #1 / #2','Form: Wire, tubing, bus bar','Purity: Up to 99.9%','MOQ: 200 kg'],
     uses:['Wire drawing','Brass / Bronze alloy','Re-melting'] },
   { id:7, cat:'non-ferrous', name:'Brass Scrap',         tag:'Available',
+    imageUrl:'https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=900&q=80',
     desc:'Mixed and clean brass scrap from plumbing fittings, valves and industrial components.',
     specs:['Grade: Yellow Brass / Red Brass','Zinc Content: 10–40%','Form: Mixed / Sorted','MOQ: 200 kg'],
     uses:['Brass ingot production','Foundries','Export'] },
   { id:8, cat:'non-ferrous', name:'Lead Scrap',          tag:'Industrial',
+    imageUrl:'https://images.unsplash.com/photo-1470115636492-6d2b56f9bd02?w=900&q=80',
     desc:'Recovered lead from batteries and cable sheathing — properly handled and classified.',
     specs:['Source: Battery / Cable / Soft Lead','Purity: 95%+','Hazmat: Compliant','MOQ: 500 kg'],
     uses:['Battery recycling','Lead ingot casting','Shielding'] },
   { id:9, cat:'bulk',        name:'Bulk Raw Supply',     tag:'Contract Available',
+    imageUrl:'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=80',
     desc:'Direct bulk supply of processed recycled metals to manufacturers and exporters.',
     specs:['Volume: Custom per contract','Packaging: Baled / Containerised','Delivery: FOB Lagos / Ex-Works','Payment: Bank / LC'],
     uses:['Manufacturing plants','Export traders','Industrial distributors'] },
+]
+
+const galleryImages = [
+  {
+    src:'https://images.unsplash.com/photo-1542728098-5c11ba0e2f3a?w=1200&q=80',
+    alt:'Aluminium bales stacked in a warehouse',
+    label:'Aluminium Bales & Scrap',
+  },
+  {
+    src:'https://images.unsplash.com/photo-1516747773444-2df2ecfc6b30?w=1200&q=80',
+    alt:'Heavy steel scrap in a yard',
+    label:'Ferrous Scrap Inventory',
+  },
+  {
+    src:'https://images.unsplash.com/photo-1518655048521-f130df041f66?w=1200&q=80',
+    alt:'Close-up of copper wire and metal pieces',
+    label:'Copper & Non-Ferrous Metals',
+  },
+  {
+    src:'https://images.unsplash.com/photo-1498354174636-6a6fbf0a38e4?w=1200&q=80',
+    alt:'Industrial bulk storage at a shipping terminal',
+    label:'Bulk Supply Logistics',
+  },
+  {
+    src:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80',
+    alt:'Various metal scraps and raw materials',
+    label:'Mixed Metal Inventory',
+  },
+  {
+    src:'https://images.unsplash.com/photo-1494809610413-3fc9f0b99aa5?w=1200&q=80',
+    alt:'Metal surfaces and industrial textures',
+    label:'Material Handling & Storage',
+  },
 ]
 
 export default function Products() {
@@ -106,6 +150,15 @@ export default function Products() {
                     <AOS key={p.id} delay={i * 80}>
                       <div className="card rounded-xl overflow-hidden flex flex-col h-full">
                         <div className="h-1 w-full" style={{ background:cat.accent }} />
+                        <div className="relative h-52 overflow-hidden">
+                          <Image
+                            src={p.imageUrl}
+                            alt={p.name}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                        </div>
                         <div className="p-7 flex flex-col flex-1">
                           <div className="flex justify-between items-start mb-4">
                             <div className="w-10 h-10 rounded-lg flex items-center justify-center"
@@ -158,6 +211,8 @@ export default function Products() {
           })}
         </div>
       </section>
+
+      <ProductGallery images={galleryImages} />
 
       {/* CTA */}
       <section className="section" style={{ background:'var(--clr-green)' }}>
