@@ -58,8 +58,8 @@ export default function Navbar() {
             />
           </div>
 
-          <div className="flex flex-col leading-none">
-            <h1 className="text-xl sm:text-2xl tracking-wide ">
+          <div className="text-white dark:text-green-500 flex flex-col leading-none">
+            <h1 className="text-xl sm:text-2xl tracking-wider ">
               MECHELIN METALS
             </h1>
 
@@ -87,10 +87,7 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Link href="/contact" className="btn btn-green hidden lg:inline-flex" style={{ padding: '0.6rem 1.4rem', fontSize: '0.8rem' }}>
-            Get a Quote
-          </Link>
-          <button onClick={() => setOpen(!open)} className="lg:hidden p-2 rounded-md transition-colors"
+          <button onClick={() => setOpen(!open)} className="border lg:hidden p-2 rounded-md transition-colors"
             style={{ color: 'var(--tx-secondary)' }}>
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -108,7 +105,7 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          <Link href="/contact" className="btn btn-green w-full justify-center mt-4">
+          <Link href="/contact" className="hidden btn btn-green w-full justify-center mt-4">
             Get a Quote
           </Link>
         </div>
