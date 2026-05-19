@@ -1,3 +1,4 @@
+// Navbar.tsx
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -44,20 +45,20 @@ export default function Navbar() {
           href="/"
           className="flex items-center gap-3"
         >
-          <div className="w-10 h-10 rounded-md overflow-hidden flex items-center justify-center">
+          <div className="w-20 h-20 rounded-md overflow-hidden flex items-center justify-center">
             <Image
-              src="/Mechelin-Metals-Logo.png"
-              width={36}
-              height={36}
+              src="/logo.png"
+              width={30}
+              height={30}
+              className="w-full h-full object-cover"
               alt="MedSupply"
-              className="object-cover"
               priority
               unoptimized
             />
           </div>
 
           <div className="flex flex-col leading-none">
-            <h1 className="text-xl sm:text-2xl font-black tracking-tight bg-linear-to-r from-blue-600 via-cyan-500 to-emerald-500 bg-clip-text text-transparent">
+            <h1 className="text-xl sm:text-2xl tracking-tight ">
               MECHELIN METALS
             </h1>
 
