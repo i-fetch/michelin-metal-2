@@ -25,7 +25,7 @@ const floating = {
     transition: {
       duration: 4,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   },
 };
@@ -41,7 +41,7 @@ const fadeUp = {
     transition: {
       delay: i * 0.15,
       duration: 0.8,
-      ease: [0.25, 1, 0.5, 1],
+      ease: [0.25, 1, 0.5, 1] as const,
     },
   }),
 };
