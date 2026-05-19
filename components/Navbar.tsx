@@ -1,9 +1,10 @@
 // Navbar.tsx
+
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Recycle } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 import Image from 'next/image'
 
@@ -58,7 +59,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex flex-col leading-none">
-            <h1 className="text-xl sm:text-2xl tracking-tight ">
+            <h1 className="text-xl sm:text-2xl tracking-wide ">
               MECHELIN METALS
             </h1>
 
