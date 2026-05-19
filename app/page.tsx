@@ -48,7 +48,8 @@ export default function Home() {
 
         {/* content */}
         <div className="wrap px-5 relative z-10 pt-28 pb-24">
-          <div className="max-w-2xl">
+          <div className="max-w-full">
+          {/* <div className="max-w-2xl"> */}
             <div className="tag tag-gold mb-6 inline-flex">
               Metal Recycle Industry · West Africa
             </div>
