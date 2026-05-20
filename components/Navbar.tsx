@@ -42,28 +42,30 @@ export default function Navbar() {
       <div className="wrap flex items-center justify-between px-5 py-4">
 
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-3"
-        >
+        <Link href="/" className="flex items-center gap-3">
           <div className="w-20 h-20 rounded-md overflow-hidden flex items-center justify-center">
             <Image
               src="/logo.png"
               width={30}
               height={30}
               className="w-full h-full object-cover"
-              alt="MedSupply"
+              alt="Mechelin Metals"
               priority
               unoptimized
             />
           </div>
 
-          <div className="text-white dark:text-green-500 flex flex-col leading-none">
-            <h1 className="text-xl sm:text-2xl tracking-wider ">
+          <div className="flex flex-col leading-none">
+            <h1
+              className="text-xl sm:text-2xl tracking-wider font-bold transition-colors duration-300"
+              style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
+            >
               MECHELIN METALS
             </h1>
-
-            <span className="text-[8px] uppercase tracking-[0.22em] text-slate-400 font-semibold">
+            <span
+              className="text-[8px] uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+              style={{ color: 'var(--tx-faint)' }}
+            >
               NIGERIA
             </span>
           </div>
@@ -72,13 +74,16 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-1">
           {links.map(l => (
-            <Link key={l.href} href={l.href}
+            <Link
+              key={l.href}
+              href={l.href}
               className="px-4 py-2 rounded-md text-sm font-medium transition-colors"
               style={{
                 fontFamily: 'var(--font-body)',
                 color: path === l.href ? 'var(--clr-green)' : 'var(--tx-secondary)',
                 background: path === l.href ? 'rgba(22,163,74,0.08)' : 'transparent',
-              }}>
+              }}
+            >
               {l.label}
             </Link>
           ))}
@@ -87,8 +92,11 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <button onClick={() => setOpen(!open)} className="border lg:hidden p-2 rounded-md transition-colors"
-            style={{ color: 'var(--tx-secondary)' }}>
+          <button
+            onClick={() => setOpen(!open)}
+            className="border lg:hidden p-2 rounded-md transition-colors"
+            style={{ color: 'var(--tx-secondary)' }}
+          >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
