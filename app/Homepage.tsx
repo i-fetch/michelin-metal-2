@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle, CircleCheck, Globe2, Package, Recycle, ShieldCheck, TrendingUp, Truck, Zap } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
+import MaterialCatalogue from '@/components/MaterialCatalogue'
+import { Material } from '@/types'
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
@@ -14,11 +16,20 @@ const stats = [
    { num: '3+', label: 'Export Countries' },
 ]
 
+// const pillars = [
+//    { icon: Recycle, title: 'Full-Cycle Recycling', body: 'End-to-end processing — collection, sorting, baling, distribution.' },
+//    { icon: Globe2, title: 'Global Reach', body: 'National supply and international export to manufacturers worldwide.' },
+//    { icon: ShieldCheck, title: 'Quality Assured', body: 'Every batch graded and verified before it leaves our facility.' },
+//    { icon: Truck, title: 'Reliable Logistics', body: 'Dependable delivery across West Africa and beyond.' },
+// ]
 const pillars = [
-   { icon: Recycle, title: 'Full-Cycle Recycling', body: 'End-to-end processing — collection, sorting, baling, distribution.' },
-   { icon: Globe2, title: 'Global Reach', body: 'National supply and international export to manufacturers worldwide.' },
-   { icon: ShieldCheck, title: 'Quality Assured', body: 'Every batch graded and verified before it leaves our facility.' },
-   { icon: Truck, title: 'Reliable Logistics', body: 'Dependable delivery across West Africa and beyond.' },
+   { icon: "🏆", title: 'Decade of Industry Experience', body: 'Over 10 years of proven expertise in metal recycling, scrap processing, and international trade from Nigeria.' },
+   { icon: "🌎", title: 'Global Export Connections', body: 'Established trade relationships with buyers in China, South Korea, and India, with growing global market presence.' },
+   { icon: "🥇", title: 'Quality Assured', body: 'Every batch graded and verified before it leaves our facility.' },
+   { icon: "⚙", title: 'Industrial-Grade Processing', body: 'State-of-the-art sorting, shredding, and baling equipment ensuring premium material quality standards.' },
+   // {  icon: "🌎", title: 'Reliable Logistics', body: 'Dependable delivery across West Africa and beyond.' },
+   { icon: "🚚", title: 'Strong Logistics Support', body: 'End-to-end logistics coordination, from baling and containerization to port clearance and shipping.' },
+   { icon: "♻", title: 'Sustainable Practices', body: 'Eco-friendly recycling processes that minimize environmental impact.' },
 ]
 
 const featured = [
@@ -39,7 +50,9 @@ const features = [
    "Non-Ferrous Metals",
 ];
 
+
 export default function Homepage() {
+
    return (
       <>
          {/* ── HERO ─────────────────────────────────────────── */}
@@ -68,8 +81,9 @@ export default function Homepage() {
                />
 
                {/* Optional subtle green tint */}
-               <div  className="absolute inset-0"
-                  style={{background:
+               <div className="absolute inset-0"
+                  style={{
+                     background:
                         "radial-gradient(circle at top right, rgba(22,163,74,0.12), transparent 40%)",
                   }}
                />
@@ -166,7 +180,7 @@ export default function Homepage() {
                </div>
             </div>
 
-      
+
          </section>
 
          {/* mobile stats */}
@@ -256,7 +270,7 @@ export default function Homepage() {
                         <div className="card rounded-xl p-7">
                            <div className="w-11 h-11 rounded-lg flex items-center justify-center mb-5"
                               style={{ background: 'rgba(22,163,74,0.10)' }}>
-                              <p.icon size={20} style={{ color: 'var(--clr-green)' }} />
+                              <span>{p.icon}</span>
                            </div>
                            <h3 className="mb-2 text-base" style={{ fontFamily: 'var(--font-display)', color: 'var(--tx-primary)', fontSize: '1.15rem' }}>
                               {p.title}
@@ -268,16 +282,15 @@ export default function Homepage() {
                </div>
             </div>
          </section>
-
          {/* ── PRODUCTS PREVIEW ─────────────────────────────── */}
          <section className="section" style={{ background: 'var(--bg)' }}>
             <div className="wrap px-1">
                <AOS>
                   <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
                      <div>
-                        <p className="tag mb-4">Our Catalogue</p>
+                        <p className="tag mb-4">Our Products</p>
                         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,3rem)', color: 'var(--tx-primary)' }}>
-                           CORE PRODUCTS
+                           Premium Export-Grade Materials
                         </h2>
                      </div>
                      <Link href="/products" className="btn btn-outline text-sm">View All <ArrowRight size={14} /></Link>
