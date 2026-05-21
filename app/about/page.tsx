@@ -19,7 +19,7 @@ const milestones = [
   { year:'2013', event:'Team entered the metal recycling sector across West Africa.' },
   { year:'2018', event:'Expanded sourcing network and established key manufacturer partnerships.' },
   { year:'2022', event:'Launched international distribution channels for recycled raw materials.' },
-  { year:'2023', event:'Formally incorporated as MECHELIN METALS NIGERIA PVT LTD.' },
+  { year:'2023', event:'Formally incorporated as Mechelin Metals Nigeria LTD.' },
   { year:'2024', event:'Increased processing capacity and expanded the product catalogue.' },
   { year:'2026', event:'Launched B2B Corporate website for global procurement partnerships.' },
 ]
@@ -48,14 +48,14 @@ export default function About() {
 
       {/* Story */}
       <section className="section" style={{ background:'var(--bg-2)' }}>
-        <div className="wrap px-5 grid md:grid-cols-2 gap-16 items-center">
+        <div className="wrap px-1 grid md:grid-cols-2 gap-16 items-center">
           <AOS>
             <p className="tag mb-5">Our Story</p>
             <h2 className="mb-6 leading-none" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(2rem,4vw,3rem)', color:'var(--tx-primary)' }}>
               MORE THAN A DECADE IN THE MAKING
             </h2>
             <p className="mb-4 leading-relaxed text-[15px]" style={{ color:'var(--tx-secondary)' }}>
-              Mechelin Metals Nigeria PVT LTD is Nigeria&apos;s foremost integrated metal recycling company. Though formally incorporated in 2023, our team has been active in the metal recycling industry for over a decade — building deep expertise, infrastructure, and trust across West Africa.
+              Mechelin Metals Nigeria LTD is Nigeria&apos;s foremost integrated metal recycling company. Though formally incorporated in 2023, our team has been active in the metal recycling industry for over a decade — building deep expertise, infrastructure, and trust across West Africa.
             </p>
             <p className="mb-4 leading-relaxed text-[15px]" style={{ color:'var(--tx-secondary)' }}>
               We leverage captive resources and advanced capabilities for the sourcing, sorting, and baling of aluminium waste and distributing same as raw materials to manufacturers. We deal with all types of metals — ferrous and non-ferrous — for sale, scrapping, conversion, or foundry purposes.
@@ -195,7 +195,7 @@ export default function About() {
                 REGISTRATION & OPERATIONS
               </h2>
               {[
-                ['Company Name',       'Mechelin Metals Nigeria PVT LTD'],
+                ['Company Name',       'Mechelin Metals Nigeria LTD'],
                 ['Business Type',      'Private Company Limited by Shares'],
                 ['Industry',           'Metal Recycle Industry'],
                 ['Incorporated',       '2023'],

@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${body.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body cz-shortcut-listen="true">
         <Providers>
           <Navbar />
           <main>{children}</main>
