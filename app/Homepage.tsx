@@ -2,7 +2,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, Globe2, Package, Recycle, ShieldCheck, TrendingUp, Truck, Zap } from 'lucide-react'
+import { ArrowRight, CheckCircle, CircleCheck, Globe2, Package, Recycle, ShieldCheck, TrendingUp, Truck, Zap } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
@@ -11,7 +11,7 @@ const stats = [
    { num: '10+', label: 'Years Active' },
    { num: '50+', label: 'B2B Partners' },
    { num: '100K+', label: 'Tonnes Processed' },
-   { num: '2+', label: 'Continents' },
+   { num: '3+', label: 'Export Countries' },
 ]
 
 const pillars = [
@@ -28,80 +28,145 @@ const featured = [
    { name: 'Bulk Raw Supply', tag: 'Bulk Available', desc: 'Direct bulk supply on contract to manufacturers — local and global.' },
 ]
 
+const features = [
+   "Aluminum Scrap",
+   "Cast Aluminum",
+   "Iron & Steel",
+   "Condenser Metals",
+   "UBC Materials",
+   "Vehicle Metals",
+   "Ferrous Metals",
+   "Non-Ferrous Metals",
+];
+
 export default function Homepage() {
    return (
       <>
          {/* ── HERO ─────────────────────────────────────────── */}
          <section className="relative min-h-screen flex items-center overflow-hidden">
-            {/* Background image */}
+
+            {/* Background Video */}
             <div className="absolute inset-0 z-0">
-               <Image
-                  src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80"
-                  alt="Industrial metal recycling facility"
-                  fill
-                  priority
-                  className="object-cover"
+               <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  className="w-full h-full object-cover"
+               >
+                  <source src="/header-vid.mp4" type="video/mp4" />
+               </video>
+
+               {/* Dark cinematic overlay */}
+               <div
+                  className="absolute inset-0"
+                  style={{
+                     background:
+                        "linear-gradient(105deg, rgba(9,9,11,0.88) 42%, rgba(9,9,11,0.55) 100%)",
+                  }}
                />
-               {/* gradient overlay */}
-               <div className="absolute inset-0"
-                  style={{ background: 'linear-gradient(105deg, rgba(9,9,11,0.88) 45%, rgba(9,9,11,0.45) 100%)' }} />
+
+               {/* Optional subtle green tint */}
+               <div  className="absolute inset-0"
+                  style={{background:
+                        "radial-gradient(circle at top right, rgba(22,163,74,0.12), transparent 40%)",
+                  }}
+               />
             </div>
 
-            {/* content */}
+            {/* Content */}
             <div className="wrap px-5 relative z-10 pt-28 pb-24">
                <div className="max-w-full">
-                  {/* <div className="max-w-2xl"> */}
+
+                  {/* Top Tag */}
                   <div
-                     className="tag-gold border inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium mb-5">
-                     <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate animate-pulse" />
+                     className="tag-gold border inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium mb-5 backdrop-blur-sm"
+                     style={{
+                        background: "rgba(255,255,255,0.05)",
+                        borderColor: "rgba(255,255,255,0.08)",
+                     }}
+                  >
+                     <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-pulse" />
                      Metal Recycle Industry · West Africa
                   </div>
 
-                  <h1 className="text-white mb-6 leading-none"
-                     style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3.5rem,8vw,6.5rem)', letterSpacing: '0.03em' }}>
-                     TURNING METAL{' '}
-                     <span style={{ color: 'var(--clr-green-light)' }}>WASTE</span>
-                     {' '}INTO GLOBAL{' '}
-                     <span style={{ color: 'var(--clr-gold)' }}>VALUE</span>
+                  {/* Main Heading */}
+                  <h1
+                     className="md:w-3/4 text-white mb-6 leading-none"
+                     style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "clamp(3.5rem,8vw,6.5rem)",
+                        letterSpacing: "0.03em",
+                     }}
+                  >
+                     TURNING METAL{" "}
+                     <span style={{ color: "var(--clr-green-light)" }}>
+                        WASTE
+                     </span>{" "}
+                     INTO GLOBAL{" "}
+                     <span style={{ color: "var(--clr-gold)" }}>
+                        VALUE
+                     </span>
                   </h1>
 
-                  <p className="text-white/70 text-lg leading-relaxed mb-10 max-w-lg"
-                     style={{ fontFamily: 'var(--font-body)', fontWeight: 300 }}>
-                     Mechelin Metals Nigeria — sourcing, sorting, baling and distributing aluminium and ferrous metals to manufacturers across West Africa and the world.
+                  {/* Description */}
+                  <p
+                     className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
+                     style={{
+                        fontFamily: "var(--font-body)",
+                        fontWeight: 300,
+                     }}
+                  >
+                     Mechelin Metals Nigeria — sourcing, sorting, baling and
+                     distributing aluminium and ferrous metals to manufacturers
+                     across West Africa and the global industrial supply chain.
                   </p>
 
+                  {/* CTA Buttons */}
                   <div className="flex flex-wrap gap-4 mb-16">
-                     <Link href="/products" className="btn btn-green">Explore Products <ArrowRight size={15} /></Link>
-                     <Link href="/about" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.3)', color: '#fff' }}>Our Story <ArrowRight size={15} /></Link>
+                     <Link href="/products" className="btn btn-green">
+                        Explore Products
+                        <ArrowRight size={15} />
+                     </Link>
+
+                     <Link
+                        href="/about"
+                        className="btn btn-outline backdrop-blur-sm"
+                        style={{
+                           borderColor: "rgba(255,255,255,0.25)",
+                           color: "#fff",
+                           background: "rgba(255,255,255,0.03)",
+                        }}
+                     >
+                        Our Story
+                        <ArrowRight size={15} />
+                     </Link>
                   </div>
 
-                  {/* trust ticks */}
+                  {/* Trust Indicators */}
                   <div className="flex flex-wrap gap-6">
-                     {['Incorporated 2023', 'Private Ltd by Shares', '10+ Years Experience'].map(t => (
-                        <span key={t} className="flex items-center gap-2 text-sm text-white/50">
-                           <CheckCircle size={13} style={{ color: 'var(--clr-green-light)' }} />{t}
+                     {[
+                        "Incorporated 2023",
+                        "Private Ltd by Shares",
+                        "10+ Years Experience",
+                     ].map((t) => (
+                        <span
+                           key={t}
+                           className="flex items-center gap-2 text-sm text-white/60"
+                        >
+                           <CheckCircle
+                              size={13}
+                              style={{ color: "var(--clr-green-light)" }}
+                           />
+                           {t}
                         </span>
                      ))}
                   </div>
                </div>
             </div>
 
-            {/* Floating stats bar */}
-            <div className="absolute bottom-0 inset-x-0 z-10 hidden md:block">
-               <div className="wrap px-5">
-                  <div className="grid grid-cols-4 rounded-t-2xl overflow-hidden"
-                     style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderBottom: 'none' }}>
-                     {stats.map((s, i) => (
-                        <div key={s.label}
-                           className="py-5 px-6 text-center"
-                           style={{ borderRight: i < 3 ? '1px solid var(--border)' : 'none' }}>
-                           <p className="stat-num">{s.num}</p>
-                           <p className="text-xs uppercase tracking-widest mt-1" style={{ color: 'var(--tx-muted)' }}>{s.label}</p>
-                        </div>
-                     ))}
-                  </div>
-               </div>
-            </div>
+      
          </section>
 
          {/* mobile stats */}
@@ -126,9 +191,26 @@ export default function Homepage() {
                      <p className="mb-4 leading-relaxed text-[15px]" style={{ color: 'var(--tx-secondary)' }}>
                         Mechelin Metals Nigeria LTD leverages captive resources and advanced capabilities to source, sort and bale aluminium waste, distributing it as raw material to manufacturers. We handle all types of ferrous and non-ferrous metals for sale, scrapping, conversion and foundry purposes.
                      </p>
-                     <p className="mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
+                     <p className="hidden mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
                         Formally incorporated in 2023, our team has been active in the industry for over a decade — building infrastructure and global distribution networks that benefit both industry and environment.
                      </p>
+                     <p className="mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
+                        Based in Anambra State, we bridge the gap between Nigerian scrap metal suppliers and international manufacturers, ensuring premium quality and reliable supply chains across borders.
+                     </p>
+                     <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 my-8">
+                        {features.map((feature) => (
+                           <div
+                              key={feature}
+                              className="flex items-center gap-3 text-[0.85rem] font-semibold"
+                              style={{ color: "var(--text-secondary)" }}
+                           >
+
+                              <CircleCheck className='text-green-500' />
+
+                              <span className='dark:text-slate-300'>{feature}</span>
+                           </div>
+                        ))}
+                     </div>
                      <Link href="/about" className="btn btn-green">Read Full Story <ArrowRight size={15} /></Link>
                   </AOS>
 
@@ -161,9 +243,11 @@ export default function Homepage() {
                <AOS>
                   <div className="text-center mb-14">
                      <p className="tag mx-auto mb-4">Why Choose Us</p>
-                     <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,3rem)', color: 'var(--tx-primary)' }}>
-                        THE MECHELIN EDGE
-                     </h2>
+                     <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,3rem)', color: 'var(--tx-primary)' }}>
+                        Trusted by Global <span className="text-green-500">Manufacturers</span>
+                     </div>
+                     <p className="mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
+                        Over a decade of excellence in metals recycling, with proven export records and international payment capabilities.                     </p>
                   </div>
                </AOS>
                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
