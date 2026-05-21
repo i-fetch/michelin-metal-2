@@ -93,7 +93,7 @@ export default function About() {
 
       {/* Vision & Mission */}
       <section className="section" style={{ background:'var(--bg)' }}>
-        <div className="wrap px-5">
+        <div className="wrap px-1">
           <AOS>
             <div className="text-center mb-14">
               <p className="tag mx-auto mb-4">What Drives Us</p>
@@ -104,7 +104,7 @@ export default function About() {
           </AOS>
           <div className="grid md:grid-cols-2 gap-6">
             <AOS>
-              <div className="rounded-2xl p-10 h-full" style={{ background:'var(--clr-green)' }}>
+              <div className="rounded-2xl p-5 h-full" style={{ background:'var(--clr-green)' }}>
                 <Target size={36} color="#fff" className="mb-5" />
                 <h3 className="text-white mb-4 text-3xl" style={{ fontFamily:'var(--font-display)' }}>OUR VISION</h3>
                 <p className="text-green-100 leading-relaxed">
@@ -113,7 +113,7 @@ export default function About() {
               </div>
             </AOS>
             <AOS delay={150}>
-              <div className="rounded-2xl p-10 h-full card">
+              <div className="rounded-2xl p-5 h-full card">
                 <Zap size={36} style={{ color:'var(--clr-gold)' }} className="mb-5" />
                 <h3 className="mb-4 text-3xl" style={{ fontFamily:'var(--font-display)', color:'var(--tx-primary)' }}>OUR MISSION</h3>
                 <p className="leading-relaxed" style={{ color:'var(--tx-secondary)' }}>
@@ -127,7 +127,7 @@ export default function About() {
 
       {/* Core Values */}
       <section className="section" style={{ background:'var(--bg-2)' }}>
-        <div className="wrap px-5">
+        <div className="wrap px-1">
           <AOS>
             <div className="text-center mb-14">
               <p className="tag mx-auto mb-4">What We Stand For</p>
@@ -155,7 +155,7 @@ export default function About() {
 
       {/* Timeline */}
       <section className="section" style={{ background:'var(--bg)' }}>
-        <div className="wrap px-5">
+        <div className="wrap px-1">
           <AOS>
             <div className="text-center mb-14">
               <p className="tag mx-auto mb-4">Our Journey</p>
@@ -187,7 +187,7 @@ export default function About() {
       </section>
 
       {/* Company info + CTA */}
-      <section className="section" style={{ background:'var(--bg-2)' }}>
+      <section className="section hidden" style={{ background:'var(--bg-2)' }}>
         <div className="wrap px-5">
           <div className="grid md:grid-cols-2 gap-10 items-start">
             <AOS>
