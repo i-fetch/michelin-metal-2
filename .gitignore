@@ -1,3 +1,19 @@
 /node_modules
 /.next
 /.env
+/.env.local 
+/.env.development
+
+
+# Optional: Ignore log files
+/logs
+# Optional: Ignore build artifacts
+/dist
+# Optional: Ignore IDE/editor specific files
+/.vscode
+/.idea
+# Optional: Ignore OS-specific files
+.DS_Store
+# Optional: Ignore test coverage reports
+/coverage
+
