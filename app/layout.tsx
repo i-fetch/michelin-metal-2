@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google'
+import ScrollToTopButton from '@/components/ScrollToTop'
 
 const display = Bebas_Neue({
   weight: '400',
@@ -28,8 +29,7 @@ export const metadata: Metadata = {
     default: 'Mechelin Metals Nigeria | Metal Recycling Solutions',
     template: '%s | Mechelin Metals',
   },
-  description:
-    "Nigeria's foremost integrated metal recycling company. Aluminium bales, ferrous & non-ferrous metals — national and global bulk supply.",
+  description: "Nigeria's foremost integrated metal recycling company. Aluminium bales, ferrous & non-ferrous metals — national and global bulk supply.",
   keywords: [
     'metal recycling Nigeria',
     'aluminium scrap',
@@ -38,6 +38,25 @@ export const metadata: Metadata = {
     'West Africa',
     'Anambra',
   ],
+
+  icons: {
+    icon: [
+      {
+        url: "/logo-favicon.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+    ],
+
+    shortcut: "/logo-favicon.png",
+
+    apple: "/logo-favicon.png",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -47,10 +66,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${body.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body cz-shortcut-listen="true">
         <Providers>
           <Navbar />
-          <main>{children}</main>
+          <main>
+            {children}
+            <ScrollToTopButton />
+          </main>
           <Footer />
         </Providers>
       </body>

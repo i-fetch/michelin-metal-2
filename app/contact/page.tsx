@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, MapPinIcon, MessageSquare, Phone, Send } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
 import LocationsSection from '@/components/LocationsSection'
 
@@ -42,14 +42,15 @@ export default function Contact() {
 
       {/* Contact cards */}
       <section style={{ background: 'var(--bg-2)', padding: '1.5rem 0' }}>
-        <div className="wrap px-5 grid sm:grid-cols-3 gap-4">
+        <div className="wrap px-2 grid sm:grid-cols-3 gap-2">
           {[
             { icon: Mail, label: 'Email', val: 'mechelinmetalsnig@gmail.com', href: 'mailto:mechelinmetalsnig@gmail.com' },
             { icon: MessageSquare, label: 'WhatsApp', val: 'Message us directly', href: '#' },
-            { icon: MapPin, label: 'Head Office', val: 'Awada Obosi, Anambra, Nigeria', href: '#' },
+            { icon: MapPin, label: 'Head Office', val: 'No. 23 Nathan Okafor Street, Awada Obosi, Anambra', href: '#' },
+            { icon: MapPinIcon, label: 'Branch Office', val: 'No. 32 Louis Mbanefo Street, Woliwo Layout, Anambra', href: '#' },
           ].map(({ icon: Icon, label, val, href }) => (
-            <a key={label} href={href}
-              className="card rounded-xl p-5 flex items-center gap-4 group transition-all">
+            <Link key={label} href={href}
+              className="card rounded-xl p-2 flex items-center gap-4 group transition-all">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{ background: 'rgba(22,163,74,0.10)' }}>
                 <Icon size={18} style={{ color: 'var(--clr-green)' }} />
@@ -58,14 +59,14 @@ export default function Contact() {
                 <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--tx-faint)' }}>{label}</p>
                 <p className="text-sm font-medium" style={{ color: 'var(--tx-primary)' }}>{val}</p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
 
       {/* Form + info */}
       <section className="section" style={{ background: 'var(--bg)' }}>
-        <div className="wrap px-5">
+        <div className="wrap px-1">
           <div className="grid lg:grid-cols-3 gap-12">
 
             {/* Form */}
@@ -219,7 +220,7 @@ export default function Contact() {
       </section>
 
       {/* Map Section */}
-      <section className="section py-20" style={{ background: 'var(--bg-2)', transition: 'all 0.3s ease' }}>
+      <section className="section py-10" style={{ background: 'var(--bg-2)', transition: 'all 0.3s ease' }}>
         <LocationsSection />
       </section>
     </>
