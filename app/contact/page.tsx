@@ -1,5 +1,6 @@
+import ContactPage from "./ContactPage";
 
-export default function ContactPage() {
+export default function page() {
 
-  return ( <ContactPage /> )
+  return  <ContactPage /> 
 }
