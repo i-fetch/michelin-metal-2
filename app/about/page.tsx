@@ -187,8 +187,8 @@ export default function About() {
       </section>
 
       {/* Company info + CTA */}
-      <section className="section hidden" style={{ background:'var(--bg-2)' }}>
-        <div className="wrap px-5">
+      <section className="section" style={{ background:'var(--bg-2)' }}>
+        <div className="wrap px-1">
           <div className="grid md:grid-cols-2 gap-10 items-start">
             <AOS>
               <p className="tag mb-5">Company Details</p>
