@@ -55,6 +55,7 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               {[
                 { icon: MapPin, text: 'No. 23 Nathan Okafor St, Awada Obosi, Anambra, Nigeria' },
+                { icon: MapPin, text: 'No. 32 Louis Mbanefo St, Woliwo Layout, Anambra, Nigeria' },
                 { icon: Mail, text: 'mechelinmetalsnig@gmail.com' },
                 { icon: Phone, text: 'WhatsApp preferred' },
               ].map(({ icon: Icon, text }) => (
