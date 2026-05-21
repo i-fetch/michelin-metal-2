@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Recycle, MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
 
 const col1 = [
   { href:'/about',    label:'About Us' },
@@ -16,15 +17,35 @@ export default function Footer() {
 
           {/* Brand col */}
           <div className="md:col-span-5">
-            <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background:'var(--clr-green)' }}>
-                <Recycle size={18} color="#fff" strokeWidth={2.5} />
-              </div>
-              <div>
-                <p className="leading-none text-base font-bold" style={{ fontFamily:'var(--font-display)', color:'var(--tx-primary)', letterSpacing:'0.06em' }}>MECHELIN METALS</p>
-                <p className="text-[9px] tracking-widest uppercase" style={{ color:'var(--tx-muted)' }}>Nigeria PVT LTD</p>
-              </div>
-            </Link>
+           
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+        >
+          <div className="w-20 h-20 rounded-md overflow-hidden flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              width={30}
+              height={30}
+              className="w-full h-full object-cover"
+              alt="MedSupply"
+              priority
+              unoptimized
+            />
+          </div>
+
+          <div className="text-white dark:text-green-500 flex flex-col leading-none">
+            <h1 className="text-xl sm:text-2xl tracking-wider ">
+              MECHELIN METALS
+            </h1>
+
+            <span className="text-[8px] uppercase tracking-[0.22em] text-slate-400 font-semibold">
+              NIGERIA
+            </span>
+          </div>
+        </Link>
+
             <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color:'var(--tx-muted)' }}>
               West Africa&apos;s foremost integrated metal recycling company — sourcing, sorting and distributing high-performance recycled raw materials nationally and globally.
             </p>
