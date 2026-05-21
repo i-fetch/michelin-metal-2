@@ -70,7 +70,8 @@ export default function About() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden aspect-square relative">
                 <Image
-                  src="https://images.unsplash.com/photo-1581093196277-9f608bb3b511?w=800&q=80"
+                  src="https://images.unsplash.com/photo-1774327988852-531c6eba5397?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDM2fE04alZiTGJUUndzfHxlbnwwfHx8fHw%3D"
+                  // src="https://images.unsplash.com/photo-1778249132540-b2c209ffb1ee?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE4fE04alZiTGJUUndzfHxlbnwwfHx8fHw%3D"
                   alt="Metal processing facility"
                   fill className="object-cover"
                 />
