@@ -43,12 +43,12 @@ export default function Navbar() {
       <div className="wrap flex items-center justify-between px-5 py-4">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-20 h-20 rounded-md overflow-hidden flex items-center justify-center">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
             <Image
               src="/logo.png"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
               className="w-full h-full object-cover"
               alt="Mechelin Metals"
               priority
@@ -58,13 +58,13 @@ export default function Navbar() {
 
           <div className="flex flex-col leading-none">
             <h1
-              className="text-xl sm:text-2xl tracking-wider font-bold transition-colors duration-300"
+              className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
               style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
             >
               MECHELIN METALS
             </h1>
             <span
-              className="text-[8px] uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+              className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
               style={{ color: 'var(--tx-faint)' }}
             >
               NIGERIA
