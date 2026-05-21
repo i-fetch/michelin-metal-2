@@ -28,8 +28,7 @@ export const metadata: Metadata = {
     default: 'Mechelin Metals Nigeria | Metal Recycling Solutions',
     template: '%s | Mechelin Metals',
   },
-  description:
-    "Nigeria's foremost integrated metal recycling company. Aluminium bales, ferrous & non-ferrous metals — national and global bulk supply.",
+  description: "Nigeria's foremost integrated metal recycling company. Aluminium bales, ferrous & non-ferrous metals — national and global bulk supply.",
   keywords: [
     'metal recycling Nigeria',
     'aluminium scrap',
@@ -38,6 +37,25 @@ export const metadata: Metadata = {
     'West Africa',
     'Anambra',
   ],
+
+  icons: {
+    icon: [
+      {
+        url: "/logo-favicon.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+    ],
+
+    shortcut: "/logo-favicon.png",
+
+    apple: "/logo-favicon.png",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
