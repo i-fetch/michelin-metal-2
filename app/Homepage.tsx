@@ -268,15 +268,31 @@ export default function Homepage() {
                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {pillars.map((p, i) => (
                      <AOS key={p.title} delay={i * 100}>
-                        <div className="card rounded-xl p-7">
-                           <div className="w-11 h-11 rounded-lg flex items-center justify-center mb-5"
-                              style={{ background: 'rgba(22,163,74,0.10)' }}>
+                        <div className="card rounded-xl p-7 md:h-[223px]">
+                           <div
+                              className="w-11 h-11 rounded-lg flex items-center justify-center mb-5"
+                              style={{ background: 'rgba(22,163,74,0.10)' }}
+                           >
                               <span>{p.icon}</span>
                            </div>
-                           <h3 className="mb-2 text-base" style={{ fontFamily: 'var(--font-display)', color: 'var(--tx-primary)', fontSize: '1.15rem' }}>
+
+                           <h3
+                              className="mb-2 text-base"
+                              style={{
+                                 fontFamily: 'var(--font-display)',
+                                 color: 'var(--tx-primary)',
+                                 fontSize: '1.15rem'
+                              }}
+                           >
                               {p.title}
                            </h3>
-                           <p className="text-sm leading-relaxed" style={{ color: 'var(--tx-muted)' }}>{p.body}</p>
+
+                           <p
+                              className="text-sm leading-relaxed"
+                              style={{ color: 'var(--tx-muted)' }}
+                           >
+                              {p.body}
+                           </p>
                         </div>
                      </AOS>
                   ))}
