@@ -73,10 +73,16 @@ export default function Homepage() {
 
                {/* Dark cinematic overlay */}
                <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
-                     background:
-                        "linear-gradient(105deg, rgba(9,9,11,0.88) 42%, rgba(9,9,11,0.55) 100%)",
+                     backgroundImage: `
+                     linear-gradient(
+                        105deg,
+                        rgba(9,9,11,0.88) 42%,
+                        rgba(9,9,11,0.55) 100%
+                     ),
+                     url('/header-img.png')
+                  `,
                   }}
                />
 
