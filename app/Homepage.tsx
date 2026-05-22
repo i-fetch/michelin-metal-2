@@ -96,7 +96,7 @@ export default function Homepage() {
             </div>
 
             {/* Content */}
-            <div className="wrap px-5 relative z-10 pt-16 pb-24">
+            <div className="wrap px-5 relative z-10 pt-12 pb-24">
                <div className="max-w-full">
 
                   {/* Top Tag */}
@@ -144,15 +144,15 @@ export default function Homepage() {
                   </p>
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-wrap gap-4 mb-16">
-                     <Link href="/products" className="btn btn-green">
+                  <div className="flex flex-wrap gap-2 mb-16">
+                     <Link href="/products" className="flex items-center justify-center flex-1 text-center btn btn-green">
                         Explore Products
                         <ArrowRight size={15} />
                      </Link>
 
                      <Link
                         href="/about"
-                        className="btn btn-outline backdrop-blur-sm"
+                        className="flex items-center justify-center flex-1 text-center btn btn-outline backdrop-blur-sm"
                         style={{
                            borderColor: "rgba(255,255,255,0.25)",
                            color: "#fff",

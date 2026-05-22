@@ -111,7 +111,7 @@ export default function NotFoundPage() {
 
       {/* CONTENT */}
       <section className="relative z-10 flex min-h-screen items-center">
-        <div className="wrap px-5 w-full">
+        <div className="wrap py-5 px-5 w-full">
           <div className="max-w-3xl">
             {/* TAG */}
             <motion.div
@@ -119,7 +119,7 @@ export default function NotFoundPage() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-4 py-2 mb-8"
+              className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-4 py-2 mb-8"
             >
               <Recycle size={14} className="text-green-400" />
 
@@ -224,7 +224,7 @@ export default function NotFoundPage() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="grid sm:grid-cols-3 gap-5"
+              className="hidden  sm:grid-cols-3 gap-5"
             >
               {[
                 {

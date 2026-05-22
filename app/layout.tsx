@@ -68,12 +68,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body cz-shortcut-listen="true">
         <Providers>
-          <Navbar />
           <main>
+            {/* <Navbar /> */}
             {children}
             <ScrollToTopButton />
+            {/* <Footer /> */}
           </main>
-          <Footer />
         </Providers>
       </body>
     </html>

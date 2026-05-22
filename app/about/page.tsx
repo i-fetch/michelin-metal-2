@@ -28,7 +28,7 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-24 overflow-hidden"
+      <section className="relative pt-12 pb-20 overflow-hidden"
         style={{ background: 'var(--bg)' }}>
         <div className="absolute inset-0 grid-dots opacity-30" />
         <div className="wrap px-5 relative z-10">
