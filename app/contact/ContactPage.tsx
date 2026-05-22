@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, MapPinIcon, MessageSquare, Phone, Send } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
 import LocationsSection from '@/components/LocationsSection'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 const enquiryTypes = ['Product Enquiry', 'Bulk Purchase / Contract', 'Scrap Metal Sale', 'Export / Import Partnership', 'General Information', 'Other']
 const productList = ['Aluminium Bales', 'Aluminium Scrap (Loose)', 'Heavy Melting Steel', 'Vehicle Body Scrap', 'Cast Iron Scrap', 'Copper Scrap', 'Brass Scrap', 'Lead Scrap', 'Bulk Raw Supply', 'Multiple / Other']
@@ -24,6 +26,7 @@ export default function ContactPage() {
 
   return (
     <>
+    <Navbar />
       {/* Hero */}
       <section className="pt-32 pb-16" style={{ background: 'var(--bg)' }}>
         <div className="absolute inset-0 grid-dots opacity-20" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 400 }} />
@@ -223,6 +226,8 @@ export default function ContactPage() {
       <section className="section py-10" style={{ background: 'var(--bg-2)', transition: 'all 0.3s ease' }}>
         <LocationsSection />
       </section>
+
+      <Footer />
     </>
   )
 }

@@ -65,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable}`}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
       <body cz-shortcut-listen="true">
         <Providers>

@@ -1,6 +1,4 @@
 // app/components/LocationsSection.tsx
-"use client";
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
@@ -60,7 +58,7 @@ export default function LocationsSection() {
   };
 
   return (
-    <section className="wrap max-w-5xl mx-auto px-1">
+    <div className="">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -289,6 +287,6 @@ export default function LocationsSection() {
           })}
         </div>
       </motion.div>
-    </section>
+    </div>
   );
 }

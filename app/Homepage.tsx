@@ -6,6 +6,8 @@ import { ArrowRight, CheckCircle, CircleCheck, Globe2, Package, Recycle, ShieldC
 import AOS from '@/components/AnimateOnScroll'
 import MaterialCatalogue from '@/components/MaterialCatalogue'
 import { Material } from '@/types'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
@@ -55,6 +57,7 @@ export default function Homepage() {
 
    return (
       <>
+         <Navbar />
          {/* ── HERO ─────────────────────────────────────────── */}
          <section className="relative min-h-screen flex items-center overflow-hidden">
 
@@ -305,6 +308,7 @@ export default function Homepage() {
                </div>
             </div>
          </section>
+
          {/* ── PRODUCTS PREVIEW ─────────────────────────────── */}
          <section className="section" style={{ background: 'var(--bg)' }}>
             <div className="wrap px-1">
@@ -341,7 +345,7 @@ export default function Homepage() {
          </section>
 
          {/* ── VISION/MISSION SECTION ───────────────────────── */}
-         <section className="relative overflow-hidden" style={{ background: 'var(--clr-green)' }}>
+         <section className="hidden relative overflow-hidden" style={{ background: 'var(--clr-green)' }}>
             <div className="absolute inset-0 grid-dots opacity-10" />
             <div className="wrap px-3 py-20 relative z-10">
                <div className="grid md:grid-cols-2 gap-10">
@@ -382,6 +386,8 @@ export default function Homepage() {
                </div>
             </AOS>
          </section>
+
+         <Footer />
       </>
    )
 }

@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle, Globe2, Leaf, Recycle, ShieldCheck, Target, Users, Zap } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = { title: 'About Us' }
 
@@ -27,6 +29,7 @@ const milestones = [
 export default function About() {
   return (
     <>
+    <Navbar />
       {/* Hero */}
       <section className="relative pt-12 pb-20 overflow-hidden"
         style={{ background: 'var(--bg)' }}>
@@ -228,6 +231,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   )
 }

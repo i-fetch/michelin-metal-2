@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, BarChart3, CheckCircle, ClipboardList, Globe2, Layers, Package, Recycle, Settings, Truck } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = { title: 'Services' }
 
@@ -46,6 +48,8 @@ const industries = ['Aluminium Smelters', 'Steel Mills', 'Foundries', 'Export Tr
 export default function Services() {
   return (
     <>
+             <Navbar />
+    
       {/* Hero with image */}
 
       <section className="relative pt-12 pb-20 overflow-hidden"
@@ -194,6 +198,8 @@ export default function Services() {
           </div>
         </AOS>
       </section>
+
+      <Footer />
     </>
   )
 }
