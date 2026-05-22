@@ -96,7 +96,7 @@ export default function Homepage() {
             </div>
 
             {/* Content */}
-            <div className="wrap px-5 relative z-10 pt-28 pb-24">
+            <div className="wrap px-5 relative z-10 pt-16 pb-24">
                <div className="max-w-full">
 
                   {/* Top Tag */}
