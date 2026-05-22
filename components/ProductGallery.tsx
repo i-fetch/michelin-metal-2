@@ -43,12 +43,12 @@ export default function ProductGallery({ images }: Props) {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {images.map((image, index) => (
             <button
-              key={image.src}
+              key={index}
               type="button"
               aria-label={image.label}
               title={image.label}
               onClick={() => setActiveIndex(index)}
-              className="group card rounded-[30px] overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              className="group card rounded-md overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               style={{ padding: 0 }}
             >
               <div className="relative h-56 w-full bg-slate-100">
