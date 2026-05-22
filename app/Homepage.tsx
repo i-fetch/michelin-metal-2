@@ -236,6 +236,7 @@ export default function Homepage() {
                               src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80"
                               alt="Scrap metal processing"
                               fill
+                              sizes="(max-width: 768px) 100vw, 50vw"
                               className="object-cover"
                            />
                         </div>
@@ -264,7 +265,7 @@ export default function Homepage() {
                         Over a decade of excellence in metals recycling, with proven export records and international payment capabilities.                     </p>
                   </div>
                </AOS>
-               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {pillars.map((p, i) => (
                      <AOS key={p.title} delay={i * 100}>
                         <div className="card rounded-xl p-7">
