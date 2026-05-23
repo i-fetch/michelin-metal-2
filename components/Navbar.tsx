@@ -34,11 +34,10 @@ export default function Navbar() {
   // variables which correctly handle both light and dark mode.
   const linkColor = (href: string) => {
     if (path === href) return 'var(--clr-green)'
-    return scrolled ? 'var(--tx-primary)' : 'rgba(255,255,255,0.85)'
+    return scrolled ? 'var(--tx-primary)' : 'rgba(255,255,255,0.90)'
   }
 
-  const linkBg = (href: string) =>
-    path === href ? 'rgba(22,163,74,0.08)' : 'transparent'
+  const linkBg = (href: string) =>  path === href ? 'rgba(22,163,74,0.08)' : 'transparent'
 
   return (
     <header
@@ -107,9 +106,9 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             onClick={() => setOpen(!open)}
-            className="border lg:hidden p-2 rounded-md transition-colors"
+            className="border border-gray-600 lg:hidden p-2 rounded-md transition-colors"
             style={{
-              color: scrolled ? 'var(--tx-secondary)' : 'rgba(255,255,255,0.85)',
+              color: scrolled ? 'var(--tx-secondary)' : 'rgba(255,255,255,0.90)',
               borderColor: scrolled ? 'var(--border)' : 'rgba(255,255,255,0.25)',
             }}
           >
