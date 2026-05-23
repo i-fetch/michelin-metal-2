@@ -48,6 +48,7 @@ export default function About() {
           </AOS>
         </div>
       </section>
+      
 
       {/* Story */}
       <section className="section" style={{ background: 'var(--bg-2)' }}>
@@ -73,10 +74,11 @@ export default function About() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden aspect-square relative">
                 <Image
-                  src="https://images.unsplash.com/photo-1774327988852-531c6eba5397?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDM2fE04alZiTGJUUndzfHxlbnwwfHx8fHw%3D"
-                  // src="https://images.unsplash.com/photo-1778249132540-b2c209ffb1ee?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE4fE04alZiTGJUUndzfHxlbnwwfHx8fHw%3D"
+                  src="/building-structure.png"
                   alt="Metal processing facility"
-                  fill className="object-cover"
+                  fill 
+                  priority
+                  className="object-cover"
                 />
               </div>
               {/* overlapping cards */}

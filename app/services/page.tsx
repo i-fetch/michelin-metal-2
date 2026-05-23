@@ -50,15 +50,13 @@ export default function Services() {
     <>
       <Navbar />
 
-      {/* Hero with image */}
-
-      <section className="relative pt-12 pb-20 overflow-hidden"
-        style={{ background: 'var(--bg)' }}>
-        <div className="absolute inset-0 grid-dots opacity-30" />
+      {/* Hero */}
+      <section className="pt-32 pb-16" style={{ background: 'var(--bg)' }}>
+        <div className="absolute inset-0 grid-dots opacity-20" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 400 }} />
         <div className="wrap px-5 relative z-10">
           <AOS>
             <p className="tag mb-5">What we do</p>
-            <h1 className="mb-5 leading-none" style={{ fontFamily: 'var(--font-display)', color: 'var(--tx-primary)', fontSize: 'clamp(3rem,7vw,5.5rem)' }}>
+             <h1 className="mb-5 leading-none" style={{ fontFamily: 'var(--font-display)', color: 'var(--tx-primary)', fontSize: 'clamp(3rem,7vw,5.5rem)' }}>
               OUR
               <span className="ml-2" style={{ color: 'var(--clr-green)' }}>SERVICES</span>
             </h1>

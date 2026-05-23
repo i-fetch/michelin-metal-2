@@ -7,6 +7,8 @@ import { connectDB } from '@/lib/mongodb'
 import { uploadImageToGridFS, deleteImageFromGridFS } from '@/lib/gridfs'
 import { ProductModel } from '@/models/Product'
 import type { Product, ActionResult } from '@/types'
+import { type ProductCategory } from '@/lib/productCategories'
+import type { IProduct } from '@/models/Product'
 
 function imgPath(id: any) {
   return id ? `/api/images/${id.toString()}` : '/placeholder.webp'
@@ -14,46 +16,46 @@ function imgPath(id: any) {
 
 function toPlain(doc: any): Product {
   const imageIds = doc.imageIds ?? []
-  const images   = imageIds.map(imgPath)
+  const images = imageIds.map(imgPath)
   return {
-    _id:              doc._id.toString(),
-    title:            doc.title,
-    slug:             doc.slug,
-    image:            images[0] ?? '/placeholder.webp',
+    _id: doc._id.toString(),
+    title: doc.title,
+    slug: doc.slug,
+    image: images[0] ?? '/placeholder.webp',
     images,
-    imageIds:         imageIds.map((i: any) => i.toString()),
+    imageIds: imageIds.map((i: any) => i.toString()),
     shortDescription: doc.shortDescription,
-    fullDescription:  doc.fullDescription,
-    category:         doc.category,
-    subcategory:      doc.subcategory ?? '',
-    featured:         doc.featured,
-    status:           doc.status ?? 'active',
-    specs:            doc.specs ?? [],
-    applications:     doc.applications ?? [],
-    purity:           doc.purity ?? '',
-    materialGrade:    doc.materialGrade ?? '',
-    condition:        doc.condition ?? 'Recycled',
-    recyclingClass:   doc.recyclingClass ?? '',
-    quantityAvailable:doc.quantityAvailable ?? '',
-    unitType:         doc.unitType ?? 'Metric Tons',
-    supplyCapacity:   doc.supplyCapacity ?? '',
-    moq:              doc.moq ?? '',
-    packagingType:    doc.packagingType ?? 'Baled',
-    countryOfOrigin:  doc.countryOfOrigin ?? 'Nigeria',
+    fullDescription: doc.fullDescription,
+    category: doc.category,
+    subcategory: doc.subcategory ?? '',
+    featured: doc.featured,
+    status: doc.status ?? 'active',
+    specs: doc.specs ?? [],
+    applications: doc.applications ?? [],
+    purity: doc.purity ?? '',
+    materialGrade: doc.materialGrade ?? '',
+    condition: doc.condition ?? 'Recycled',
+    recyclingClass: doc.recyclingClass ?? '',
+    quantityAvailable: doc.quantityAvailable ?? '',
+    unitType: doc.unitType ?? 'Metric Tons',
+    supplyCapacity: doc.supplyCapacity ?? '',
+    moq: doc.moq ?? '',
+    packagingType: doc.packagingType ?? 'Baled',
+    countryOfOrigin: doc.countryOfOrigin ?? 'Nigeria',
     deliveryTimeline: doc.deliveryTimeline ?? '',
-    exportAvailable:  doc.exportAvailable ?? true,
-    stockAvailable:   doc.stockAvailable ?? true,
-    price:            doc.price ?? null,
-    currency:         doc.currency ?? 'USD',
-    priceNegotiable:  doc.priceNegotiable ?? false,
-    showPrice:        doc.showPrice ?? true,
-    bulkPricing:      doc.bulkPricing ?? '',
-    requestQuote:     doc.requestQuote ?? false,
-    tags:             doc.tags ?? [],
-    seoTitle:         doc.seoTitle ?? '',
-    seoDescription:   doc.seoDescription ?? '',
-    createdAt:        doc.createdAt?.toISOString() ?? '',
-    updatedAt:        doc.updatedAt?.toISOString() ?? '',
+    exportAvailable: doc.exportAvailable ?? true,
+    stockAvailable: doc.stockAvailable ?? true,
+    price: doc.price ?? null,
+    currency: doc.currency ?? 'USD',
+    priceNegotiable: doc.priceNegotiable ?? false,
+    showPrice: doc.showPrice ?? true,
+    bulkPricing: doc.bulkPricing ?? '',
+    requestQuote: doc.requestQuote ?? false,
+    tags: doc.tags ?? [],
+    seoTitle: doc.seoTitle ?? '',
+    seoDescription: doc.seoDescription ?? '',
+    createdAt: doc.createdAt?.toISOString() ?? '',
+    updatedAt: doc.updatedAt?.toISOString() ?? '',
   }
 }
 
@@ -71,18 +73,27 @@ async function uniqueSlug(base: string, excludeId?: string): Promise<string> {
 
 // ── Reads ─────────────────────────────────────────────────────────────────────
 
-export async function getProducts(opts?: { category?: string; status?: string }): Promise<Product[]> {
+export async function getProducts(opts?: {
+  category?: ProductCategory
+  status?: string
+}): Promise<Product[]> {
   await connectDB()
-  const filter: any = {}
+
+  const filter: FilterQuery<IProduct> = {}
+
   if (opts?.category) filter.category = opts.category
-  if (opts?.status)   filter.status   = opts.status
-  const docs = await ProductModel.find(filter).sort({ createdAt: -1 }).lean()
+  if (opts?.status) filter.status = opts.status
+
+  const docs = await ProductModel.find(filter)
+    .sort({ createdAt: -1 })
+    .lean()
+
   return docs.map(toPlain)
 }
 
 export async function getPublicProducts(category?: string): Promise<Product[]> {
   await connectDB()
-  const filter: any = { status: 'active' }
+  const filter: Partial<IProduct> = { status: 'active' }
   if (category) filter.category = category
   const docs = await ProductModel.find(filter).sort({ featured: -1, createdAt: -1 }).lean()
   return docs.map(toPlain)
@@ -100,7 +111,10 @@ export async function getProductById(id: string): Promise<Product | null> {
   return doc ? toPlain(doc) : null
 }
 
-export async function getRelatedProducts(category: string, excludeSlug: string): Promise<Product[]> {
+export async function getRelatedProducts(
+  category: ProductCategory,
+  excludeSlug: string
+): Promise<Product[]> {
   await connectDB()
   const docs = await ProductModel.find({ category, slug: { $ne: excludeSlug }, status: 'active' })
     .limit(4).lean()
@@ -110,43 +124,43 @@ export async function getRelatedProducts(category: string, excludeSlug: string):
 // ── Mutations ─────────────────────────────────────────────────────────────────
 
 function parseFormFields(formData: FormData) {
-  const str  = (k: string) => (formData.get(k) as string) ?? ''
+  const str = (k: string) => (formData.get(k) as string) ?? ''
   const bool = (k: string) => formData.get(k) === 'true' || formData.get(k) === 'on'
   const lines = (k: string) => str(k).split('\n').map(s => s.trim()).filter(Boolean)
-  const num  = (k: string) => { const v = str(k); return v ? parseFloat(v) : null }
+  const num = (k: string) => { const v = str(k); return v ? parseFloat(v) : null }
 
   return {
-    title:             str('title'),
-    shortDescription:  str('shortDescription'),
-    fullDescription:   str('fullDescription'),
-    category:          str('category'),
-    subcategory:       str('subcategory'),
-    featured:          bool('featured'),
-    status:            str('status') || 'active',
-    specs:             lines('specs'),
-    applications:      lines('applications'),
-    purity:            str('purity'),
-    materialGrade:     str('materialGrade'),
-    condition:         str('condition'),
-    recyclingClass:    str('recyclingClass'),
+    title: str('title'),
+    shortDescription: str('shortDescription'),
+    fullDescription: str('fullDescription'),
+    category: str('category'),
+    subcategory: str('subcategory'),
+    featured: bool('featured'),
+    status: str('status') || 'active',
+    specs: lines('specs'),
+    applications: lines('applications'),
+    purity: str('purity'),
+    materialGrade: str('materialGrade'),
+    condition: str('condition'),
+    recyclingClass: str('recyclingClass'),
     quantityAvailable: str('quantityAvailable'),
-    unitType:          str('unitType'),
-    supplyCapacity:    str('supplyCapacity'),
-    moq:               str('moq'),
-    packagingType:     str('packagingType'),
-    countryOfOrigin:   str('countryOfOrigin'),
-    deliveryTimeline:  str('deliveryTimeline'),
-    exportAvailable:   bool('exportAvailable'),
-    stockAvailable:    bool('stockAvailable'),
-    price:             num('price'),
-    currency:          str('currency') || 'USD',
-    priceNegotiable:   bool('priceNegotiable'),
-    showPrice:         bool('showPrice'),
-    bulkPricing:       str('bulkPricing'),
-    requestQuote:      bool('requestQuote'),
-    tags:              str('tags').split(',').map(t => t.trim()).filter(Boolean),
-    seoTitle:          str('seoTitle'),
-    seoDescription:    str('seoDescription'),
+    unitType: str('unitType'),
+    supplyCapacity: str('supplyCapacity'),
+    moq: str('moq'),
+    packagingType: str('packagingType'),
+    countryOfOrigin: str('countryOfOrigin'),
+    deliveryTimeline: str('deliveryTimeline'),
+    exportAvailable: bool('exportAvailable'),
+    stockAvailable: bool('stockAvailable'),
+    price: num('price'),
+    currency: str('currency') || 'USD',
+    priceNegotiable: bool('priceNegotiable'),
+    showPrice: bool('showPrice'),
+    bulkPricing: str('bulkPricing'),
+    requestQuote: bool('requestQuote'),
+    tags: str('tags').split(',').map(t => t.trim()).filter(Boolean),
+    seoTitle: str('seoTitle'),
+    seoDescription: str('seoDescription'),
   }
 }
 
@@ -206,7 +220,7 @@ export async function updateProduct(
     const existingImageIds: string[] = existingImageIdsRaw ? JSON.parse(existingImageIdsRaw) : []
 
     const newFiles = await collectImages(formData)
-    const newIds   = await Promise.all(newFiles.map(f => uploadImageToGridFS(f)))
+    const newIds = await Promise.all(newFiles.map(f => uploadImageToGridFS(f)))
 
     const existing = await ProductModel.findById(id)
     if (!existing) return { success: false, error: 'Product not found.' }
