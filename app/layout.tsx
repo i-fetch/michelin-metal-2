@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Providers from '@/components/Providers'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import LayoutWrapper from '@/components/LayoutWrapper'
 
 import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google'
-import ScrollToTopButton from '@/components/ScrollToTop'
 
 const display = Bebas_Neue({
   weight: '400',
@@ -69,12 +67,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body cz-shortcut-listen="true">
         <Providers>
+<<<<<<< HEAD
           <main>
             {/* <Navbar /> */}
             {children}
             <ScrollToTopButton />
             {/* <Footer /> */}
           </main>
+=======
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
+>>>>>>> 7ef21dc694fba76255b9941494ec1bbebc6c853b
         </Providers>
       </body>
     </html>
