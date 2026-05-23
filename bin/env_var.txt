@@ -1,0 +1,8 @@
+MONGODB_URI=mongodb+srv://mechelinmetals45:Mechelin_metals45@cluster0.b9kazo7.mongodb.net/?MechelinMetalsDB?retryWrites=true&w=majority
+NEXTAUTH_SECRET=gPNUK/l0tDPiqg9TzBsdOnDo1S1tjYXugw6wUes2VMU5KRudRCOJZCdjAiU=
+NEXTAUTH_URL= http://localhost:3000/
+# NEXTAUTH_URL= https://mechelinmetals.com/
+
+
+
+
