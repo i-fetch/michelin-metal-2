@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
   // Public routes — always allow
   if (!pathname.startsWith('/admin')) return NextResponse.next()
 
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET })
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
   const isLoggedIn = !!token
   const isAdmin = token?.role === 'admin'
 
