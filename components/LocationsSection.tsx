@@ -1,0 +1,294 @@
+// app/components/LocationsSection.tsx
+"use client";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
+
+interface BranchDetails {
+  id: string;
+  tag: string;
+  title: string;
+  address: string;
+  mapQuery: string;
+  mapsLink: string;
+  hours: string;
+}
+
+export default function LocationsSection() {
+  // Multiple active branches
+  const [activeBranches, setActiveBranches] = useState<string[]>([
+    "branch1",
+    "branch2",
+  ]);
+
+  const branches: Record<string, BranchDetails> = {
+    branch1: {
+      id: "branch1",
+      tag: "Branch 01",
+      title: "Awada – Head Office",
+      address:
+        "No. 23 Nathan Okafor St, Awada Obosi, Anambra State, Nigeria",
+      mapQuery:
+        "No.+23+Nathan+Okafor+St,+Awada+Obosi,+Anambra,+Nigeria",
+      mapsLink:
+        "https://maps.google.com/?q=No+23+Nathan+Okafor+Street+Awada+Obosi+Anambra+Nigeria",
+      hours: "Mon – Sat: 8am – 6pm",
+    },
+
+    branch2: {
+      id: "branch2",
+      tag: "Branch 02",
+      title: "Woliwo Layout – Commercial Hub",
+      address:
+        "No. 32 Louis Mbanefo St, Woliwo Layout, Anambra State, Nigeria",
+      mapQuery:
+        "No.+32+Louis+Mbanefo+St,+Woliwo+Layout,+Anambra,+Nigeria",
+      mapsLink:
+        "https://maps.google.com/?q=No+32+Louis+Mbanefo+Street+Woliwo+Layout+Anambra+Nigeria",
+      hours: "Mon – Fri: 8am – 5pm",
+    },
+  };
+
+  // Toggle independent accordion items
+  const handleToggle = (branchId: string) => {
+    setActiveBranches((prev) =>
+      prev.includes(branchId)
+        ? prev.filter((id) => id !== branchId)
+        : [...prev, branchId]
+    );
+  };
+
+  return (
+    <section className="wrap max-w-5xl mx-auto px-1">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        {/* Header */}
+        <div className="mb-12">
+          <span
+            className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-md mb-3"
+            style={{
+              color: "var(--clr-green)",
+              background: "rgba(22,163,74,0.08)",
+              border: "1px solid rgba(22,163,74,0.15)",
+            }}
+          >
+            Our Network
+          </span>
+
+          <h3
+            className="text-3xl md:text-4xl font-extrabold tracking-tight"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--tx-primary)",
+            }}
+          >
+            OUR BRANCHES
+          </h3>
+
+          <p
+            className="text-sm md:text-base mt-2"
+            style={{ color: "var(--tx-muted)" }}
+          >
+            Click a branch to expand or collapse its map location.
+          </p>
+        </div>
+
+        {/* Accordion Layout */}
+        <div className="flex flex-col gap-5">
+          {Object.values(branches).map((branch) => {
+            const isActive = activeBranches.includes(branch.id);
+
+            return (
+              <motion.div
+                key={branch.id}
+                layout
+                transition={{
+                  layout: {
+                    duration: 0.4,
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 18,
+                  },
+                }}
+                className="rounded-3xl overflow-hidden"
+                style={{
+                  background: "var(--bg-1)",
+                  border: isActive
+                    ? "2px solid var(--clr-green)"
+                    : "1px solid var(--border)",
+                }}
+              >
+                {/* Top Clickable Panel */}
+                <button
+                  type="button"
+                  onClick={() => handleToggle(branch.id)}
+                  className="w-full text-left p-6"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    {/* Left */}
+                    <div className="flex-1">
+                      <span
+                        className="inline-block text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded"
+                        style={{
+                          background: isActive
+                            ? "rgba(22,163,74,0.12)"
+                            : "var(--bg-2)",
+                          color: isActive
+                            ? "var(--clr-green)"
+                            : "var(--tx-muted)",
+                        }}
+                      >
+                        {branch.tag}
+                      </span>
+
+                      <h4
+                        className="font-bold text-xl mt-3"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          color: "var(--tx-primary)",
+                        }}
+                      >
+                        {branch.title}
+                      </h4>
+
+                      <div
+                        className="space-y-3 text-sm mt-4"
+                        style={{ color: "var(--tx-secondary)" }}
+                      >
+                        <p>
+                          <strong className="text-xs uppercase tracking-wider block opacity-60 mb-1">
+                            Address
+                          </strong>
+
+                          {branch.address}
+                        </p>
+
+                        <div
+                          className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 text-xs"
+                          style={{ color: "var(--tx-muted)" }}
+                        >
+                          <div>
+                            <strong>Hours:</strong> {branch.hours}
+                          </div>
+
+                          <div>
+                            <strong>Phone:</strong> On Request
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Controls */}
+                    <div className="flex items-center gap-3">
+                      <motion.div
+                        animate={{
+                          rotate: isActive ? 180 : 0,
+                        }}
+                        transition={{ duration: 0.25 }}
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
+                        style={{
+                          background: isActive
+                            ? "rgba(22,163,74,0.08)"
+                            : "var(--bg-2)",
+                        }}
+                      >
+                        <ChevronDown
+                          size={18}
+                          style={{
+                            color: isActive
+                              ? "var(--clr-green)"
+                              : "var(--tx-faint)",
+                          }}
+                        />
+                      </motion.div>
+
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
+                        style={{
+                          background: isActive
+                            ? "rgba(22,163,74,0.08)"
+                            : "var(--bg-2)",
+                        }}
+                      >
+                        <MapPin
+                          size={18}
+                          style={{
+                            color: isActive
+                              ? "var(--clr-green)"
+                              : "var(--tx-faint)",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </button>
+
+                {/* Accordion Content */}
+                <AnimatePresence initial={false}>
+                  {isActive && (
+                    <motion.div
+                      key={`content-${branch.id}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{
+                        duration: 0.35,
+                        ease: "easeInOut",
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6">
+                        {/* Map */}
+                        <div
+                          className="overflow-hidden rounded-2xl h-[350px] md:h-[420px]"
+                          style={{
+                            border: "1px solid var(--border)",
+                          }}
+                        >
+                          <iframe
+                            title={`${branch.title} Location Map`}
+                            src={`https://maps.google.com/maps?q=${branch.mapQuery}&t=&z=16&ie=UTF8&iwloc=near&output=embed`}
+                            width="100%"
+                            height="100%"
+                            style={{
+                              border: "none",
+                              display: "block",
+                              filter:
+                                "saturate(0.95) contrast(1.02)",
+                            }}
+                            loading="lazy"
+                            allowFullScreen
+                            referrerPolicy="no-referrer-when-downgrade"
+                          />
+                        </div>
+
+                        {/* Bottom Action */}
+                        <div className="flex justify-end mt-4">
+                          <a
+                            href={branch.mapsLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all"
+                            style={{ color: "var(--clr-green)" }}
+                          >
+                            Open Map Route
+                            <ArrowRight size={15} />
+                          </a>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
