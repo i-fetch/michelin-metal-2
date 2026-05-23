@@ -29,11 +29,10 @@ const milestones = [
 export default function About() {
   return (
     <>
-    <Navbar />
+      <Navbar />
       {/* Hero */}
-      <section className="relative pt-12 pb-20 overflow-hidden"
-        style={{ background: 'var(--bg)' }}>
-        <div className="absolute inset-0 grid-dots opacity-30" />
+      <section className="pt-32 pb-16" style={{ background: 'var(--bg)' }}>
+        <div className="absolute inset-0 grid-dots opacity-20" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 400 }} />
         <div className="wrap px-5 relative z-10">
           <AOS>
             <p className="tag mb-5">Who We Are</p>
@@ -48,7 +47,8 @@ export default function About() {
           </AOS>
         </div>
       </section>
-      
+
+
 
       {/* Story */}
       <section className="section" style={{ background: 'var(--bg-2)' }}>
@@ -76,7 +76,7 @@ export default function About() {
                 <Image
                   src="/building-structure.png"
                   alt="Metal processing facility"
-                  fill 
+                  fill
                   priority
                   className="object-cover"
                 />
