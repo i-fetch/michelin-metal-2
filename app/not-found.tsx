@@ -47,15 +47,6 @@ export default function NotFoundPage() {
       <section className="relative z-10 flex min-h-screen items-center">
         <div className="wrap py-5 px-5 w-full">
           <div className="max-w-3xl">
-<<<<<<< HEAD
-            {/* TAG */}
-            <motion.div
-              custom={1}
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-4 py-2 mb-8"
-=======
 
             {/* Tag */}
             <div
@@ -65,7 +56,6 @@ export default function NotFoundPage() {
                 background: "rgba(255,255,255,0.05)",
                 backdropFilter: "blur(12px)",
               }}
->>>>>>> 7ef21dc694fba76255b9941494ec1bbebc6c853b
             >
               <Recycle size={14} className="text-green-400" />
               <span className="text-xs uppercase tracking-[0.25em] text-white/60">
@@ -141,19 +131,8 @@ export default function NotFoundPage() {
               </Link>
             </div>
 
-<<<<<<< HEAD
-            {/* CARDS */}
-            <motion.div
-              custom={6}
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              className="hidden  sm:grid-cols-3 gap-5"
-            >
-=======
             {/* Cards */}
             <div className="grid sm:grid-cols-3 gap-5 nf-fade-6">
->>>>>>> 7ef21dc694fba76255b9941494ec1bbebc6c853b
               {[
                 { icon: Package,    title: "Industrial Recycling", body: "Premium ferrous and non-ferrous metal recovery." },
                 { icon: Globe,      title: "Global Distribution",  body: "Supplying manufacturers across Africa and globally." },
