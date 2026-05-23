@@ -1,41 +1,40 @@
-/**
- * Run: npx tsx scripts/seed-admin.ts
- * Creates the initial admin user in MongoDB.
- */
-import dotenv from 'dotenv'
-dotenv.config()
+// scripts/seed-admin.ts
+import 'dotenv/config'
 import mongoose from 'mongoose'
-import bcrypt from 'bcryptjs'
+import bcrypt   from 'bcryptjs'
 
 const MONGODB_URI = process.env.MONGODB_URI!
-if (!MONGODB_URI) throw new Error('Set MONGODB_URI in .env.local')
+if (!MONGODB_URI) { console.error('MONGODB_URI not set'); process.exit(1) }
 
 const AdminSchema = new mongoose.Schema({
-  email:    { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  name:     String,
+  email:    { type: String, unique: true },
+  password: String,
   role:     { type: String, default: 'admin' },
-}, { timestamps: true })
+})
 
-const Admin = mongoose.models.Admin ?? mongoose.model('Admin', AdminSchema)
+// Safe model registration for scripts (no module caching)
+const Admin = mongoose.model('Admin', AdminSchema)
 
 async function seed() {
   await mongoose.connect(MONGODB_URI)
-  console.log('Connected to MongoDB')
+  console.log('✅ Connected to MongoDB')
 
-  const email    = process.env.ADMIN_EMAIL    ?? 'admin@mechelinmetals.com'
-  const password = process.env.ADMIN_PASSWORD ?? 'Admin@1234'
+  const email    = 'admin@mechelinmetals.com'
+  const password = 'Admin1234!'          // ← change after first login!
+  const hashed   = await bcrypt.hash(password, 12)
 
-  const existing = await Admin.findOne({ email })
-  if (existing) {
-    console.log(`Admin already exists: ${email}`)
-    process.exit(0)
-  }
+  await Admin.findOneAndUpdate(
+    { email },
+    { name: 'Mechelin Admin', email, password: hashed, role: 'admin' },
+    { upsert: true, new: true }
+  )
 
-  const hashed = await bcrypt.hash(password, 12)
-  await Admin.create({ email, password: hashed, role: 'admin' })
-
-  console.log(`✅ Admin created: ${email}`)
+  console.log(`✅ Admin seeded:`)
+  console.log(`   Email:    ${email}`)
+  console.log(`   Password: ${password}`)
+  console.log(`   ⚠️  Change this password immediately after first login!`)
   await mongoose.disconnect()
 }
 
-seed().catch((e) => { console.error(e); process.exit(1) })
+seed().catch(e => { console.error(e); process.exit(1) })

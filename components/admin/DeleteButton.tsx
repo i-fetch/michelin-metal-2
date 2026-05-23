@@ -1,35 +1,46 @@
+// components/admin/DeleteButton.tsx
 'use client'
+
 import { useState, useTransition } from 'react'
-import { Trash2, Loader2 } from 'lucide-react'
-import { deleteProduct } from '@/actions/products'
+import { Trash2, Loader2 }         from 'lucide-react'
+import { deleteProduct }           from '@/actions/products'
+import { useToast }                from '@/hooks/use-toast'
 
-export default function DeleteButton({ id, title }: { id: string; title: string }) {
-  const [confirming, setConfirming] = useState(false)
-  const [isPending, startTransition] = useTransition()
+interface Props { id: string; title: string }
 
-  const handleDelete = () => {
-    startTransition(async () => {
-      await deleteProduct(id)
-      setConfirming(false)
+export default function DeleteButton({ id, title }: Props) {
+  const [confirm, setConfirm] = useState(false)
+  const [pending, start]      = useTransition()
+  const { toast }             = useToast()
+
+  function handleDelete() {
+    start(async () => {
+      const result = await deleteProduct(id)
+      if (result.success) {
+        toast({ title: 'Deleted', description: `"${title}" removed from catalogue.` })
+      } else {
+        toast({ title: 'Error', description: result.error, variant: 'destructive' })
+      }
+      setConfirm(false)
     })
   }
 
-  if (confirming) {
+  if (confirm) {
     return (
-      <div className="flex items-center gap-2">
-        <span className="text-xs" style={{ color: 'var(--tx-muted)' }}>Delete?</span>
+      <div className="flex items-center gap-1.5">
         <button
           onClick={handleDelete}
-          disabled={isPending}
-          className="text-xs px-2 py-1 rounded font-semibold"
-          style={{ background: 'rgba(220,38,38,0.1)', color: '#ef4444' }}
+          disabled={pending}
+          className="flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-lg"
+          style={{ background: 'rgba(239,68,68,0.15)', color: '#f87171', border: '1px solid rgba(239,68,68,0.3)' }}
         >
-          {isPending ? <Loader2 size={12} className="animate-spin" /> : 'Yes'}
+          {pending ? <Loader2 size={11} className="animate-spin" /> : <Trash2 size={11} />}
+          Yes
         </button>
         <button
-          onClick={() => setConfirming(false)}
-          className="text-xs px-2 py-1 rounded"
-          style={{ color: 'var(--tx-faint)' }}
+          onClick={() => setConfirm(false)}
+          className="text-xs px-2.5 py-1.5 rounded-lg"
+          style={{ background: 'var(--bg-3)', color: 'var(--tx-faint)', border: '1px solid var(--border)' }}
         >
           No
         </button>
@@ -39,12 +50,13 @@ export default function DeleteButton({ id, title }: { id: string; title: string 
 
   return (
     <button
-      onClick={() => setConfirming(true)}
-      className="p-2 rounded-lg transition-colors hover:bg-red-50"
-      style={{ color: 'var(--tx-muted)' }}
-      title={`Delete ${title}`}
+      onClick={() => setConfirm(true)}
+      className="flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-lg transition-colors"
+      style={{ color: '#f87171', border: '1px solid rgba(239,68,68,0.2)' }}
+      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.08)' }}
+      onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
     >
-      <Trash2 size={14} />
+      <Trash2 size={11} /> Delete
     </button>
   )
 }

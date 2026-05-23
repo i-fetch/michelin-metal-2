@@ -16,4 +16,8 @@
 .DS_Store
 # Optional: Ignore test coverage reports
 /coverage
+SETUP.md
 
+# Optional: Ignore npm debug logs
+npm-debug.log*
+yarn-debug.log*
