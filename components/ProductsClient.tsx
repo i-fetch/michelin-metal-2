@@ -57,11 +57,11 @@ export default function ProductsClient({ products }: Props) {
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section
         className="relative pt-28 pb-16 overflow-hidden"
-        style={{ background: 'linear-gradient(160deg, #0a0a0a 0%, #0d1a0d 100%)' }}
+        style={{ background: 'var(--bg)' }}
       >
         <div className="absolute inset-0 grid-dots opacity-20" />
         <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-5"
-          style={{ background: 'radial-gradient(circle, #16a34a 0%, transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle, var(--clr-green) 0%, transparent 70%)' }} />
 
         <div className="wrap px-5 relative z-10">
           <AOS>
@@ -139,7 +139,7 @@ export default function ProductsClient({ products }: Props) {
       {/* ── Category Filter Bar ───────────────────────────────────────────── */}
       <div
         className="sticky top-0 z-30 border-b"
-        style={{ background: 'rgba(10,10,10,0.95)', borderColor: 'var(--border)', backdropFilter: 'blur(12px)' }}
+        style={{background: 'var(--bg)', borderColor: 'var(--border)', backdropFilter: 'blur(12px)' }}
       >
         <div className="wrap px-5">
           <div className="flex items-center gap-2 overflow-x-auto py-3 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
@@ -175,7 +175,6 @@ export default function ProductsClient({ products }: Props) {
         </div>
       </div>
 
-      {/* ── Products Grid ─────────────────────────────────────────────────── */}
       {/* ── Products Grid ─────────────────────────────────────────────────── */}
       <section style={{ background: 'var(--bg-2)', paddingTop: '2.5rem', paddingBottom: '4rem' }}>
         <div className="wrap px-5">

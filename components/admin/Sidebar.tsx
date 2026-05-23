@@ -143,7 +143,7 @@ export default function AdminSidebar({ user, mobileOpen, onClose }: Props) {
               {user.email}
             </p>
             <p className="text-[10px] truncate mt-0.5" style={{ color: 'var(--tx-faint)' }}>
-              {user.role ? user.role.toUpperCase() : 'ADMIN'}
+              {user.role ? user.role.toUpperCase() : 'ADMIN'} 
             </p>
           </div>
         </div>
