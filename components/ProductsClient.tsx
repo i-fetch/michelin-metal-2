@@ -285,7 +285,6 @@ export default function ProductsClient({ products }: Props) {
         </div>
       </section>
 
-
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section className="section" style={{ background: 'var(--clr-green)' }}>
         <AOS>

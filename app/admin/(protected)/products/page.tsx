@@ -227,8 +227,8 @@ export default async function AdminProductsPage() {
                         {/* Attribute Flags nodes */}
                         <td className="p-4 align-middle">
                           <div className="flex items-center gap-2">
-                            {p.featured && <Star size={13} style={{ color: '#d97706' }} title="Featured" />}
-                            {p.exportAvailable && <Globe size={13} style={{ color: '#0284c7' }} title="Export" />}
+                            {p.featured && <Star size={13} style={{ color: '#d97706' }} aria-label="Featured" />}
+                            {p.exportAvailable && <Globe size={13} style={{ color: '#0284c7' }} aria-label="Export" />}
                             <span className={`w-2 h-2 rounded-full inline-block flex-shrink-0 ${p.stockAvailable ? 'bg-green-500' : 'bg-red-500'}`} 
                               title={p.stockAvailable ? "In Stock" : "Out of Stock"} />
                           </div>
