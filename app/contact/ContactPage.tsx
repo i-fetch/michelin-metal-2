@@ -45,7 +45,7 @@ export default function ContactPage() {
 
       {/* Contact cards */}
       <section style={{ background: 'var(--bg-2)', padding: '1.5rem 0' }}>
-        <div className="wrap px-2 grid sm:grid-cols-3 gap-2">
+        <div className="wrap px-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
           {[
             { icon: Mail, label: 'Email', val: 'mechelinmetalsnig@gmail.com', href: 'mailto:mechelinmetalsnig@gmail.com' },
             { icon: MessageSquare, label: 'WhatsApp', val: 'Message us directly', href: '#' },

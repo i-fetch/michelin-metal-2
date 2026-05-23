@@ -13,7 +13,7 @@ export default function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       aria-label="Toggle theme"
-      className="w-9 h-9 rounded-full border flex items-center justify-center transition-all"
+      className="hidden w-9 h-9 rounded-full border flex items-center justify-center transition-all"
       style={{
         borderColor:'var(--border-strong)',
         background:'var(--surface-2)',
