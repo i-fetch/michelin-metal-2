@@ -48,8 +48,8 @@ const industries = ['Aluminium Smelters', 'Steel Mills', 'Foundries', 'Export Tr
 export default function Services() {
   return (
     <>
-             <Navbar />
-    
+      <Navbar />
+
       {/* Hero with image */}
 
       <section className="relative pt-12 pb-20 overflow-hidden"
@@ -59,7 +59,7 @@ export default function Services() {
           <AOS>
             <p className="tag mb-5">What we do</p>
             <h1 className="mb-5 leading-none" style={{ fontFamily: 'var(--font-display)', color: 'var(--tx-primary)', fontSize: 'clamp(3rem,7vw,5.5rem)' }}>
-              OUR 
+              OUR
               <span className="ml-2" style={{ color: 'var(--clr-green)' }}>SERVICES</span>
             </h1>
             <p className="text-lg max-w-xl" style={{ color: 'var(--tx-muted)', fontWeight: 300 }}>

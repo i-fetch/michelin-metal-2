@@ -1,8 +1,6 @@
-MONGODB_URI=mongodb+srv://mechelinmetals45:Mechelin_metals45@cluster0.b9kazo7.mongodb.net/?MechelinMetalsDB?retryWrites=true&w=majority
+# MONGODB_URI=mongodb+srv://mechelinmetals45:Mechelin_metals45@cluster0.b9kazo7.mongodb.net/?MechelinMetalsDB?retryWrites=true&w=majority
+MONGODB_URI=mongodb://randalchukzwilson_db_user:randalchukzwilson_db_user@ac-znluj0q-shard-00-00.8sftz31.mongodb.net:27017,ac-znluj0q-shard-00-01.8sftz31.mongodb.net:27017,ac-znluj0q-shard-00-02.8sftz31.mongodb.net:27017/MechelinMetalsDB?ssl=true&replicaSet=atlas-celenp-shard-0&authSource=admin&appName=Cluster0
 NEXTAUTH_SECRET=gPNUK/l0tDPiqg9TzBsdOnDo1S1tjYXugw6wUes2VMU5KRudRCOJZCdjAiU=
 NEXTAUTH_URL= http://localhost:3000/
 # NEXTAUTH_URL= https://mechelinmetals.com/
-
-
-
 
