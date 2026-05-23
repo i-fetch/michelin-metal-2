@@ -1,21 +1,46 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
-import AdminSidebar from './Sidebar'
+import { useState } from 'react'
+import { Menu } from 'lucide-react'
 import type { ReactNode } from 'react'
+import AdminSidebar from './Sidebar'
 
-export default function AdminLayoutShell({ children }: { children: ReactNode }) {
-  const pathname = usePathname()
-  const isLoginPage = pathname === '/admin/login'
+interface Props {
+  user: { name?: string | null; email?: string | null }
+  children: ReactNode
+}
 
-  if (isLoginPage) {
-    return <>{children}</>
-  }
+export default function AdminLayoutShell({ user, children }: Props) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
-    <div className="admin-layout">
-      <AdminSidebar user={{ name: 'Admin', email: null }} />
-      <main className="admin-main">{children}</main>
+    <div className={`admin-layout ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      <AdminSidebar user={user} mobileOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+
+      <div className="admin-main">
+        <div className="admin-topbar">
+          <button
+            type="button"
+            className="admin-sidebar-toggle"
+            onClick={() => setIsSidebarOpen(true)}
+            aria-label="Open admin navigation"
+          >
+            <Menu size={16} />
+            Menu
+          </button>
+        </div>
+
+        {children}
+      </div>
+
+      {isSidebarOpen && (
+        <button
+          type="button"
+          className="admin-backdrop"
+          onClick={() => setIsSidebarOpen(false)}
+          aria-label="Close admin navigation"
+        />
+      )}
     </div>
   )
 }
