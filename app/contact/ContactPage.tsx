@@ -6,6 +6,7 @@ import AOS from '@/components/AnimateOnScroll'
 import LocationsSection from '@/components/LocationsSection'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { useSession } from 'next-auth/react'
 
 const enquiryTypes = ['Product Enquiry', 'Bulk Purchase / Contract', 'Scrap Metal Sale', 'Export / Import Partnership', 'General Information', 'Other']
 const productList = ['Aluminium Bales', 'Aluminium Scrap (Loose)', 'Heavy Melting Steel', 'Vehicle Body Scrap', 'Cast Iron Scrap', 'Copper Scrap', 'Brass Scrap', 'Lead Scrap', 'Bulk Raw Supply', 'Multiple / Other']
@@ -14,6 +15,8 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', country: '', type: '', product: '', volume: '', message: '', channel: 'email' })
   const [done, setDone] = useState(false)
   const [busy, setBusy] = useState(false)
+
+  
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm(p => ({ ...p, [e.target.name]: e.target.value }))

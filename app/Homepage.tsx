@@ -8,6 +8,7 @@ import MaterialCatalogue from '@/components/MaterialCatalogue'
 import { Material } from '@/types'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import HeroSection from '@/components/herosection'
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
@@ -59,139 +60,7 @@ export default function Homepage() {
       <>
          <Navbar />
          {/* ── HERO ─────────────────────────────────────────── */}
-         <section className="relative min-h-screen flex items-center overflow-hidden">
-
-            {/* Background Video */}
-            <div className="absolute inset-0 z-0">
-               <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover"
-               >
-                  <source src="/header-vid.mp4" type="video/mp4" />
-               </video>
-
-               {/* Dark cinematic overlay */}
-               <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{
-                     backgroundImage: `
-                     linear-gradient(
-                        105deg,
-                        rgba(9,9,11,0.88) 42%,
-                        rgba(9,9,11,0.55) 100%
-                     ),
-                     url('/header-img.png')
-                  `,
-                  }}
-               />
-
-               {/* Optional subtle green tint */}
-               <div className="absolute inset-0"
-                  style={{
-                     background:
-                        "radial-gradient(circle at top right, rgba(22,163,74,0.12), transparent 40%)",
-                  }}
-               />
-            </div>
-
-            {/* Content */}
-            <div className="wrap px-5 relative z-10 pt-12 pb-24">
-               <div className="max-w-full">
-
-                  {/* Top Tag */}
-                  <div
-                     className="tag-gold border inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium mb-5 backdrop-blur-sm"
-                     style={{
-                        background: "rgba(255,255,255,0.05)",
-                        borderColor: "rgba(255,255,255,0.08)",
-                     }}
-                  >
-                     <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-pulse" />
-                     Metal Recycle Industry · West Africa
-                  </div>
-
-                  {/* Main Heading */}
-                  <h1
-                     className="md:w-3/4 text-white mb-6 leading-none"
-                     style={{
-                        fontFamily: "var(--font-display)",
-                        fontSize: "clamp(3.5rem,8vw,6.5rem)",
-                        letterSpacing: "0.03em",
-                     }}
-                  >
-                     TURNING METAL{" "}
-                     <span style={{ color: "var(--clr-green-light)" }}>
-                        WASTE
-                     </span>{" "}
-                     INTO GLOBAL{" "}
-                     <span style={{ color: "var(--clr-gold)" }}>
-                        VALUE
-                     </span>
-                  </h1>
-
-                  {/* Description */}
-                  <p
-                     className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
-                     style={{
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 300,
-                     }}
-                  >
-                     Mechelin Metals Nigeria — sourcing, sorting, baling and
-                     distributing aluminium and ferrous metals to manufacturers
-                     across West Africa and the global industrial supply chain.
-                  </p>
-
-                  {/* CTA Buttons */}
-                  <div className="flex flex-wrap gap-2 mb-16">
-                     <Link href="/products" className="flex items-center justify-center flex-1 text-center btn btn-green">
-                        Explore Products
-                        <ArrowRight size={15} />
-                     </Link>
-
-                     <Link
-                        href="/about"
-                        className="flex items-center justify-center flex-1 text-center btn btn-outline backdrop-blur-sm"
-                        style={{
-                           borderColor: "rgba(255,255,255,0.25)",
-                           color: "#fff",
-                           background: "rgba(255,255,255,0.03)",
-                        }}
-                     >
-                        Our Story
-                        <ArrowRight size={15} />
-                     </Link>
-                  </div>
-
-                  {/* Trust Indicators */}
-                  <div className="flex flex-wrap gap-6">
-                     {[
-                        "Incorporated 2023",
-                        "Private Ltd by Shares",
-                        "10+ Years Experience",
-                     ].map((t) => (
-                        <span
-                           key={t}
-                           className="flex items-center gap-2 text-sm text-white/60"
-                        >
-                           <CheckCircle
-                              size={13}
-                              style={{ color: "var(--clr-green-light)" }}
-                           />
-                           {t}
-                        </span>
-                     ))}
-                  </div>
-               </div>
-            </div>
-
-
-         </section>
-
+         <HeroSection />
          {/* mobile stats */}
          <div className="md:hidden grid grid-cols-2 gap-px" style={{ background: 'var(--border)' }}>
             {stats.map(s => (

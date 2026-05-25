@@ -42,6 +42,24 @@
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.14);
 
   --hero-overlay: rgba(9, 9, 11, 0.62);
+
+
+  /* updates */
+  --hero-overlay-from: rgba(9, 9, 11, 0.94);
+  /* heavy dark on the left  */
+  --hero-overlay-to: rgba(9, 9, 11, 0.50);
+  /* lighter on the right    */
+
+  /* Hero green glow — the soft brand accent in the top-right */
+  --hero-glow: rgba(22, 163, 74, 0.13);
+
+  /* Hero grid texture — the faint industrial grid lines */
+  --hero-grid-color: rgba(255, 255, 255, 0.028);
+
+  /* Hero particle colours — used by the canvas animation */
+  --hero-particle-green: #22c55e;
+  --hero-particle-blue: #3b82f6;
+  --hero-particle-muted: #a3a3a3;
 }
 
 .dark {
@@ -492,6 +510,7 @@ h5 {
 }
 
 @media (max-width: 1024px) {
+
   .admin-wrap,
   .admin-layout {
     grid-template-columns: 1fr;
@@ -546,4 +565,54 @@ h5 {
 .divider {
   border: none;
   border-top: 1px solid var(--border);
+}
+
+/* Hero wrapper */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #09090b;
+}
+
+/* Stats bar below the hero */
+.hero-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .hero-stats-bar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.hero-stats-bar__item {
+  padding: 1.75rem 1rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+
+.hero-stats-bar__item:last-child {
+  border-right: none;
+}
+
+/* hide the right border on col 2 when wrapping to 2-col on mobile */
+@media (max-width: 767px) {
+  .hero-stats-bar__item:nth-child(2) {
+    border-right: none;
+  }
+}
+
+.hero-stats-bar__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tx-muted);
+  margin-top: 0.25rem;
 }
