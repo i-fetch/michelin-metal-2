@@ -11,7 +11,8 @@ import AboutSection from '@/components/homepage-components/AboutSection'
 import VisionSection from '@/components/homepage-components/VisionSection'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 import GlobalReachSection from '@/components/homepage-components/GlobalReachSection'
-import LocationsSection from '@/components/homepage-components/LocationSection'
+import LocationsSection from '@/components/LocationSection'
+
 
 
 

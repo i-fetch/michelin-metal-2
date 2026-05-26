@@ -3,10 +3,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, MapPinIcon, MessageSquare, Phone, Send } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
-import LocationsSection from '@/components/LocationsSection'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useSession } from 'next-auth/react'
+import LocationsSection from '@/components/LocationSection'
 
 const enquiryTypes = ['Product Enquiry', 'Bulk Purchase / Contract', 'Scrap Metal Sale', 'Export / Import Partnership', 'General Information', 'Other']
 const productList = ['Aluminium Bales', 'Aluminium Scrap (Loose)', 'Heavy Melting Steel', 'Vehicle Body Scrap', 'Cast Iron Scrap', 'Copper Scrap', 'Brass Scrap', 'Lead Scrap', 'Bulk Raw Supply', 'Multiple / Other']
