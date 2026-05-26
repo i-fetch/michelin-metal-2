@@ -4,20 +4,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle, CircleCheck, Globe2, Package, Recycle, ShieldCheck, TrendingUp, Truck, Zap } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
-import MaterialCatalogue from '@/components/MaterialCatalogue'
-import { Material } from '@/types'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import HeroSection from '@/components/herosection'
+import HeroSection from '@/components/homepage-components/HeroSection'
+import AboutSection from '@/components/homepage-components/AboutSection'
+import VisionSection from '@/components/homepage-components/VisionSection'
+import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
+import GlobalReachSection from '@/components/homepage-components/GlobalReachSection'
+import LocationsSection from '@/components/homepage-components/LocationSection'
+
+
+
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
-const stats = [
-   { num: '10+', label: 'Years Active' },
-   { num: '50+', label: 'B2B Partners' },
-   { num: '100K+', label: 'Tonnes Processed' },
-   { num: '3+', label: 'Export Countries' },
-]
 
 // const pillars = [
 //    { icon: Recycle, title: 'Full-Cycle Recycling', body: 'End-to-end processing — collection, sorting, baling, distribution.' },
@@ -61,74 +61,20 @@ export default function Homepage() {
          <Navbar />
          {/* ── HERO ─────────────────────────────────────────── */}
          <HeroSection />
-         {/* mobile stats */}
-         <div className="md:hidden grid grid-cols-2 gap-px" style={{ background: 'var(--border)' }}>
-            {stats.map(s => (
-               <div key={s.label} className="py-6 text-center" style={{ background: 'var(--surface)' }}>
-                  <p className="stat-num">{s.num}</p>
-                  <p className="text-xs uppercase tracking-widest mt-1" style={{ color: 'var(--tx-muted)' }}>{s.label}</p>
-               </div>
-            ))}
-         </div>
-
          {/* ── ABOUT STRIP ──────────────────────────────────── */}
-         <section className="section" style={{ background: 'var(--bg)' }}>
-            <div className="wrap px-1">
-               <div className="grid md:grid-cols-2 gap-16 items-center">
-                  <AOS>
-                     <p className="tag mb-4">About The Company</p>
-                     <h2 className="mb-5 leading-none" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem,4vw,3.2rem)', color: 'var(--tx-primary)' }}>
-                        NIGERIA&apos;S FOREMOST INTEGRATED METAL RECYCLER
-                     </h2>
-                     <p className="mb-4 leading-relaxed text-[15px]" style={{ color: 'var(--tx-secondary)' }}>
-                        Mechelin Metals Nigeria LTD leverages captive resources and advanced capabilities to source, sort and bale aluminium waste, distributing it as raw material to manufacturers. We handle all types of ferrous and non-ferrous metals for sale, scrapping, conversion and foundry purposes.
-                     </p>
-                     <p className="hidden mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
-                        Formally incorporated in 2023, our team has been active in the industry for over a decade — building infrastructure and global distribution networks that benefit both industry and environment.
-                     </p>
-                     <p className="mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
-                        Based in Anambra State, we bridge the gap between Nigerian scrap metal suppliers and international manufacturers, ensuring premium quality and reliable supply chains across borders.
-                     </p>
-                     <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 my-8">
-                        {features.map((feature) => (
-                           <div
-                              key={feature}
-                              className="flex items-center gap-3 text-[0.85rem] font-semibold"
-                              style={{ color: "var(--text-secondary)" }}
-                           >
+         <AboutSection />
 
-                              <CircleCheck className='text-green-500' />
+         {/* ── VISION ───────────────────────────────────────── */}
+         <VisionSection />
 
-                              <span className='dark:text-slate-300'>{feature}</span>
-                           </div>
-                        ))}
-                     </div>
-                     <Link href="/about" className="btn btn-green">Read Full Story <ArrowRight size={15} /></Link>
-                  </AOS>
+         {/* ── WHY CHOOSE US ───────────────────────────────── */}
+         <WhyChooseSection />
 
-                  <AOS delay={180}>
-                     <div className="relative">
-                        {/* Image */}
-                        <div className="rounded-2xl overflow-hidden aspect-[4/3] relative">
-                           <Image
-                              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80"
-                              alt="Scrap metal processing"
-                              fill
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover"
-                           />
-                        </div>
-                        {/* floating stat card */}
-                        <div className="absolute -bottom-5 -left-5 rounded-xl p-5 shadow-xl"
-                           style={{ background: 'var(--clr-green)', minWidth: 150 }}>
-                           <p className="text-white text-3xl font-bold leading-none" style={{ fontFamily: 'var(--font-display)' }}>10+</p>
-                           <p className="text-green-100 text-xs mt-1 uppercase tracking-widest">Years of Industry Experience</p>
-                        </div>
-                     </div>
-                  </AOS>
-               </div>
-            </div>
-         </section>
+         {/* ── GLOBAL REACH ─────────────────────────────────── */}
+         <GlobalReachSection />
+
+         {/* ── LOCATIONS ───────────────────────────────────── */}
+         <LocationsSection />
 
          {/* ── PILLARS ───────────────────────────────────────── */}
          <section className="section" style={{ background: 'var(--bg-2)' }}>

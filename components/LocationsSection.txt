@@ -1,4 +1,5 @@
 // app/components/LocationsSection.tsx
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
