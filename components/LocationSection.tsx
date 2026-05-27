@@ -1,225 +1,363 @@
-// app/components/LocationsSection.tsx
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MapPin, Clock, Phone, Navigation } from "lucide-react";
+import { MapPin, Clock, Navigation, ArrowRight, Building2, Store } from "lucide-react";
 
-interface BranchDetails {
-  id: string;
-  tag: string;
-  title: string;
-  address: string;
-  mapQuery: string;
-  mapsLink: string;
-  hours: string;
-}
+/* ─────────────────────────────────────────────────────────────
+   DATA
+───────────────────────────────────────────────────────────── */
+const BRANCHES = [
+  {
+    id: "branch1",
+    tag: "Branch 01",
+    label: "Head Office",
+    title: "Awada, Obosi",
+    address: "No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria.",
+    note: "Accessible through Rainbow-Net behind Army Barracks Onitsha.",
+    hours: "Mon – Sat: 8am – 6pm",
+    mapQuery: "6.125510,6.881252",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=6.125510,6.881252",
+    Icon: Building2,
+  },
+  {
+    id: "branch2",
+    tag: "Branch 02",
+    label: "Commercial Office",
+    title: "Woliwo Layout, Onitsha",
+    address: "No. 32 Louis Mbanefo Street, Woliwo Layout, Onitsha, Anambra State, Nigeria.",
+    note: "Located in the heart of Onitsha's commercial district.",
+    hours: "Mon – Fri: 8am – 5pm",
+    mapQuery: "6.134440,6.792250",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=6.134440,6.792250",
+    Icon: Store,
+  },
+];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+/* ─────────────────────────────────────────────────────────────
+   LOCATIONS SECTION
+───────────────────────────────────────────────────────────── */
 export default function LocationsSection() {
-  const [activeBranchId, setActiveBranchId] = useState<string>("branch1");
-
-  const branches: Record<string, BranchDetails> = useMemo(() => ({
-    branch1: {
-      id: "branch1",
-      tag: "Branch 01",
-      title: "Awada – Head Office",
-      address: "No. 23 Nathan Okafor St, Awada Obosi, Anambra State, Nigeria",
-      // ENGINEERED FIX: Force absolute GPS coordinates inside the 'q=' parameter to bypass local string mapping failures and lock the native red marker
-      mapQuery: "6.125510,6.881252", 
-      mapsLink: "https://www.google.com/maps/search/?api=1&query=6.125510,6.881252",
-      hours: "Mon – Sat: 8am – 6pm",
-    },
-    branch2: {
-      id: "branch2",
-      tag: "Branch 02",
-      title: "Woliwo Layout – Commercial Hub",
-      address: "No. 32 Louis Mbanefo St, Woliwo Layout, Onitsha, Anambra State, Nigeria",
-      // ENGINEERED FIX: Coordinate anchoring for precise Woliwo Hub localization mapping
-      mapQuery: "6.134440,6.792250",
-      mapsLink: "https://www.google.com/maps/search/?api=1&query=6.134440,6.792250",
-      hours: "Mon – Fri: 8am – 5pm",
-    },
-  }), []);
-
-  const activeBranch = branches[activeBranchId];
+  const [activeId, setActiveId] = useState("branch1");
+  const active = BRANCHES.find((b) => b.id === activeId)!;
 
   return (
-    <section className="w-full py-20 md:py-28 bg-[#0a0c10] text-white overflow-hidden border-t border-white/[0.02]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        
-        {/* ══ SECTION HEADER ══ */}
+    <section id="location" className="w-full py-24 md:py-32 overflow-hidden"
+      style={{ background: "var(--bg-main)" }}>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+        {/* ══ HEADER ══ */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
-          className="mb-14 flex flex-col items-center md:items-start text-center md:text-left"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mb-16"
         >
-          <span
-            className="inline-block text-[11px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4 border"
-            style={{
-              color: "var(--clr-green, #22c55e)",
-              background: "rgba(34,197,94,0.05)",
-              borderColor: "rgba(34,197,94,0.15)",
-            }}
-          >
-            Our Network
-          </span>
-
-          <h3
-            className="text-3xl sm:text-4xl font-black tracking-tight uppercase"
-            style={{
-              fontFamily: "var(--font-display, sans-serif)",
-              color: "var(--tx-primary, #ffffff)",
-            }}
-          >
-            Our Strategic Locations
-          </h3>
-
-          <p
-            className="text-sm md:text-base mt-2 max-w-xl font-normal"
-            style={{ color: "var(--tx-muted, #94a3b8)" }}
-          >
-            Select an operational hub below to synchronize the interactive map interface.
-          </p>
+          <p className="tag mb-4">Find Us</p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <h2
+              className="leading-none"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
+                fontWeight: 900,
+                color: "var(--tx-primary)",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              Our{" "}
+              <span style={{ color: "var(--clr-green)" }}>Locations</span>
+            </h2>
+            <p className="text-sm md:text-base max-w-sm" style={{ color: "var(--tx-muted)" }}>
+              Two strategic hubs in Anambra State — Nigeria&apos;s industrial heartland.
+            </p>
+          </div>
         </motion.div>
 
-        {/* ══ BALANCED COMBINED GRID WORKSPACE (No Dead Space) ══ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          
-          {/* LEFT INTERACTIVE CONTROL STRIP PANEL */}
-          <div className="lg:col-span-5 flex flex-col gap-4 justify-between h-full">
-            {Object.values(branches).map((branch) => {
-              const isActive = activeBranchId === branch.id;
-
+        {/* ══ MOBILE: TAB TOGGLE ══ */}
+        {/* Visible only below lg — pill toggle to switch branches */}
+        <div className="lg:hidden mb-6">
+          <div
+            className="flex rounded-2xl p-1.5 gap-1.5"
+            style={{ background: "var(--bg-subtle)" }}
+          >
+            {BRANCHES.map((b) => {
+              const isActive = activeId === b.id;
               return (
-                <motion.div
-                  key={branch.id}
-                  whileHover={{ y: isActive ? 0 : -2 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => setActiveBranchId(branch.id)}
-                  className="w-full text-left p-6 md:p-8 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between flex-1 relative group overflow-hidden"
+                <button
+                  key={b.id}
+                  onClick={() => setActiveId(b.id)}
+                  className="relative flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold transition-colors duration-200"
+                  style={{ color: isActive ? "var(--bg-surface)" : "var(--tx-muted)" }}
+                >
+                  {/* sliding active pill */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="mobilePill"
+                      className="absolute inset-0 rounded-xl"
+                      style={{ background: "var(--clr-green)" }}
+                      transition={{ duration: 0.3, ease: EASE }}
+                    />
+                  )}
+                  <b.Icon size={15} className="relative z-10 shrink-0" />
+                  <span className="relative z-10 truncate">{b.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ══ MAIN GRID ══ */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
+
+          {/* ── LEFT: Branch cards (desktop sidebar / hidden on mobile) ── */}
+          <div className="hidden lg:flex lg:col-span-4 flex-col gap-4">
+            {BRANCHES.map((b, i) => {
+              const isActive = activeId === b.id;
+              return (
+                <motion.button
+                  key={b.id}
+                  onClick={() => setActiveId(b.id)}
+                  initial={{ opacity: 0, x: -24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
+                  whileHover={!isActive ? { x: 4 } : {}}
+                  className="w-full text-left rounded-2xl border p-6 transition-all duration-300 flex flex-col gap-4 relative overflow-hidden group"
                   style={{
-                    background: isActive ? "rgba(16, 20, 29, 0.9)" : "rgba(16, 20, 29, 0.4)",
-                    borderColor: isActive
-                      ? "var(--clr-green, #22c55e)"
-                      : "rgba(255,255,255,0.03)",
-                    boxShadow: isActive ? "0 10px 30px -10px rgba(34,197,94,0.1)" : "none"
+                    background: isActive ? "var(--bg-surface)" : "var(--bg-subtle)",
+                    borderColor: isActive ? "var(--clr-green)" : "var(--border-subtle)",
+                    boxShadow: isActive ? "0 8px 32px rgba(22,163,74,0.10)" : "none",
                   }}
                 >
-                  {/* Active Background Glow */}
+                  {/* active left accent bar */}
                   {isActive && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/[0.02] to-transparent pointer-events-none" />
+                    <motion.div
+                      layoutId="activeBar"
+                      className="absolute left-0 top-4 bottom-4 w-[3px] rounded-full"
+                      style={{ background: "var(--clr-green)" }}
+                      transition={{ duration: 0.3, ease: EASE }}
+                    />
                   )}
 
-                  <div>
-                    <div className="flex items-center justify-between gap-4 mb-4">
+                  {/* top row */}
+                  <div className="flex items-start justify-between gap-3 pl-3">
+                    <div>
                       <span
-                        className="inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border font-mono"
+                        className="text-[10px] font-bold uppercase tracking-[0.18em] mb-2 block"
+                        style={{ color: isActive ? "var(--clr-green)" : "var(--tx-muted)" }}
+                      >
+                        {b.tag}
+                      </span>
+                      <h4
+                        className="font-bold text-lg leading-tight"
                         style={{
-                          background: isActive ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.02)",
-                          color: isActive ? "var(--clr-green, #22c55e)" : "var(--tx-muted, #94a3b8)",
-                          borderColor: isActive ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)",
+                          fontFamily: "var(--font-display)",
+                          color: isActive ? "var(--tx-primary)" : "var(--tx-secondary)",
                         }}
                       >
-                        {branch.tag}
-                      </span>
-                      
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${
-                        isActive ? "bg-[#22c55e]/10 border-[#22c55e]/20 text-[#22c55e]" : "bg-white/[0.02] border-white/[0.05] text-slate-500"
-                      }`}>
-                        <MapPin size={15} fill={isActive ? "currentColor" : "none"} />
-                      </div>
+                        {b.title}
+                      </h4>
                     </div>
-
-                    <h4
-                      className="font-bold text-xl tracking-tight transition-colors duration-200"
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
                       style={{
-                        fontFamily: "var(--font-display, sans-serif)",
-                        color: isActive ? "#ffffff" : "var(--tx-secondary, #cbd5e1)",
+                        background: isActive ? "var(--clr-green-alpha)" : "transparent",
+                        border: `1px solid ${isActive ? "rgba(22,163,74,0.2)" : "var(--border-subtle)"}`,
+                        color: isActive ? "var(--clr-green)" : "var(--tx-muted)",
                       }}
                     >
-                      {branch.title}
-                    </h4>
-
-                    <p className="text-slate-400 text-xs md:text-sm leading-relaxed mt-3 font-normal max-w-sm">
-                      {branch.address}
-                    </p>
-                  </div>
-
-                  {/* Micro Metadata Metrics */}
-                  <div className="pt-5 mt-6 border-t border-white/[0.03] flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 font-medium">
-                    <div className="flex items-center gap-1.5">
-                      <Clock size={13} className="text-slate-600" />
-                      <span>{branch.hours}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Phone size={13} className="text-slate-600" />
-                      <span>On Request</span>
+                      <b.Icon size={16} />
                     </div>
                   </div>
-                </motion.div>
+
+                  {/* address */}
+                  <p
+                    className="text-xs leading-relaxed pl-3"
+                    style={{ color: "var(--tx-muted)" }}
+                  >
+                    {b.address}
+                  </p>
+
+                  {/* meta footer */}
+                  <div
+                    className="flex items-center justify-between pt-3 pl-3"
+                    style={{ borderTop: "1px solid var(--border-subtle)" }}
+                  >
+                    <span className="flex items-center gap-1.5 text-xs" style={{ color: "var(--tx-muted)" }}>
+                      <Clock size={12} />
+                      {b.hours}
+                    </span>
+                    <ArrowRight
+                      size={14}
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                      style={{ color: isActive ? "var(--clr-green)" : "var(--tx-muted)" }}
+                    />
+                  </div>
+                </motion.button>
               );
             })}
           </div>
 
-          {/* RIGHT CANVAS CONTAINER HOLDING STABLE LIVE MAP */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          {/* ── RIGHT: Map + detail card ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
-            className="lg:col-span-7 min-h-[450px] lg:min-h-full bg-[#10141d] border border-white/[0.04] rounded-2xl overflow-hidden relative shadow-[0_24px_50px_-20px_rgba(0,0,0,0.7)] flex flex-col justify-between group"
+            transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+            className="lg:col-span-8 flex flex-col rounded-2xl overflow-hidden"
+            style={{
+              background: "var(--bg-surface)",
+              border: "1px solid var(--border-subtle)",
+              boxShadow: "0 16px 48px rgba(15,23,42,0.07)",
+            }}
           >
-            {/* Live Synchronized Iframe Shell Layer */}
-            <div className="w-full h-full flex-1 relative bg-[#0e1117] overflow-hidden">
+            {/* Map area */}
+            <div className="relative w-full" style={{ height: "clamp(240px, 45vw, 420px)" }}>
               <AnimatePresence mode="wait">
                 <motion.iframe
-                  key={activeBranchId}
+                  key={activeId}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.85 }}
+                  animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
-                  title={`${activeBranch.title} Real Map View`}
-                  // Uses standard embedded search maps endpoint with forced coordinate positioning parameter
-                  src={`https://maps.google.com/maps?q=${activeBranch.mapQuery}&z=16&output=embed&iwloc=near`}
-                  className="w-full h-full border-0 absolute inset-0 filter invert-[0.9] hue-rotate-[180deg] contrast-[0.95] brightness-[0.85]"
+                  title={`${active.title} Map`}
+                  src={`https://maps.google.com/maps?q=${active.mapQuery}&z=16&output=embed&iwloc=near`}
+                  className="absolute inset-0 w-full h-full border-0"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </AnimatePresence>
-              
-              {/* Vignette styling shadow gradients overlay over map workspace */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#10141d] via-transparent to-transparent pointer-events-none z-10" />
+
+              {/* subtle top fade for clean blending */}
+              <div
+                className="absolute top-0 left-0 right-0 h-8 pointer-events-none z-10"
+                style={{ background: "linear-gradient(to bottom, var(--bg-surface), transparent)" }}
+              />
+
+              {/* Branch tag pill floating on map */}
+              <div className="absolute top-4 left-4 z-20">
+                <motion.div
+                  key={activeId + "-tag"}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm"
+                  style={{
+                    background: "var(--bg-surface)",
+                    color: "var(--clr-green)",
+                    border: "1px solid rgba(22,163,74,0.2)",
+                  }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  {active.tag} — {active.label}
+                </motion.div>
+              </div>
             </div>
 
-            {/* LOWER INTERACTIVE RUNTIME NAVIGATION BADGE CONTROL BAR */}
-            <div className="w-full bg-[#10141d] border-t border-white/[0.04] px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-20">
-              <div className="flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-slate-500 uppercase font-mono tracking-widest font-bold">Map Active Target</span>
-                  <span className="text-xs font-bold text-slate-200">
-                    {activeBranch.title}
-                  </span>
-                </div>
-              </div>
-
-              <a
-                href={activeBranch.mapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-[#22c55e] text-black text-xs font-bold font-mono tracking-wide uppercase hover:bg-[#1ebd53] shadow-[0_4px_20px_rgba(34,197,94,0.2)] transition-all duration-200"
+            {/* Detail strip below map */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeId + "-detail"}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 p-5 sm:p-6"
+                style={{ borderTop: "1px solid var(--border-subtle)" }}
               >
-                <Navigation size={12} fill="currentColor" />
-                Launch Navigation Route
-              </a>
+                {/* Address block */}
+                <div className="flex items-start gap-3 min-w-0">
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
+                    style={{
+                      background: "var(--clr-green-alpha)",
+                      color: "var(--clr-green)",
+                      border: "1px solid rgba(22,163,74,0.15)",
+                    }}
+                  >
+                    <MapPin size={15} />
+                  </div>
+                  <div className="min-w-0">
+                    <p
+                      className="font-bold text-sm mb-0.5 truncate"
+                      style={{ color: "var(--tx-primary)" }}
+                    >
+                      {active.title}
+                    </p>
+                    <p className="text-xs leading-relaxed" style={{ color: "var(--tx-muted)" }}>
+                      {active.address}
+                    </p>
+                    {active.note && (
+                      <p className="text-xs mt-1 italic" style={{ color: "var(--tx-muted)" }}>
+                        {active.note}
+                      </p>
+                    )}
+                    <span className="flex items-center gap-1.5 text-xs mt-2" style={{ color: "var(--tx-muted)" }}>
+                      <Clock size={11} /> {active.hours}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Navigate CTA */}
+                <a
+                  href={active.mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-green shrink-0 flex items-center gap-2 text-xs"
+                >
+                  <Navigation size={13} />
+                  Get Directions
+                </a>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Mobile: branch switcher inside the card */}
+            <div
+              className="lg:hidden px-5 pb-5 flex flex-col gap-3"
+              style={{ borderTop: "1px solid var(--border-subtle)" }}
+            >
+              <p className="text-[10px] uppercase tracking-widest pt-4 font-semibold" style={{ color: "var(--tx-muted)" }}>
+                Switch Branch
+              </p>
+              <div className="flex flex-col gap-2">
+                {BRANCHES.map((b) => {
+                  const isActive = activeId === b.id;
+                  return (
+                    <button
+                      key={b.id}
+                      onClick={() => setActiveId(b.id)}
+                      className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-medium transition-all duration-200"
+                      style={{
+                        background: isActive ? "var(--clr-green-alpha)" : "var(--bg-subtle)",
+                        color: isActive ? "var(--clr-green)" : "var(--tx-secondary)",
+                        border: `1px solid ${isActive ? "rgba(22,163,74,0.2)" : "var(--border-subtle)"}`,
+                      }}
+                    >
+                      <b.Icon size={15} className="shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <span className="block font-semibold truncate">{b.title}</span>
+                        <span className="block text-xs truncate" style={{ color: "var(--tx-muted)" }}>{b.tag}</span>
+                      </div>
+                      {isActive && (
+                        <span
+                          className="w-2 h-2 rounded-full shrink-0"
+                          style={{ background: "var(--clr-green)" }}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
           </motion.div>
-
         </div>
+
       </div>
     </section>
   );

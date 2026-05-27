@@ -1,12 +1,76 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Building2, CheckCircle2, Handshake, Leaf } from "lucide-react";
 
 // The premium, high-end ease function matching standard engineering sites
 const PARALLAX_EASE = [0.16, 1, 0.3, 1] as const;
 
+// ── INTERNAL MICRO COUNT-UP MODULE ──
+interface CountUpProps {
+  value: string;
+  sign: string;
+  duration?: number;
+}
+
+function CountUp({ value, sign, duration = 2000 }: CountUpProps): React.JSX.Element {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const hasAnimated = useRef(false);
+
+  const numericValue = useMemo(() => {
+    const parsed = parseInt(value, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  }, [value]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          let startTimestamp: number | null = null;
+
+          const step = (timestamp: number) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            // Quad ease-out transition deceleration math
+            const easeProgress = progress * (2 - progress);
+            
+            setCount(Math.floor(easeProgress * numericValue));
+
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              setCount(numericValue); // Firm value alignment lock
+            }
+          };
+
+          requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [numericValue, duration]);
+
+  return (
+    <span ref={elementRef} className="inline-flex items-baseline">
+      <span>{count}</span>
+      <span className="text-xl font-bold text-[var(--clr-green)] ml-0.5 select-none">
+        {sign}
+      </span>
+    </span>
+  );
+}
+
+// ── MAIN ABOUT SECTION COMPONENT ──
 export default function AboutSection(): React.JSX.Element {
   const features = useMemo(() => [
     "Aluminum Scrap",
@@ -50,50 +114,54 @@ export default function AboutSection(): React.JSX.Element {
   return (
     <section 
       id="about" 
-      className="relative w-full bg-transparent text-white py-20 md:py-32 overflow-hidden z-10 select-none"
+      className="relative w-full bg-[var(--bg-main)] text-[var(--tx-primary)] py-20 md:py-32 overflow-hidden z-10 select-none border-b border-slate-100"
       aria-label="About Company Operational Blueprint"
     >
-      {/* LOCALIZED SOFT ATMOSPHERIC ACCENT GLOW (Subtle variant shifting away from the Hero positioning) */}
+      {/* LOCALIZED SOFT ATMOSPHERIC ACCENT GLOW (Premium light-mode depth element) */}
       <div 
         aria-hidden="true" 
-        className="absolute left-[-10%] top-1/3 w-[500px] h-[500px] rounded-full bg-emerald-500/[0.02] blur-[140px] pointer-events-none mix-blend-screen" 
+        className="absolute left-[-10%] top-1/3 w-[600px] h-[600px] rounded-full bg-emerald-500/[0.03] blur-[130px] pointer-events-none" 
       />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        {/* Balanced Grid Architecture mapping seamlessly to your design layout */}
+        {/* Balanced Grid Architecture mapping seamlessly to your layout flow */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-20 items-start">
           
           {/* ══ LEFT BLOCK: FLOATING METRICS TEXT LAYER ══ */}
           <div className="space-y-7">
             
-            {/* Tag component styled explicitly via your stylesheet token configuration */}
+            {/* Tag component styled explicitly via premium light-mode variables */}
             <motion.div 
               custom={0}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={slideUpRight}
-              className="tag"
+              className="inline-flex items-center gap-2 bg-emerald-50/60 border border-emerald-600/10 rounded-full py-1.5 px-4 text-[11px] font-bold uppercase tracking-wider text-[var(--clr-green)] shadow-sm"
             >
               <Building2 size={12} />
               About The Company
             </motion.div>
 
-            {/* Display Header utilizing your imported Bebas Neue token mapping */}
+            {/* Display Header utilizing custom display token mapping */}
             <motion.h2 
               custom={1}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={slideUpRight}
-              className="text-4xl sm:text-5xl md:text-6xl font-normal uppercase tracking-wide text-white leading-[0.95] font-[family:var(--font-display)]"
+              className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-[var(--tx-primary)] leading-[0.95]"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               NIGERIA&apos;S FOREMOST <br />
-              <span className="text-[var(--clr-green-light)]">INTEGRATED METAL RECYCLER</span>
+              <span className="text-[var(--clr-green)]">INTEGRATED METAL RECYCLER</span>
             </motion.h2>
 
             {/* Operational Text Copy blocks */}
-            <div className="space-y-5 font-[family:var(--font-body)] text-slate-300 font-light tracking-wide text-sm md:text-base leading-relaxed">
+            <div 
+              className="space-y-5 text-[var(--tx-secondary)] font-normal text-sm md:text-base leading-relaxed max-w-2xl"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               <motion.p 
                 custom={2}
                 initial="hidden"
@@ -115,22 +183,22 @@ export default function AboutSection(): React.JSX.Element {
               </motion.p>
             </div>
 
-            {/* 2-Column Comprehensive Feature Checks Matrix */}
+            {/* 2-Column Comprehensive Feature Checks Matrix (Immersive flowing layout) */}
             <motion.div 
               custom={4}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={slideUpRight}
-              className="grid grid-cols-2 gap-x-4 gap-y-4 pt-3"
+              className="grid grid-cols-2 gap-x-6 gap-y-4 pt-3 max-w-xl"
             >
               {features.map((feat) => (
                 <div 
                   key={feat} 
-                  className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-200 transition-transform duration-200 hover:translate-x-1"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[var(--tx-secondary)] transition-transform duration-200 hover:translate-x-1"
                 >
-                  <CheckCircle2 size={16} className="text-[var(--clr-green-light)] shrink-0" />
-                  <span className="font-[family:var(--font-body)] tracking-wide">{feat}</span>
+                  <CheckCircle2 size={16} className="text-[var(--clr-green)] shrink-0" />
+                  <span className="tracking-tight" style={{ fontFamily: "var(--font-body)" }}>{feat}</span>
                 </div>
               ))}
             </motion.div>
@@ -144,7 +212,11 @@ export default function AboutSection(): React.JSX.Element {
               variants={slideUpRight}
               className="pt-4"
             >
-              <a href="#contact" className="btn btn-green uppercase text-xs tracking-wider">
+              <a 
+                href="#contact" 
+                className="inline-flex justify-center items-center gap-2 px-6 py-3.5 bg-[var(--tx-primary)] text-white text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-200 hover:bg-[var(--clr-green)] shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
                 <Handshake size={14} />
                 Read Full Story
               </a>
@@ -155,34 +227,34 @@ export default function AboutSection(): React.JSX.Element {
           {/* ══ RIGHT BLOCK: PARALLAX MEDIA CONTAINER MATRIX ══ */}
           <div className="space-y-6 w-full lg:sticky lg:top-28">
             
-            {/* Visual Glass Wrapper Frame */}
+            {/* Visual Frame Wrapper */}
             <motion.div 
-              className="relative w-full rounded-xl overflow-hidden border border-white/[0.06] bg-white/[0.02] p-2 group shadow-2xl backdrop-blur-xs"
+              className="relative w-full rounded-2xl overflow-hidden border border-slate-100 bg-white p-2 group shadow-xl"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
               variants={slideUpLeft}
             >
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-slate-950">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-slate-100">
                 <img 
                   src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" 
                   alt="Industrial sorting and metal distribution hub operations" 
-                  className="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-80"
+                  className="w-full h-full object-cover opacity-90 transition-transform duration-1000 ease-out group-hover:scale-105 group-hover:opacity-100"
                   loading="lazy"
                 />
                 
-                {/* Visual Bottom Fade Layer */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                {/* Light-Mode Bottom Gradient Fade Layer */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent pointer-events-none" />
 
                 {/* Micro Float Indicator Chip Block */}
-                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-black/80 border border-white/[0.05] backdrop-blur-md text-slate-300 text-[10px] font-bold tracking-widest uppercase">
-                  <Leaf size={12} className="text-emerald-400 animate-pulse" />
+                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 border border-slate-200/60 backdrop-blur-md text-[var(--tx-primary)] text-[10px] font-bold tracking-widest uppercase shadow-sm">
+                  <Leaf size={12} className="text-emerald-600 animate-pulse" />
                   <span>Eco-Certified Operations</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Reconstructed Translucent Data Matrix Cards Sitting Cleanly Over the Parallax Layers */}
+            {/* Fluid Metric Ribbon Blocks (Clean spacing replaces harsh boxed card borders) */}
             <motion.div 
               className="grid grid-cols-2 gap-4"
               initial="hidden"
@@ -196,21 +268,22 @@ export default function AboutSection(): React.JSX.Element {
               {counters.map((counter) => (
                 <motion.div 
                   key={counter.label} 
-                  className="p-6 rounded-xl border border-white/[0.04] bg-white/[0.02] backdrop-blur-md text-center flex flex-col items-center justify-center min-h-[135px] transition-all duration-300 hover:border-emerald-500/20 hover:bg-white/[0.04] hover:-translate-y-1"
+                  className="p-6 rounded-2xl border border-slate-100 bg-white/60 backdrop-blur-md text-center flex flex-col items-center justify-center min-h-[135px] transition-all duration-300 hover:border-emerald-500/20 hover:bg-white shadow-sm hover:shadow-md hover:-translate-y-1"
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: PARALLAX_EASE } }
                   }}
                 >
-                  <div className="flex items-center justify-center mb-0.5 font-[family:var(--font-display)]">
-                    <span className="text-4xl sm:text-5xl font-normal text-[var(--clr-green-light)] tracking-wide line-height-1">
-                      {counter.num}
-                    </span>
-                    <span className="text-xl font-normal text-[var(--clr-green-light)] ml-0.5">
-                      {counter.sign}
-                    </span>
+                  <div 
+                    className="flex items-center justify-center mb-0.5 font-black text-4xl sm:text-5xl text-[var(--tx-primary)] tracking-tight"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    <CountUp value={counter.num} sign={counter.sign} duration={2200} />
                   </div>
-                  <p className="text-[10px] sm:text-xs tracking-widest uppercase text-slate-400 font-bold font-[family:var(--font-body)] mt-1.5">
+                  <p 
+                    className="text-[10px] tracking-[0.15em] uppercase text-[var(--tx-muted)] font-bold mt-1.5"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
                     {counter.label}
                   </p>
                 </motion.div>

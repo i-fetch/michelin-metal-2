@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-import { DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google'
+import { Bebas_Neue, DM_Sans, DM_Mono, Geist_Mono, Geist } from 'next/font/google'
 import SessionWrapper from '@/components/SessionWrapper/SessionWrapper'
 import ScrollToTopButton from '@/components/ScrollToTop'
 
-const display = DM_Sans({
+// High-end corporate geometric sans for strong structural headings
+const display = Geist({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-display',
 })
 
-const body = Plus_Jakarta_Sans({
+const body = DM_Sans({
   subsets: ['latin'],
   variable: '--font-body',
 })
@@ -28,8 +29,8 @@ export const metadata: Metadata = {
     template: '%s | Mechelin Metals',
   },
   description: "Nigeria's foremost integrated metal recycling company. Aluminium bales, ferrous & non-ferrous metals — national and global bulk supply.",
-  // FORCES SYSTEM OVERLAYS AND AGENT INTERFACES TO INITIALLY COMPLY WITH DARK SCHEMES:
-  colorScheme: 'dark',
+  // Setting explicitly to light mode for standard browser engine layouts
+  colorScheme: 'light',
   keywords: [
     'metal recycling Nigeria',
     'aluminium scrap',
@@ -53,13 +54,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      // Added 'dark' class explicitly to the element layout array
-      className={`dark ${display.variable} ${body.variable} ${mono.variable}`}
-      style={{ colorScheme: 'dark' }} // Prevents white flashes before hydration finishes
+      // Removed all traces of the "dark" class flag completely
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      style={{ colorScheme: 'light' }}
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
-      <body cz-shortcut-listen="true">
+      <body cz-shortcut-listen="true" className="antialiased bg-app text-tx-primary">
         <SessionWrapper>
           {children}
           <ScrollToTopButton />

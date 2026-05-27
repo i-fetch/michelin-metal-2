@@ -12,8 +12,7 @@ import {
   Award
 } from "lucide-react";
 
-const DELAY_STAGGER = 0.04;
-const INTERACTION_EASE = [0.25, 1, 0.5, 1] as const;
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function WhyChooseSection(): React.JSX.Element {
   const strengths = useMemo(() => [
@@ -52,82 +51,83 @@ export default function WhyChooseSection(): React.JSX.Element {
   return (
     <section 
       id="why" 
-      className="w-full bg-[#11141a] text-white pt-20 pb-12 overflow-hidden border-t border-white/[0.02]"
+      className="w-full bg-[var(--bg-main)] text-[var(--tx-primary)] py-20 md:py-32 overflow-hidden relative"
+      aria-label="Corporate Strengths"
     >
-      {/* ══ CONTENT CANVAS HOLDER ══ */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
-        {/* ══ HEADER ELEMENT CONTAINER ══ */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left mb-16 space-y-5">
-          {/* Exact pill shape architecture from screenshot */}
-          <motion.div 
-            initial={{ opacity: 0, y: -8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: INTERACTION_EASE }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#22c55e]/20 bg-[#22c55e]/5 text-[#22c55e] text-[11px] font-bold tracking-widest uppercase font-[family:var(--font-mono)]"
-          >
-            <Award size={12} className="text-[#22c55e]" />
-            Our Strengths
-          </motion.div>
-
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: INTERACTION_EASE, delay: 0.05 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight font-[family:var(--font-display)]"
-          >
-            Why Choose <span className="text-[#22c55e]">Mechelin Metals</span>
-          </motion.h2>
-
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="max-w-2xl font-[family:var(--font-body)] text-slate-400 font-normal text-sm md:text-base tracking-wide"
-          >
-            Trusted by manufacturers and industrial buyers across four continents.
-          </motion.p>
-        </div>
-      </div>
-
-      {/* ══ DUAL TONE CANVAS DEVIATION ══ */}
-      {/* Visual background section break seen in your layouts */}
-      <div className="w-full bg-[#151922] border-t border-b border-white/[0.02] py-16">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        {/* ── TWO-COLUMN ASYMMETRICAL CANVAS LINK ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* ══ THREE COLUMN GRID ENGINE ══ */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* LEFT COLUMN: STICKY BRAND HEADLINE ANCHOR */}
+          <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
+            <motion.div 
+              initial={{ opacity: 0, y: -8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              <Award size={12} />
+              Enterprise Capabilities
+            </motion.div>
+
+            <motion.h2 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[var(--tx-primary)] leading-[1.02]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              WHY CHOOSE <br />
+              <span className="text-[var(--clr-green)]">MECHELIN METALS.</span>
+            </motion.h2>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="text-[var(--tx-secondary)] text-sm md:text-base leading-relaxed font-normal"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Trusted by heavy manufacturers and industrial foundries across four continents to deliver processed metal cargo exactly to assay specifications.
+            </motion.p>
+          </div>
+
+          {/* RIGHT COLUMN: CONTINUOUS INTEGRATED FEATURE LIST */}
+          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14 lg:pl-6">
             {strengths.map((item, index) => {
               const IconComponent = item.icon;
               return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 25 }}
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.6, ease: INTERACTION_EASE, delay: index * DELAY_STAGGER }}
-                  whileHover={{ 
-                    y: -5,
-                    backgroundColor: "rgba(28, 33, 46, 0.7)", 
-                    borderColor: "rgba(255, 255, 255, 0.08)"
-                  }}
-                  className="bg-[#1a1f2c]/50 border border-white/[0.03] rounded-xl p-8 flex flex-col justify-start min-h-[280px] transition-colors duration-300 group cursor-pointer"
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, ease: EASE, delay: index * 0.05 }}
+                  className="group flex flex-col text-left border-l-2 border-slate-100 hover:border-[var(--clr-green)] pl-6 transition-colors duration-300"
                 >
-                  {/* Icon Block Container matching screenshot spacing properties */}
-                  <div className="w-11 h-11 rounded-lg flex items-center justify-center mb-6 bg-[#22c55e]/5 text-[#22c55e] border border-[#22c55e]/10 group-hover:bg-[#22c55e]/10 group-hover:scale-105 transition-all duration-300">
-                    <IconComponent size={18} strokeWidth={2.2} />
+                  {/* Micro Icon Marker */}
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center bg-slate-50 border border-slate-100 text-[var(--tx-muted)] group-hover:bg-emerald-50 group-hover:border-emerald-100 group-hover:text-[var(--clr-green)] transition-all duration-300 mb-5">
+                    <IconComponent size={15} strokeWidth={2.2} />
                   </div>
 
-                  {/* Heading Title Block */}
-                  <h3 className="text-lg md:text-xl font-bold tracking-tight text-white mb-3 font-[family:var(--font-display)] group-hover:text-[#22c55e] transition-colors duration-300">
+                  {/* Title */}
+                  <h3 
+                    className="text-lg font-bold tracking-tight text-[var(--tx-primary)] mb-2.5 transition-colors duration-200 group-hover:text-emerald-800"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
                     {item.title}
                   </h3>
 
-                  {/* Text Block Content */}
-                  <p className="text-slate-400 font-normal text-xs md:text-sm leading-relaxed font-[family:var(--font-body)] group-hover:text-slate-300 transition-colors duration-300">
+                  {/* Description */}
+                  <p 
+                    className="text-[var(--tx-secondary)] text-xs md:text-sm leading-relaxed font-normal m-0"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
                     {item.desc}
                   </p>
                 </motion.div>
@@ -136,6 +136,7 @@ export default function WhyChooseSection(): React.JSX.Element {
           </div>
 
         </div>
+
       </div>
     </section>
   );

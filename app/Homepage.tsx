@@ -12,6 +12,7 @@ import VisionSection from '@/components/homepage-components/VisionSection'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 import GlobalReachSection from '@/components/homepage-components/GlobalReachSection'
 import LocationsSection from '@/components/LocationSection'
+import MaterialsSection from '@/components/homepage-components/MaterialSection'
 
 
 
@@ -78,7 +79,7 @@ export default function Homepage() {
          <LocationsSection />
 
          {/* ── PILLARS ───────────────────────────────────────── */}
-         <section className="section" style={{ background: 'var(--bg-2)' }}>
+         {/* <section className="section" style={{ background: 'var(--bg-2)' }}>
             <div className="wrap px-1">
                <AOS>
                   <div className="text-center mb-14">
@@ -123,10 +124,11 @@ export default function Homepage() {
                   ))}
                </div>
             </div>
-         </section>
+         </section> */}
 
          {/* ── PRODUCTS PREVIEW ─────────────────────────────── */}
-         <section className="section" style={{ background: 'var(--bg)' }}>
+         <MaterialsSection />
+         {/* <section className="section" style={{ background: 'var(--bg)' }}>
             <div className="wrap px-1">
                <AOS>
                   <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
@@ -158,7 +160,7 @@ export default function Homepage() {
                   ))}
                </div>
             </div>
-         </section>
+         </section> */}
 
          {/* ── VISION/MISSION SECTION ───────────────────────── */}
          <section className="hidden relative overflow-hidden" style={{ background: 'var(--clr-green)' }}>
