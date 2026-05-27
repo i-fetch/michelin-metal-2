@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react'
 import Link from 'next/link'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView, AnimatePresence, useTransform, useScroll } from 'framer-motion'
 import {
   ArrowRight,
   CheckCircle2,
@@ -12,10 +12,12 @@ import {
   Phone,
   Send,
   ChevronDown,
+  MailQuestion,
 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import LocationsSection from '@/components/LocationSection'
+import Image from 'next/image'
 
 /* ─────────────────────────────────────────────────────────────
    DATA
@@ -43,10 +45,10 @@ const PRODUCT_LIST = [
 ]
 
 const QUICK_CONTACTS = [
-  { icon: Mail,         label: 'Email Us',       val: 'mechelinmetalsnig@gmail.com', href: 'mailto:mechelinmetalsnig@gmail.com' },
-  { icon: MessageSquare,label: 'WhatsApp',        val: 'Send a quick message',        href: 'https://wa.me/2348000000000' },
-  { icon: MapPin,       label: 'Head Office',     val: 'Awada Obosi, Anambra',        href: '#locations' },
-  { icon: MapPin,       label: 'Commercial Hub',  val: 'Woliwo Layout, Onitsha',      href: '#locations' },
+  { icon: Mail, label: 'Email Us', val: 'mechelinmetalsnig@gmail.com', href: 'mailto:mechelinmetalsnig@gmail.com' },
+  { icon: MessageSquare, label: 'WhatsApp', val: 'Send a quick message', href: 'https://wa.me/2348000000000' },
+  { icon: MapPin, label: 'Head Office', val: 'Awada Obosi, Anambra', href: '#locations' },
+  { icon: MapPin, label: 'Commercial Hub', val: 'Woliwo Layout, Onitsha', href: '#locations' },
 ]
 
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -65,7 +67,7 @@ function FadeIn({
   direction?: 'up' | 'left' | 'right' | 'none'
   className?: string
 }) {
-  const ref    = useRef(null)
+  const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
@@ -74,8 +76,8 @@ function FadeIn({
       className={className}
       initial={{
         opacity: 0,
-        y: direction === 'up'    ?  24 : 0,
-        x: direction === 'left'  ? -28 : direction === 'right' ? 28 : 0,
+        y: direction === 'up' ? 24 : 0,
+        x: direction === 'left' ? -28 : direction === 'right' ? 28 : 0,
       }}
       animate={inView ? { opacity: 1, y: 0, x: 0 } : {}}
       transition={{ duration: 0.65, delay, ease: EASE }}
@@ -119,6 +121,20 @@ function Field({
     </div>
   )
 }
+const EASE_HERO = [0.16, 1, 0.3, 1] as const;
+
+const localStaggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+  }
+};
+
+const localFadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_HERO } }
+};
 
 /* ─────────────────────────────────────────────────────────────
    CONTACT PAGE
@@ -146,56 +162,111 @@ export default function ContactPage(): React.JSX.Element {
     setDone(false)
     setForm({ name: '', company: '', email: '', phone: '', country: '', type: '', product: '', volume: '', message: '', channel: 'email' })
   }
+  const heroContainerRef = useRef<HTMLDivElement>(null);
+
+  // ── PARALLAX LOGISTICS ENGINE ──
+  const { scrollY } = useScroll();
+  const backgroundImageY = useTransform(scrollY, [0, 800], ["0%", "20%"]);
+  const contentY = useTransform(scrollY, [0, 800], ["0%", "8%"]);
+  const contentOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-main)' }}>
       <Navbar />
 
       {/* ══ HERO ══ */}
-      <section className="relative pt-36 pb-20 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
-        {/* Dot texture */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.025]"
-          style={{
-            backgroundImage: 'radial-gradient(var(--tx-primary) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-            height: 480,
-          }}
-        />
-        {/* Green glow */}
-        <div
-          className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(22,163,74,0.07) 0%, transparent 70%)' }}
-        />
+      <section
+        ref={heroContainerRef}
+        className="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-between overflow-hidden bg-[#ffffff] pt-36 pb-20 md:pt-44 md:pb-28"
+        aria-label="Contact Procurement and Supply Operations"
+      >
+        {/* ══ LAYER 1: HARDWARE-ACCELERATED PARALLAX IMAGE ══ */}
+        <motion.div
+          style={{ y: backgroundImageY }}
+          className="absolute inset-0 w-full h-full pointer-events-none will-change-transform"
+        >
+          <Image
+            src="/contact-corporate-hero.jpg" // High-fidelity enterprise office / operations communications background asset
+            alt="Mechelin Metals Corporate Operations Communications background"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center scale-[1.05]"
+          />
+        </motion.div>
 
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
-          <FadeIn>
-            <p className="tag mb-5">Reach Us</p>
-            <h1
-              className="mb-5 leading-none"
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(3rem, 8vw, 6rem)',
-                fontWeight: 900,
-                letterSpacing: '-0.025em',
-                color: 'var(--tx-primary)',
-                textTransform: 'uppercase',
-              }}
-            >
-              Get In<br />
-              <span style={{ color: 'var(--clr-green)' }}>Touch</span>
-            </h1>
-            <p
-              className="text-base leading-relaxed max-w-lg"
-              style={{ color: 'var(--tx-secondary)', fontWeight: 300 }}
-            >
-              Ready to source metals, sell scrap, or explore a strategic supply
-              partnership? Our procurement team is ready for your requirements.
-            </p>
-          </FadeIn>
+        {/* ══ LAYER 2: THE CONTRAST STABILIZER MASK ENGINE (CRITICAL FOR READABILITY) ══ */}
+        <div className="absolute inset-0 z-[1] pointer-events-none select-none">
+
+          {/* MASK A: Pure white architectural block gradient to neutralize asset noise directly underneath the text layout */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-white/85 to-white/10 md:from-white md:via-white/95 md:via-white/80 md:to-white/5" />
+
+          {/* MASK B: Micro-diffused backdrop blur sheet — separates complex image details from crisp text typography */}
+          <div className="absolute top-0 bottom-0 left-0 w-full md:w-[70%] bg-white/20 backdrop-blur-[4px] [mask-image:linear-gradient(to_right,white_50%,transparent_100%)]" />
+
+          {/* MASK C: Top-down light-bleed controller to neutralize high-exposure highlights or bright sky lines */}
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-white/60 to-transparent" />
+
+          {/* MASK D: Horizon baseline fading anchor to seamlessly lock section into the white blocks layout below */}
+          <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#ffffff] via-[#ffffff]/90 to-transparent" />
+
+          {/* Technical Brand Matrix Grid-Mesh Overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `radial-gradient(#059669 1px, transparent 1px)`,
+              backgroundSize: '24px 24px'
+            }}
+          />
         </div>
-      </section>
 
+        {/* ══ LAYER 3: FOREGROUND HIGH-CONTRAST TYPOGRAPHY CANVAS ══ */}
+        <motion.div
+          style={{ y: contentY, opacity: contentOpacity }}
+          className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 relative z-[2] will-change-transform"
+        >
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={localStaggerContainer}
+            className="relative max-w-3xl"
+          >
+            {/* Communications Token Badge */}
+            <motion.div
+              variants={localFadeUp}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/15 bg-white text-[var(--clr-green)] text-[10px] font-bold tracking-widest uppercase mb-6 font-mono shadow-[0_4px_14px_rgba(0,0,0,0.04)]"
+            >
+              <MailQuestion size={12} className="text-emerald-600" />
+              Reach Us
+            </motion.div>
+
+            {/* Ultra-Sharp Anti-Aliased Service Header */}
+            <div className="overflow-hidden mb-6 py-1">
+              <motion.h1
+                variants={localFadeUp}
+                className="font-black tracking-tighter leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)] uppercase"
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(3rem, 7.5vw, 6rem)'
+                }}
+              >
+                Get In
+                <br />
+                <span className="text-[var(--clr-green)]">Touch</span>
+              </motion.h1>
+            </div>
+
+            {/* High-Readability Segmented Body Paragraph */}
+            <motion.p
+              variants={localFadeUp}
+              className="text-slate-900 font-medium text-base md:text-xl max-w-xl leading-relaxed font-body tracking-tight subpixel-antialiased drop-shadow-[0_1px_4px_rgba(255,255,255,0.6)]"
+            >
+              Ready to source metals, sell scrap, or explore a strategic supply partnership?
+              Our procurement team is deployed to process your institutional requirements.
+            </motion.p>
+          </motion.div>
+        </motion.div>
+      </section>
       {/* ══ QUICK CONTACT CARDS ══ */}
       <section className="py-8" style={{ background: 'var(--bg-subtle)' }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
@@ -510,9 +581,9 @@ export default function ContactPage(): React.JSX.Element {
                   </h3>
                   <div className="flex flex-col gap-4">
                     {[
-                      { icon: MapPin, label: 'Head Office',  val: 'No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria' },
-                      { icon: Mail,   label: 'Email',        val: 'mechelinmetalsnig@gmail.com' },
-                      { icon: Phone,  label: 'Phone',        val: 'Available on verified request' },
+                      { icon: MapPin, label: 'Head Office', val: 'No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria' },
+                      { icon: Mail, label: 'Email', val: 'mechelinmetalsnig@gmail.com' },
+                      { icon: Phone, label: 'Phone', val: 'Available on verified request' },
                     ].map(({ icon: Icon, label, val }) => (
                       <div key={label} className="flex gap-3 items-start">
                         <div
@@ -551,9 +622,9 @@ export default function ContactPage(): React.JSX.Element {
                   </h3>
                   <div className="flex flex-col gap-0">
                     {[
-                      { day: 'Mon – Fri',  time: '8:00am – 6:00pm', active: true  },
-                      { day: 'Saturday',   time: '8:00am – 2:00pm', active: true  },
-                      { day: 'Sunday',     time: 'Closed',           active: false },
+                      { day: 'Mon – Fri', time: '8:00am – 6:00pm', active: true },
+                      { day: 'Saturday', time: '8:00am – 2:00pm', active: true },
+                      { day: 'Sunday', time: 'Closed', active: false },
                     ].map(({ day, time, active }, i) => (
                       <div
                         key={day}
@@ -592,9 +663,9 @@ export default function ContactPage(): React.JSX.Element {
                   </h3>
                   <div className="flex flex-col">
                     {[
-                      { href: '/products', label: 'Browse Our Catalogue'        },
+                      { href: '/products', label: 'Browse Our Catalogue' },
                       { href: '/services', label: 'Industrial Processing Services' },
-                      { href: '/about',    label: 'About Mechelin Metals'         },
+                      { href: '/about', label: 'About Mechelin Metals' },
                     ].map(({ href, label }, i) => (
                       <Link
                         key={href}

@@ -213,7 +213,7 @@ export default function AboutSection(): React.JSX.Element {
               className="pt-4"
             >
               <a 
-                href="/about" 
+                href="" 
                 className="inline-flex justify-center items-center gap-2 px-6 py-3.5 bg-[var(--tx-primary)] text-white text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-200 hover:bg-[var(--clr-green)] shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 style={{ fontFamily: "var(--font-body)" }}
               >
