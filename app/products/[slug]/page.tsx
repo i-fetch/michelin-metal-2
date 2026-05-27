@@ -21,39 +21,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = await getProductBySlug(slug)
   if (!p) return { title: 'Not Found' }
   return {
-    title:       p.seoTitle || p.title,
+    title: p.seoTitle || p.title,
     description: p.seoDescription || p.shortDescription,
-    openGraph:   { images: [p.image] },
+    openGraph: { images: [p.image] },
   }
 }
 
 export const dynamic = 'force-dynamic'
 
 export default async function ProductDetailPage({ params }: Props) {
-  const { slug }  = await params
-  const product   = await getProductBySlug(slug)
+  const { slug } = await params
+  const product = await getProductBySlug(slug)
   if (!product) notFound()
 
   const related = await getRelatedProducts(product.category, slug)
-  const cat     = PRODUCT_CATEGORY_MAP[product.category]
-  const accent  = cat?.accent ?? '#16a34a'
+  const cat = PRODUCT_CATEGORY_MAP[product.category]
+  const accent = cat?.accent ?? '#16a34a'
 
   const displayPrice = product.showPrice && product.price
     ? `${product.currency} ${product.price.toLocaleString()}`
     : null
 
   const specsTable = [
-    product.purity             && { label: 'Purity',            value: product.purity },
-    product.materialGrade      && { label: 'Material Grade',     value: product.materialGrade },
-    product.condition          && { label: 'Condition',          value: product.condition },
-    product.packagingType      && { label: 'Packaging',          value: product.packagingType },
-    product.unitType           && { label: 'Unit',               value: product.unitType },
-    product.moq                && { label: 'Min. Order Qty',     value: `${product.moq} ${product.unitType}` },
-    product.quantityAvailable  && { label: 'Qty Available',      value: `${product.quantityAvailable} ${product.unitType}` },
-    product.supplyCapacity     && { label: 'Supply Capacity',    value: product.supplyCapacity },
-    product.deliveryTimeline   && { label: 'Delivery',           value: product.deliveryTimeline },
-    product.countryOfOrigin    && { label: 'Origin',             value: product.countryOfOrigin },
-    product.recyclingClass     && { label: 'Recycling Class',    value: product.recyclingClass },
+    product.purity && { label: 'Purity', value: product.purity },
+    product.materialGrade && { label: 'Material Grade', value: product.materialGrade },
+    product.condition && { label: 'Condition', value: product.condition },
+    product.packagingType && { label: 'Packaging', value: product.packagingType },
+    product.unitType && { label: 'Unit', value: product.unitType },
+    product.moq && { label: 'Min. Order Qty', value: `${product.moq} ${product.unitType}` },
+    product.quantityAvailable && { label: 'Qty Available', value: `${product.quantityAvailable} ${product.unitType}` },
+    product.supplyCapacity && { label: 'Supply Capacity', value: product.supplyCapacity },
+    product.deliveryTimeline && { label: 'Delivery', value: product.deliveryTimeline },
+    product.countryOfOrigin && { label: 'Origin', value: product.countryOfOrigin },
+    product.recyclingClass && { label: 'Recycling Class', value: product.recyclingClass },
   ].filter(Boolean) as { label: string; value: string }[]
 
   return (
@@ -256,8 +256,8 @@ export default async function ProductDetailPage({ params }: Props) {
                 <div className="grid grid-cols-3 gap-2">
                   {[
                     { icon: ShieldCheck, label: 'Verified Supplier', color: 'var(--clr-green)' },
-                    { icon: Award,       label: '10+ Yrs Experience', color: '#b45309' },
-                    { icon: Globe,       label: 'Export Ready',       color: '#0284c7' },
+                    { icon: Award, label: '10+ Yrs Experience', color: '#b45309' },
+                    { icon: Globe, label: 'Export Ready', color: '#0284c7' },
                   ].map(b => (
                     <div
                       key={b.label}
@@ -487,56 +487,60 @@ export default async function ProductDetailPage({ params }: Props) {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {related.map((p, i) => (
-                <AOS key={p._id} delay={i * 60}>
+                <div key={p._id}>
                   <Link
                     href={`/products/${p.slug}`}
-                    className="group flex flex-col rounded-2xl overflow-hidden transition-all duration-300"
-                    style={{
-                      background: 'var(--bg-surface)',
-                      border: '1px solid var(--border-subtle)',
-                      boxShadow: '0 2px 12px rgba(15,23,42,0.04)',
-                    }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.transform = 'translateY(-4px)'
-                      el.style.boxShadow = '0 16px 40px rgba(15,23,42,0.09)'
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.transform = 'translateY(0)'
-                      el.style.boxShadow = '0 2px 12px rgba(15,23,42,0.04)'
-                    }}
+                    className="
+          group flex flex-col rounded-2xl overflow-hidden
+          transition-all duration-300
+          bg-[var(--bg-surface)]
+          border border-[var(--border-subtle)]
+          shadow-[0_2px_12px_rgba(15,23,42,0.04)]
+          hover:-translate-y-1
+          hover:shadow-[0_16px_40px_rgba(15,23,42,0.09)]
+        "
                   >
-                    <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                    {/* IMAGE */}
+                    <div className="relative overflow-hidden aspect-[4/3]">
                       <Image
-                        src={p.image} alt={p.title} fill
+                        src={p.image}
+                        alt={p.title}
+                        fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width:768px) 50vw, 25vw"
                       />
-                      <div
-                        className="absolute inset-0"
-                        style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.55), transparent)' }}
-                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,23,42,0.55)] to-transparent" />
                     </div>
+
+                    {/* CONTENT */}
                     <div className="p-4 flex flex-col gap-1.5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.14em]" style={{ color: accent }}>
+                      <p
+                        className="text-[10px] font-bold uppercase tracking-[0.14em]"
+                        style={{ color: accent }}
+                      >
                         {PRODUCT_CATEGORY_MAP[p.category]?.label}
                       </p>
+
                       <h4
                         className="text-sm font-bold leading-snug"
-                        style={{ fontFamily: 'var(--font-display)', color: 'var(--tx-primary)' }}
+                        style={{ fontFamily: "var(--font-display)", color: "var(--tx-primary)" }}
                       >
                         {p.title}
                       </h4>
-                      <p className="text-xs line-clamp-2 mb-2" style={{ color: 'var(--tx-muted)' }}>
+
+                      <p className="text-xs line-clamp-2 mb-2" style={{ color: "var(--tx-muted)" }}>
                         {p.shortDescription}
                       </p>
-                      <span className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: 'var(--clr-green)' }}>
+
+                      <span
+                        className="flex items-center gap-1.5 text-xs font-semibold transition-colors group-hover:text-[var(--clr-green)]"
+                      >
                         View Details <ArrowRight size={12} />
                       </span>
                     </div>
                   </Link>
-                </AOS>
+                </div>
               ))}
             </div>
           </div>

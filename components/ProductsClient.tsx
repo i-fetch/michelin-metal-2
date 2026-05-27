@@ -3,10 +3,11 @@
 import { useState, useMemo, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import {
   Search, ArrowRight, Globe, ShieldCheck, X,
   Boxes, ChevronDown, Package,
+  Tag,
 } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
 import { PRODUCT_CATEGORIES, PRODUCT_CATEGORY_MAP } from '@/lib/productCategories'
@@ -70,10 +71,10 @@ function SkeletonGrid() {
    PRODUCT CARD
 ───────────────────────────────────────────────────────────── */
 function ProductCard({ product, index }: { product: Product; index: number }) {
-  const ref     = useRef(null)
-  const inView  = useInView(ref, { once: true, margin: '-50px' })
-  const cat     = PRODUCT_CATEGORY_MAP[product.category]
-  const accent  = cat?.accent ?? '#16a34a'
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const cat = PRODUCT_CATEGORY_MAP[product.category]
+  const accent = cat?.accent ?? '#16a34a'
 
   const displayPrice = product.showPrice && product.price
     ? `${product.currency} ${product.price.toLocaleString()}`
@@ -263,14 +264,29 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   )
 }
 
+const EASE_HERO = [0.16, 1, 0.3, 1] as const;
+
+const localStaggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.05 }
+  }
+};
+
+const localFadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_HERO } }
+};
+
 /* ─────────────────────────────────────────────────────────────
    MAIN CLIENT COMPONENT
 ───────────────────────────────────────────────────────────── */
 export default function ProductsClient({ products }: Props) {
-  const [search,     setSearch]     = useState('')
+  const [search, setSearch] = useState('')
   const [activesCat, setActivesCat] = useState<string>('all')
-  const [sort,       setSort]       = useState<SortKey>('newest')
-  const [loading,    setLoading]    = useState(false)
+  const [sort, setSort] = useState<SortKey>('newest')
+  const [loading, setLoading] = useState(false)
 
   /* simulate loading when filter changes for skeleton demo */
   const applyFilter = (fn: () => void) => {
@@ -292,11 +308,11 @@ export default function ProductsClient({ products }: Props) {
       )
     }
     switch (sort) {
-      case 'oldest':    list.sort((a, b) => a.createdAt.localeCompare(b.createdAt)); break
-      case 'name_asc':  list.sort((a, b) => a.title.localeCompare(b.title)); break
+      case 'oldest': list.sort((a, b) => a.createdAt.localeCompare(b.createdAt)); break
+      case 'name_asc': list.sort((a, b) => a.title.localeCompare(b.title)); break
       case 'name_desc': list.sort((a, b) => b.title.localeCompare(a.title)); break
-      case 'featured':  list.sort((a, b) => Number(b.featured) - Number(a.featured)); break
-      default:          list.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+      case 'featured': list.sort((a, b) => Number(b.featured) - Number(a.featured)); break
+      default: list.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     }
     return list
   }, [products, activesCat, search, sort])
@@ -308,118 +324,175 @@ export default function ProductsClient({ products }: Props) {
     }
     return map
   }, [products])
+  const heroContainerRef = useRef<HTMLDivElement>(null);
+  const trustBadges = [
+    { icon: ShieldCheck, label: "ISO Certified" },
+    { icon: Globe, label: "International Export" },
+    { icon: Boxes, label: "Bulk Supply Available" },
+  ];
+
+  // ── PARALLAX LOGISTICS ENGINE ──
+  const { scrollY } = useScroll();
+  const backgroundImageY = useTransform(scrollY, [0, 800], ["0%", "20%"]);
+  const contentY = useTransform(scrollY, [0, 800], ["0%", "8%"]);
+  const contentOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   return (
     <>
       {/* ══ HERO ══ */}
-      <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
-        {/* Dot texture */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.03]"
-          style={{
-            backgroundImage: 'radial-gradient(var(--tx-primary) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        />
-        {/* Green glow */}
-        <div
-          className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(22,163,74,0.07) 0%, transparent 70%)' }}
-        />
+      <section
+        ref={heroContainerRef}
+        className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center justify-between overflow-hidden bg-[#ffffff] pt-36 pb-24 md:pt-44 md:pb-32"
+        aria-label="Product Catalogue and Materials Engine Introduction"
+      >
+        {/* ══ LAYER 1: HARDWARE-ACCELERATED PARALLAX IMAGE ══ */}
+        <motion.div
+          style={{ y: backgroundImageY }}
+          className="absolute inset-0 w-full h-full pointer-events-none will-change-transform"
+        >
+          <Image
+            src="/catalogue-industrial-hero.jpg" // High-fidelity raw material storage / bundle yard background asset
+            alt="Mechelin Metals Inventory and Product Logistics background"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center scale-[1.05]"
+          />
+        </motion.div>
 
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+        {/* ══ LAYER 2: THE CONTRAST STABILIZER MASK ENGINE (CRITICAL FOR READABILITY) ══ */}
+        <div className="absolute inset-0 z-[1] pointer-events-none select-none">
+
+          {/* MASK A: Pure white structural block gradient to neutralize asset noise directly underneath the text layout */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-white/85 to-white/10 md:from-white md:via-white/95 md:via-white/80 md:to-white/5" />
+
+          {/* MASK B: Micro-diffused backdrop blur sheet — separates complex image details from crisp text typography */}
+          <div className="absolute top-0 bottom-0 left-0 w-full md:w-[75%] bg-white/20 backdrop-blur-[4px] [mask-image:linear-gradient(to_right,white_50%,transparent_100%)]" />
+
+          {/* MASK C: Top-down light-bleed controller to neutralize high-exposure highlights or bright sky lines */}
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-white/60 to-transparent" />
+
+          {/* MASK D: Horizon baseline fading anchor to seamlessly lock section into the white blocks layout below */}
+          <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#ffffff] via-[#ffffff]/90 to-transparent" />
+
+          {/* Technical Brand Matrix Grid-Mesh Overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `radial-gradient(#059669 1px, transparent 1px)`,
+              backgroundSize: '24px 24px'
+            }}
+          />
+        </div>
+
+        {/* ══ LAYER 3: FOREGROUND HIGH-CONTRAST TYPOGRAPHY & INTERACTIVE CANVAS ══ */}
+        <motion.div
+          style={{ y: contentY, opacity: contentOpacity }}
+          className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 relative z-[2] will-change-transform"
+        >
           <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: EASE }}
+            initial="hidden"
+            animate="visible"
+            variants={localStaggerContainer}
+            className="relative max-w-3xl"
           >
-            <p className="tag mb-5">Our Catalogue</p>
-            <h1
-              className="mb-5 leading-none"
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2.8rem, 7vw, 5.5rem)',
-                fontWeight: 900,
-                color: 'var(--tx-primary)',
-                letterSpacing: '-0.02em',
-              }}
+            {/* Catalogue Token Badge */}
+            <motion.div
+              variants={localFadeUp}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/15 bg-white text-[var(--clr-green)] text-[10px] font-bold tracking-widest uppercase mb-6 font-mono shadow-[0_4px_14px_rgba(0,0,0,0.04)]"
             >
-              Products &amp;{' '}
-              <span style={{ color: 'var(--clr-green)' }}>Materials</span>
-            </h1>
-            <p
-              className="max-w-xl text-base mb-10 leading-relaxed"
-              style={{ color: 'var(--tx-secondary)', fontWeight: 300 }}
-            >
-              Mechelin Metals Nigeria — premium aluminium, copper, brass, ferrous and non-ferrous
-              metals available for bulk supply nationwide and internationally.
-            </p>
+              <Tag size={12} className="text-emerald-600" />
+              Our Catalogue
+            </motion.div>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-5 mb-10">
-              {[
-                { icon: ShieldCheck, label: 'ISO Certified' },
-                { icon: Globe,       label: 'International Export' },
-                { icon: Boxes,       label: 'Bulk Supply Available' },
-              ].map((b, i) => (
-                <motion.div
-                  key={b.label}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.08, ease: EASE }}
-                  className="flex items-center gap-2 text-xs font-semibold"
-                  style={{ color: 'var(--tx-muted)' }}
-                >
-                  <b.icon size={14} style={{ color: 'var(--clr-green)' }} />
-                  {b.label}
-                </motion.div>
-              ))}
+            {/* Ultra-Sharp Anti-Aliased Service Header */}
+            <div className="overflow-hidden mb-6 py-1">
+              <motion.h1
+                variants={localFadeUp}
+                className="font-black tracking-tighter leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(2.8rem, 7vw, 5.5rem)'
+                }}
+              >
+                Products &amp;{" "}
+                <br className="sm:hidden" />
+                <span className="text-[var(--clr-green)]">Materials</span>
+              </motion.h1>
             </div>
 
-            {/* Search + sort */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: EASE }}
-              className="flex flex-col sm:flex-row gap-3 max-w-2xl"
+            {/* High-Readability Segmented Body Paragraph */}
+            <motion.p
+              variants={localFadeUp}
+              className="text-slate-900 font-medium text-base md:text-xl max-w-xl leading-relaxed font-body tracking-tight subpixel-antialiased drop-shadow-[0_1px_4px_rgba(255,255,255,0.6)] mb-8"
             >
-              {/* Search */}
+              Mechelin Metals Nigeria — premium aluminium, copper, brass, ferrous and non-ferrous
+              metals optimized for bulk supply commitments nationwide and internationally.
+            </motion.p>
+
+            {/* Trust Badges Bar Row */}
+            <motion.div variants={localFadeUp} className="flex flex-wrap gap-5 mb-10">
+              {trustBadges.map((badge) => (
+                <div
+                  key={badge.label}
+                  className="flex items-center gap-2 text-xs font-bold text-slate-800 bg-white/70 backdrop-blur-sm border border-slate-200/60 px-3 py-1.5 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.01)] subpixel-antialiased"
+                >
+                  <badge.icon size={14} className="text-[var(--clr-green)]" />
+                  {badge.label}
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Interactive Control Canvas Block Layer */}
+            <motion.div
+              variants={localFadeUp}
+              className="flex flex-col sm:flex-row gap-3 max-w-2xl bg-white/40 backdrop-blur-md p-2 rounded-2xl border border-slate-200/50 shadow-[0_12px_40px_rgba(0,0,0,0.03)]"
+            >
+              {/* Search Input Box Frame */}
               <div
-                className="flex items-center gap-2.5 flex-1 px-4 py-3 rounded-xl transition-all duration-200"
-                style={{
-                  background: 'var(--bg-surface)',
-                  border: '1.5px solid var(--border-subtle)',
+                className="flex items-center gap-2.5 flex-1 px-4 py-3 rounded-xl transition-all duration-300 bg-white border border-slate-200"
+                style={{ transitionProperty: "border-color, box-shadow" }}
+                onFocus={e => {
+                  e.currentTarget.style.borderColor = 'var(--clr-green)';
+                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(5,150,105,0.08)';
                 }}
-                onFocus={e => (e.currentTarget.style.borderColor = 'var(--clr-green)')}
-                onBlur={e => (e.currentTarget.style.borderColor = 'var(--border-subtle)')}
+                onBlur={e => {
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
-                <Search size={15} style={{ color: 'var(--tx-muted)', flexShrink: 0 }} />
+                <Search size={15} className="text-slate-400 flex-shrink-0" />
                 <input
                   type="text"
                   placeholder="Search products, materials, grades…"
                   value={search}
                   onChange={e => applyFilter(() => setSearch(e.target.value))}
-                  className="flex-1 bg-transparent text-sm outline-none"
-                  style={{ color: 'var(--tx-primary)' }}
+                  className="flex-1 bg-transparent text-sm outline-none font-medium text-slate-900 placeholder:text-slate-400"
                 />
                 {search && (
-                  <button onClick={() => applyFilter(() => setSearch(''))} style={{ color: 'var(--tx-muted)' }}>
+                  <button
+                    onClick={() => applyFilter(() => setSearch(''))}
+                    className="text-slate-400 hover:text-slate-600 transition-colors"
+                  >
                     <X size={14} />
                   </button>
                 )}
               </div>
 
-              {/* Sort */}
+              {/* Interactive Custom Select Menu Box */}
               <div className="relative">
                 <select
                   value={sort}
                   onChange={e => applyFilter(() => setSort(e.target.value as SortKey))}
-                  className="appearance-none pl-4 pr-9 py-3 rounded-xl text-sm font-medium outline-none cursor-pointer transition-all duration-200"
-                  style={{
-                    background: 'var(--bg-surface)',
-                    border: '1.5px solid var(--border-subtle)',
-                    color: 'var(--tx-primary)',
-                    minWidth: 165,
+                  className="appearance-none w-full sm:w-[180px] pl-4 pr-10 py-3 rounded-xl text-sm font-semibold outline-none cursor-pointer transition-all duration-300 bg-white border border-slate-200 text-slate-800"
+                  style={{ transitionProperty: "border-color, box-shadow" }}
+                  onFocus={e => {
+                    e.currentTarget.style.borderColor = 'var(--clr-green)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(5,150,105,0.08)';
+                  }}
+                  onBlur={e => {
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
                   <option value="newest">Newest First</option>
@@ -428,12 +501,11 @@ export default function ProductsClient({ products }: Props) {
                   <option value="name_asc">Name A–Z</option>
                   <option value="name_desc">Name Z–A</option>
                 </select>
-                <ChevronDown size={13} className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
-                  style={{ color: 'var(--tx-muted)' }} />
+                <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500" />
               </div>
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ══ STICKY FILTER BAR ══ */}
@@ -456,8 +528,8 @@ export default function ProductsClient({ products }: Props) {
               className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 shrink-0"
               style={{
                 background: activesCat === 'all' ? 'var(--clr-green)' : 'var(--bg-surface)',
-                color:      activesCat === 'all' ? '#fff' : 'var(--tx-muted)',
-                border:     `1.5px solid ${activesCat === 'all' ? 'transparent' : 'var(--border-subtle)'}`,
+                color: activesCat === 'all' ? '#fff' : 'var(--tx-muted)',
+                border: `1.5px solid ${activesCat === 'all' ? 'transparent' : 'var(--border-subtle)'}`,
               }}
             >
               All Materials
@@ -465,7 +537,7 @@ export default function ProductsClient({ products }: Props) {
                 className="text-xs px-1.5 py-0.5 rounded-full"
                 style={{
                   background: activesCat === 'all' ? 'rgba(255,255,255,0.2)' : 'var(--bg-subtle)',
-                  color:      activesCat === 'all' ? '#fff' : 'var(--tx-muted)',
+                  color: activesCat === 'all' ? '#fff' : 'var(--tx-muted)',
                 }}
               >
                 {counts.all}
@@ -479,8 +551,8 @@ export default function ProductsClient({ products }: Props) {
                 className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 shrink-0"
                 style={{
                   background: activesCat === cat.id ? `${cat.accent}14` : 'var(--bg-surface)',
-                  color:      activesCat === cat.id ? cat.accent : 'var(--tx-muted)',
-                  border:     `1.5px solid ${activesCat === cat.id ? cat.accent + '40' : 'var(--border-subtle)'}`,
+                  color: activesCat === cat.id ? cat.accent : 'var(--tx-muted)',
+                  border: `1.5px solid ${activesCat === cat.id ? cat.accent + '40' : 'var(--border-subtle)'}`,
                 }}
               >
                 <span>{cat.icon}</span>
@@ -489,7 +561,7 @@ export default function ProductsClient({ products }: Props) {
                   className="text-xs px-1.5 py-0.5 rounded-full"
                   style={{
                     background: activesCat === cat.id ? `${cat.accent}18` : 'var(--bg-subtle)',
-                    color:      activesCat === cat.id ? cat.accent : 'var(--tx-muted)',
+                    color: activesCat === cat.id ? cat.accent : 'var(--tx-muted)',
                   }}
                 >
                   {counts[cat.id] ?? 0}
