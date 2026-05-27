@@ -186,7 +186,7 @@ function MaterialCard({ item }: { item: (typeof MATERIALS)[0] }) {
               group/btn
             "
           >
-            <span>Request Quote</span>
+            <span>Browse All Materials</span>
 
             <span
               className="
