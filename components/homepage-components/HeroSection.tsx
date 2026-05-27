@@ -1,246 +1,229 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const CYCLE_WORDS = ["Aluminium", "Ferrous Metals", "Vehicle Scrap", "Non-Ferrous", "UBC Cans"];
-const EASE = [0.16, 1, 0.3, 1] as const;
+const CYCLE_WORDS = [
+  "Aluminium",
+  "Ferrous Metals",
+  "Vehicle Scrap",
+  "Non-Ferrous",
+  "UBC Cans",
+];
 
-// ── INTERNAL MICRO COUNT-UP MODULE ──
-interface CountUpProps {
-  target: string;
-  duration?: number;
-}
+const VIDEO_SRC = "/header-vid.mp4";
+const POSTER_SRC = "/images/hero-poster.jpg";
 
-function CountUp({ target, duration = 2000 }: CountUpProps): React.JSX.Element {
+// ───────── COUNT UP ─────────
+function CountUp({ target }: { target: string }) {
   const [count, setCount] = useState(0);
-  const elementRef = useRef<HTMLSpanElement>(null);
-  const hasAnimated = useRef(false);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
 
   const { numericValue, suffix } = useMemo(() => {
     const match = target.match(/^(\d+)(.*)$/);
-    if (match) {
-      return { numericValue: parseInt(match[1], 10), suffix: match[2] };
-    }
+    if (match) return { numericValue: +match[1], suffix: match[2] };
     return { numericValue: 0, suffix: target };
   }, [target]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          let startTimestamp: number | null = null;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !started.current) {
+        started.current = true;
 
-          const step = (timestamp: number) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const easeProgress = progress * (2 - progress);
-            
-            setCount(Math.floor(easeProgress * numericValue));
+        let start: number | null = null;
 
-            if (progress < 1) {
-              requestAnimationFrame(step);
-            } else {
-              setCount(numericValue);
-            }
-          };
+        const animate = (t: number) => {
+          if (!start) start = t;
 
-          requestAnimationFrame(step);
-        }
-      },
-      { threshold: 0.1 }
-    );
+          const p = Math.min((t - start) / 2000, 1);
+          const ease = p * (2 - p);
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
+          setCount(Math.floor(ease * numericValue));
 
-    return () => observer.disconnect();
-  }, [numericValue, duration]);
+          if (p < 1) requestAnimationFrame(animate);
+          else setCount(numericValue);
+        };
 
-  return <span ref={elementRef}>{count}{suffix}</span>;
+        requestAnimationFrame(animate);
+      }
+    });
+
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [numericValue]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
 }
 
-// ── CYCLING WORD ANIMATION MODULE ──
-function CycleWord(): React.JSX.Element {
-  const [idx, setIdx] = useState(0);
+// ───────── WORD ROTATION ─────────
+function CycleWord() {
+  const [i, setI] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % CYCLE_WORDS.length), 2800);
+    const t = setInterval(() => {
+      setI((p) => (p + 1) % CYCLE_WORDS.length);
+    }, 2800);
+
     return () => clearInterval(t);
   }, []);
 
   return (
-    <span className="inline-block min-w-[7ch] sm:min-w-[8ch]">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={idx}
-          className="inline-block font-bold text-[var(--clr-green)]"
-          initial={{ opacity: 0, y: 8, filter: "blur(2px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: -8, filter: "blur(2px)" }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-        >
-          {CYCLE_WORDS[idx]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
+    <motion.span
+      key={i}
+      initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.4 }}
+      className="font-semibold text-[var(--clr-green)]"
+    >
+      {CYCLE_WORDS[i]}
+    </motion.span>
   );
 }
 
-// ── MAIN HERO SECTION COMPONENT ──
-export default function HeroSection(): React.JSX.Element {
-  const statsData = useMemo(() => [
-    { num: "10+", label: "Years Active" },
-    { num: "50+", label: "Global Buyers" },
-    { num: "8+", label: "Metal Categories" },
-    { num: "4+", label: "Countries Served" },
-  ], []);
+export default function HeroSection() {
+  const ref = useRef<HTMLElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // ───────── PARALLAX SYSTEM ─────────
+  const videoY = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.2]);
+
+  const glowY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.85]);
+
+  const smoothVideoY = useSpring(videoY, { stiffness: 60, damping: 20 });
+  const smoothScale = useSpring(videoScale, { stiffness: 60, damping: 20 });
+  const smoothGlowY = useSpring(glowY, { stiffness: 60, damping: 25 });
+  const smoothContentY = useSpring(contentY, { stiffness: 70, damping: 22 });
+
+  const stats = useMemo(
+    () => [
+      { num: "10+", label: "Years Active" },
+      { num: "50+", label: "Global Buyers" },
+      { num: "8+", label: "Metal Categories" },
+      { num: "4+", label: "Countries Served" },
+    ],
+    []
+  );
 
   return (
     <section
-      className="relative w-full flex flex-col justify-between overflow-hidden bg-[var(--bg-main)] pt-20 pb-20 md:pt-28 md:pb-28"
-      aria-label="Hero Introduction"
+      ref={ref}
+      className="relative overflow-hidden bg-[#f7fbf8]"
     >
-      {/* Structural Fluid Background Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-br from-emerald-500/5 to-transparent blur-3xl" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-amber-500/5 to-transparent blur-3xl" />
-      </div>
-
-      {/* Main Foreground Typography Canvas */}
-      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 relative z-10 flex-1">
-        
-        {/* Premium Light-Mode Brand Badge */}
-        <motion.div
-          className="inline-flex items-center gap-2 mb-8 bg-[var(--clr-gold-alpha)] border border-amber-600/10 rounded-full py-1.5 px-4 text-[11px] font-bold uppercase tracking-wider text-[var(--clr-gold)] shadow-sm"
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: EASE }}
+      {/* ───────── LAYER 1: VIDEO ───────── */}
+      <motion.div
+        style={{ y: smoothVideoY, scale: smoothScale }}
+        className="absolute inset-0 z-0"
+      >
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={POSTER_SRC}
+          className="w-full h-full object-cover"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--clr-gold)] animate-pulse" />
-          Nigeria&apos;s Premier Metals Recycler
-        </motion.div>
+          <source src={VIDEO_SRC} type="video/mp4" />
+        </video>
+      </motion.div>
 
-        {/* Reengineered Editorial Headlines */}
-        <div className="space-y-1 mb-6">
-          <div className="overflow-hidden">
-            <motion.h1
-              className="block m-0 text-[var(--tx-primary)] font-black tracking-tighter text-[clamp(2.5rem,8vw,6.5rem)] leading-[0.95]"
-              style={{ fontFamily: "var(--font-display)" }}
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
-            >
-              MECHELIN
-            </motion.h1>
-          </div>
+      {/* ───────── LAYER 2: LIGHT FIELD ───────── */}
+      <div className="absolute inset-0 z-[1] bg-white/65" />
 
-          <div className="overflow-hidden">
-            <motion.h1
-              className="block m-0 text-[var(--clr-green)] font-black tracking-tighter text-[clamp(2.5rem,8vw,6.5rem)] leading-[0.95]"
-              style={{ fontFamily: "var(--font-display)" }}
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.8, ease: EASE, delay: 0.15 }}
-            >
-              METALS.
-            </motion.h1>
-          </div>
+      <motion.div
+        style={{ y: smoothGlowY }}
+        className="absolute inset-0 z-[2]"
+      >
+        <div className="absolute top-[-15%] left-[-10%] w-[45rem] h-[45rem] bg-emerald-400/10 blur-3xl rounded-full" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-green-300/10 blur-3xl rounded-full" />
+      </motion.div>
+
+      {/* subtle gradient depth */}
+      <div className="absolute inset-0 z-[3] bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.14),transparent_40%),radial-gradient(circle_at_top_right,rgba(16,185,129,0.10),transparent_35%)]" />
+
+      {/* ───────── LAYER 3: CONTENT ───────── */}
+      <motion.div
+        style={{
+          y: smoothContentY,
+          opacity: contentOpacity,
+        }}
+        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-28 pb-24"
+      >
+        {/* badge */}
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-[var(--clr-green)] animate-pulse" />
+          <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-slate-600">
+            Nigeria&apos;s Premier Metals Recycler
+          </span>
         </div>
 
-        {/* Dynamic Typography Loop Slider */}
-        <motion.p
-          className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[var(--tx-primary)] font-normal mb-5 max-w-2xl text-[clamp(1.1rem,2vw,1.35rem)] leading-snug tracking-tight"
-          style={{ fontFamily: "var(--font-body)" }}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35, ease: EASE }}
-        >
+        {/* heading */}
+        <div className="mt-8 space-y-2">
+          <h1 className="text-[clamp(3rem,9vw,7rem)] font-black tracking-[-0.06em] text-slate-950 leading-[0.92]">
+            MECHELIN
+          </h1>
+          <h1 className="text-[clamp(3rem,9vw,7rem)] font-black tracking-[-0.06em] text-[var(--clr-green)] leading-[0.92]">
+            METALS.
+          </h1>
+        </div>
+
+        {/* animated line */}
+        <p className="mt-6 text-[clamp(1.1rem,2vw,1.35rem)] text-slate-900 flex flex-wrap gap-2">
           Transforming <CycleWord /> into Global Industrial Value
-        </motion.p>
+        </p>
 
-        {/* Main Context Paragraph Text */}
-        <motion.p
-          className="text-[var(--tx-secondary)] text-sm md:text-base leading-relaxed mb-8 max-w-xl font-normal"
-          style={{ fontFamily: "var(--font-body)" }}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45, ease: EASE }}
-        >
-          Leading integrated recycling and raw materials supply company in Nigeria — 
-          connecting industrial-grade metals to global manufacturing partners across 
+        {/* description */}
+        <p className="mt-5 max-w-2xl text-slate-600 leading-8">
+          Leading integrated recycling and raw materials supply company in Nigeria —
+          connecting industrial-grade metals to global manufacturing partners across
           China, South Korea, and India with strict compliance frameworks.
-        </motion.p>
+        </p>
 
-        {/* Immersive Premium Light Buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-3.5"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
-        >
+        {/* CTA */}
+        <div className="mt-6 flex flex-col sm:flex-row gap-4">
           <Link
             href="/products"
-            className="inline-flex justify-center items-center gap-2 px-7 py-3.5 bg-[var(--clr-green)] text-white text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-200 hover:bg-emerald-700 shadow-md hover:shadow-lg hover:-translate-y-0.5"
-            style={{ fontFamily: "var(--font-body)" }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--clr-green)] text-white text-xs uppercase tracking-[0.22em] font-bold shadow-lg hover:-translate-y-1 transition"
           >
-            Explore Materials <ArrowRight size={14} />
+            Explore Materials
           </Link>
 
           <Link
             href="#contact"
-            className="inline-flex justify-center items-center gap-2 px-7 py-3.5 bg-white border border-slate-200 text-[var(--tx-primary)] text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-200 hover:bg-slate-50 shadow-sm hover:-translate-y-0.5"
-            style={{ fontFamily: "var(--font-body)" }}
+            className="px-8 py-4 rounded-full bg-white/70 backdrop-blur-xl border border-white/60 text-xs uppercase tracking-[0.22em] font-bold text-slate-900 hover:-translate-y-1 transition"
           >
             Get a Quote
           </Link>
-        </motion.div>
-      </div>
+        </div>
 
-      {/* ── FLOWING METRICS RIBBON ── */}
-      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 relative z-10 mt-14 md:mt-16">
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 border-t border-slate-200/80 pt-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-            },
-          }}
-        >
-          {statsData.map((stat) => (
-            <motion.div
-              key={stat.label}
-              className="text-left group"
-              variants={{
-                hidden: { opacity: 0, y: 15 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
-              }}
-            >
-              <p 
-                className="text-4xl md:text-5xl font-black text-[var(--tx-primary)] leading-none transition-transform duration-300 group-hover:translate-x-1"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                <CountUp target={stat.num} duration={2000} />
+        {/* stats */}
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-10 border-t border-slate-200/70 pt-10">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <p className="text-4xl md:text-5xl font-black text-slate-950">
+                <CountUp target={s.num} />
               </p>
-              <p 
-                className="text-[10px] tracking-[0.2em] uppercase text-[var(--tx-muted)] mt-2.5 font-bold"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {stat.label}
+              <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500 mt-2">
+                {s.label}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
