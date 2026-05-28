@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Filter, Shield, ArrowRight, Layers, Tag, Scale } from 'lucide-react';
+import { Search, Filter, Shield, ArrowRight, Scale } from 'lucide-react';
 import { Material, MATERIALS } from '@/types';
 
 interface MaterialCatalogueProps {
@@ -13,8 +13,6 @@ const CATEGORIES = ['All', 'Non-Ferrous', 'Ferrous', 'Industrial', 'Auto Scrap']
 export default function MaterialCatalogue({ onSelectMaterial }: MaterialCatalogueProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<typeof CATEGORIES[number]>('All');
-  const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
-
   const filteredMaterials = MATERIALS.filter((material) => {
     const matchesCategory = selectedCategory === 'All' || material.category === selectedCategory;
     const matchesSearch =
@@ -72,9 +70,7 @@ export default function MaterialCatalogue({ onSelectMaterial }: MaterialCatalogu
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
       >
         <AnimatePresence mode="popLayout">
-          {filteredMaterials.map((material, idx) => {
-            const isHovered = hoveredCardId === material.id;
-            return (
+          {filteredMaterials.map((material, idx) => (
               <motion.div
                 key={material.id}
                 layout
@@ -83,8 +79,6 @@ export default function MaterialCatalogue({ onSelectMaterial }: MaterialCatalogu
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, delay: Math.min(idx * 0.05, 0.3) }}
                 className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-950/20 transition-all duration-300"
-                onMouseEnter={() => setHoveredCardId(material.id)}
-                onMouseLeave={() => setHoveredCardId(null)}
               >
                 {/* Image Section with badge overlay */}
                 <div className="relative h-48 overflow-hidden bg-zinc-950">
@@ -149,7 +143,6 @@ export default function MaterialCatalogue({ onSelectMaterial }: MaterialCatalogu
                   </div>
                 </div>
               </motion.div>
-            );
           })}
         </AnimatePresence>
 

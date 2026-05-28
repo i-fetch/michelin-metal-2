@@ -26,7 +26,7 @@ const NAV = [
   { href: '/admin/products/create', label: 'Add Product', icon: Plus },
 ]
 
-export default function AdminSidebar({ user, mobileOpen, onClose }: Props) {
+export default function Sidebar({ user, mobileOpen, onClose }: Props) {
   const path = usePathname()
 
   return (

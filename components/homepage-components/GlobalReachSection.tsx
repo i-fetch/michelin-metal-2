@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Globe, ArrowUpRight } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;

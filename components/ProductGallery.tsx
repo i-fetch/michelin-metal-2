@@ -94,22 +94,12 @@ export default function ProductGallery({ images }: Props) {
         <div className={`grid ${images.length === 1 ? 'grid-cols-1' : 'sm:grid-cols-2 lg:grid-cols-3'} gap-5`}>
           {images.map((image, index) => (
             <button
-<<<<<<< HEAD
-              key={index}
-              type="button"
-              aria-label={image.label}
-              title={image.label}
-              onClick={() => setActiveIndex(index)}
-              className="group card rounded-md overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-              style={{ padding: 0 }}
-=======
               key={`${image.src}-${index}`}
               type="button"
               aria-label={image.label}
               title={image.label}
               onClick={() => openImage(index)}
               className="group overflow-hidden rounded-[30px] border border-slate-800/30 bg-surface transition hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
->>>>>>> 7ef21dc694fba76255b9941494ec1bbebc6c853b
             >
               <div className="relative h-56 w-full bg-slate-100">
                 <Image

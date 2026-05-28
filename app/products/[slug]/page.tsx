@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
   ArrowLeft, ArrowRight, CheckCircle, Globe,
-  Package, Phone, ShieldCheck, Tag, Truck,
+  Phone, ShieldCheck, Tag, Truck,
   ChevronRight, Award, Boxes, Clock, MapPin,
   BarChart3,
 } from 'lucide-react'
@@ -486,7 +486,7 @@ export default async function ProductDetailPage({ params }: Props) {
             </AOS>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {related.map((p, i) => (
+              {related.map((p) => (
                 <div key={p._id}>
                   <Link
                     href={`/products/${p.slug}`}

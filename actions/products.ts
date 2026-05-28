@@ -10,36 +10,42 @@ import type { Product, ActionResult } from '@/types'
 import { type ProductCategory } from '@/lib/productCategories'
 import type { IProduct } from '@/models/Product'
 
-function imgPath(id: any) {
+function imgPath(id: string | { toString(): string } | null | undefined) {
   return id ? `/api/images/${id.toString()}` : '/placeholder.webp'
 }
 
-function toPlain(doc: any): Product {
-  const imageIds = doc.imageIds ?? []
+function toPlain(doc: Record<string, unknown>): Product {
+  const raw = doc as Record<string, unknown>
+  const imageIds = (raw.imageIds as Array<{ toString(): string } | string> | undefined) ?? []
   const images = imageIds.map(imgPath)
+
+  const stringValue = (value: unknown, fallback = '') => String(value ?? fallback)
+  const boolValue = (value: unknown) =>
+    value === true || value === 'true' || value === 'on' || value === 1 || value === '1' || (typeof value === 'string' && value.toLowerCase() === 'true')
+
   return {
-    _id: doc._id.toString(),
-    title: doc.title,
-    slug: doc.slug,
+    _id: stringValue((raw._id as { toString(): string } | undefined)?.toString()),
+    title: stringValue(raw.title),
+    slug: stringValue(raw.slug),
     image: images[0] ?? '/placeholder.webp',
     images,
-    imageIds: imageIds.map((i: any) => i.toString()),
-    shortDescription: doc.shortDescription,
-    fullDescription: doc.fullDescription,
-    category: doc.category,
-    subcategory: doc.subcategory ?? '',
-    featured: doc.featured,
-    status: doc.status ?? 'active',
-    specs: doc.specs ?? [],
-    applications: doc.applications ?? [],
-    purity: doc.purity ?? '',
-    materialGrade: doc.materialGrade ?? '',
-    condition: doc.condition ?? 'Recycled',
-    recyclingClass: doc.recyclingClass ?? '',
-    quantityAvailable: doc.quantityAvailable ?? '',
-    unitType: doc.unitType ?? 'Metric Tons',
-    supplyCapacity: doc.supplyCapacity ?? '',
-    moq: doc.moq ?? '',
+    imageIds: imageIds.map(i => i.toString()),
+    shortDescription: stringValue(raw.shortDescription),
+    fullDescription: stringValue(raw.fullDescription),
+    category: stringValue(raw.category),
+    subcategory: stringValue(raw.subcategory, ''),
+    featured: boolValue(raw.featured),
+    status: stringValue(raw.status, 'active'),
+    specs: (raw.specs as string[] | undefined) ?? [],
+    applications: (raw.applications as string[] | undefined) ?? [],
+    purity: stringValue(raw.purity, ''),
+    materialGrade: stringValue(raw.materialGrade, ''),
+    condition: stringValue(raw.condition, 'Recycled'),
+    recyclingClass: stringValue(raw.recyclingClass, ''),
+    quantityAvailable: stringValue(raw.quantityAvailable, ''),
+    unitType: stringValue(raw.unitType, 'Metric Tons'),
+    supplyCapacity: stringValue(raw.supplyCapacity, ''),
+    moq: stringValue(raw.moq, ''),
     packagingType: doc.packagingType ?? 'Baled',
     countryOfOrigin: doc.countryOfOrigin ?? 'Nigeria',
     deliveryTimeline: doc.deliveryTimeline ?? '',
@@ -60,11 +66,11 @@ function toPlain(doc: any): Product {
 }
 
 async function uniqueSlug(base: string, excludeId?: string): Promise<string> {
-  let slug = slugify(base, { lower: true, strict: true })
+  const slug = slugify(base, { lower: true, strict: true })
   let n = 0
   while (true) {
     const candidate = n === 0 ? slug : `${slug}-${n}`
-    const q: any = { slug: candidate }
+    const q: Record<string, unknown> = { slug: candidate }
     if (excludeId) q._id = { $ne: excludeId }
     if (!(await ProductModel.findOne(q))) return candidate
     n++
@@ -225,8 +231,8 @@ export async function updateProduct(
     const existing = await ProductModel.findById(id)
     if (!existing) return { success: false, error: 'Product not found.' }
 
-    const prevIds = existing.imageIds?.map((i: any) => i.toString()) ?? []
-    const removed = prevIds.filter((old: string) => !existingImageIds.includes(old))
+    const prevIds = existing.imageIds?.map(i => i.toString()) ?? []
+    const removed = prevIds.filter(old => !existingImageIds.includes(old))
     if (removed.length > 0) {
       await Promise.all(removed.map(deleteImageFromGridFS))
     }
@@ -265,7 +271,7 @@ export async function deleteProduct(id: string): Promise<ActionResult> {
     const product = await ProductModel.findById(id)
     if (!product) return { success: false, error: 'Product not found.' }
     if (product.imageIds?.length) {
-      await Promise.all(product.imageIds.map((imgId: any) => deleteImageFromGridFS(imgId.toString())))
+      await Promise.all(product.imageIds.map(imgId => deleteImageFromGridFS(imgId.toString())))
     }
     await ProductModel.findByIdAndDelete(id)
     revalidatePath('/products')

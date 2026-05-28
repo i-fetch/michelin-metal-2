@@ -10,7 +10,7 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 /* ─────────────────────────────────────────────
    DATA

@@ -28,22 +28,32 @@ export default function Navbar(): React.JSX.Element {
       <nav className="relative w-full bg-white/30 backdrop-blur-2xl border-b border-white/20 z-40">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-5 flex items-center justify-between">
 
-          {/* Brand */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center bg-white/40 backdrop-blur-xl border border-white/30 shadow-sm transition-transform duration-500 group-hover:rotate-180">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
               <Image
                 src="/logo.png"
-                width={36}
-                height={36}
+                width={20}
+                height={20}
                 className="w-full h-full object-cover"
-                alt="Mechelin Logo"
+                alt="Mechelin Metals"
+                priority
                 unoptimized
               />
             </div>
 
-            <div className="flex flex-col select-none">
-              <span className="text-sm font-black tracking-tight text-[var(--tx-primary)]">
-                MECHELIN <span className="text-[var(--clr-green)]">METALS</span>
+            <div className="flex flex-col leading-none">
+              <h1
+                className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
+                style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
+              >
+                MECHELIN METALS
+              </h1>
+              <span
+                className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+                style={{ color: 'var(--tx-faint)' }}
+              >
+                NIGERIA
               </span>
             </div>
           </Link>
@@ -113,15 +123,41 @@ export default function Navbar(): React.JSX.Element {
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 180 }}
               className="fixed top-0 right-0 h-full w-full sm:w-[460px]
-                         bg-white/25 backdrop-blur-3xl
+                         bg-white
                          border-l border-white/20
                          z-50 p-8 sm:p-12 flex flex-col justify-between"
             >
 
               <div className="flex items-center justify-between border-b border-white/20 pb-6">
-                <span className="text-[10px] font-bold tracking-[0.25em] text-[var(--tx-muted)] uppercase">
-                  Navigation Deck
-                </span>
+                {/* Logo */}
+                <Link href="/" className="flex items-center gap-2">
+                  <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
+                    <Image
+                      src="/logo.png"
+                      width={20}
+                      height={20}
+                      className="w-full h-full object-cover"
+                      alt="Mechelin Metals"
+                      priority
+                      unoptimized
+                    />
+                  </div>
+
+                  <div className="flex flex-col leading-none">
+                    <h1
+                      className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
+                      style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
+                    >
+                      MECHELIN METALS
+                    </h1>
+                    <span
+                      className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+                      style={{ color: 'var(--tx-faint)' }}
+                    >
+                      NIGERIA
+                    </span>
+                  </div>
+                </Link>
 
                 <button
                   onClick={() => setIsMenuOpen(false)}
@@ -133,14 +169,18 @@ export default function Navbar(): React.JSX.Element {
 
               <nav className="flex flex-col space-y-6 my-auto">
                 {links.map((link) => (
-                  <Link key={link.href} href={link.href}>
-                    <h2 className="text-2xl font-black text-[var(--tx-primary)]">
-                      {link.label}
-                    </h2>
-                    <p className="text-xs text-[var(--tx-secondary)]">
-                      {link.desc}
-                    </p>
-                  </Link>
+                  <>
+                    <Link className="block" key={link.href} href={link.href}>
+                      <h2 className="text-2xl font-black text-[var(--clr-green)] font-display"
+                      >
+                        {link.label}
+                      </h2>
+                      <p className="text-xs text-[var(--tx-secondary)]">
+                        {link.desc}
+                      </p>
+                    </Link>
+                    <hr className="border-t border-white/20" />
+                  </>
                 ))}
               </nav>
 

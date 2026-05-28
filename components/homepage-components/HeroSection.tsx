@@ -8,7 +8,6 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 const CYCLE_WORDS = [
   "Aluminium",
@@ -142,7 +141,7 @@ export default function HeroSection() {
       </motion.div>
 
       {/* ───────── LAYER 2: LIGHT FIELD ───────── */}
-      <div className="absolute inset-0 z-[1] bg-white/65" />
+      <div className="absolute inset-0 z-[1] bg-black/65" />
 
       <motion.div
         style={{ y: smoothGlowY }}

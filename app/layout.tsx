@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-import { Bebas_Neue, DM_Sans, DM_Mono, Geist_Mono, Geist } from 'next/font/google'
 import SessionWrapper from '@/components/SessionWrapper/SessionWrapper'
 import ScrollToTopButton from '@/components/ScrollToTop'
 
-// High-end corporate geometric sans for strong structural headings
-const display = Geist({
+import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google'
+
+const display = Bebas_Neue({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-display',
 })
+
 
 const body = DM_Sans({
   subsets: ['latin'],
@@ -30,7 +31,6 @@ export const metadata: Metadata = {
   },
   description: "Nigeria's foremost integrated metal recycling company. Aluminium bales, ferrous & non-ferrous metals — national and global bulk supply.",
   // Setting explicitly to light mode for standard browser engine layouts
-  colorScheme: 'light',
   keywords: [
     'metal recycling Nigeria',
     'aluminium scrap',

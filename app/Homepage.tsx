@@ -1,8 +1,7 @@
 
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, CircleCheck, Globe2, Package, Recycle, ShieldCheck, TrendingUp, Truck, Zap } from 'lucide-react'
+import { ArrowRight, Package, TrendingUp, Zap } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -13,6 +12,7 @@ import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 import GlobalReachSection from '@/components/homepage-components/GlobalReachSection'
 import LocationsSection from '@/components/LocationSection'
 import MaterialsSection from '@/components/homepage-components/MaterialSection'
+import HeroHeader from '@/components/homepage-components/HeroHeader'
 
 
 
@@ -21,48 +21,13 @@ import MaterialsSection from '@/components/homepage-components/MaterialSection'
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
 
-// const pillars = [
-//    { icon: Recycle, title: 'Full-Cycle Recycling', body: 'End-to-end processing — collection, sorting, baling, distribution.' },
-//    { icon: Globe2, title: 'Global Reach', body: 'National supply and international export to manufacturers worldwide.' },
-//    { icon: ShieldCheck, title: 'Quality Assured', body: 'Every batch graded and verified before it leaves our facility.' },
-//    { icon: Truck, title: 'Reliable Logistics', body: 'Dependable delivery across West Africa and beyond.' },
-// ]
-const pillars = [
-   { icon: "🏆", title: 'Decade of Industry Experience', body: 'Over 10 years of proven expertise in metal recycling, scrap processing, and international trade from Nigeria.' },
-   { icon: "🌎", title: 'Global Export Connections', body: 'Established trade relationships with buyers in China, South Korea, and India, with growing global market presence.' },
-   { icon: "🥇", title: 'Quality Assured', body: 'Every batch graded and verified before it leaves our facility.' },
-   { icon: "⚙", title: 'Industrial-Grade Processing', body: 'State-of-the-art sorting, shredding, and baling equipment ensuring premium material quality standards.' },
-   // {  icon: "🌎", title: 'Reliable Logistics', body: 'Dependable delivery across West Africa and beyond.' },
-   { icon: "🚚", title: 'Strong Logistics Support', body: 'End-to-end logistics coordination, from baling and containerization to port clearance and shipping.' },
-   { icon: "♻", title: 'Sustainable Practices', body: 'Eco-friendly recycling processes that minimize environmental impact.' },
-]
-
-const featured = [
-   { name: 'Aluminium Bales', tag: 'Most Requested', desc: 'Compressed, sorted aluminium waste ready for smelting and manufacturing.' },
-   { name: 'Ferrous Scrap', tag: 'Industrial Grade', desc: 'Magnetic and non-magnetic ferrous metals from vehicles and appliances.' },
-   { name: 'Non-Ferrous Metals', tag: 'Premium Quality', desc: 'Copper, brass and lead scrap for foundry, conversion and export.' },
-   { name: 'Bulk Raw Supply', tag: 'Bulk Available', desc: 'Direct bulk supply on contract to manufacturers — local and global.' },
-]
-
-const features = [
-   "Aluminum Scrap",
-   "Cast Aluminum",
-   "Iron & Steel",
-   "Condenser Metals",
-   "UBC Materials",
-   "Vehicle Metals",
-   "Ferrous Metals",
-   "Non-Ferrous Metals",
-];
-
-
 export default function Homepage() {
 
    return (
       <>
          <Navbar />
          {/* ── HERO ─────────────────────────────────────────── */}
-         <HeroSection />
+         <HeroHeader />
          {/* ── ABOUT STRIP ──────────────────────────────────── */}
          <AboutSection />
 
