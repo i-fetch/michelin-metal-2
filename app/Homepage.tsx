@@ -1,56 +1,24 @@
 
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, CircleCheck, Globe2, Package, Recycle, ShieldCheck, TrendingUp, Truck, Zap } from 'lucide-react'
+import { ArrowRight, Package, TrendingUp, Zap } from 'lucide-react'
 import AOS from '@/components/AnimateOnScroll'
-import MaterialCatalogue from '@/components/MaterialCatalogue'
-import { Material } from '@/types'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import HeroSection from '@/components/homepage-components/HeroSection'
+import AboutSection from '@/components/homepage-components/AboutSection'
+import VisionSection from '@/components/homepage-components/VisionSection'
+import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
+import GlobalReachSection from '@/components/homepage-components/GlobalReachSection'
+import LocationsSection from '@/components/LocationSection'
+import MaterialsSection from '@/components/homepage-components/MaterialSection'
+import HeroHeader from '@/components/homepage-components/HeroHeader'
+
+
+
+
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
-
-const stats = [
-   { num: '10+', label: 'Years Active' },
-   { num: '50+', label: 'B2B Partners' },
-   { num: '100K+', label: 'Tonnes Processed' },
-   { num: '3+', label: 'Export Countries' },
-]
-
-// const pillars = [
-//    { icon: Recycle, title: 'Full-Cycle Recycling', body: 'End-to-end processing — collection, sorting, baling, distribution.' },
-//    { icon: Globe2, title: 'Global Reach', body: 'National supply and international export to manufacturers worldwide.' },
-//    { icon: ShieldCheck, title: 'Quality Assured', body: 'Every batch graded and verified before it leaves our facility.' },
-//    { icon: Truck, title: 'Reliable Logistics', body: 'Dependable delivery across West Africa and beyond.' },
-// ]
-const pillars = [
-   { icon: "🏆", title: 'Decade of Industry Experience', body: 'Over 10 years of proven expertise in metal recycling, scrap processing, and international trade from Nigeria.' },
-   { icon: "🌎", title: 'Global Export Connections', body: 'Established trade relationships with buyers in China, South Korea, and India, with growing global market presence.' },
-   { icon: "🥇", title: 'Quality Assured', body: 'Every batch graded and verified before it leaves our facility.' },
-   { icon: "⚙", title: 'Industrial-Grade Processing', body: 'State-of-the-art sorting, shredding, and baling equipment ensuring premium material quality standards.' },
-   // {  icon: "🌎", title: 'Reliable Logistics', body: 'Dependable delivery across West Africa and beyond.' },
-   { icon: "🚚", title: 'Strong Logistics Support', body: 'End-to-end logistics coordination, from baling and containerization to port clearance and shipping.' },
-   { icon: "♻", title: 'Sustainable Practices', body: 'Eco-friendly recycling processes that minimize environmental impact.' },
-]
-
-const featured = [
-   { name: 'Aluminium Bales', tag: 'Most Requested', desc: 'Compressed, sorted aluminium waste ready for smelting and manufacturing.' },
-   { name: 'Ferrous Scrap', tag: 'Industrial Grade', desc: 'Magnetic and non-magnetic ferrous metals from vehicles and appliances.' },
-   { name: 'Non-Ferrous Metals', tag: 'Premium Quality', desc: 'Copper, brass and lead scrap for foundry, conversion and export.' },
-   { name: 'Bulk Raw Supply', tag: 'Bulk Available', desc: 'Direct bulk supply on contract to manufacturers — local and global.' },
-]
-
-const features = [
-   "Aluminum Scrap",
-   "Cast Aluminum",
-   "Iron & Steel",
-   "Condenser Metals",
-   "UBC Materials",
-   "Vehicle Metals",
-   "Ferrous Metals",
-   "Non-Ferrous Metals",
-];
 
 
 export default function Homepage() {
@@ -59,210 +27,24 @@ export default function Homepage() {
       <>
          <Navbar />
          {/* ── HERO ─────────────────────────────────────────── */}
-         <section className="relative min-h-screen flex items-center overflow-hidden">
-
-            {/* Background Video */}
-            <div className="absolute inset-0 z-0">
-               <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover"
-               >
-                  <source src="/header-vid.mp4" type="video/mp4" />
-               </video>
-
-               {/* Dark cinematic overlay */}
-               <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{
-                     backgroundImage: `
-                     linear-gradient(
-                        105deg,
-                        rgba(9,9,11,0.88) 42%,
-                        rgba(9,9,11,0.55) 100%
-                     ),
-                     url('/header-img.png')
-                  `,
-                  }}
-               />
-
-               {/* Optional subtle green tint */}
-               <div className="absolute inset-0"
-                  style={{
-                     background:
-                        "radial-gradient(circle at top right, rgba(22,163,74,0.12), transparent 40%)",
-                  }}
-               />
-            </div>
-
-            {/* Content */}
-            <div className="wrap px-5 relative z-10 pt-12 pb-24">
-               <div className="max-w-full">
-
-                  {/* Top Tag */}
-                  <div
-                     className="tag-gold border inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium mb-5 backdrop-blur-sm"
-                     style={{
-                        background: "rgba(255,255,255,0.05)",
-                        borderColor: "rgba(255,255,255,0.08)",
-                     }}
-                  >
-                     <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-pulse" />
-                     Metal Recycle Industry · West Africa
-                  </div>
-
-                  {/* Main Heading */}
-                  <h1
-                     className="md:w-3/4 text-white mb-6 leading-none"
-                     style={{
-                        fontFamily: "var(--font-display)",
-                        fontSize: "clamp(3.5rem,8vw,6.5rem)",
-                        letterSpacing: "0.03em",
-                     }}
-                  >
-                     TURNING METAL{" "}
-                     <span style={{ color: "var(--clr-green-light)" }}>
-                        WASTE
-                     </span>{" "}
-                     INTO GLOBAL{" "}
-                     <span style={{ color: "var(--clr-gold)" }}>
-                        VALUE
-                     </span>
-                  </h1>
-
-                  {/* Description */}
-                  <p
-                     className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
-                     style={{
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 300,
-                     }}
-                  >
-                     Mechelin Metals Nigeria — sourcing, sorting, baling and
-                     distributing aluminium and ferrous metals to manufacturers
-                     across West Africa and the global industrial supply chain.
-                  </p>
-
-                  {/* CTA Buttons */}
-                  <div className="flex flex-wrap gap-2 mb-16">
-                     <Link href="/products" className="flex items-center justify-center flex-1 text-center btn btn-green">
-                        Explore Products
-                        <ArrowRight size={15} />
-                     </Link>
-
-                     <Link
-                        href="/about"
-                        className="flex items-center justify-center flex-1 text-center btn btn-outline backdrop-blur-sm"
-                        style={{
-                           borderColor: "rgba(255,255,255,0.25)",
-                           color: "#fff",
-                           background: "rgba(255,255,255,0.03)",
-                        }}
-                     >
-                        Our Story
-                        <ArrowRight size={15} />
-                     </Link>
-                  </div>
-
-                  {/* Trust Indicators */}
-                  <div className="flex flex-wrap gap-6">
-                     {[
-                        "Incorporated 2023",
-                        "Private Ltd by Shares",
-                        "10+ Years Experience",
-                     ].map((t) => (
-                        <span
-                           key={t}
-                           className="flex items-center gap-2 text-sm text-white/60"
-                        >
-                           <CheckCircle
-                              size={13}
-                              style={{ color: "var(--clr-green-light)" }}
-                           />
-                           {t}
-                        </span>
-                     ))}
-                  </div>
-               </div>
-            </div>
-
-
-         </section>
-
-         {/* mobile stats */}
-         <div className="md:hidden grid grid-cols-2 gap-px" style={{ background: 'var(--border)' }}>
-            {stats.map(s => (
-               <div key={s.label} className="py-6 text-center" style={{ background: 'var(--surface)' }}>
-                  <p className="stat-num">{s.num}</p>
-                  <p className="text-xs uppercase tracking-widest mt-1" style={{ color: 'var(--tx-muted)' }}>{s.label}</p>
-               </div>
-            ))}
-         </div>
-
+         <HeroHeader />
          {/* ── ABOUT STRIP ──────────────────────────────────── */}
-         <section className="section" style={{ background: 'var(--bg)' }}>
-            <div className="wrap px-1">
-               <div className="grid md:grid-cols-2 gap-16 items-center">
-                  <AOS>
-                     <p className="tag mb-4">About The Company</p>
-                     <h2 className="mb-5 leading-none" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem,4vw,3.2rem)', color: 'var(--tx-primary)' }}>
-                        NIGERIA&apos;S FOREMOST INTEGRATED METAL RECYCLER
-                     </h2>
-                     <p className="mb-4 leading-relaxed text-[15px]" style={{ color: 'var(--tx-secondary)' }}>
-                        Mechelin Metals Nigeria LTD leverages captive resources and advanced capabilities to source, sort and bale aluminium waste, distributing it as raw material to manufacturers. We handle all types of ferrous and non-ferrous metals for sale, scrapping, conversion and foundry purposes.
-                     </p>
-                     <p className="hidden mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
-                        Formally incorporated in 2023, our team has been active in the industry for over a decade — building infrastructure and global distribution networks that benefit both industry and environment.
-                     </p>
-                     <p className="mb-8 leading-relaxed text-[15px]" style={{ color: 'var(--tx-muted)' }}>
-                        Based in Anambra State, we bridge the gap between Nigerian scrap metal suppliers and international manufacturers, ensuring premium quality and reliable supply chains across borders.
-                     </p>
-                     <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 my-8">
-                        {features.map((feature) => (
-                           <div
-                              key={feature}
-                              className="flex items-center gap-3 text-[0.85rem] font-semibold"
-                              style={{ color: "var(--text-secondary)" }}
-                           >
+         <AboutSection />
 
-                              <CircleCheck className='text-green-500' />
+         {/* ── VISION ───────────────────────────────────────── */}
+         <VisionSection />
 
-                              <span className='dark:text-slate-300'>{feature}</span>
-                           </div>
-                        ))}
-                     </div>
-                     <Link href="/about" className="btn btn-green">Read Full Story <ArrowRight size={15} /></Link>
-                  </AOS>
+         {/* ── WHY CHOOSE US ───────────────────────────────── */}
+         <WhyChooseSection />
 
-                  <AOS delay={180}>
-                     <div className="relative">
-                        {/* Image */}
-                        <div className="rounded-2xl overflow-hidden aspect-[4/3] relative">
-                           <Image
-                              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80"
-                              alt="Scrap metal processing"
-                              fill
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover"
-                           />
-                        </div>
-                        {/* floating stat card */}
-                        <div className="absolute -bottom-5 -left-5 rounded-xl p-5 shadow-xl"
-                           style={{ background: 'var(--clr-green)', minWidth: 150 }}>
-                           <p className="text-white text-3xl font-bold leading-none" style={{ fontFamily: 'var(--font-display)' }}>10+</p>
-                           <p className="text-green-100 text-xs mt-1 uppercase tracking-widest">Years of Industry Experience</p>
-                        </div>
-                     </div>
-                  </AOS>
-               </div>
-            </div>
-         </section>
+         {/* ── GLOBAL REACH ─────────────────────────────────── */}
+         <GlobalReachSection />
+
+         {/* ── LOCATIONS ───────────────────────────────────── */}
+         <LocationsSection />
 
          {/* ── PILLARS ───────────────────────────────────────── */}
-         <section className="section" style={{ background: 'var(--bg-2)' }}>
+         {/* <section className="section" style={{ background: 'var(--bg-2)' }}>
             <div className="wrap px-1">
                <AOS>
                   <div className="text-center mb-14">
@@ -307,10 +89,11 @@ export default function Homepage() {
                   ))}
                </div>
             </div>
-         </section>
+         </section> */}
 
          {/* ── PRODUCTS PREVIEW ─────────────────────────────── */}
-         <section className="section" style={{ background: 'var(--bg)' }}>
+         <MaterialsSection />
+         {/* <section className="section" style={{ background: 'var(--bg)' }}>
             <div className="wrap px-1">
                <AOS>
                   <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
@@ -342,7 +125,7 @@ export default function Homepage() {
                   ))}
                </div>
             </div>
-         </section>
+         </section> */}
 
          {/* ── VISION/MISSION SECTION ───────────────────────── */}
          <section className="hidden relative overflow-hidden" style={{ background: 'var(--clr-green)' }}>

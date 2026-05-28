@@ -17,7 +17,7 @@ export async function getGridFSBucket(): Promise<GridFSBucket> {
 }
 
 function toNodeReadable(stream: ReadableStream<Uint8Array>): Readable {
-  return Readable.fromWeb(stream as any)
+  return Readable.fromWeb(stream as unknown as ReadableStream<Uint8Array>)
 }
 
 export async function uploadImageToGridFS(file: File): Promise<string> {

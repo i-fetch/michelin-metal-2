@@ -2,7 +2,6 @@
 'use server'
 
 import { signIn, signOut } from '@/auth'
-import AuthError from "next-auth"
 import type { ActionResult } from '@/types'
 
 export async function loginAction(
@@ -16,9 +15,10 @@ export async function loginAction(
       redirectTo: '/admin/dashboard',
     })
     return { success: true, data: undefined }
-  } catch (err: any) {
+  } catch (err) {
+    const error = err as { type?: string }
     // err may be an object with a `type` property (e.g. from NextAuth)
-    if (err && typeof err === 'object' && 'type' in err) {
+    if (error && typeof error === 'object' && 'type' in error) {
       switch (err.type) {
         case 'CredentialsSignin':
           return { success: false, error: 'Invalid email or password.' }

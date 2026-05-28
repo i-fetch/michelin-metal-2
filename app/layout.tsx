@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google'
 import SessionWrapper from '@/components/SessionWrapper/SessionWrapper'
 import ScrollToTopButton from '@/components/ScrollToTop'
+
+import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google'
 
 const display = Bebas_Neue({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-display',
 })
+
 
 const body = DM_Sans({
   subsets: ['latin'],
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     template: '%s | Mechelin Metals',
   },
   description: "Nigeria's foremost integrated metal recycling company. Aluminium bales, ferrous & non-ferrous metals — national and global bulk supply.",
+  // Setting explicitly to light mode for standard browser engine layouts
   keywords: [
     'metal recycling Nigeria',
     'aluminium scrap',
@@ -36,21 +39,11 @@ export const metadata: Metadata = {
     'West Africa',
     'Anambra',
   ],
-
   icons: {
-    icon: [
-      {
-        url: "/logo-favicon.png",
-        type: "image/png",
-        sizes: "32x32",
-      },
-    ],
-
+    icon: [{ url: "/logo-favicon.png", type: "image/png", sizes: "32x32" }],
     shortcut: "/logo-favicon.png",
-
     apple: "/logo-favicon.png",
   },
-
   robots: {
     index: true,
     follow: true,
@@ -61,11 +54,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      // Removed all traces of the "dark" class flag completely
       className={`${display.variable} ${body.variable} ${mono.variable}`}
+      style={{ colorScheme: 'light' }}
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
-      <body cz-shortcut-listen="true">
+      <body cz-shortcut-listen="true" className="antialiased bg-app text-tx-primary">
         <SessionWrapper>
           {children}
           <ScrollToTopButton />
