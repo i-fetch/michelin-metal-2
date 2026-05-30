@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 import Image from "next/image";
 
 const links = [
@@ -16,6 +18,7 @@ const links = [
 
 export default function Navbar(): React.JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const path = usePathname();
 
   useEffect(() => {
@@ -25,7 +28,7 @@ export default function Navbar(): React.JSX.Element {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  useEffect(() => setOpen(false), [path])
+  useEffect(() => setIsMenuOpen(false), [path])
 
   // When transparent (top of page) on a hero that could be any bg colour,
   // we force white text so it reads against dark hero images.
@@ -103,16 +106,17 @@ export default function Navbar(): React.JSX.Element {
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <button
-            onClick={() => setOpen(!open)}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="border lg:hidden p-2 rounded-md transition-colors"
             style={{
               color: scrolled ? 'var(--tx-secondary)' : 'rgba(255,255,255,0.85)',
               borderColor: scrolled ? 'var(--border)' : 'rgba(255,255,255,0.25)',
             }}
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
+      </div>
       </nav>
 
       {/* ── MOBILE DRAWER (GLASS FIXED) ── */}
@@ -179,8 +183,8 @@ export default function Navbar(): React.JSX.Element {
 
               <nav className="flex flex-col space-y-6 my-auto">
                 {links.map((link) => (
-                  <>
-                    <Link className="block" key={link.href} href={link.href}>
+                  <React.Fragment key={link.href}>
+                    <Link className="block" href={link.href}>
                       <h2 className="text-2xl font-black text-[var(--clr-green)] font-display"
                       >
                         {link.label}
@@ -190,7 +194,7 @@ export default function Navbar(): React.JSX.Element {
                       </p>
                     </Link>
                     <hr className="border-t border-white/20" />
-                  </>
+                  </React.Fragment>
                 ))}
               </nav>
 

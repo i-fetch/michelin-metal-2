@@ -8,7 +8,7 @@ export interface IAdmin extends Document {
   role:     'admin'
 }
 
-const AdminSchema = new Schema<IAdmin>(
+const UserSchema = new Schema<IAdmin>(
   {
     name:     { type: String, required: true },
     email:    { type: String, required: true, unique: true, lowercase: true },
@@ -25,7 +25,7 @@ let AdminModel: mongoose.Model<IAdmin>
 try {
   AdminModel = mongoose.model<IAdmin>('Admin')
 } catch {
-  AdminModel = mongoose.model<IAdmin>('Admin', AdminSchema)
+  AdminModel = mongoose.model<IAdmin>('Admin', UserSchema)
 }
 
 export { AdminModel }

@@ -1,38 +1,35 @@
 // middleware.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-export async function middleware(req: NextRequest) {
+// Paths that are strictly protected
+const AUTH_ROUTES = ["/admin"];
+
+export async function middleware(request: NextRequest) {
   const token = await getToken({
-    req,
+    req: request,
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  const pathname = req.nextUrl.pathname;
+  const { pathname } = request.nextUrl;
+
+  // Redirect authenticated users away from the admin login page
+  if (token && pathname === "/signin") {
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
 
   const isAdminRoute = pathname.startsWith("/admin");
-  const isLoginPage = pathname === "/admin/login";
+  const isLoginRoute = pathname === "/signin";
 
-  const isAuthenticated = !!token;
-  const isAdmin = token?.role === "admin";
+  if (isAdminRoute && !isLoginRoute) {
+    if (!token) {
+      return NextResponse.redirect(new URL("/signin", request.url));
+    }
 
-  // Allow non-admin routes
-  if (!isAdminRoute) {
-    return NextResponse.next();
-  }
-
-  // Prevent logged-in admin from seeing login page again
-  if (isLoginPage && isAuthenticated && isAdmin) {
-    return NextResponse.redirect(
-      new URL("/admin/dashboard", req.url)
-    );
-  }
-
-  // Protect all admin pages
-  if (!isAuthenticated || !isAdmin) {
-    return NextResponse.redirect(
-      new URL("/admin/login", req.url)
-    );
+    if (token.role !== "admin") {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
   }
 
   return NextResponse.next();
@@ -41,3 +38,4 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: ["/admin/:path*"],
 };
+

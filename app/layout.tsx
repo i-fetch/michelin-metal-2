@@ -4,7 +4,11 @@ import './globals.css'
 import SessionWrapper from '@/components/SessionWrapper/SessionWrapper'
 import ScrollToTopButton from '@/components/ScrollToTop'
 
-import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google'
+import { Bebas_Neue, DM_Sans, DM_Mono, Geist } from 'next/font/google'
+import { cn } from "@/lib/utils";
+import { Toaster } from 'sonner'
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const display = Bebas_Neue({
   weight: '400',
@@ -55,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       // Removed all traces of the "dark" class flag completely
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={cn(display.variable, body.variable, mono.variable, "font-sans", geist.variable)}
       style={{ colorScheme: 'light' }}
       suppressHydrationWarning
       data-scroll-behavior="smooth"
@@ -63,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body cz-shortcut-listen="true" className="antialiased bg-app text-tx-primary">
         <SessionWrapper>
           {children}
+          <Toaster />
           <ScrollToTopButton />
         </SessionWrapper>
       </body>
