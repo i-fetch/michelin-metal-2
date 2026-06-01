@@ -1,11 +1,40 @@
-import { Suspense } from "react"
+"use client"
+
+import { Suspense, useMemo } from "react"
 import Link from "next/link"
+import { useSession } from "next-auth/react"
 
 import { Package, CheckCircle, MessageSquare, Star, ArrowUpRight, ArrowDownRight, TrendingUp, MoreHorizontal } from "lucide-react"
 import AdminLayout from "./components/AdminLayout"
-import { DashboardSkeleton } from "./components/custom-ui/Skeletons"
 import { PRODUCT_CATEGORIES } from "@/types"
 import { CategoryBadge, StatusBadge } from "./components/custom-ui/Badge"
+import { DashboardSkeleton } from "./components/custom-ui/Skeletons"
+
+function getTimeOfDay(hour: number) {
+  if (hour >= 5 && hour < 12) return "morning"
+  if (hour >= 12 && hour < 18) return "afternoon"
+  if (hour >= 18 && hour < 22) return "evening"
+  return "night"
+}
+
+const GREETING_LABELS = {
+  morning: "Good morning",
+  afternoon: "Good afternoon",
+  evening: "Good evening",
+  night: "Good evening",
+} as const
+
+function getGreeting(name = "there") {
+  const hour = new Date().getHours()
+  const timeOfDay = getTimeOfDay(hour)
+  return `${GREETING_LABELS[timeOfDay]}, ${name}`
+}
+
+function shortFriendlyName(raw?: string | null) {
+  if (!raw) return "there"
+  const candidate = raw.split(/[@\s._-]+/).filter(Boolean)[0] ?? raw
+  return candidate.charAt(0).toUpperCase() + candidate.slice(1)
+}
 
 // ─── Mock data (replace with real server action calls) ──────────────────────
 const STATS = [
@@ -77,17 +106,18 @@ export default function AdminDashboardPage() {
 }
 
 function DashboardContent() {
+  const { data: session } = useSession()
+  const name = shortFriendlyName(session?.user?.name ?? session?.user?.email ?? "there")
+  const greeting = useMemo(() => getGreeting(name), [name])
+
   return (
     <div className="space-y-6">
       {/* Page title */}
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-[20px] font-semibold text-gray-900 tracking-tight">
-            Good morning, John 👋
+            {greeting} 👋
           </h1>
-          <p className="text-[13px] text-gray-500 mt-0.5">
-            Here&apos;s what&apos;s happening with your catalogue today.
-          </p>
         </div>
         <button className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] text-gray-600 hover:bg-gray-50 transition-colors">
           <TrendingUp className="w-3.5 h-3.5" />

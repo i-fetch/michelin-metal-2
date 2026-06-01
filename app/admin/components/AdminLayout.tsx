@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
+import { signOut as nextAuthSignOut, useSession } from "next-auth/react"
 import {
   LayoutDashboard, Package, PlusCircle, List, Home, Eye,
   MessageSquare, Settings, BarChart2, LogOut, Menu, X,
@@ -48,11 +49,33 @@ interface AdminLayoutProps {
   title?: string
   actions?: React.ReactNode
 }
-
 export default function AdminLayout({ children, breadcrumbs, title, actions }: AdminLayoutProps) {
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+  const { data: session } = useSession()
+
+  const handleSignOut = () => {
+    // next-auth signOut; redirect to login page after sign-out
+    nextAuthSignOut({ callbackUrl: "/admin/login" })
+  }
+
+  const displayName = (() => {
+    const rawName = session?.user?.name ?? session?.user?.email ?? "Admin"
+    const firstChunk = rawName.split(/[@\s._-]+/)[0]
+    return firstChunk.length > 0
+      ? firstChunk[0].toUpperCase() + firstChunk.slice(1)
+      : "Admin"
+  })()
+
+  const userInitials = displayName
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0].toUpperCase())
+    .join("") || "AD"
+
+  const sidebarCollapsed = mobileOpen ? false : collapsed
 
   // Close mobile drawer on route change
   useEffect(() => { setMobileOpen(false) }, [pathname])
@@ -67,17 +90,27 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
           </svg>
         </div>
         <AnimatePresence>
-          {!collapsed && (
+          {!sidebarCollapsed && (
             <motion.span
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}
               exit={{ opacity: 0, width: 0 }}
               className="font-semibold text-[15px] text-gray-900 overflow-hidden whitespace-nowrap"
             >
-              ScrapAdmin
+              Mechelin Admin
             </motion.span>
           )}
         </AnimatePresence>
+        {mobileOpen && (
+          <button
+            type="button"
+            onClick={() => setMobileOpen(false)}
+            className="ml-auto inline-flex items-center justify-center rounded-lg p-2 text-gray-600 hover:bg-gray-100 transition-colors md:hidden"
+            aria-label="Close navigation"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
       {/* Nav */}
@@ -85,7 +118,7 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
         {NAV_SECTIONS.map((section) => (
           <div key={section.label} className="px-2 mb-1">
             <AnimatePresence>
-              {!collapsed && (
+              {!sidebarCollapsed && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -101,20 +134,20 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
               return (
                 <Link key={item.href} href={item.href}>
                   <motion.div
-                    whileHover={{ x: collapsed ? 0 : 2 }}
+                    whileHover={{ x: sidebarCollapsed ? 0 : 2 }}
                     className={`
                       flex items-center gap-2.5 px-2 py-[7px] rounded-lg mb-0.5 cursor-pointer transition-colors
-                      ${collapsed ? "justify-center" : ""}
+                      ${sidebarCollapsed ? "justify-center" : ""}
                       ${isActive
                         ? "bg-green-50 text-green-800 font-medium"
                         : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                       }
                     `}
-                    title={collapsed ? item.label : undefined}
+                    title={sidebarCollapsed ? item.label : undefined}
                   >
                     <item.icon className={`w-4 h-4 flex-shrink-0 ${isActive ? "text-green-700" : ""}`} />
                     <AnimatePresence>
-                      {!collapsed && (
+                      {!sidebarCollapsed && (
                         <motion.span
                           initial={{ opacity: 0, width: 0 }}
                           animate={{ opacity: 1, width: "auto" }}
@@ -125,10 +158,9 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
                         </motion.span>
                       )}
                     </AnimatePresence>
-                    {!collapsed && item.badge && (
-                      <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${
-                        isActive ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-500"
-                      }`}>
+                    {!sidebarCollapsed && item.badge && (
+                      <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${isActive ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-500"
+                        }`}>
                         {item.badge}
                       </span>
                     )}
@@ -142,25 +174,29 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
 
       {/* User footer */}
       <div className="border-t border-gray-100 p-2">
-        <div className={`flex items-center gap-2.5 px-2 py-[7px] rounded-lg hover:bg-gray-50 cursor-pointer transition-colors ${collapsed ? "justify-center" : ""}`}>
+        <div className={`flex items-center gap-2.5 px-2 py-[7px] rounded-lg hover:bg-gray-50 cursor-pointer transition-colors ${sidebarCollapsed ? "justify-center" : ""}`}>
           <div className="w-7 h-7 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-[11px] font-semibold text-white flex-shrink-0">
-            JD
+            {userInitials}
           </div>
           <AnimatePresence>
-            {!collapsed && (
+            {!sidebarCollapsed && (
               <motion.div
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: "auto" }}
                 exit={{ opacity: 0, width: 0 }}
                 className="flex-1 overflow-hidden"
               >
-                <div className="text-[12.5px] font-medium text-gray-800 whitespace-nowrap">John Doe</div>
-                <div className="text-[11px] text-gray-400 whitespace-nowrap">Administrator</div>
+                <div className="text-[12.5px] font-medium text-gray-800 whitespace-nowrap">
+                  {displayName}
+                </div>
+                <div className="text-[11px] text-gray-400 whitespace-nowrap">
+                  {session?.user?.role === "admin" ? "Administrator" : "User"}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
-          {!collapsed && (
-            <button className="p-1 rounded-md text-gray-400 hover:text-red-500 transition-colors">
+          {!sidebarCollapsed && (
+            <button onClick={handleSignOut} className="p-1 rounded-md text-gray-400 hover:text-red-500 transition-colors">
               <LogOut className="w-3.5 h-3.5" />
             </button>
           )}
@@ -219,10 +255,11 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
         {/* Topbar */}
         <header className="h-14 bg-white border-b border-gray-200 flex items-center gap-3 px-4 md:px-5 flex-shrink-0">
           <button
-            onClick={() => setMobileOpen(true)}
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
             className="md:hidden w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors"
           >
-            <Menu className="w-4 h-4" />
+            {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
 
           {/* Breadcrumbs */}
@@ -266,7 +303,7 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
               <span className="hidden sm:inline">New Product</span>
             </Link>
             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-[11px] font-semibold text-white cursor-pointer">
-              JD
+              {userInitials}
             </div>
           </div>
         </header>

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "ScrapAdmin — Industrial Materials Dashboard",
-    template: "%s | ScrapAdmin",
+    template: "%s | MechelinAdmin",
   },
   description: "Premium non-ferrous scrap metals admin dashboard and product catalogue.",
 }
