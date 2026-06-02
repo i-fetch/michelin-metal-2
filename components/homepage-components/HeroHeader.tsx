@@ -67,22 +67,20 @@ export default function HeroHeader() {
 
             {/* Floating stats bar */}
             <div className="absolute bottom-0 inset-x-0 z-10 hidden md:block">
-               <div className="w-11/12 mx-auto rounded-t-lg border border-gray-300 bg-[var(--surface)] overflow-hidden">
+               <div className="w-11/12 bg-white mx-auto rounded-t-lg border border-gray-300 overflow-hidden">
 
                   <div className="grid grid-cols-4 divide-x divide-gray-300">
-
                      {stats.map((s) => (
                         <div
                            key={s.label}
-                           className="py-5 px-6 text-center bg-[var(--surface)]"
+                           className="py-5 px-6 text-center"
                         >
-                           <p className="stat-num tracking-wider">{s.num}</p>
+                           <p className="stat-num">{s.num}</p>
                            <p className="text-xs uppercase tracking-widest mt-1 text-[var(--tx-muted)]">
                               {s.label}
                            </p>
                         </div>
                      ))}
-
                   </div>
 
                </div>
