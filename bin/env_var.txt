@@ -3,4 +3,5 @@ MONGODB_URI=mongodb://randalchukzwilson_db_user:randalchukzwilson_db_user@ac-znl
 NEXTAUTH_SECRET=gPNUK/l0tDPiqg9TzBsdOnDo1S1tjYXugw6wUes2VMU5KRudRCOJZCdjAiU=
 NEXTAUTH_URL= http://localhost:3000/
 # NEXTAUTH_URL= https://mechelinmetals.com/
+# NEXTAUTH_URL= https://mechelinmetals.com/
 
