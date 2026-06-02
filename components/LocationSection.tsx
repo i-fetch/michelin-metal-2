@@ -59,14 +59,7 @@ export default function LocationsSection() {
           <p className="tag mb-4">Find Us</p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2
-              className="leading-none"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
-                fontWeight: 900,
-                color: "var(--tx-primary)",
-                letterSpacing: "-0.01em",
-              }}
+              className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.05]"
             >
               Our{" "}
               <span style={{ color: "var(--clr-green)" }}>Locations</span>

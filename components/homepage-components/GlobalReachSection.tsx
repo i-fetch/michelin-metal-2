@@ -67,7 +67,7 @@ export default function GlobalReachSection(): React.JSX.Element {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-[var(--tx-primary)] leading-[1.05]"
+            className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             OUR <span className="text-[var(--clr-green)]">GLOBAL CUSTOMERS.</span>

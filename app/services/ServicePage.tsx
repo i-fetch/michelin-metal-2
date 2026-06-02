@@ -176,7 +176,7 @@ export default function ServicePage() {
             <div className="overflow-hidden mb-6 py-1">
               <motion.h1
                 variants={localFadeUp}
-                className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
+                className="tracking-wider text-4xl sm:text-6xl md:text-7xl font-black leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 OUR INDUSTRIAL
