@@ -1,6 +1,5 @@
 
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, MedalIcon } from 'lucide-react'
 
@@ -21,16 +20,31 @@ export default function HeroHeader() {
          <section className="relative min-h-screen flex items-center overflow-hidden">
             {/* Background image */}
             <div className="absolute inset-0 z-0">
-               <Image
-                  src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80"
-                  alt="Industrial metal recycling facility"
-                  fill
-                  priority
-                  className="object-cover"
+               <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  className="w-full h-full object-cover"
+               >
+                  <source src="/header-vid.mp4" type="video/mp4" />
+               </video>
+
+                {/* Dark cinematic overlay */}
+               <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{
+                     backgroundImage: `
+                     linear-gradient(
+                        105deg,
+                        rgba(9,9,11,0.88) 42%,
+                        rgba(9,9,11,0.55) 100%
+                     ),
+                     url('/header-img.png')
+                  `,
+                  }}
                />
-               {/* gradient overlay */}
-               <div className="absolute inset-0"
-                  style={{ background: 'linear-gradient(105deg, rgba(9,9,11,0.88) 45%, rgba(9,9,11,0.45) 100%)' }} />
             </div>
 
             {/* content */}
