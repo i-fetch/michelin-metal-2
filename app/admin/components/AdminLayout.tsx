@@ -36,7 +36,6 @@ const NAV_SECTIONS = [
   {
     label: "System",
     items: [
-      { label: "Inquiries", icon: MessageSquare, href: "/admin/inquiries", badge: "7" },
       { label: "Settings", icon: Settings, href: "/admin/settings" },
     ],
   },

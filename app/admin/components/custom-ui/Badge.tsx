@@ -1,4 +1,4 @@
-import { ProductCategory } from "@/types/product"
+import { ProductCategory } from "@/types"
 
 type BadgeVariant = "green" | "yellow" | "gray" | "blue" | "red" | "purple"
 

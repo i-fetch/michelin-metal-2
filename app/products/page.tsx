@@ -1,9 +1,10 @@
 // app/products/page.tsx
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-// import ProductsClient from '@/components/ProductsClient'
+import ProductsClient from '@/components/ProductsClient'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { getPublicProducts } from '@/actions/products'
 
 export const metadata: Metadata = { title: 'Products & Materials' }
 export const dynamic = 'force-dynamic'

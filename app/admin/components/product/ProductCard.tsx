@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Star } from "lucide-react"
-import { Product, PRODUCT_CATEGORIES } from "@/types/product"
+import { Product, PRODUCT_CATEGORIES } from "@/types"
+// import { Product, PRODUCT_CATEGORIES } from "@/types/product"
 
 const CAT_ICONS: Record<string, string> = { aluminium: "🔩", metals: "⚙️", "non-ferrous": "✨", bulk: "📦" }
 const CAT_BADGE_BG: Record<string, string> = {
