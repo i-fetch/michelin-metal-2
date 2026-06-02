@@ -167,9 +167,9 @@ function MaterialCard({ item }: { item: (typeof MATERIALS)[0] }) {
 
         {/* CONTENT */}
         <div className="p-4">
-          <h3 className="font-bold text-slate-900">{item.name}</h3>
+          <h3 className="font-bold text-slate-900 tracking-wider">{item.name}</h3>
 
-          <p className="text-sm text-slate-500 mt-1 line-clamp-2">
+          <p className="text-sm text-slate-500 mt-1 line-clamp-2 ">
             {item.desc}
           </p>
 
@@ -223,7 +223,8 @@ export default function MaterialsSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="mb-10"
         >
-          <h2 className="text-3xl md:text-5xl font-black text-[var(--tx-primary)]">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.05]"
+          >
             Our <span className="text-[var(--clr-green)]">Products</span>
           </h2>
         </motion.div>

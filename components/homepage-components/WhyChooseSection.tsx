@@ -78,7 +78,7 @@ export default function WhyChooseSection(): React.JSX.Element {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[var(--tx-primary)] leading-[1.02]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.02]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               WHY CHOOSE <br />
@@ -117,7 +117,7 @@ export default function WhyChooseSection(): React.JSX.Element {
 
                   {/* Title */}
                   <h3 
-                    className="text-lg font-bold tracking-tight text-[var(--tx-primary)] mb-2.5 transition-colors duration-200 group-hover:text-emerald-800"
+                    className="text-lg font-bold tracking-wider text-[var(--tx-primary)] mb-2.5 transition-colors duration-200 group-hover:text-emerald-800"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {item.title}

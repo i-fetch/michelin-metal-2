@@ -67,7 +67,7 @@ export default function GlobalReachSection(): React.JSX.Element {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
-            className="tracking-wider text-4xl sm:text-5xl md:text-6xl font-black text-[var(--tx-primary)] leading-[1.05]"
+            className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             OUR <span className="text-[var(--clr-green)]">GLOBAL CUSTOMERS.</span>
@@ -211,7 +211,7 @@ export default function GlobalReachSection(): React.JSX.Element {
 
                 {/* Title Matrix */}
                 <h4 
-                  className="text-lg font-extrabold tracking-tight text-[var(--tx-primary)] mb-2 flex items-center gap-1 transition-colors duration-200 group-hover:text-emerald-800"
+                  className="text-lg font-extrabold tracking-wider text-[var(--tx-primary)] mb-2 flex items-center gap-1 transition-colors duration-200 group-hover:text-emerald-800"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {country.name}

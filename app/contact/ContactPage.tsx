@@ -244,7 +244,7 @@ export default function ContactPage(): React.JSX.Element {
             <div className="overflow-hidden mb-6 py-1">
               <motion.h1
                 variants={localFadeUp}
-                className="font-black tracking-tighter leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)] uppercase"
+                className="font-black tracking-wider leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)] uppercase"
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: 'clamp(3rem, 7.5vw, 6rem)'
