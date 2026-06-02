@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Home, Recycle, TriangleAlert, Package, Globe, Headphones } from "lucide-react";
+import { ArrowRight, Home, TriangleAlert } from "lucide-react";
 
 export default function NotFoundPage() {
   return (
@@ -48,29 +48,15 @@ export default function NotFoundPage() {
         <div className="wrap py-5 px-5 w-full">
           <div className="max-w-3xl">
 
-            {/* Tag */}
-            <div
-              className="nf-fade-1 inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
-              style={{
-                border: "1px solid rgba(255,255,255,0.10)",
-                background: "rgba(255,255,255,0.05)",
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              <Recycle size={14} className="text-green-400" />
-              <span className="text-xs uppercase tracking-[0.25em] text-white/60">
-                Metal Recycling Industry · West Africa
-              </span>
-            </div>
+  
 
             {/* 404 + floating icon */}
             <div className="relative mb-4 nf-fade-2">
               <h1
-                className="leading-none font-black text-transparent bg-clip-text"
+                className="tracking-wider leading-none font-black text-transparent bg-clip-text"
                 style={{
                   fontFamily: "var(--font-display)",
                   fontSize: "clamp(7rem, 22vw, 16rem)",
-                  letterSpacing: "-0.08em",
                   backgroundImage:
                     "linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.85), rgba(255,255,255,0.08))",
                 }}
@@ -131,35 +117,7 @@ export default function NotFoundPage() {
               </Link>
             </div>
 
-            {/* Cards */}
-            <div className="grid sm:grid-cols-3 gap-5 nf-fade-6">
-              {[
-                { icon: Package,    title: "Industrial Recycling", body: "Premium ferrous and non-ferrous metal recovery." },
-                { icon: Globe,      title: "Global Distribution",  body: "Supplying manufacturers across Africa and globally." },
-                { icon: Headphones, title: "Need Assistance?",     body: "Reach our support team for quick help and guidance." },
-              ].map(({ icon: Icon, title, body }) => (
-                <div
-                  key={title}
-                  className="rounded-2xl p-6 nf-card"
-                  style={{
-                    border: "1px solid rgba(255,255,255,0.10)",
-                    background: "rgba(255,255,255,0.04)",
-                    backdropFilter: "blur(20px)",
-                  }}
-                >
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
-                    style={{ background: "rgba(22,163,74,0.10)" }}
-                  >
-                    <Icon size={18} className="text-green-400" />
-                  </div>
-                  <h3 className="text-white mb-2 text-lg" style={{ fontFamily: "var(--font-display)" }}>
-                    {title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-white/50">{body}</p>
-                </div>
-              ))}
-            </div>
+        
 
           </div>
         </div>

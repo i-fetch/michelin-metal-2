@@ -9,7 +9,6 @@ import GlobalReachSection from '@/components/homepage-components/GlobalReachSect
 import LocationsSection from '@/components/LocationSection'
 import MaterialsSection from '@/components/homepage-components/MaterialSection'
 import HeroHeader from '@/components/homepage-components/HeroHeader'
-import Image from 'next/image'
 
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
@@ -23,7 +22,6 @@ export default function Homepage() {
          {/* ── HERO ─────────────────────────────────────────── */}
          <HeroHeader />
          
-
          {/* ── ABOUT STRIP ──────────────────────────────────── */}
          <AboutSection />
 
