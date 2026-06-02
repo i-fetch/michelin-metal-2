@@ -31,7 +31,6 @@ const NAV_SECTIONS = [
     label: "Storefront",
     items: [
       { label: "Public Listing", icon: Home, href: "/product" },
-      { label: "Product Detail", icon: Eye, href: "/product/aluminium-ubc-scrap" },
     ],
   },
   {
@@ -57,7 +56,7 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
 
   const handleSignOut = () => {
     // next-auth signOut; redirect to login page after sign-out
-    nextAuthSignOut({ callbackUrl: "/admin/login" })
+    nextAuthSignOut({ callbackUrl: "/signin" })
   }
 
   const displayName = (() => {
@@ -290,7 +289,7 @@ export default function AdminLayout({ children, breadcrumbs, title, actions }: A
 
           {/* Right actions */}
           <div className="flex items-center gap-1.5 ml-auto">
-            <button className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors relative">
+            <button className="hidden w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors relative">
               <Bell className="w-4 h-4" />
               <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-red-500 rounded-full border border-white" />
             </button>
