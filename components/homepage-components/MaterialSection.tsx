@@ -213,7 +213,7 @@ export default function MaterialsSection() {
   const inView = useInView(ref, { once: true });
 
   return (
-    <section className="py-24 bg-[var(--bg-main)]">
+    <section className="py-14 bg-[var(--bg-main)]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
