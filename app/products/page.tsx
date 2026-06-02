@@ -1,8 +1,7 @@
 // app/products/page.tsx
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import { getPublicProducts } from '@/actions/products'
-import ProductsClient from '@/components/ProductsClient'
+// import ProductsClient from '@/components/ProductsClient'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
