@@ -3,20 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, CheckCircle, Globe2, Leaf, Recycle, ShieldCheck, Target, Users, Zap, TrendingUp } from 'lucide-react'
+import { ArrowRight, CheckCircle, Globe2, Target, Zap, TrendingUp } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useRef } from 'react'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
+import CallToAction from '@/components/CallToAction'
 
-const values = [
-    { icon: Leaf, title: 'Sustainability', body: 'Maximising recovery of reusable metals from waste streams to reduce environmental impact.' },
-    { icon: ShieldCheck, title: 'Integrity', body: 'Every transaction built on transparency, fair pricing and honest communication.' },
-    { icon: Zap, title: 'Innovation', body: 'Continuously adopting advanced sorting, baling and logistics technology.' },
-    { icon: Users, title: 'Partnership', body: 'Long-term relationships with manufacturers, suppliers and distributors built on mutual growth.' },
-    { icon: Globe2, title: 'Global Thinking', body: 'Rooted in Nigeria, our vision connects West African resources with worldwide demand.' },
-    { icon: Target, title: 'Precision', body: 'Every batch carefully sorted to exact specifications — consistent quality every time.' },
-]
 
 const milestones = [
     { year: '2013', title: 'Industrial Market Entry', event: 'Initial deployment and asset sourcing across active West African heavy scrap sectors.' },
@@ -103,7 +96,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 z-[1] pointer-events-none select-none">
 
                     {/* MASK A: Heavy mathematical white block left-gradient anchor to flatten asset noise under text */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-white/85 to-white/10 md:from-white md:via-white/95 md:via-white/80 md:to-white/5" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95  to-white/10 md:from-white md:via-white/95  md:to-white/5" />
 
                     {/* MASK B: Micro-diffused backdrop blur sheet — isolates background details away from text planes */}
                     <div className="absolute top-0 bottom-0 left-0 w-full md:w-[70%] bg-white/20 backdrop-blur-[4px] [mask-image:linear-gradient(to_right,white_50%,transparent_100%)]" />
@@ -457,39 +450,12 @@ export default function AboutPage() {
                             </motion.div>
                         </div>
 
-                        {/* High-Impact Immersive Sticky CTA block */}
-                        <div className="lg:col-span-5 w-full lg:sticky lg:top-32">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                className="rounded-2xl p-8 md:p-10 bg-slate-900 text-white relative overflow-hidden shadow-xl border border-slate-800"
-                            >
-                                <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-                                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
-
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-emerald-500/10 border border-emerald-500/20 mb-8">
-                                    <Recycle size={24} className="text-emerald-400" />
-                                </div>
-
-                                <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-                                    ENTERPRISE PROCUREMENT &amp; SALES
-                                </h3>
-                                <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-8 font-normal">
-                                    Connect directly with our logistics team to coordinate spot-buy allocations, custom container sizing requirements, or long-term high-volume supply allocations.
-                                </p>
-
-                                <Link href="/contact" className="inline-flex items-center justify-center gap-2 w-full bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs md:text-sm px-6 py-3.5 rounded-xl transition-all duration-200 shadow-sm group">
-                                    Establish Procurement Account
-                                    <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                                </Link>
-                            </motion.div>
-                        </div>
 
                     </div>
                 </div>
             </section>
+
+            <CallToAction />
 
             <Footer />
         </div>
