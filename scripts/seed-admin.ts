@@ -2,19 +2,20 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 import bcrypt   from 'bcryptjs'
+import { User } from '@/models/User';
 
 const MONGODB_URI = process.env.MONGODB_URI!
 if (!MONGODB_URI) { console.error('MONGODB_URI not set'); process.exit(1) }
 
-const AdminSchema = new mongoose.Schema({
-  name:     String,
+const UserSchema = new mongoose.Schema({
+  username:     String,
   email:    { type: String, unique: true },
   password: String,
   role:     { type: String, default: 'admin' },
 })
 
 // Safe model registration for scripts (no module caching)
-const Admin = mongoose.model('Admin', AdminSchema)
+const Admin = mongoose.model('Admin', UserSchema)
 
 async function seed() {
   await mongoose.connect(MONGODB_URI)
@@ -24,9 +25,9 @@ async function seed() {
   const password = 'Admin1234!'          // ← change after first login!
   const hashed   = await bcrypt.hash(password, 12)
 
-  await Admin.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { email },
-    { name: 'Mechelin Admin', email, password: hashed, role: 'admin' },
+    { username: 'Mechelin Admin', email, password: hashed, role: 'admin' },
     { upsert: true, new: true }
   )
 

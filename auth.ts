@@ -1,12 +1,9 @@
 // auth.ts  (project root)
-import NextAuth, { type DefaultSession } from 'next-auth'
 import type { NextAuthOptions } from "next-auth";
 import Credentials from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
 import { connectDB } from '@/lib/mongodb'
-import { AdminModel } from '@/models/Admin'
-
-
+import { User } from "./models/User";
 
 export const authOptions: NextAuthOptions = {  
   providers: [
@@ -20,17 +17,17 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null
 
         await connectDB()
-        const admin = await AdminModel.findOne({ email: credentials.email }).select('+password')
-        if (!admin) return null
+        const user = await User.findOne({ email: credentials.email }).select('+password')
+        if (!user) return null
 
-        const valid = await bcrypt.compare(credentials.password as string, admin.password)
+        const valid = await bcrypt.compare(credentials.password as string, user.password)
         if (!valid) return null
 
         return {
-          id: admin._id.toString(),
-          email: admin.email,
-          name: admin.name,
-          role: admin.role
+          id: user._id.toString(),
+          email: user.email,
+          name: user.username,
+          role: user.role
         }
       },
     }),
@@ -39,7 +36,6 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
-        token.email = user.email
         token.name = user.name
         token.role = user.role
       }
@@ -48,7 +44,6 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id as string
-        session.user.email = token.email as string
         session.user.name = token.name as string
         session.user.role = token.role as "admin";
       }

@@ -48,7 +48,7 @@ export default function HeroHeader() {
 
             {/* content */}
             <div className="wrap px-5 relative z-10 pt-14 pb-24">
-            {/* <div className="wrap px-5 relative z-10 pt-28 pb-24"> */}
+               {/* <div className="wrap px-5 relative z-10 pt-28 pb-24"> */}
                <div className="max-w-full">
                   {/* <div className="max-w-2xl"> */}
                   <div
@@ -89,7 +89,7 @@ export default function HeroHeader() {
             {/* Floating stats bar */}
             <div className="absolute bottom-0 inset-x-0 z-10 hidden md:block">
                <div className="wrap px-5">
-                  <div className="grid grid-cols-4 rounded-t-2xl overflow-hidden"
+                  <div className="grid grid-cols-4 rounded-t-2xl overflow-hidden border border-white"
                      style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderBottom: 'none' }}>
                      {stats.map((s, i) => (
                         <div key={s.label}

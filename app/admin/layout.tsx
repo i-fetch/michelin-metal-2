@@ -1,33 +1,31 @@
-import type { ReactNode } from "react";
-import Sidebar from "./admin-components/Sidebar";
-import { auth } from "@/auth";
+import type { Metadata } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
+import "../globals.css"
 
-export default async function AdminLayout({
-    children,
-}: {
-    children: ReactNode;
-}) {
-    const session = await auth();
-    return (
-        <div className="min-h-screen bg-slate-50 flex">
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+})
 
-            {/* Sidebar */}
-            <Sidebar
-                user={{
-                    name: session?.user?.name,
-                    email: session?.user?.email,
-                    role: session?.user?.role,
-                }}
-            />
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+})
 
-            {/* Main */}
-            <div className="flex-1 flex flex-col min-w-0">
-                {/* <Topbar /> */}
-                {/* Page Content */}
-                <main className="flex-1 p-5 md:p-8 overflow-x-hidden">
-                    {children}
-                </main>
-            </div>
-        </div>
-    );
+export const metadata: Metadata = {
+  title: {
+    default: "ScrapAdmin — Industrial Materials Dashboard",
+    template: "%s | MechelinAdmin",
+  },
+  description: "Premium non-ferrous scrap metals admin dashboard and product catalogue.",
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-gray-50 text-gray-900">{children}</body>
+    </html>
+  )
 }

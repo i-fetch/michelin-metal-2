@@ -497,4 +497,93 @@ h5 {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
- 
+/* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+  }
+
+  /* Hide scrollbar utility */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+@layer components {
+  /* Form input — used across all form pages */
+  .form-input {
+    @apply w-full px-2.5 py-1.5 border border-gray-200 rounded-lg text-[13px] text-gray-800
+           outline-none bg-white placeholder-gray-400
+           focus:border-green-500 focus:ring-2 focus:ring-green-500/10
+           transition-all duration-150;
+  }
+
+  .form-input:disabled {
+    @apply bg-gray-50 text-gray-400 cursor-not-allowed;
+  }
+
+  select.form-input {
+    @apply cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    @apply appearance-none pr-8;
+  }
+
+  /* Shimmer animation for skeletons */
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s infinite;
+    background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+    background-size: 200% 100%;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Font mono for prices and IDs */
+  .font-mono {
+    font-family: 'Geist Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+  }
+}
+
+@layer utilities {
+  /* Tracking tight for headings */
+  .tracking-tight {
+    letter-spacing: -0.02em;
+  }
+
+  /* Smooth transition shorthand */
+  .transition-default {
+    @apply transition-all duration-150 ease-in-out;
+  }
+}
