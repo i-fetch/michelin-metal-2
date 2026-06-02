@@ -41,7 +41,7 @@ export default function Homepage() {
          <section className="section" style={{ background: 'var(--bg-2)' }}>
             <div className="wrap px-3 text-center max-w-xl mx-auto">
                <Package size={40} style={{ color: 'var(--clr-green)', margin: '0 auto 1.5rem' }} />
-               <h2 className="mb-4" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,2.8rem)', color: 'var(--tx-primary)' }}>
+               <h2 className="mb-4 tracking-wider" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,2.8rem)', color: 'var(--tx-primary)' }}>
                   READY TO PARTNER WITH US?
                </h2>
                <p className="mb-8 text-[15px]" style={{ color: 'var(--tx-muted)' }}>

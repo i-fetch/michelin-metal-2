@@ -211,7 +211,7 @@ export default function GlobalReachSection(): React.JSX.Element {
 
                 {/* Title Matrix */}
                 <h4 
-                  className="text-lg font-extrabold tracking-tight text-[var(--tx-primary)] mb-2 flex items-center gap-1 transition-colors duration-200 group-hover:text-emerald-800"
+                  className="text-lg font-extrabold tracking-wider text-[var(--tx-primary)] mb-2 flex items-center gap-1 transition-colors duration-200 group-hover:text-emerald-800"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {country.name}
