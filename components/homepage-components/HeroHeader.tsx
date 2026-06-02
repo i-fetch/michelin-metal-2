@@ -2,7 +2,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight,  MedalIcon } from 'lucide-react'
+import { ArrowRight, MedalIcon } from 'lucide-react'
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
@@ -66,22 +66,44 @@ export default function HeroHeader() {
             </div>
 
             {/* Floating stats bar */}
-            <div className="absolute bottom-0 inset-x-0 z-10">
-               <div className="border border-white w-11/12 mx-auto bg-white rounded-t-lg px-5">
-                  <div className="grid grid-cols-4 rounded-t-2xl overflow-hidden border border-white"
-                     style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderBottom: 'none' }}>
-                     {stats.map((s, i) => (
-                        <div key={s.label}
-                           className="py-5 px-6 text-center"
-                           style={{ borderRight: i < 3 ? '1px solid var(--border)' : 'none' }}>
-                           <p className="stat-num">{s.num}</p>
-                           <p className="text-[10px] md:text-xs uppercase tracking-widest mt-1" style={{ color: 'var(--tx-muted)' }}>{s.label}</p>
+            <div className="absolute bottom-0 inset-x-0 z-10 hidden md:block">
+               <div className="w-11/12 mx-auto rounded-t-lg border border-gray-300 bg-[var(--surface)] overflow-hidden">
+
+                  <div className="grid grid-cols-4 divide-x divide-gray-300">
+
+                     {stats.map((s) => (
+                        <div
+                           key={s.label}
+                           className="py-5 px-6 text-center bg-[var(--surface)]"
+                        >
+                           <p className="stat-num tracking-wider">{s.num}</p>
+                           <p className="text-xs uppercase tracking-widest mt-1 text-[var(--tx-muted)]">
+                              {s.label}
+                           </p>
                         </div>
                      ))}
+
                   </div>
+
                </div>
             </div>
+
          </section>
+
+         {/* mobile stats */}
+         <div className="md:hidden grid grid-cols-2 divide-x divide-y divide-gray-300 bg-[var(--border)]">
+            {stats.map((s) => (
+               <div
+                  key={s.label}
+                  className="py-6 text-center bg-[var(--surface)]"
+               >
+                  <p className="stat-num">{s.num}</p>
+                  <p className="text-xs uppercase tracking-widest mt-1 text-[var(--tx-muted)]">
+                     {s.label}
+                  </p>
+               </div>
+            ))}
+         </div>
 
       </>
    )
