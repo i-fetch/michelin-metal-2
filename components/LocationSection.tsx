@@ -44,7 +44,7 @@ export default function LocationsSection() {
   const active = BRANCHES.find((b) => b.id === activeId)!;
 
   return (
-    <section id="location" className="w-full py-24 md:py-32 overflow-hidden"
+    <section id="location" className="w-full py-14 md:py-32 overflow-hidden"
       style={{ background: "var(--bg-main)" }}>
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
 
@@ -137,7 +137,7 @@ export default function LocationsSection() {
                   {isActive && (
                     <motion.div
                       layoutId="activeBar"
-                      className="absolute left-0 top-4 bottom-4 w-[3px] rounded-full"
+                      className="absolute left-0 top-4 bottom-4 w-[3px] h-full rounded-full"
                       style={{ background: "var(--clr-green)" }}
                       transition={{ duration: 0.3, ease: EASE }}
                     />

@@ -36,13 +36,8 @@ export default function Homepage() {
          {/* ── LOCATIONS ───────────────────────────────────── */}
          <LocationsSection />
 
-
-
          {/* ── PRODUCTS PREVIEW ─────────────────────────────── */}
          <MaterialsSection />
-
-
-
 
          {/* ── CTA ──────────────────────────────────────────── */}
          <section className="section" style={{ background: 'var(--bg-2)' }}>
