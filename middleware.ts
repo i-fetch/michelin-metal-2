@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
 
-  const isAdminRoute = pathname.startsWith("/admin");
+  const isAdminRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
   const isLoginRoute = pathname === "/signin";
 
   if (isAdminRoute && !isLoginRoute) {
