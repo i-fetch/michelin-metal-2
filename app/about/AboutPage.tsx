@@ -7,6 +7,7 @@ import { ArrowRight, CheckCircle, Globe2, Leaf, Recycle, ShieldCheck, Target, Us
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useRef } from 'react'
+import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 
 const values = [
     { icon: Leaf, title: 'Sustainability', body: 'Maximising recovery of reusable metals from waste streams to reduce environmental impact.' },
@@ -333,50 +334,9 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ── CORE VALUES (Operational Indices) ── */}
-            <section className="py-20 md:py-32 border-t border-slate-200/60 bg-slate-50/50">
-                <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        className="flex flex-col items-start text-left mb-16"
-                    >
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-slate-100/80 text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
-                            Foundational Benchmarks
-                        </div>
-                        <h2 className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-                            OPERATIONAL INDICES
-                        </h2>
-                    </motion.div>
+            {/* ── WHY CHOOSE US ───────────────────────────────── */}
+            <WhyChooseSection />
 
-                    <motion.div
-                        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: '-40px' }}
-                        variants={staggerContainer}
-                    >
-                        {values.map((v) => (
-                            <motion.div
-                                key={v.title}
-                                variants={fadeUp}
-                                className="bg-white border border-slate-200/80 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 relative group pl-6"
-                            >
-                                {/* Left Interactive Border Rail Accent */}
-                                <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full bg-emerald-600 scale-y-[0.15] opacity-40 group-hover:scale-y-100 group-hover:opacity-100 transition-all duration-300 origin-bottom" />
-
-                                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-600/5 border border-emerald-600/10 mb-6 transition-transform duration-300 group-hover:scale-105">
-                                    <v.icon size={18} className="text-emerald-600" />
-                                </div>
-                                <h3 className="text-base font-extrabold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-display)' }}>{v.title}</h3>
-                                <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-normal">{v.body}</p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
 
             {/* ── TIMELINE MILESTONES ── */}
             <section className="py-20 md:py-32 border-t border-slate-100 bg-white">
