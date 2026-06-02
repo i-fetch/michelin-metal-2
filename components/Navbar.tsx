@@ -9,11 +9,11 @@ import ThemeToggle from "./ThemeToggle";
 import Image from "next/image";
 
 const links = [
-  { href: "/", label: "Overview", desc: "Main corporate portal" },
-  { href: "/about", label: "Enterprise", desc: "Our history & capabilities" },
-  { href: "/products", label: "Materials Supply", desc: "Industrial metal categories" },
-  { href: "/services", label: "Logistics & Trade", desc: "Global shipping infrastructure" },
-  { href: "/contact", label: "Contact Terminal", desc: "Get institutional quotes" },
+  { href: "/", label: "Home", desc: "Main corporate portal" },
+  { href: "/about", label: "About", desc: "Our history & capabilities" },
+  { href: "/products", label: "Products", desc: "Industrial metal categories" },
+  { href: "/services", label: "Services", desc: "Global shipping infrastructure" },
+  { href: "/contact", label: "Contact", desc: "Get institutional quotes" },
 ];
 
 export default function Navbar(): React.JSX.Element {

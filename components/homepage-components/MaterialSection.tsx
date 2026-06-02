@@ -224,7 +224,7 @@ export default function MaterialsSection() {
           className="mb-10"
         >
           <h2 className="text-3xl md:text-5xl font-black text-[var(--tx-primary)]">
-            Our <span className="text-[var(--clr-green)]">Materials</span>
+            Our <span className="text-[var(--clr-green)]">Products</span>
           </h2>
         </motion.div>
 
@@ -268,7 +268,7 @@ export default function MaterialsSection() {
             href="/contact"
             className="px-5 py-3 bg-emerald-600 text-white rounded-lg text-sm font-semibold"
           >
-            Contact Team
+            Get Quote
           </Link>
         </div>
 
