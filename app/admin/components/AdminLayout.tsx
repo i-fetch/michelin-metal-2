@@ -6,9 +6,8 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { signOut as nextAuthSignOut, useSession } from "next-auth/react"
 import {
-  LayoutDashboard, Package, PlusCircle, List, Home, Eye,
-  MessageSquare, Settings, BarChart2, LogOut, Menu, X,
-  Bell, Search, ChevronRight, ChevronLeft, Star,
+  LayoutDashboard, Package, PlusCircle, List, Home,  MessageSquare, Settings, BarChart2, LogOut, Menu, X,
+  Bell, Search, ChevronRight, ChevronLeft,
 } from "lucide-react"
 
 const NAV_SECTIONS = [
