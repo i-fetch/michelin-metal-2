@@ -253,6 +253,30 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* ── VISION/MISSION SECTION ───────────────────────── */}
+            <section className="relative overflow-hidden" style={{ background: 'var(--clr-green)' }}>
+                <div className="absolute inset-0 grid-dots opacity-10" />
+                <div className="wrap px-3 py-20 relative z-10">
+                    <div className="grid md:grid-cols-2 gap-10">
+                        {[
+                            { icon: Zap, title: 'Our Vision', body: 'To become the leading provider of sustainable metals recycling solutions globally — driving the circular economy through innovation, safety, and superior material recovery.' },
+                            { icon: TrendingUp, title: 'Our Mission', body: 'To revolutionize metal recycling by turning waste into high-quality raw materials through technological innovation and sustainable practices that benefit the environment.' },
+                        ].map(({ icon: Icon, title, body }) => (
+                            <div key={title} className="flex gap-5">
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                                    style={{ background: 'rgba(255,255,255,0.15)' }}>
+                                    <Icon size={22} color="#fff" />
+                                </div>
+                                <div>
+                                    <h3 className="text-white mb-3 text-2xl" style={{ fontFamily: 'var(--font-display)' }}>{title}</h3>
+                                    <p className="text-green-100 text-sm leading-relaxed">{body}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* ── VISION & MISSION ARCHITECTURE ── */}
             <section className="py-20 md:py-32 border-t border-slate-100 bg-white">
                 <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">

@@ -30,18 +30,6 @@ export default function Navbar(): React.JSX.Element {
 
   useEffect(() => setIsMenuOpen(false), [path])
 
-  // When transparent (top of page) on a hero that could be any bg colour,
-  // we force white text so it reads against dark hero images.
-  // Once scrolled, the frosted surface is applied and we use the theme
-  // variables which correctly handle both light and dark mode.
-  const linkColor = (href: string) => {
-    if (path === href) return 'var(--clr-green)'
-    return scrolled ? 'var(--tx-primary)' : 'rgba(255,255,255,0.85)'
-  }
-
-  const linkBg = (href: string) =>
-    path === href ? 'rgba(22,163,74,0.08)' : 'transparent'
-
   return (
     <>
       {/* ── GLASS NAVBAR LAYER ── */}
@@ -102,21 +90,17 @@ export default function Navbar(): React.JSX.Element {
             })}
           </div>
 
-        {/* ── Right side ────────────────────────────────────────── */}
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="border lg:hidden p-2 rounded-md transition-colors"
-            style={{
-              color: scrolled ? 'var(--tx-secondary)' : 'rgba(255,255,255,0.85)',
-              borderColor: scrolled ? 'var(--border)' : 'rgba(255,255,255,0.25)',
-            }}
-          >
-            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {/* ── Right side ────────────────────────────────────────── */}
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="border lg:hidden p-2 rounded-md transition-colors"
+            >
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
-      </div>
       </nav>
 
       {/* ── MOBILE DRAWER (GLASS FIXED) ── */}
@@ -203,7 +187,7 @@ export default function Navbar(): React.JSX.Element {
                   href="/contact"
                   className="block text-center py-4 bg-[var(--tx-primary)] text-white text-xs font-bold uppercase tracking-widest rounded-xl"
                 >
-                  Initialize Project Discussion
+                  Get Quotes
                 </Link>
               </div>
 

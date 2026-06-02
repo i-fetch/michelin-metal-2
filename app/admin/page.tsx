@@ -1,9 +1,4 @@
-import AdminDashboardPage from "./AdminDashboardPage";
+export default function page() {
 
-export default function AdminPage() {
-  return (
-    <>
-      <AdminDashboardPage />
-    </>
-  );
+    return <h1>Admin Page</h1>
 }
