@@ -80,7 +80,7 @@ export default function AboutPage() {
             {/* ── HERO SECTION ── */}
             <section
                 ref={heroContainerRef}
-                className="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-between overflow-hidden bg-[#ffffff] pt-36 pb-20 md:pt-44 md:pb-28"
+                className="relative min-h-[78vh] sm:min-h-[82vh] flex items-center overflow-hidden bg-[#ffffff]"
                 aria-label="About Corporate Profile Introduction"
             >
                 {/* ══ LAYER 1: HARDWARE-ACCELERATED PARALLAX IMAGE ══ */}
@@ -125,14 +125,27 @@ export default function AboutPage() {
 
                 {/* ══ LAYER 3: FOREGROUND HIGH-CONTRAST TYPOGRAPHY CANVAS ══ */}
                 <motion.div
-                    style={{ y: contentY, opacity: contentOpacity }}
-                    className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 relative z-[2] will-change-transform"
+                    style={{
+                        y: contentY,
+                        opacity: contentOpacity,
+                    }}
+                    className="
+        max-w-7xl mx-auto w-full 
+        px-6 sm:px-8 lg:px-12 
+        relative z-[2] will-change-transform
+        
+        /* ✔️ REAL POSITION CONTROL */
+        -translate-y-10 sm:-translate-y-6 lg:translate-y-0
+    "
                 >
                     <motion.div
                         initial="hidden"
                         animate="visible"
                         variants={localStaggerContainer}
-                        className="relative max-w-3xl"
+                        className="relative max-w-3xl
+            flex flex-col justify-center
+            min-h-[55vh]
+        "
                     >
                         {/* Badge Panel */}
                         <motion.div
@@ -147,7 +160,7 @@ export default function AboutPage() {
                         <div className="overflow-hidden mb-6 py-1">
                             <motion.h1
                                 variants={localFadeUp}
-                                className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
+                                className="text-4xl sm:text-6xl md:text-7xl font-black tracking-wider leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
                                 style={{ fontFamily: 'var(--font-display)' }}
                             >
                                 ABOUT MECHELIN
