@@ -3,19 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, CheckCircle, Globe2, Leaf, Recycle, ShieldCheck, Target, Users, Zap, TrendingUp } from 'lucide-react'
+import { ArrowRight, CheckCircle, Globe2, Target, Zap, TrendingUp } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useRef } from 'react'
+import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
+import CallToAction from '@/components/CallToAction'
 
-const values = [
-    { icon: Leaf, title: 'Sustainability', body: 'Maximising recovery of reusable metals from waste streams to reduce environmental impact.' },
-    { icon: ShieldCheck, title: 'Integrity', body: 'Every transaction built on transparency, fair pricing and honest communication.' },
-    { icon: Zap, title: 'Innovation', body: 'Continuously adopting advanced sorting, baling and logistics technology.' },
-    { icon: Users, title: 'Partnership', body: 'Long-term relationships with manufacturers, suppliers and distributors built on mutual growth.' },
-    { icon: Globe2, title: 'Global Thinking', body: 'Rooted in Nigeria, our vision connects West African resources with worldwide demand.' },
-    { icon: Target, title: 'Precision', body: 'Every batch carefully sorted to exact specifications — consistent quality every time.' },
-]
 
 const milestones = [
     { year: '2013', title: 'Industrial Market Entry', event: 'Initial deployment and asset sourcing across active West African heavy scrap sectors.' },
@@ -102,7 +96,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 z-[1] pointer-events-none select-none">
 
                     {/* MASK A: Heavy mathematical white block left-gradient anchor to flatten asset noise under text */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-white/85 to-white/10 md:from-white md:via-white/95 md:via-white/80 md:to-white/5" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95  to-white/10 md:from-white md:via-white/95  md:to-white/5" />
 
                     {/* MASK B: Micro-diffused backdrop blur sheet — isolates background details away from text planes */}
                     <div className="absolute top-0 bottom-0 left-0 w-full md:w-[70%] bg-white/20 backdrop-blur-[4px] [mask-image:linear-gradient(to_right,white_50%,transparent_100%)]" />
@@ -346,50 +340,9 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ── CORE VALUES (Operational Indices) ── */}
-            <section className="py-20 md:py-32 border-t border-slate-200/60 bg-slate-50/50">
-                <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeUp}
-                        className="flex flex-col items-start text-left mb-16"
-                    >
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-slate-100/80 text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
-                            Foundational Benchmarks
-                        </div>
-                        <h2 className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-                            OPERATIONAL INDICES
-                        </h2>
-                    </motion.div>
+            {/* ── WHY CHOOSE US ───────────────────────────────── */}
+            <WhyChooseSection />
 
-                    <motion.div
-                        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: '-40px' }}
-                        variants={staggerContainer}
-                    >
-                        {values.map((v) => (
-                            <motion.div
-                                key={v.title}
-                                variants={fadeUp}
-                                className="bg-white border border-slate-200/80 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 relative group pl-6"
-                            >
-                                {/* Left Interactive Border Rail Accent */}
-                                <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full bg-emerald-600 scale-y-[0.15] opacity-40 group-hover:scale-y-100 group-hover:opacity-100 transition-all duration-300 origin-bottom" />
-
-                                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-600/5 border border-emerald-600/10 mb-6 transition-transform duration-300 group-hover:scale-105">
-                                    <v.icon size={18} className="text-emerald-600" />
-                                </div>
-                                <h3 className="text-base font-extrabold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-display)' }}>{v.title}</h3>
-                                <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-normal">{v.body}</p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
 
             {/* ── TIMELINE MILESTONES ── */}
             <section className="py-20 md:py-32 border-t border-slate-100 bg-white">
@@ -510,39 +463,12 @@ export default function AboutPage() {
                             </motion.div>
                         </div>
 
-                        {/* High-Impact Immersive Sticky CTA block */}
-                        <div className="lg:col-span-5 w-full lg:sticky lg:top-32">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                className="rounded-2xl p-8 md:p-10 bg-slate-900 text-white relative overflow-hidden shadow-xl border border-slate-800"
-                            >
-                                <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-                                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
-
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-emerald-500/10 border border-emerald-500/20 mb-8">
-                                    <Recycle size={24} className="text-emerald-400" />
-                                </div>
-
-                                <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-                                    ENTERPRISE PROCUREMENT &amp; SALES
-                                </h3>
-                                <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-8 font-normal">
-                                    Connect directly with our logistics team to coordinate spot-buy allocations, custom container sizing requirements, or long-term high-volume supply allocations.
-                                </p>
-
-                                <Link href="/contact" className="inline-flex items-center justify-center gap-2 w-full bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs md:text-sm px-6 py-3.5 rounded-xl transition-all duration-200 shadow-sm group">
-                                    Establish Procurement Account
-                                    <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                                </Link>
-                            </motion.div>
-                        </div>
 
                     </div>
                 </div>
             </section>
+
+            <CallToAction />
 
             <Footer />
         </div>
