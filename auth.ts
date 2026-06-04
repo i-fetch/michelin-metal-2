@@ -2,7 +2,7 @@
 import type { NextAuthOptions } from "next-auth";
 import Credentials from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import { connectDB } from '@/lib/mongodb'
+import { connectDB } from '@/lib/connectDB'
 import { User } from "./models/User";
 
 export const authOptions: NextAuthOptions = {  
@@ -52,7 +52,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: { strategy: 'jwt' },
   pages: {
-    signIn: '/admin/login',
+    signIn: '/signin',
   },
   secret: process.env.AUTH_SECRET,
 }

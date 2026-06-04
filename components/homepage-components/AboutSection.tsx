@@ -31,9 +31,8 @@ export default function AboutSection() {
                   src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80"
                   alt="Scrap metal processing"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
-
-
                 />
               </div>
               {/* floating stat card */}

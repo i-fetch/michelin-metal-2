@@ -144,7 +144,7 @@ export default function AboutPage() {
                         {/* Badge Panel */}
                         <motion.div
                             variants={localFadeUp}
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/15 bg-white text-[var(--clr-green)] text-[10px] font-bold tracking-widest uppercase mb-6 font-mono shadow-[0_4px_14px_rgba(0,0,0,0.04)]"
+                            className="inline-flex items-center w-max gap-2 px-4 py-1.5 rounded-full border border-emerald-600/15 bg-white text-[var(--clr-green)] text-[10px] font-bold tracking-widest uppercase mb-6 font-mono shadow-[0_4px_14px_rgba(0,0,0,0.04)]"
                         >
                             <Globe2 size={12} className="animate-[spin_10s_linear_infinite] text-emerald-600" />
                             Enterprise Infrastructure

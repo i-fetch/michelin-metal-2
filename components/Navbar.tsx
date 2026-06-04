@@ -61,7 +61,7 @@ export default function Navbar(): React.JSX.Element {
                 className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
                 style={{ color: 'var(--tx-faint)' }}
               >
-                NIGERIA
+                NIGERIA LIMITED
               </span>
             </div>
           </Link>
