@@ -26,7 +26,7 @@ export default function AnalyticsPage() {
       <div className="p-6 md:p-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[var(--tx-primary)]">
+          <h1 className="text-3xl tracking-wider font-bold text-[var(--tx-primary)]">
             Analytics Dashboard
           </h1>
           <p className="text-[var(--tx-secondary)] mt-2">

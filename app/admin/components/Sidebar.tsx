@@ -1,5 +1,6 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -11,19 +12,8 @@ interface SidebarProps {
 }
 
 const routes = [
-  {
-    name: "Products Management",
-    path: "/admin/products",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <path d="M16 10a4 4 0 0 1-8 0" />
-      </svg>
-    ),
-  },
-  {
-    name: "Analytics",
+    {
+    name: "Overview",
     path: "/admin/analytics",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -33,7 +23,19 @@ const routes = [
     ),
   },
   {
-    name: "Profile Settings",
+    name: "Products Auditing",
+    path: "/admin/products-auditing",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg>
+    ),
+  },
+
+  {
+    name: "Settings",
     path: "/admin/settings",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -76,7 +78,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
   return (
     <aside
       className={[
-        "flex flex-col h-full overflow-hidden shrink-0 z-30",
+        "flex flex-col py-5 h-full overflow-hidden shrink-0 z-30",
         "fixed md:static inset-y-0 left-0",
         mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
       ].join(" ")}
@@ -95,13 +97,26 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
       >
         {/* Logo and label */}
         <div className="flex items-center gap-3 overflow-hidden">
-          <span
+          {/* <span
             className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-black"
             style={{ backgroundColor: "var(--clr-green)" }}
           >
             M
+          </span> */}
+
+          <span className="shrink-0 w-8 h-8  rounded-md overflow-hidden flex items-center justify-center">
+          {/* <span className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center"> */}
+            <Image
+              src="/logo.png"
+              width={20}
+              height={20}
+              className="w-full h-full object-cover"
+              alt="Mechelin Metals"
+              priority
+              unoptimized
+            />
           </span>
-          <span
+          {/* <span
             className="font-bold text-sm tracking-wide whitespace-nowrap"
             style={{
               color: "var(--clr-green)",
@@ -112,7 +127,29 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
             }}
           >
             MARKETPLACE ADMIN
-          </span>
+          </span> */}
+          <span className="flex flex-col leading-none"
+          style={{
+              color: "var(--clr-green)",
+              opacity: effectiveCollapsed ? 0 : 1,
+              maxWidth: effectiveCollapsed ? 0 : "200px",
+              overflow: "hidden",
+              transition: "opacity 0.18s ease, max-width 0.25s ease",
+            }}
+          >
+              <h1
+                className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
+                style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
+              >
+                MECHELIN METALS
+              </h1>
+              <span
+                className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+                style={{ color: 'var(--tx-faint)' }}
+              >
+                NIGERIA LIMITED
+              </span>
+            </span>
         </div>
 
         {/* Close button - mobile only */}
