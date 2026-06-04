@@ -87,7 +87,7 @@ export default function Footer() {
           <div className="md:col-span-3">
             <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--tx-faint)' }}>Products</p>
             <ul className="space-y-2.5">
-              {['Aluminium Bales', 'Ferrous Scrap', 'Copper Scrap', 'Brass Scrap', 'Bulk Supply'].map(p => (
+              {['Aluminium Bales', 'Non-Ferrous Scrap', 'Copper Scrap', 'Brass Scrap', 'Bulk Supply'].map(p => (
                 <li key={p}>
                   <Link href="/products" className="flex items-center gap-1.5 text-sm transition-colors hover:gap-2.5"
                     style={{ color: 'var(--tx-secondary)' }}>
