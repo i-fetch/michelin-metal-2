@@ -1,7 +1,7 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 interface SidebarProps {
@@ -45,10 +45,19 @@ const routes = [
   },
 ];
 
+// Derives initials from a display name
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
+
 export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: SidebarProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const router = useRouter();
   const [isSigningOut, setIsSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -57,11 +66,12 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
   };
 
   const user = session?.user;
-  const username = user?.name || "User";
+  const username = user?.name || "Admin User";
   const email = user?.email || "";
+  const initials = getInitials(username);
 
-  const isMobileDrawer = mobileOpen; // true only when hamburger is open (mobile only)
-  const effectiveCollapsed = isMobileDrawer ? false : collapsed;
+  // Mobile drawer always shows full labels; desktop respects collapsed prop
+  const effectiveCollapsed = mobileOpen ? false : collapsed;
 
   return (
     <aside
@@ -71,40 +81,54 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
         mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
       ].join(" ")}
       style={{
-        // On mobile drawer: always full width. On desktop: respect collapsed.
         width: effectiveCollapsed ? "72px" : "260px",
         backgroundColor: "var(--bg-surface)",
         borderRight: "1px solid var(--border-subtle)",
-        transition: "width 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+        transition:
+          "width 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      {/* Logo / Brand */}
+      {/* ── Logo / Brand ── */}
       <div
-        className="flex items-center gap-3 px-4 overflow-hidden shrink-0"
+        className="flex items-center justify-between gap-3 px-4 overflow-hidden shrink-0"
         style={{ height: "64px", borderBottom: "1px solid var(--border-subtle)" }}
       >
-        <span
-          className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-black"
-          style={{ backgroundColor: "var(--clr-green)" }}
-        >
-          M
-        </span>
+        {/* Logo and label */}
+        <div className="flex items-center gap-3 overflow-hidden">
+          <span
+            className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-black"
+            style={{ backgroundColor: "var(--clr-green)" }}
+          >
+            M
+          </span>
+          <span
+            className="font-bold text-sm tracking-wide whitespace-nowrap"
+            style={{
+              color: "var(--clr-green)",
+              opacity: effectiveCollapsed ? 0 : 1,
+              maxWidth: effectiveCollapsed ? 0 : "200px",
+              overflow: "hidden",
+              transition: "opacity 0.18s ease, max-width 0.25s ease",
+            }}
+          >
+            MARKETPLACE ADMIN
+          </span>
+        </div>
 
-        <span
-          className="font-bold text-sm tracking-wide whitespace-nowrap"
-          style={{
-            color: "var(--clr-green)",
-            opacity: effectiveCollapsed ? 0 : 1,
-            maxWidth: effectiveCollapsed ? 0 : "200px",
-            overflow: "hidden",
-            transition: "opacity 0.18s ease, max-width 0.25s ease",
-          }}
+        {/* Close button - mobile only */}
+        <button
+          onClick={onCloseMobile}
+          className="md:hidden shrink-0 p-1.5 rounded-lg hover:bg-[var(--bg-subtle)] transition-colors"
+          title="Close sidebar"
         >
-          MARKETPLACE ADMIN
-        </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
       </div>
 
-      {/* Nav links */}
+      {/* ── Nav links ── */}
       <nav className="flex flex-col gap-1 p-3 flex-1 overflow-y-auto overflow-x-hidden">
         {routes.map((route) => {
           const isActive = pathname === route.path;
@@ -123,7 +147,6 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
               ].join(" ")}
             >
               <span className="shrink-0">{route.icon}</span>
-
               <span
                 className="whitespace-nowrap overflow-hidden"
                 style={{
@@ -139,29 +162,78 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
         })}
       </nav>
 
-      {/* Sign Out */}
+      {/* ── User footer ── */}
       <div
-        className="p-3 border-t"
-        style={{ borderTopColor: "var(--border-subtle)" }}
+        className="shrink-0 p-3"
+        style={{ borderTop: "1px solid var(--border-subtle)" }}
       >
+        {/* User info card — hidden when collapsed, shown as compact strip */}
+        <div
+          className="overflow-hidden"
+          style={{
+            opacity: effectiveCollapsed ? 0 : 1,
+            maxHeight: effectiveCollapsed ? 0 : "80px",
+            marginBottom: effectiveCollapsed ? 0 : "6px",
+            transition: "opacity 0.18s ease, max-height 0.25s ease, margin-bottom 0.25s ease",
+          }}
+        >
+          <div
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
+            style={{ backgroundColor: "var(--bg-subtle)" }}
+          >
+            {/* Avatar */}
+            <div
+              className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold leading-none"
+              style={{ backgroundColor: "var(--clr-green)" }}
+            >
+              {initials}
+            </div>
+
+            {/* Name + email */}
+            <div className="flex flex-col min-w-0">
+              <span
+                className="text-sm font-semibold leading-tight truncate"
+                style={{ color: "var(--tx-primary)" }}
+              >
+                {username}
+              </span>
+              <span
+                className="text-xs leading-tight truncate mt-0.5"
+                style={{ color: "var(--tx-muted)" }}
+              >
+                {email}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Sign out button */}
         <button
           onClick={handleSignOut}
           disabled={isSigningOut}
           title={effectiveCollapsed ? "Sign Out" : undefined}
           className={[
             "w-full flex items-center gap-3 rounded-lg transition-colors duration-150 text-sm font-medium",
-            effectiveCollapsed ? "px-[13px] py-3 justify-center" : "px-3 py-3",
+            effectiveCollapsed ? "px-[13px] py-3 justify-center" : "px-3 py-2.5",
             isSigningOut
-              ? "opacity-50 cursor-not-allowed"
+              ? "opacity-50 cursor-not-allowed text-[var(--tx-secondary)]"
               : "text-[var(--tx-secondary)] hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30",
           ].join(" ")}
         >
+          {/* Sign out icon */}
           <span className="shrink-0">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-              <polyline points="16 17 21 12 16 7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
+            {isSigningOut ? (
+              /* Spinner */
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-spin">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+            )}
           </span>
 
           <span
@@ -172,7 +244,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
               transition: "opacity 0.15s ease, max-width 0.25s ease",
             }}
           >
-            {isSigningOut ? "Signing out..." : "Sign Out"}
+            {isSigningOut ? "Signing out…" : "Sign Out"}
           </span>
         </button>
       </div>
