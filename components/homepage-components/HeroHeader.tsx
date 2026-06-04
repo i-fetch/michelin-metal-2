@@ -61,7 +61,7 @@ export default function HeroHeader() {
             autoPlay
             muted
             loop
-            playsInline
+            // playsInline
             preload="auto"
             className="w-full h-full object-cover"
           >
@@ -168,7 +168,7 @@ export default function HeroHeader() {
                   transition={{ delay: i * 0.08 }}
                   className="py-5 px-6 text-center"
                 >
-                  <p className="stat-num">{s.num}</p>
+                  <p className="stat-num tracking-wider">{s.num}</p>
                   <p className="text-xs uppercase tracking-widest mt-1 text-[var(--tx-muted)]">
                     {s.label}
                   </p>
@@ -197,7 +197,7 @@ export default function HeroHeader() {
             transition={{ delay: i * 0.05 }}
             className="py-6 text-center bg-[var(--surface)]"
           >
-            <p className="stat-num">{s.num}</p>
+            <p className="stat-num tracking-wider">{s.num}</p>
             <p className="text-xs uppercase tracking-widest mt-1 text-[var(--tx-muted)]">
               {s.label}
             </p>
