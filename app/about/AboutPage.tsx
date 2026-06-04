@@ -190,7 +190,7 @@ export default function AboutPage() {
                         </motion.div>
                         <motion.h2
                             variants={fadeUp}
-                            className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-slate-900 leading-none mb-6"
+                            className="text-3xl sm:text-4xl md:text-5xl font-black tracking-wider text-slate-900 leading-none mb-6"
                             style={{ fontFamily: 'var(--font-display)' }}
                         >
                             MORE THAN A DECADE IN THE MAKING
@@ -297,7 +297,7 @@ export default function AboutPage() {
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
                             Corporate Roadmap
                         </div>
-                        <h2 className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+                        <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
                             VISION &amp; MISSION ARCHITECTURE
                         </h2>
                     </motion.div>
@@ -357,7 +357,7 @@ export default function AboutPage() {
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
                             The Ledger
                         </div>
-                        <h2 className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+                        <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
                             HISTORICAL MILESTONES
                         </h2>
                     </motion.div>
@@ -434,7 +434,7 @@ export default function AboutPage() {
                                 <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-5 font-sans">
                                     Compliance &amp; Incorporation
                                 </motion.div>
-                                <motion.h2 variants={fadeUp} className="text-2xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-8" style={{ fontFamily: 'var(--font-display)' }}>
+                                <motion.h2 variants={fadeUp} className="text-2xl sm:text-4xl font-black tracking-wider text-slate-900 mb-8" style={{ fontFamily: 'var(--font-display)' }}>
                                     REGISTRATION &amp; STATUTORY DETAILS
                                 </motion.h2>
 

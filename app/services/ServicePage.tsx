@@ -210,7 +210,7 @@ export default function ServicePage() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
               Full-Spectrum Delivery
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
               EVERYTHING METAL, END-TO-END
             </h2>
           </motion.div>
@@ -273,7 +273,7 @@ export default function ServicePage() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
               Downstream Infrastructure
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tighter text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
               INDUSTRIES WE SUPPLY
             </h2>
           </motion.div>
@@ -318,7 +318,7 @@ export default function ServicePage() {
                 <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-2 font-sans">
                   The Mechelin Difference
                 </motion.div>
-                <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-8" style={{ fontFamily: 'var(--font-display)' }}>
+                <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-wider text-slate-900 mb-8" style={{ fontFamily: 'var(--font-display)' }}>
                   WHY BULK BUYERS ROUTE THROUGH MECHELIN
                 </motion.h2>
 
@@ -394,7 +394,7 @@ export default function ServicePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl md:text-5xl font-black tracking-wider mb-4" style={{ fontFamily: 'var(--font-display)' }}>
               DISCUSS YOUR METALLURGICAL OVERHEADS
             </h2>
             <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-8 font-normal leading-relaxed">

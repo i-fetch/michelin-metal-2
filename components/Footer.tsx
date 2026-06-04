@@ -43,7 +43,7 @@ export default function Footer() {
                   className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
                   style={{ color: 'var(--tx-faint)' }}
                 >
-                  NIGERIA
+                  NIGERIA LIMITED
                 </span>
               </div>
             </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
       </div>
 
       <div style={{ borderTop: '1px solid var(--border)', padding: '1rem 0' }}>
-        <div className="wrap px-5 text-center flex flex-col sm:flex-row items-center justify-between gap-2 text-xs" style={{ color: 'var(--tx-faint)' }}>
+        <div className="wrap px-5 text-center flex flex-col sm:flex-row items-center justify-center gap-2 text-xs" style={{ color: 'var(--tx-faint)' }}>
           <span className="text-xs text-center">© {new Date().getFullYear()} Mechelin Metals Nigeria LTD <br className=""/> All rights reserved.</span>
         </div>
       </div>

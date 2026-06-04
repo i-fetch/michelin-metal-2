@@ -82,7 +82,7 @@ export default function VisionSection(): React.JSX.Element {
             Strategic Architecture
           </motion.p>
           <motion.h2 
-            className="text-[clamp(2rem,4vw,3.75rem)] font-black tracking-tighter text-[var(--tx-primary)] leading-[1.05] mb-6"
+            className="text-[clamp(2rem,4vw,3.75rem)] font-black tracking-wider text-[var(--tx-primary)] leading-[1.05] mb-6"
             style={{ fontFamily: "var(--font-display)" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
