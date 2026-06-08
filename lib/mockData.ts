@@ -1,5 +1,13 @@
 import { Product, DashboardMetric, AnalyticsData } from "./types";
 
+export const cats = [
+  { id: 'zinc-oxide', label: 'Zinc Oxide', accent: '#16a34a' },
+  { id: 'zinc-dust', label: 'Zinc Dust', accent: '#0284c7' },
+  { id: 'zinc-granules', label: 'Zinc Granules', accent: '#dc2626' },
+  { id: 'copper-alloys', label: 'Copper & Alloys', accent: '#d97706' },
+];
+
+
 export const INITIAL_PRODUCTS: Product[] = [
   {
     _id: "prod-1",
