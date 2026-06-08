@@ -1,8 +1,9 @@
 "use client";
+import { INITIAL_INQUIRIES, INITIAL_PRODUCTS } from "@/lib/mockData";
+import { Database, Mail, Plus, Settings } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface SidebarProps {
@@ -11,43 +12,6 @@ interface SidebarProps {
   onCloseMobile: () => void;
 }
 
-const routes = [
-    {
-    name: "Overview",
-    path: "/admin/analytics",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="2" x2="12" y2="22" />
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
-  },
-  {
-    name: "Products Auditing",
-    path: "/admin/products-auditing",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <path d="M16 10a4 4 0 0 1-8 0" />
-      </svg>
-    ),
-  },
-
-  {
-    name: "Settings",
-    path: "/admin/settings",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
-        <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
-      </svg>
-    ),
-  },
-];
-
-// Derives initials from a display name
 function getInitials(name: string): string {
   return name
     .split(" ")
@@ -61,24 +25,38 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
   const pathname = usePathname();
   const { data: session } = useSession();
   const [isSigningOut, setIsSigningOut] = useState(false);
-
-  const handleSignOut = async () => {
-    setIsSigningOut(true);
-    await signOut({ redirect: true, callbackUrl: "/signin" });
-  };
+  const router = useRouter();
 
   const user = session?.user;
   const username = user?.name || "Admin User";
   const email = user?.email || "";
   const initials = getInitials(username);
 
+  const handleSignOut = async () => {
+    setIsSigningOut(true);
+    await signOut({ redirect: true, callbackUrl: "/signin" });
+  };
+
   // Mobile drawer always shows full labels; desktop respects collapsed prop
   const effectiveCollapsed = mobileOpen ? false : collapsed;
+
+  // Modern Navigation Button Styler leveraging your CSS Variables
+  const getLinkStyles = (hashPath: string) => {
+    const isActive = pathname?.includes(hashPath) || (typeof window !== 'undefined' && window.location.hash.includes(hashPath));
+    
+    const baseClasses = "w-full text-left text-xs font-semibold px-3 py-2.5 rounded-lg flex items-center gap-3 transition-all duration-200 group relative";
+    
+    // Using your alpha values and text variables here
+    const activeClasses = "bg-[var(--clr-green-alpha)] text-[var(--clr-green)]";
+    const inactiveClasses = "text-[var(--tx-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--tx-primary)]";
+    
+    return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
+  };
 
   return (
     <aside
       className={[
-        "flex flex-col py-5 h-full overflow-hidden shrink-0 z-30",
+        "flex flex-col h-full overflow-hidden shrink-0 z-30",
         "fixed md:static inset-y-0 left-0",
         mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
       ].join(" ")}
@@ -86,186 +64,227 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
         width: effectiveCollapsed ? "72px" : "260px",
         backgroundColor: "var(--bg-surface)",
         borderRight: "1px solid var(--border-subtle)",
-        transition:
-          "width 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+        transition: "width 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      {/* ── Logo / Brand ── */}
+      {/* ── Logo / Brand Area ── */}
       <div
-        className="flex items-center justify-between gap-3 px-4 overflow-hidden shrink-0"
-        style={{ height: "64px", borderBottom: "1px solid var(--border-subtle)" }}
+        className={`flex items-center gap-3 px-4 shrink-0 transition-all duration-200 ${
+          effectiveCollapsed ? "justify-center" : "justify-between"
+        }`}
+        style={{ height: "72px", borderBottom: "1px solid var(--border-subtle)" }}
       >
-        {/* Logo and label */}
         <div className="flex items-center gap-3 overflow-hidden">
-          {/* <span
-            className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-black"
-            style={{ backgroundColor: "var(--clr-green)" }}
+          {/* Logo container wrapper matching your subtle theme */}
+          <div 
+            className="shrink-0 rounded-lg overflow-hidden flex items-center justify-center p-1 w-9 h-9"
+            style={{ 
+              backgroundColor: "var(--bg-subtle)",
+              border: "1px solid var(--border-subtle)" 
+            }}
           >
-            M
-          </span> */}
-
-          <span className="shrink-0 w-8 h-8  rounded-md overflow-hidden flex items-center justify-center">
-          {/* <span className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center"> */}
             <Image
               src="/logo.png"
-              width={20}
-              height={20}
-              className="w-full h-full object-cover"
+              width={24}
+              height={24}
+              className="w-full h-full object-contain"
               alt="Mechelin Metals"
               priority
               unoptimized
             />
-          </span>
-          {/* <span
-            className="font-bold text-sm tracking-wide whitespace-nowrap"
+          </div>
+
+          {/* Typography layout */}
+          <div
+            className="flex flex-col leading-tight select-none"
             style={{
-              color: "var(--clr-green)",
               opacity: effectiveCollapsed ? 0 : 1,
-              maxWidth: effectiveCollapsed ? 0 : "200px",
+              maxWidth: effectiveCollapsed ? 0 : "180px",
               overflow: "hidden",
-              transition: "opacity 0.18s ease, max-width 0.25s ease",
+              transition: "opacity 0.15s ease, max-width 0.2s ease",
             }}
           >
-            MARKETPLACE ADMIN
-          </span> */}
-          <span className="flex flex-col leading-none"
-          style={{
-              color: "var(--clr-green)",
-              opacity: effectiveCollapsed ? 0 : 1,
-              maxWidth: effectiveCollapsed ? 0 : "200px",
-              overflow: "hidden",
-              transition: "opacity 0.18s ease, max-width 0.25s ease",
-            }}
-          >
-              <h1
-                className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
-                style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
-              >
-                MECHELIN METALS
-              </h1>
-              <span
-                className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
-                style={{ color: 'var(--tx-faint)' }}
-              >
-                NIGERIA LIMITED
-              </span>
+            <h1
+              className="text-xs tracking-wider font-bold truncate"
+              style={{ color: "var(--clr-green)" }}
+            >
+              MECHELIN METALS
+            </h1>
+            <span
+              className="text-[9px] uppercase tracking-[0.18em] font-medium"
+              style={{ color: "var(--tx-muted)" }}
+            >
+              NIGERIA LIMITED
             </span>
+          </div>
         </div>
 
-        {/* Close button - mobile only */}
+        {/* Close button - Mobile Drawer only */}
         <button
           onClick={onCloseMobile}
-          className="md:hidden shrink-0 p-1.5 rounded-lg hover:bg-[var(--bg-subtle)] transition-colors"
+          className="md:hidden shrink-0 p-1.5 rounded-lg transition-colors"
+          style={{ color: "var(--tx-secondary)" }}
           title="Close sidebar"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
       </div>
 
-      {/* ── Nav links ── */}
-      <nav className="flex flex-col gap-1 p-3 flex-1 overflow-y-auto overflow-x-hidden">
-        {routes.map((route) => {
-          const isActive = pathname === route.path;
-          return (
-            <Link
-              key={route.path}
-              href={route.path}
-              onClick={onCloseMobile}
-              title={effectiveCollapsed ? route.name : undefined}
-              className={[
-                "flex items-center gap-3 rounded-lg transition-colors duration-150 text-sm font-medium",
-                effectiveCollapsed ? "px-[13px] py-3 justify-center" : "px-3 py-3",
-                isActive
-                  ? "bg-[var(--clr-green-alpha)] text-[var(--clr-green)]"
-                  : "text-[var(--tx-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--tx-primary)]",
-              ].join(" ")}
-            >
-              <span className="shrink-0">{route.icon}</span>
-              <span
-                className="whitespace-nowrap overflow-hidden"
-                style={{
-                  opacity: effectiveCollapsed ? 0 : 1,
-                  maxWidth: effectiveCollapsed ? 0 : "200px",
-                  transition: "opacity 0.15s ease, max-width 0.25s ease",
-                }}
-              >
-                {route.name}
-              </span>
-            </Link>
-          );
-        })}
-      </nav>
-
-      {/* ── User footer ── */}
-      <div
-        className="shrink-0 p-3"
-        style={{ borderTop: "1px solid var(--border-subtle)" }}
-      >
-        {/* User info card — hidden when collapsed, shown as compact strip */}
-        <div
-          className="overflow-hidden"
-          style={{
-            opacity: effectiveCollapsed ? 0 : 1,
-            maxHeight: effectiveCollapsed ? 0 : "80px",
-            marginBottom: effectiveCollapsed ? 0 : "6px",
-            transition: "opacity 0.18s ease, max-height 0.25s ease, margin-bottom 0.25s ease",
-          }}
-        >
-          <div
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
-            style={{ backgroundColor: "var(--bg-subtle)" }}
+      {/* ── Nav Links Navigation Area (Scrollable Engine) ── */}
+      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+        
+        {/* Section 1: Catalog Auditing */}
+        <div className="mb-2">
+          <p 
+            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"
+            style={{ color: "var(--tx-muted)", opacity: effectiveCollapsed ? 0 : 1 }}
           >
-            {/* Avatar */}
-            <div
-              className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold leading-none"
-              style={{ backgroundColor: "var(--clr-green)" }}
-            >
-              {initials}
-            </div>
+            {effectiveCollapsed ? "•" : "Catalog Auditing"}
+          </p>
+          
+          <button
+            onClick={() => router.push("/admin/product")}
+            className={getLinkStyles("/admin/product")}
+            title={effectiveCollapsed ? "Listings Auditing" : undefined}
+          >
+            <Database className="h-4 w-4 shrink-0" />
+            <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
+              Listings Auditing ({INITIAL_PRODUCTS.length})
+            </span>
+          </button>
 
-            {/* Name + email */}
-            <div className="flex flex-col min-w-0">
-              <span
-                className="text-sm font-semibold leading-tight truncate"
-                style={{ color: "var(--tx-primary)" }}
-              >
-                {username}
-              </span>
-              <span
-                className="text-xs leading-tight truncate mt-0.5"
-                style={{ color: "var(--tx-muted)" }}
-              >
-                {email}
-              </span>
-            </div>
+          <button
+            onClick={() => router.push("/admin/product/new")}
+            className={getLinkStyles("/admin/product/new")}
+            title={effectiveCollapsed ? "Create Item Listing" : undefined}
+          >
+            <Plus className="h-4 w-4 shrink-0" />
+            <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
+              Create Item listing
+            </span>
+          </button>
+        </div>
+
+        {/* Section 2: Inquiries Desk */}
+        <div className="pt-1 mb-2">
+          <div style={{ borderTop: "1px solid var(--border-subtle)", margin: "8px 0" }} />
+          <p 
+            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"
+            style={{ color: "var(--tx-muted)", opacity: effectiveCollapsed ? 0 : 1 }}
+          >
+            {effectiveCollapsed ? "•" : "Inquiries Desk"}
+          </p>
+
+          <button
+            onClick={() => router.push("/admin/inquiries")}
+            className={getLinkStyles("/admin/inquiries")}
+            title={effectiveCollapsed ? "B2B Trade Inquiries" : undefined}
+          >
+            <Mail className="h-4 w-4 shrink-0" />
+            <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
+              B2B Trade Inquiries ({INITIAL_INQUIRIES.length})
+            </span>
+          </button>
+        </div>
+
+        {/* Section 3: Configuration */}
+        <div className="pt-1">
+          <div style={{ borderTop: "1px solid var(--border-subtle)", margin: "8px 0" }} />
+          <p 
+            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"
+            style={{ color: "var(--tx-muted)", opacity: effectiveCollapsed ? 0 : 1 }}
+          >
+            {effectiveCollapsed ? "•" : "Configuration"}
+          </p>
+
+          <button
+            onClick={() => router.push("/admin/settings")}
+            className={getLinkStyles("/admin/settings")}
+            title={effectiveCollapsed ? "Control Settings" : undefined}
+          >
+            <Settings className="h-4 w-4 shrink-0" />
+            <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
+              Control Settings
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {/* ── User Footer Panel ── */}
+      <div
+        className="shrink-0 p-3 flex flex-col gap-1.5"
+        style={{ 
+          borderTop: "1px solid var(--border-subtle)",
+          backgroundColor: effectiveCollapsed ? "transparent" : "rgba(15, 23, 42, 0.01)" 
+        }}
+      >
+        {/* User identification block */}
+        <div
+          className="flex items-center gap-3 p-2 rounded-xl transition-all duration-200"
+          style={{ 
+            backgroundColor: effectiveCollapsed ? "transparent" : "var(--bg-subtle)",
+            justifyContent: effectiveCollapsed ? "center" : "flex-start"
+          }}
+          title={effectiveCollapsed ? `${username} (${email})` : undefined}
+        >
+          {/* Circular Initials Avatar Badge */}
+          <div
+            className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold leading-none shadow-sm"
+            style={{ backgroundColor: "var(--clr-green)" }}
+          >
+            {initials}
+          </div>
+
+          {/* Name + email text container */}
+          <div 
+            className="flex flex-col min-w-0"
+            style={{
+              opacity: effectiveCollapsed ? 0 : 1,
+              maxWidth: effectiveCollapsed ? 0 : "180px",
+              transition: "opacity 0.15s ease, max-width 0.2s ease"
+            }}
+          >
+            <span
+              className="text-xs font-bold leading-none truncate"
+              style={{ color: "var(--tx-primary)" }}
+            >
+              {username}
+            </span>
+            <span
+              className="text-[10px] font-medium leading-none truncate mt-1"
+              style={{ color: "var(--tx-secondary)" }}
+            >
+              {email}
+            </span>
           </div>
         </div>
 
-        {/* Sign out button */}
+        {/* Action button: Sign out */}
         <button
           onClick={handleSignOut}
           disabled={isSigningOut}
           title={effectiveCollapsed ? "Sign Out" : undefined}
           className={[
-            "w-full flex items-center gap-3 rounded-lg transition-colors duration-150 text-sm font-medium",
-            effectiveCollapsed ? "px-[13px] py-3 justify-center" : "px-3 py-2.5",
+            "w-full flex items-center gap-3 rounded-lg transition-all duration-200 text-xs font-semibold border border-transparent",
+            effectiveCollapsed ? "h-9 justify-center" : "px-3 h-9",
             isSigningOut
-              ? "opacity-50 cursor-not-allowed text-[var(--tx-secondary)]"
-              : "text-[var(--tx-secondary)] hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30",
+              ? "opacity-40 cursor-not-allowed"
+              : "hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/20",
           ].join(" ")}
+          style={{ 
+            color: isSigningOut ? "var(--tx-muted)" : "var(--tx-secondary)" 
+          }}
         >
-          {/* Sign out icon */}
           <span className="shrink-0">
             {isSigningOut ? (
-              /* Spinner */
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-spin">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="animate-spin">
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" />
               </svg>
             ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                 <polyline points="16 17 21 12 16 7" />
                 <line x1="21" y1="12" x2="9" y2="12" />
@@ -274,11 +293,11 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
           </span>
 
           <span
-            className="whitespace-nowrap overflow-hidden"
+            className="whitespace-nowrap overflow-hidden text-left"
             style={{
               opacity: effectiveCollapsed ? 0 : 1,
-              maxWidth: effectiveCollapsed ? 0 : "200px",
-              transition: "opacity 0.15s ease, max-width 0.25s ease",
+              maxWidth: effectiveCollapsed ? 0 : "180px",
+              transition: "opacity 0.15s ease, max-width 0.2s ease",
             }}
           >
             {isSigningOut ? "Signing out…" : "Sign Out"}
