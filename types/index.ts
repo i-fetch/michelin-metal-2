@@ -1,6 +1,4 @@
 // types/index.ts
-import { Document } from "mongoose";
-
 export interface IProductSpecs {
   grade?: string;
   form?: string;
@@ -32,7 +30,7 @@ export interface IProduct {
   updatedAt: Date;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;

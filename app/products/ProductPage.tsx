@@ -32,10 +32,7 @@ export default function ProductPage() {
 
   const products = INITIAL_PRODUCTS;
 
-  const categoryAccentMap = React.useMemo(
-    () => Object.fromEntries(cats.map((cat) => [cat.id, cat.accent])),
-    []
-  );
+  
 
   const navigate = (slug: string) => {
     router.push(`/products/${slug}`);

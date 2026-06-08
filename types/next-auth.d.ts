@@ -1,9 +1,4 @@
 // /types/next-auth.d.ts
-
-import NextAuth, {
-  DefaultSession,
-} from "next-auth"
-
 import { DefaultJWT } from "next-auth/jwt"
 
 export type UserRole = "admin"

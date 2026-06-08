@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Package, ShieldCheck, Layers } from "lucide-react";
+import { ArrowRight, Package } from "lucide-react";
 import { Product } from "@/lib/types";
 
 interface ProductCardProps {

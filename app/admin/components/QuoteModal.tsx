@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import { Product } from "../types";
-import { X, CheckCircle, Mail, Building, Database, Sparkles } from "lucide-react";
+import type { Product } from "@/lib/types";
+import { X, CheckCircle, Mail, Building, Database } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface QuoteModalProps {

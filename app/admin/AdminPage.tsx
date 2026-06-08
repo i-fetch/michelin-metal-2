@@ -1,7 +1,6 @@
 'use client'
 import { INITIAL_PRODUCTS } from "@/lib/mockData";
 import { AlertTriangle, Edit, Plus, Trash2 } from "lucide-react";
-import { navigate } from "next/dist/client/components/segment-cache/navigation";
 import { useRouter } from "next/navigation";
 
 export default function AdminPage() {

@@ -1,8 +1,7 @@
 // app/admin/login/page.tsx  (or wherever your signin lives)
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, EyeOff, ArrowRight, Recycle, ShieldCheck, Globe, Package } from "lucide-react";
 import { signIn } from "next-auth/react";

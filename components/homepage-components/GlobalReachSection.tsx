@@ -198,9 +198,8 @@ export default function GlobalReachSection(): React.JSX.Element {
                   ${isHovered ? "scale-y-100 opacity-100" : "scale-y-25 opacity-40 group-hover:opacity-70"}
                 `} />
 
-                {/* Flag Asset Frame */}
+                  {/* Flag Asset Frame */}
                 <div className="w-9 h-6 rounded border border-slate-200/80 overflow-hidden bg-slate-50 mb-4 shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src={country.flagUrl} 
                     alt={`${country.name} National Flag`}

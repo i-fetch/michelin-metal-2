@@ -18,15 +18,7 @@ const links = [
 
 export default function Navbar(): React.JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const path = usePathname();
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 24)
-    fn() // run on mount so SSR → client is in sync
-    window.addEventListener('scroll', fn)
-    return () => window.removeEventListener('scroll', fn)
-  }, [])
 
   useEffect(() => setIsMenuOpen(false), [path])
 
