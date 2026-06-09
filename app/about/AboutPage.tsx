@@ -286,7 +286,7 @@ export default function AboutPage() {
             </section>
 
             {/* ── VISION & MISSION ARCHITECTURE ── */}
-            <section className="py-20 md:py-32 border-t border-slate-100 bg-white">
+            <section className="hidden py-20 md:py-32 border-t border-slate-100 bg-white">
                 <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                     <motion.div
                         initial="hidden"
