@@ -226,11 +226,8 @@ export default function ServicePage() {
               <motion.div
                 key={s.title}
                 variants={fadeUp}
-                className="bg-white border border-slate-200/80 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 relative group pl-6 flex flex-col justify-between"
+                className="bg-white border border-slate-200/80 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 group flex min-h-full flex-col justify-between border-l-4 border-emerald-600"
               >
-                {/* Embedded Interactive Rail Accents matching your About design */}
-                <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full bg-emerald-600 scale-y-[0.15] opacity-40 group-hover:scale-y-100 group-hover:opacity-100 transition-all duration-300 origin-bottom" />
-
                 <div>
                   <div className="flex gap-4 items-start mb-6">
                     <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-600/5 border border-emerald-600/10 transition-transform duration-300 group-hover:scale-105 shrink-0">
