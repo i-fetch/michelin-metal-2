@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Save, Sparkles } from "lucide-react";
+import { ExternalLink, Save } from "lucide-react";
 import { toast } from "sonner";
 
 // Mock categories - replace with actual data fetch if needed
@@ -108,15 +108,13 @@ export default function AddProductPage() {
           </p>
         </div>
 
-        {/* AI Specifications Wizard tool activation */}
+        {/* Review Product button */}
         <button
           type="button"
-          onClick={runAISpecWizard}
-          disabled={isAILoading}
-          className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-gold-brand text-white px-4 py-2.5 text-xs font-bold uppercase tracking-wider shadow hover:bg-gold-brand/95 transition-all self-start sm:self-auto disabled:opacity-50 animate-pulse"
+          className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-gold-brand px-4 py-2.5 text-xs text-xs-secondary font-bold uppercase tracking-wider shadow hover:bg-gold-brand/95 transition-all self-start sm:self-auto disabled:opacity-50 animate-pulse"
         >
-          <Sparkles className="h-4 w-4 text-white" />
-          <span>{isAILoading ? "Synthesizing specs..." : "AI Specs Assistant Wizard"}</span>
+          <ExternalLink className="h-4 w-4" />
+          <span>Review Product</span>
         </button>
       </div>
 
