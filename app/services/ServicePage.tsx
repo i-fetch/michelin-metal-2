@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useRef } from 'react'
 import Image from 'next/image'
+import CTASection from '@/components/CallToAction'
 
 const services = [
   {
@@ -380,30 +381,23 @@ export default function ServicePage() {
       </section>
 
       {/* ── INTERACTIVE GLOBAL INDUSTRIAL BLOCK ── */}
-      <section className="py-20 md:py-28 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-5xl font-black tracking-wider mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-              DISCUSS YOUR METALLURGICAL OVERHEADS
-            </h2>
-            <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-8 font-normal leading-relaxed">
-              From isolated custom processing batches to dedicated corporate mill allocation setups — we engineer strategic answers suited to your parameters.
-            </p>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs md:text-sm px-8 py-4 rounded-xl transition-all duration-200 shadow-lg group">
-              Initiate B2B Consultations
-              <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      <CTASection
+        // icon={<Package size={28} />}
+        subtitle="Industrial Bulk Supply & Procurement"
+        title="DISCUSS YOUR METALLURGICAL OVERHEADS"
+        description="From isolated custom processing batches to dedicated corporate mill allocation setups — we engineer strategic answers suited to your parameters."
+        primaryCta={{
+          label: 'Initiate B2B Consultations',
+          href: '/contact',
+          icon: <ArrowRight size={16} />,
+        }}
+        // secondaryCta={{
+        //   label: 'Browse Products',
+        //   href: '/products',
+        // }}
+        trustText="Trusted by industrial buyers and scrap dealers across West Africa"
+      />
 
       <Footer />
     </div>

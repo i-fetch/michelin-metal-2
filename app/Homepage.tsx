@@ -8,6 +8,8 @@ import LocationsSection from '@/components/LocationSection'
 import MaterialsSection from '@/components/homepage-components/MaterialSection'
 import HeroHeader from '@/components/homepage-components/HeroHeader'
 import CallToAction from '@/components/CallToAction'
+import CTASection from '@/components/CallToAction'
+import { ArrowRight, Package } from 'lucide-react'
 
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
@@ -37,7 +39,22 @@ export default function Homepage() {
          <MaterialsSection />
 
          {/* ── CTA ──────────────────────────────────────────── */}
-         <CallToAction />
+         <CTASection
+            icon={<Package size={28} />}
+            subtitle="Industrial Bulk Supply & Procurement"
+            title="READY TO PARTNER WITH US?"
+            description="Whether you need reliable raw material supply or have scrap metal to move — our team is ready."
+            primaryCta={{
+               label: 'Request Quote',
+               href: '/contact',
+               icon: <ArrowRight size={16} />,
+            }}
+            secondaryCta={{
+               label: 'Browse Products',
+               href: '/products',
+            }}
+            trustText="Trusted by industrial buyers and scrap dealers across West Africa"
+         />
 
          <Footer />
       </>

@@ -59,3 +59,5 @@ export interface AnalyticsData {
   inquiries: number;
   sampleRequests: number;
 }
+
+

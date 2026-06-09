@@ -3,12 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, CheckCircle, Globe2, Target, Zap, TrendingUp } from 'lucide-react'
+import { ArrowRight, CheckCircle, Globe2, Target, Zap, TrendingUp, Package } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useRef } from 'react'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 import CallToAction from '@/components/CallToAction'
+import CTASection from '@/components/CallToAction'
 
 
 const milestones = [
@@ -468,7 +469,22 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <CallToAction />
+            <CTASection
+                icon={<Package size={28} />}
+                subtitle="Industrial Bulk Supply & Procurement"
+                title="READY TO PARTNER WITH US?"
+                description="Whether you need reliable raw material supply or have scrap metal to move — our team is ready."
+                primaryCta={{
+                    label: 'Request Quote',
+                    href: '/contact',
+                    icon: <ArrowRight size={16} />,
+                }}
+                secondaryCta={{
+                    label: 'Browse Products',
+                    href: '/products',
+                }}
+                trustText="Trusted by industrial buyers and scrap dealers across West Africa"
+            />
 
             <Footer />
         </div>
