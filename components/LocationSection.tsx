@@ -309,45 +309,6 @@ export default function LocationsSection() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Mobile: branch switcher inside the card */}
-            <div
-              className="lg:hidden px-5 pb-5 flex flex-col gap-3"
-              style={{ borderTop: "1px solid var(--border-subtle)" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest pt-4 font-semibold" style={{ color: "var(--tx-muted)" }}>
-                Switch Branch
-              </p>
-              <div className="flex flex-col gap-2">
-                {BRANCHES.map((b) => {
-                  const isActive = activeId === b.id;
-                  return (
-                    <button
-                      key={b.id}
-                      onClick={() => setActiveId(b.id)}
-                      className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-medium transition-all duration-200"
-                      style={{
-                        background: isActive ? "var(--clr-green-alpha)" : "var(--bg-subtle)",
-                        color: isActive ? "var(--clr-green)" : "var(--tx-secondary)",
-                        border: `1px solid ${isActive ? "rgba(22,163,74,0.2)" : "var(--border-subtle)"}`,
-                      }}
-                    >
-                      <b.Icon size={15} className="shrink-0" />
-                      <div className="min-w-0 flex-1">
-                        <span className="block font-semibold truncate">{b.title}</span>
-                        <span className="block text-xs truncate" style={{ color: "var(--tx-muted)" }}>{b.tag}</span>
-                      </div>
-                      {isActive && (
-                        <span
-                          className="w-2 h-2 rounded-full shrink-0"
-                          style={{ background: "var(--clr-green)" }}
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
           </motion.div>
         </div>
 
