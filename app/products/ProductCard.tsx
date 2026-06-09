@@ -4,7 +4,7 @@ import { Product } from "@/lib/types";
 
 interface ProductCardProps {
   product: Product;
-  onNavigate: (hashPath: string) => void;
+  onNavigate: (slug: string) => void;
   key?: React.Key | string;
 }
 
@@ -42,8 +42,8 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex-1">
           <h3 
-            onClick={() => onNavigate(`#/product/${product.slug}`)}
-            className="cursor-pointer text-bebas text-lg font-normal tracking-wide text-tx-primary hover:text-green-brand transition-colors line-clamp-1"
+            onClick={() => onNavigate(product.slug)}
+            className="cursor-pointer text-bebas text-lg font-normal tracking-wide text-tx-primary hover:text-brand-green transition-colors line-clamp-1"
           >
             {product.title}
           </h3>
@@ -72,15 +72,15 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
         {/* Bottom MOQ and CTA section */}
         <div className="mt-4 flex items-center justify-between pt-3 border-t border-border-subtle/40">
           <div className="flex items-center space-x-1.5 text-xs text-tx-secondary">
-            <Package className="h-4 w-4 text-green-brand flex-shrink-0" />
+            <Package className="h-4 w-4 text-brand-green flex-shrink-0" />
             <span>
               MOQ: <strong className="text-tx-primary font-semibold">{product.moq.value} {product.moq.unit}</strong>
             </span>
           </div>
 
           <button
-            onClick={() => onNavigate(`#/product/${product.slug}`)}
-            className="cursor-pointer group inline-flex items-center space-x-1.5 text-xs font-semibold text-green-brand transition-all hover:text-green-brand/80"
+            onClick={() => onNavigate(product.slug)}
+            className="cursor-pointer group inline-flex items-center space-x-1.5 text-xs font-semibold text-brand-green transition-all hover:text-brand-green/80"
           >
             <span>RFQ & Specs</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

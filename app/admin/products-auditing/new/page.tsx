@@ -111,7 +111,7 @@ export default function AddProductPage() {
         {/* Review Product button */}
         <button
           type="button"
-          className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-gold-brand px-4 py-2.5 text-xs text-xs-secondary font-bold uppercase tracking-wider shadow hover:bg-gold-brand/95 transition-all self-start sm:self-auto disabled:opacity-50 animate-pulse"
+          className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs text-xs-secondary font-bold uppercase tracking-wider shadow hover:bg-gold-brand/95 transition-all self-start sm:self-auto disabled:opacity-50 animate-pulse"
         >
           <ExternalLink className="h-4 w-4" />
           <span>Review Product</span>
@@ -136,7 +136,7 @@ export default function AddProductPage() {
                 placeholder="e.g. Ultrafine Reactive Zinc Dust Premium"
                 value={formData.title}
                 onChange={(e) => handleTitleChange(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
             </div>
 
@@ -148,7 +148,7 @@ export default function AddProductPage() {
                 placeholder="ultrafine-reactive-zinc-dust"
                 value={formData.slug}
                 onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value.toLowerCase().replace(/\s+/g, "-") }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none bg-bg-subtle font-mono-custom text-tx-primary"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none bg-bg-subtle font-mono-custom text-tx-primary"
               />
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function AddProductPage() {
                     }));
                   }
                 }}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               >
                 {CATEGORIES.map(c => (
                   <option key={c.slug} value={c.slug}>{c.name}</option>
@@ -183,7 +183,7 @@ export default function AddProductPage() {
                 placeholder="e.g. Premium Active, Eco-Certified"
                 value={formData.badge}
                 onChange={(e) => setFormData(prev => ({ ...prev, badge: e.target.value }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
             </div>
 
@@ -197,7 +197,7 @@ export default function AddProductPage() {
                   min={1}
                   value={formData.moqValue}
                   onChange={(e) => setFormData(prev => ({ ...prev, moqValue: Number(e.target.value) }))}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none font-semibold text-tx-primary"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none font-semibold text-tx-primary"
                 />
               </div>
               <div>
@@ -205,7 +205,7 @@ export default function AddProductPage() {
                 <select
                   value={formData.moqUnit}
                   onChange={(e) => setFormData(prev => ({ ...prev, moqUnit: e.target.value as "kg" | "tonne" }))}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
                 >
                   <option value="tonne">Tonne</option>
                   <option value="kg">Kg</option>
@@ -222,7 +222,7 @@ export default function AddProductPage() {
               placeholder="Write comprehensive B2B metal overview narration including manufacture background details..."
               value={formData.description}
               onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none leading-relaxed"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none leading-relaxed"
             />
           </div>
         </div>
@@ -241,7 +241,7 @@ export default function AddProductPage() {
                 placeholder="Active Pharmaceutical / Class A Maritime"
                 value={formData.specs.grade}
                 onChange={(e) => setFormData(p => ({ ...p, specs: { ...p.specs, grade: e.target.value } }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
             </div>
 
@@ -252,7 +252,7 @@ export default function AddProductPage() {
                 placeholder="Finely precipitated powder / Granules"
                 value={formData.specs.form}
                 onChange={(e) => setFormData(p => ({ ...p, specs: { ...p.specs, form: e.target.value } }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
             </div>
 
@@ -263,7 +263,7 @@ export default function AddProductPage() {
                 placeholder="99.92% / 98.5%"
                 value={formData.specs.purity}
                 onChange={(e) => setFormData(p => ({ ...p, specs: { ...p.specs, purity: e.target.value } }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
             </div>
           </div>
@@ -276,7 +276,7 @@ export default function AddProductPage() {
                 placeholder="80.3% / 98.5%"
                 value={formData.specs.zincContent}
                 onChange={(e) => setFormData(p => ({ ...p, specs: { ...p.specs, zincContent: e.target.value } }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
             </div>
 
@@ -287,7 +287,7 @@ export default function AddProductPage() {
                 placeholder="Hydrogen Reduction Loop / Electrolytic"
                 value={formData.specs.source}
                 onChange={(e) => setFormData(p => ({ ...p, specs: { ...p.specs, source: e.target.value } }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
             </div>
 
@@ -298,7 +298,7 @@ export default function AddProductPage() {
                 placeholder="GHS Class 9 Aquatic Toxicity"
                 value={formData.specs.hazardCompliance}
                 onChange={(e) => setFormData(p => ({ ...p, specs: { ...p.specs, hazardCompliance: e.target.value } }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none col-span-1"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none col-span-1"
               />
             </div>
           </div>
@@ -317,7 +317,7 @@ export default function AddProductPage() {
                 placeholder="e.g. Vulcanization activator in high-speed tires"
                 value={newAppInput}
                 onChange={(e) => setNewAppInput(e.target.value)}
-                className="flex-grow rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none"
+                className="flex-grow rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
               />
               <button
                 type="button"
@@ -367,7 +367,7 @@ export default function AddProductPage() {
                 placeholder="Paste raw Unsplash/industrial image online URL anchor"
                 value={newImageInput}
                 onChange={(e) => setNewImageInput(e.target.value)}
-                className="flex-grow rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-green-brand outline-none font-mono-custom"
+                className="flex-grow rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none font-mono-custom"
               />
               <button
                 type="button"
@@ -417,7 +417,7 @@ export default function AddProductPage() {
 
           <button
             type="submit"
-            className="cursor-pointer px-6 py-2.5 rounded-lg bg-green-brand text-white text-xs font-bold uppercase tracking-wider hover:bg-green-brand/95 transition-all inline-flex items-center space-x-2"
+            className="cursor-pointer px-6 py-2.5 rounded-lg bg-brand-green text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-green/95 transition-all inline-flex items-center space-x-2"
           >
             <Save className="h-4 w-4" />
             <span>Save to MongoDB Schema</span>

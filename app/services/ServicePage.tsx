@@ -382,21 +382,18 @@ export default function ServicePage() {
 
       {/* ── INTERACTIVE GLOBAL INDUSTRIAL BLOCK ── */}
 
+      {/* CTA */}
       <CTASection
-        // icon={<Package size={28} />}
-        subtitle="Industrial Bulk Supply & Procurement"
-        title="DISCUSS YOUR METALLURGICAL OVERHEADS"
+        icon={<Package size={28} />}
+        subtitle="Bulk Industrial Supply"
+        title="DISCUSS YOUR METALLURGICAL OVERHEADS?"
         description="From isolated custom processing batches to dedicated corporate mill allocation setups — we engineer strategic answers suited to your parameters."
         primaryCta={{
           label: 'Initiate B2B Consultations',
           href: '/contact',
           icon: <ArrowRight size={16} />,
         }}
-        // secondaryCta={{
-        //   label: 'Browse Products',
-        //   href: '/products',
-        // }}
-        trustText="Trusted by industrial buyers and scrap dealers across West Africa"
+        trustText="Trusted by industrial buyers across West Africa"
       />
 
       <Footer />

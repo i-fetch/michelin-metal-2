@@ -25,8 +25,6 @@ import CTASection from '@/components/CallToAction';
    CATEGORY DATA (hero pills)
 ------------------------------*/
 
-
-
 export default function ProductPage() {
   const router = useRouter();
 
@@ -105,9 +103,9 @@ export default function ProductPage() {
           {/* Pills */}
           <div className="flex flex-wrap gap-3 mt-8">
             {cats.map((c) => (
-              <Link
+              <button
                 key={c.id}
-                href={`#${c.id}`}
+                onClick={() => setSelectedCategorySlug(c.id)}
                 className="px-4 py-2 rounded-full text-sm font-medium transition-all hover:-translate-y-0.5"
                 style={{
                   background: `${c.accent}18`,
@@ -116,7 +114,7 @@ export default function ProductPage() {
                 }}
               >
                 {c.label}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
@@ -223,7 +221,7 @@ export default function ProductPage() {
       </section>
 
       {/* CTA */}
-      <CTASection
+      {/* <CTASection
         icon={<Package size={28} />}
         subtitle="Bulk Industrial Supply"
         title="Need a Custom Quote?"
@@ -234,7 +232,8 @@ export default function ProductPage() {
           icon: <ArrowRight size={16} />,
         }}
         trustText="Trusted by industrial buyers across West Africa"
-      />
+      /> */}
+      
       <Footer />
     </>
   );

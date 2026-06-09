@@ -17,7 +17,7 @@ const ProductAuditPage = () => {
 
                     <button
                         onClick={() => router.push("/admin/products-auditing/new")}
-                        className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-gold-brand px-4 py-2.5 text-xs text-xs-secondary font-bold uppercase tracking-wider shadow hover:bg-gold-brand/95 transition-all self-start sm:self-auto disabled:opacity-50 animate-pulse"
+                        className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs text-xs-secondary font-bold uppercase tracking-wider shadow hover:bg-gold-brand/95 transition-all self-start sm:self-auto disabled:opacity-50 animate-pulse"
                     >
                         <Plus className="h-4 w-4" />
                         <span>Add New Material</span>
@@ -52,7 +52,7 @@ const ProductAuditPage = () => {
                                                 <div>
                                                     <span
                                                         onClick={() => {}}
-                                                        className="cursor-pointer font-bold text-tx-primary hover:text-green-brand transition-colors block text-sm"
+                                                        className="cursor-pointer font-bold text-tx-primary hover:text-brand-green transition-colors block text-sm"
                                                     >
                                                         {p.title}
                                                     </span>
@@ -93,7 +93,7 @@ const ProductAuditPage = () => {
                                             <div className="flex items-center justify-center space-x-2">
                                                 <button
                                                     onClick={() => {}}
-                                                    className="cursor-pointer p-1.5 rounded-md hover:bg-green-alpha hover:text-green-brand transition-colors text-tx-secondary"
+                                                    className="cursor-pointer p-1.5 rounded-md hover:bg-green-alpha hover:text-brand-green transition-colors text-tx-secondary"
                                                     title="Modify spec sheet schema"
                                                 >
                                                     <Edit className="h-4 w-4" />

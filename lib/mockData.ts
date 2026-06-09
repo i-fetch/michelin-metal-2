@@ -122,9 +122,9 @@ export const INITIAL_PRODUCTS: Product[] = [
       "Sulfide chemical precipitation processes"
     ],
     images: [
-      "https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=1200&q=80"
     ],
     createdAt: "2026-04-05T09:00:00Z",
     updatedAt: "2026-04-05T09:00:00Z"
@@ -158,7 +158,37 @@ export const INITIAL_PRODUCTS: Product[] = [
     ],
     createdAt: "2026-03-12T14:50:00Z",
     updatedAt: "2026-05-18T11:10:00Z"
-  }
+  },
+  {
+    _id: "prod-6",
+    title: "Eco-Grade Secondary Zinc Oxide Catalyst",
+    slug: "secondary-zinc-oxide-catalyst",
+    description: "Sustainable refined zinc oxide produced primarily through certified recycling loops of primary industrial compounds. Crafted for high volume industrial demands like general rubber vulcanization, agriculture supplements, and bulk ceramics where carbon footprint offsets are vital.",
+    category: { name: "Zinc Oxide", slug: "zinc-oxide" },
+    badge: "Eco-Certified",
+    specs: {
+      grade: "Rubber Vulcanizing & Agriculture Milled",
+      form: "Coarser Crystalline Powder",
+      purity: "99.0%",
+      source: "Premium Recovered Zinc Condensate Loops",
+      hazardCompliance: "Environmentally Hazardous Category 1",
+      zincContent: "79.2%"
+    },
+    moq: { value: 15, unit: "tonne" },
+    applications: [
+      "General tire rubber vulcanization activator",
+      "Micronutrient source in premium agricultural fertilizers",
+      "Glass production modifier for optical density stabilization",
+      "Frit additive in low-temperature industrial glazes"
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=1200&q=80"
+    ],
+    createdAt: "2026-01-10T11:00:00Z",
+    updatedAt: "2026-04-18T16:15:00Z"
+  },
 ];
 
 export const INITIAL_METRICS: DashboardMetric[] = [
