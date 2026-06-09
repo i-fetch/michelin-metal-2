@@ -146,8 +146,8 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
           </p>
           
           <button
-            onClick={() => router.push("/admin/product")}
-            className={getLinkStyles("/admin/product")}
+            onClick={() => router.push("/admin/products-auditing")}
+            className={getLinkStyles("/admin/products-auditing")}
             title={effectiveCollapsed ? "Listings Auditing" : undefined}
           >
             <Database className="h-4 w-4 shrink-0" />
@@ -157,8 +157,8 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
           </button>
 
           <button
-            onClick={() => router.push("/admin/product/new")}
-            className={getLinkStyles("/admin/product/new")}
+            onClick={() => router.push("/admin/products-auditing/new")}
+            className={getLinkStyles("/admin/products-auditing/new")}
             title={effectiveCollapsed ? "Create Item Listing" : undefined}
           >
             <Plus className="h-4 w-4 shrink-0" />

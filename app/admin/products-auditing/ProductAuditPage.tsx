@@ -15,7 +15,7 @@ const ProductAuditPage = () => {
 
                     <button
                         onClick={() => {}}
-                        className="cursor-pointer inline-flex items-center space-x-1.5 rounded-lg bg-green-brand px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white shadow hover:bg-green-brand/90 transition-all self-start sm:self-auto"
+                        className="cursor-pointer inline-flex items-center space-x-1.5 text-tx-secondary rounded-lg bg-green-brand px-4 py-2.5 text-xs font-semibold uppercase tracking-wider shadow hover:bg-green-brand/90 transition-all self-start sm:self-auto"
                     >
                         <Plus className="h-4 w-4" />
                         <span>Add New Material</span>
