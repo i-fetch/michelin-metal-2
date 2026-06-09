@@ -3,6 +3,7 @@
 import { INITIAL_PRODUCTS } from '@/lib/mockData'
 import { AlertTriangle, Edit, Plus, Trash2 } from 'lucide-react'
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const ProductAuditPage = () => {
     const router = useRouter();
@@ -17,7 +18,7 @@ const ProductAuditPage = () => {
 
                     <button
                         onClick={() => router.push("/admin/products-auditing/new")}
-                        className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs text-xs-secondary font-bold uppercase tracking-wider shadow hover:bg-gold-brand/95 transition-all self-start sm:self-auto disabled:opacity-50 animate-pulse"
+                        className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow transition-all hover:bg-green-700 disabled:opacity-50 animate-pulse self-start sm:self-auto"
                     >
                         <Plus className="h-4 w-4" />
                         <span>Add New Material</span>
@@ -41,17 +42,16 @@ const ProductAuditPage = () => {
                             <tbody className="divide-y divide-gray-100 text-tx-secondary">
                                 {INITIAL_PRODUCTS.map((p) => (
                                     <tr key={p._id} className="hover:bg-bg-subtle/40 transition-colors">
-                                        {/* Product Title detail */}
                                         <td className="py-4 px-4">
                                             <div className="flex items-center space-x-3">
                                                 <img
                                                     src={p.images?.[0]}
+                                                    alt={p.title}
                                                     className="h-9 w-12 object-cover rounded bg-gray-100 border flex-shrink-0"
                                                     referrerPolicy="no-referrer"
                                                 />
                                                 <div>
                                                     <span
-                                                        onClick={() => {}}
                                                         className="cursor-pointer font-bold text-tx-primary hover:text-brand-green transition-colors block text-sm"
                                                     >
                                                         {p.title}
@@ -63,24 +63,20 @@ const ProductAuditPage = () => {
                                             </div>
                                         </td>
 
-                                        {/* category */}
                                         <td className="py-4 px-4">
                                             <span className="rounded bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-tx-secondary uppercase">
                                                 {p.category.name}
                                             </span>
                                         </td>
 
-                                        {/* purity */}
                                         <td className="py-4 px-4 font-mono-custom font-semibold text-tx-primary">
                                             {p.specs.purity || "Standard"}
                                         </td>
 
-                                        {/* MOQ */}
                                         <td className="py-4 px-4 font-mono-custom text-tx-primary">
                                             {p.moq.value} {p.moq.unit.toUpperCase()}
                                         </td>
 
-                                        {/* hazard */}
                                         <td className="py-4 px-4 font-mono-custom">
                                             <span className="inline-flex items-center space-x-1 max-w-[150px] truncate" title={p.specs.hazardCompliance}>
                                                 <AlertTriangle className="h-3 w-3 text-gold-brand flex-shrink-0" />
@@ -88,18 +84,17 @@ const ProductAuditPage = () => {
                                             </span>
                                         </td>
 
-                                        {/* Actions */}
                                         <td className="py-4 px-4 text-center">
                                             <div className="flex items-center justify-center space-x-2">
                                                 <button
-                                                    onClick={() => {}}
+                                                    onClick={() => router.push(`/admin/products-auditing/${p._id}/edit`)}
                                                     className="cursor-pointer p-1.5 rounded-md hover:bg-green-alpha hover:text-brand-green transition-colors text-tx-secondary"
                                                     title="Modify spec sheet schema"
                                                 >
                                                     <Edit className="h-4 w-4" />
                                                 </button>
                                                 <button
-                                                    onClick={() => {}}
+                                                    onClick={() => toast.error("Mock delete is disabled in demo mode")}
                                                     className="cursor-pointer p-1.5 rounded-md hover:bg-red-50 hover:text-red-600 transition-colors text-tx-secondary"
                                                     title="Wipe from mock cluster"
                                                 >

@@ -2,20 +2,16 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import {
-  ArrowRight,
-  Search,
   Filter,
   RotateCcw,
   AlertTriangle,
-  Package,
+  Search,
 } from 'lucide-react';
 import ProductCard from './ProductCard';
 import { INITIAL_PRODUCTS, cats } from '@/lib/mockData';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import CTASection from '@/components/CallToAction';
 
 
 
@@ -233,7 +229,7 @@ export default function ProductPage() {
         }}
         trustText="Trusted by industrial buyers across West Africa"
       /> */}
-      
+
       <Footer />
     </>
   );
