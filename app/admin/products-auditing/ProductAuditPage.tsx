@@ -2,8 +2,10 @@
 "use client";
 import { INITIAL_PRODUCTS } from '@/lib/mockData'
 import { AlertTriangle, Edit, Plus, Trash2 } from 'lucide-react'
+import { useRouter } from 'next/navigation';
 
 const ProductAuditPage = () => {
+    const router = useRouter();
     return (
         <div>
             <div className="space-y-6 text-left" id="subview-admin-products">
@@ -14,7 +16,7 @@ const ProductAuditPage = () => {
                     </div>
 
                     <button
-                        onClick={() => {}}
+                        onClick={() => router.push("/admin/products-auditing/new")}
                         className="cursor-pointer inline-flex items-center space-x-1.5 text-tx-secondary rounded-lg bg-green-brand px-4 py-2.5 text-xs font-semibold uppercase tracking-wider shadow hover:bg-green-brand/90 transition-all self-start sm:self-auto"
                     >
                         <Plus className="h-4 w-4" />
