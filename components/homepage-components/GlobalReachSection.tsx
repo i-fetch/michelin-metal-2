@@ -91,7 +91,8 @@ export default function GlobalReachSection(): React.JSX.Element {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="w-full bg-slate-50/40 border border-slate-200/60 rounded-2xl p-6 md:p-12 mb-20 flex items-center justify-center relative overflow-hidden shadow-sm backdrop-blur-sm"
+          className="hidden bg-slate-50/40 border border-slate-200/60 rounded-2xl p-6 md:p-12 mb-20 items-center justify-center relative overflow-hidden shadow-sm backdrop-blur-sm"
+          // className="w-full bg-slate-50/40 border border-slate-200/60 rounded-2xl p-6 md:p-12 mb-20 flex items-center justify-center relative overflow-hidden shadow-sm backdrop-blur-sm"
         >
           {/* Technical Grid Accent Overlay */}
           <div className="absolute inset-0 opacity-[0.015] pointer-events-none bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:20px_20px]" />
