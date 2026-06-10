@@ -204,7 +204,7 @@ export default function AboutPage() {
                             </p>
                         </motion.div>
                         <motion.div variants={fadeUp} className="mt-8">
-                            <Link href="/products" className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs md:text-sm px-6 py-3 rounded-xl shadow-sm transition-all duration-200 group">
+                            <Link href="/products" className="inline-flex items-center justify-center gap-2 bg-[var(--clr-green)] hover:bg-emerald-700 text-white font-semibold text-xs md:text-sm px-6 py-3 rounded-xl shadow-sm transition-all duration-200 group">
                                 Explore Product Portfolio
                                 <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                             </Link>
@@ -250,7 +250,7 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5, duration: 0.6 }}
-                            className="absolute -top-4 -left-4 rounded-xl p-4 border border-emerald-600/10 bg-emerald-600 text-white shadow-xl min-w-[140px]"
+                            className="absolute -top-4 -left-4 rounded-xl p-4 border border-emerald-600/10 bg-[var(--clr-green)] text-white shadow-xl min-w-[140px]"
                         >
                             <p className="text-3xl font-black tracking-tight leading-none" style={{ fontFamily: 'var(--font-display)' }}>10+</p>
                             <p className="text-[10px] opacity-80 mt-1.5 uppercase font-bold tracking-widest leading-none">Years Industry Presence</p>
