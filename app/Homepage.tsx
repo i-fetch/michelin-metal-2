@@ -7,7 +7,7 @@ import GlobalReachSection from '@/components/homepage-components/GlobalReachSect
 import LocationsSection from '@/components/LocationSection'
 import MaterialsSection from '@/components/homepage-components/MaterialSection'
 import HeroHeader from '@/components/homepage-components/HeroHeader'
-import CallToAction from '@/components/CallToAction'
+// import CallToAction from '@/components/CallToAction'
 import CTASection from '@/components/CallToAction'
 import { ArrowRight, Package } from 'lucide-react'
 
