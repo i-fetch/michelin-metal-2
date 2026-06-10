@@ -99,12 +99,11 @@ export default function CTASection({
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.6 }}
                viewport={{ once: true }}
-               className="mb-4"
+               className="mb-4 tracking-wide"
                style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: 'clamp(2rem, 4vw, 3rem)',
                   color: isSolid ? '#fff' : 'var(--tx-primary)',
-                  letterSpacing: '-0.02em',
                }}
             >
                {title}

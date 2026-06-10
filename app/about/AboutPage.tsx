@@ -275,7 +275,7 @@ export default function AboutPage() {
                                     <Icon size={22} color="#fff" />
                                 </div>
                                 <div>
-                                    <h3 className="text-white mb-3 text-2xl" style={{ fontFamily: 'var(--font-display)' }}>{title}</h3>
+                                    <h3 className="text-white mb-3 text-2xl tracking-wider" style={{ fontFamily: 'var(--font-display)' }}>{title}</h3>
                                     <p className="text-green-100 text-sm leading-relaxed">{body}</p>
                                 </div>
                             </div>

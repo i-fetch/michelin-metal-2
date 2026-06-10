@@ -99,7 +99,7 @@ export default function HeroHeader() {
             {/* Heading */}
             <motion.h1
               variants={item}
-              className="text-white mb-6 leading-none"
+              className="w-full lg:w-1/2 text-white mb-6 leading-none"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(3.5rem,8vw,6.5rem)',
@@ -129,13 +129,13 @@ export default function HeroHeader() {
               variants={item}
               className="flex flex-wrap gap-4 mb-16"
             >
-              <Link href="/products" className="btn btn-green">
+              <Link href="/products" className="block btn btn-green">
                 Explore Products <ArrowRight size={15} />
               </Link>
 
               <Link
                 href="/about"
-                className="btn btn-outline"
+                className="border-2 block btn"
                 style={{
                   borderColor: 'rgba(255,255,255,0.3)',
                   color: '#fff'

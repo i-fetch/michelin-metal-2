@@ -7,7 +7,7 @@ export default function AboutSection() {
 
   return (
     <section className="section" style={{ background: 'var(--bg)' }}>
-      <div className="wrap px-5">
+      <div className=" wrap px-0">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
             <p className="tag mb-4">About The Company</p>
