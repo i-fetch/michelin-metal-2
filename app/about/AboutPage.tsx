@@ -200,7 +200,7 @@ export default function AboutPage() {
                                 Mechelin Metals Nigeria LTD is West Africa&apos;s foremost integrated structural reclamation and metal processing corporation. While formally incorporated in 2023, our foundation spans over ten years of deep operational deployment across active recycling, sorting, and supply chains.
                             </p>
                             <p>
-                                We leverage captive resources and institutional machinery infrastructures to source, safely process, and premium-bale ferrous and non-ferrous variants. Our materials feed directly into precision manufacturing lines, foundries, and domestic smelting conglomerates.
+                                We leverage captive resources and institutional machinery infrastructures to source, safely process, and non-ferrous variants. Our materials feed directly into precision manufacturing lines, foundries, and domestic smelting conglomerates.
                             </p>
                         </motion.div>
                         <motion.div variants={fadeUp} className="mt-8">

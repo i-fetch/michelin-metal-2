@@ -121,7 +121,7 @@ export default function HeroHeader() {
                 fontWeight: 300
               }}
             >
-              Mechelin Metals Nigeria — sourcing, sorting, baling and distributing aluminium and ferrous metals to manufacturers across West Africa and the world.
+              Mechelin Metals Nigeria — sourcing, sorting, baling and distributing aluminium and non-ferrous metals to manufacturers across West Africa and the world.
             </motion.p>
 
             {/* CTA */}
