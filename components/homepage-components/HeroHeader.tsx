@@ -99,7 +99,7 @@ export default function HeroHeader() {
             {/* Heading */}
             <motion.h1
               variants={item}
-              className="w-full lg:w-1/2 text-white mb-6 leading-none"
+              className=" text-white mb-6 leading-none"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(3.5rem,8vw,6.5rem)',
@@ -107,7 +107,7 @@ export default function HeroHeader() {
               }}
             >
               TURNING METAL{' '}
-              <span style={{ color: 'var(--clr-green-light)' }}>WASTE</span>{' '}
+              <span style={{ color: 'var(--clr-green-light)' }}>WASTE</span>{' '} 
               INTO GLOBAL{' '}
               <span style={{ color: 'var(--clr-gold)' }}>VALUE</span>
             </motion.h1>
