@@ -224,6 +224,7 @@ export default function AboutPage() {
                                     src="/building-structure.png"
                                     alt="Metal processing facility platform"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     priority
                                     className="object-cover"
                                 />
