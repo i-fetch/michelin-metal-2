@@ -7,7 +7,7 @@ import GlobalReachSection from '@/components/homepage-components/GlobalReachSect
 import LocationsSection from '@/components/LocationSection'
 import MaterialsSection from '@/components/homepage-components/MaterialSection'
 import HeroHeader from '@/components/homepage-components/HeroHeader'
-// import CallToAction from '@/components/CallToAction'
+
 import CTASection from '@/components/CallToAction'
 import { ArrowRight, Package } from 'lucide-react'
 
@@ -55,6 +55,7 @@ export default function Homepage() {
             }}
             trustText="Trusted by industrial buyers and scrap dealers across West Africa"
          />
+
 
          <Footer />
       </>

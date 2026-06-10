@@ -61,11 +61,11 @@ export default function HeroHeader() {
             autoPlay
             muted
             loop
-            // playsInline
+            playsInline
             preload="auto"
             className="w-full h-full object-cover"
           >
-            <source src="/header-vid.mp4" type="video/mp4" />
+            <source src="/public/header-vid.mp4" type="video/mp4" />
           </video>
 
           <div

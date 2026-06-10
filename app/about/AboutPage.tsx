@@ -8,7 +8,6 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useRef } from 'react'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
-import CallToAction from '@/components/CallToAction'
 import CTASection from '@/components/CallToAction'
 
 
