@@ -1,13 +1,9 @@
+// ── HERO HEADER COMPONENT ─────────────────────────────
 "use client"
 
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, MedalIcon } from 'lucide-react'
-import { motion } from "framer-motion"
-
-export const metadata: Metadata = {
-  title: "Nigeria's #1 Metal Recycling Company"
-}
+import { motion, cubicBezier, Variants } from "framer-motion"
 
 const stats = [
   { num: '10+', label: 'Years Active' },
@@ -16,9 +12,7 @@ const stats = [
   { num: '2+', label: 'Continents' },
 ]
 
-// ── Animation Variants ─────────────────────────────
-import { cubicBezier, Variants } from "framer-motion"
-
+// ── Animation ─────────────────────────────
 const ease = cubicBezier(0.22, 1, 0.36, 1)
 
 const container: Variants = {
@@ -43,6 +37,7 @@ const item: Variants = {
     },
   },
 }
+
 export default function HeroHeader() {
   return (
     <>
@@ -55,8 +50,23 @@ export default function HeroHeader() {
         className="relative min-h-screen flex items-center overflow-hidden"
       >
 
-        {/* Background */}
-        <div className="absolute inset-0 z-0">
+        {/* ── MOBILE BACKGROUND IMAGE ── */}
+        <div
+          className="absolute inset-0 z-0 block md:hidden bg-cover bg-center"
+          style={{
+            backgroundImage: `
+              linear-gradient(
+                105deg,
+                rgba(9,9,11,0.88),
+                rgba(9,9,11,0.55)
+              ),
+              url('/header-img.png')
+            `,
+          }}
+        />
+
+        {/* ── DESKTOP VIDEO BACKGROUND ── */}
+        <div className="absolute inset-0 z-0 hidden md:block">
           <video
             autoPlay
             muted
@@ -65,22 +75,11 @@ export default function HeroHeader() {
             preload="auto"
             className="w-full h-full object-cover"
           >
-            <source src="/public/header-vid.mp4" type="video/mp4" />
+            <source src="/header-vid.mp4" type="video/mp4" />
           </video>
 
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `
-                linear-gradient(
-                  105deg,
-                  rgba(9,9,11,0.88) 42%,
-                  rgba(9,9,11,0.55) 100%
-                ),
-                url('/header-img.png')
-              `,
-            }}
-          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/40" />
         </div>
 
         {/* CONTENT */}
@@ -99,7 +98,7 @@ export default function HeroHeader() {
             {/* Heading */}
             <motion.h1
               variants={item}
-              className=" text-white mb-6 leading-none"
+              className="text-white mb-6 leading-none"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(3.5rem,8vw,6.5rem)',
@@ -107,7 +106,7 @@ export default function HeroHeader() {
               }}
             >
               TURNING METAL{' '}
-              <span style={{ color: 'var(--clr-green-light)' }}>WASTE</span>{' '} 
+              <span style={{ color: 'var(--clr-green-light)' }}>WASTE</span>{' '}
               INTO GLOBAL{' '}
               <span style={{ color: 'var(--clr-gold)' }}>VALUE</span>
             </motion.h1>
@@ -129,13 +128,13 @@ export default function HeroHeader() {
               variants={item}
               className="flex flex-wrap gap-4 mb-16"
             >
-              <Link href="/products" className="block btn btn-green">
+              <Link href="/products" className="btn btn-green">
                 Explore Products <ArrowRight size={15} />
               </Link>
 
               <Link
                 href="/about"
-                className="border-2 block btn"
+                className="border-2 btn"
                 style={{
                   borderColor: 'rgba(255,255,255,0.3)',
                   color: '#fff'
