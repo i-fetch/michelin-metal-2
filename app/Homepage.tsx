@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import AboutSection from '@/components/homepage-components/AboutSection'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 import GlobalReachSection from '@/components/homepage-components/GlobalReachSection'
-import LocationsSection from '@/components/LocationSection'
+// import LocationsSection from '@/components/LocationSection'
 import MaterialsSection from '@/components/homepage-components/MaterialSection'
 import HeroHeader from '@/components/homepage-components/HeroHeader'
 
@@ -32,9 +32,7 @@ export default function Homepage() {
          {/* ── GLOBAL REACH ─────────────────────────────────── */}
          <GlobalReachSection />
 
-         {/* ── LOCATIONS ───────────────────────────────────── */}
-         <LocationsSection />
-
+        
          {/* ── PRODUCTS PREVIEW ─────────────────────────────── */}
          <MaterialsSection />
 
