@@ -331,12 +331,11 @@ export default function ContactPage(): React.JSX.Element {
               <FadeIn>
                 <p className="tag mb-4">Enquiry Form</p>
                 <h2
-                  className="mb-10 leading-none"
+                  className="mb-10 leading-none tracking-wider"
                   style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
                     fontWeight: 900,
-                    letterSpacing: '-0.02em',
                     color: 'var(--tx-primary)',
                   }}
                 >

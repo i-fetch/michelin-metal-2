@@ -57,14 +57,14 @@ export default function LocationsSection() {
           className="mb-16"
         >
           <p className="tag mb-4">Find Us</p>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div className="gap-4">
             <h2
               className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.05]"
             >
               Our{" "}
               <span style={{ color: "var(--clr-green)" }}>Locations</span>
             </h2>
-            <p className="text-sm md:text-base max-w-sm" style={{ color: "var(--tx-muted)" }}>
+            <p className="text-sm md:text-base" style={{ color: "var(--tx-muted)" }}>
               Two strategic hubs in Anambra State — Nigeria&apos;s industrial heartland.
             </p>
           </div>
