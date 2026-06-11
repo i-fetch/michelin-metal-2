@@ -11,8 +11,14 @@ export default function ImageCarousel({ images, productTitle }: ImageCarouselPro
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
+  const resolveSrc = (img?: string) => {
+    if (!img) return "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&auto=format&fit=crop&q=60";
+    if (/^[a-fA-F0-9]{24}$/.test(img)) return `/api/files/${img}`;
+    return img;
+  };
+
   const listImages = images && images.length > 0 
-    ? images 
+    ? images.map(resolveSrc)
     : ["https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&auto=format&fit=crop&q=60"];
 
   const handleNext = (e: React.MouseEvent) => {

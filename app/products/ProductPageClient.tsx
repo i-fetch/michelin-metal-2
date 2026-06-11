@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import React from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import {
   Filter,
   RotateCcw,
@@ -11,67 +11,40 @@ import {
 import ProductCard from './ProductCard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import type { Product, ProductCategory } from '@/lib/types';
+import { CATEGORIES, type Product, type ProductCategory } from '@/lib/types';
 
-interface ProductPageProps {
+interface ProductPageClientProps {
   products: Product[];
 }
 
-// const PRODUCT_CATEGORIES: ProductCategory[] = [
-//   { name: 'Zinc Oxide', slug: 'zinc-oxide' },
-//   { name: 'Zinc Dust', slug: 'zinc-dust' },
-//   { name: 'Zinc Granules', slug: 'zinc-granules' },
-//   { name: 'Copper & Alloys', slug: 'copper-alloys' },
-//   { name: 'Chemical Compounds', slug: 'chemical-compounds' },
-// ];
-
-export default function ProductPage({ products }: ProductPageProps) {
+export default function ProductPageClient({ products }: ProductPageClientProps) {
   const router = useRouter();
-
   const [searchQuery, setSearchQuery] = React.useState('');
   const [selectedCategorySlug, setSelectedCategorySlug] = React.useState<string | null>(null);
-
-
 
   const navigate = (slug: string) => {
     router.push(`/products/${slug}`);
   };
 
-  /* -----------------------------
-     CATEGORY LIST (dynamic)
-  ------------------------------*/
-  const CATEGORIES = React.useMemo(() => {
-    const map = new Map();
-
-    products.forEach((p) => {
-      map.set(p.category.slug, p.category);
-    });
-
-    return Array.from(map.values());
-  }, [products]);
-
-  /* -----------------------------
-     FILTERED PRODUCTS
-  ------------------------------*/
   const filtered = React.useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
 
-  return products.filter((p) => {
-    const matchesCategory = selectedCategorySlug
-      ? p.category.slug === selectedCategorySlug
-      : true;
+    return products.filter((p) => {
+      const matchesCategory = selectedCategorySlug
+        ? p.category.slug === selectedCategorySlug
+        : true;
 
-    const matchesSearch = query
-      ? p.title.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query) ||
-        p.specs.grade?.toLowerCase().includes(query) ||
-        p.specs.purity?.toLowerCase().includes(query) ||
-        p.applications.some((a) => a.toLowerCase().includes(query))
-      : true;
+      const matchesSearch = query
+        ? p.title.toLowerCase().includes(query) ||
+          p.description.toLowerCase().includes(query) ||
+          p.specs.grade?.toLowerCase().includes(query) ||
+          p.specs.purity?.toLowerCase().includes(query) ||
+          p.applications.some((a) => a.toLowerCase().includes(query))
+        : true;
 
-    return matchesCategory && matchesSearch;
-  });
-}, [products, searchQuery, selectedCategorySlug]);
+      return matchesCategory && matchesSearch;
+    });
+  }, [products, searchQuery, selectedCategorySlug]);
 
   return (
     <>
@@ -99,8 +72,8 @@ export default function ProductPage({ products }: ProductPageProps) {
           </p>
 
           {/* Pills */}
-          {/* <div className="flex flex-wrap gap-3 mt-8">
-            {PRODUCT_CATEGORIES.map((c) => (
+          <div className="flex flex-wrap gap-3 mt-8">
+            {CATEGORIES.map((c) => (
               <button
                 key={c.slug}
                 onClick={() => setSelectedCategorySlug(c.slug)}
@@ -114,10 +87,9 @@ export default function ProductPage({ products }: ProductPageProps) {
                 {c.name}
               </button>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
-
 
       {/* ================= MODERN FILTER UI ================= */}
       <section className="section" style={{ background: 'var(--bg)' }}>
@@ -164,7 +136,6 @@ export default function ProductPage({ products }: ProductPageProps) {
                 </div>
 
                 <button
-                  key="all"
                   onClick={() => setSelectedCategorySlug(null)}
                   className="text-xs w-full text-left py-1"
                 >
@@ -206,11 +177,7 @@ export default function ProductPage({ products }: ProductPageProps) {
                 </div>
               ) : (
                 filtered.map((p) => (
-                  <ProductCard
-                    key={p._id}
-                    product={p}
-                    onNavigate={navigate}
-                  />
+                  <ProductCard key={p._id} product={p} onNavigate={navigate} />
                 ))
               )}
             </div>
@@ -218,20 +185,6 @@ export default function ProductPage({ products }: ProductPageProps) {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      {/* <CTASection
-        icon={<Package size={28} />}
-        subtitle="Bulk Industrial Supply"
-        title="Need a Custom Quote?"
-        description="Get competitive pricing tailored to your material specifications. Our team responds within hours."
-        primaryCta={{
-          label: 'Request Quote',
-          href: '/contact',
-          icon: <ArrowRight size={16} />,
-        }}
-        trustText="Trusted by industrial buyers across West Africa"
-      /> */}
 
       <Footer />
     </>

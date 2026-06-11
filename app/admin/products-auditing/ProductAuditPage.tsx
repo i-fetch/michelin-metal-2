@@ -1,11 +1,14 @@
-// ProductAuditPage.tsx
 "use client";
-import { INITIAL_PRODUCTS } from '@/lib/mockData'
 import { AlertTriangle, Edit, Plus, Trash2 } from 'lucide-react'
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import type { Product } from '@/lib/types';
 
-const ProductAuditPage = () => {
+interface ProductAuditPageProps {
+    products: Product[];
+}
+
+const ProductAuditPage = ({ products }: ProductAuditPageProps) => {
     const router = useRouter();
     return (
         <div>
@@ -40,12 +43,12 @@ const ProductAuditPage = () => {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100 text-tx-secondary">
-                                {INITIAL_PRODUCTS.map((p) => (
+                                {products.map((p) => (
                                     <tr key={p._id} className="hover:bg-bg-subtle/40 transition-colors">
                                         <td className="py-4 px-4">
                                             <div className="flex items-center space-x-3">
                                                 <img
-                                                    src={p.images?.[0]}
+                                                    src={p.images?.[0] ? (/^[a-fA-F0-9]{24}$/.test(p.images[0]) ? `/api/files/${p.images[0]}` : p.images[0]) : undefined}
                                                     alt={p.title}
                                                     className="h-9 w-12 object-cover rounded bg-gray-100 border flex-shrink-0"
                                                     referrerPolicy="no-referrer"
@@ -56,7 +59,7 @@ const ProductAuditPage = () => {
                                                     >
                                                         {p.title}
                                                     </span>
-                                                    <span className="font-mono-custom text-[10px] text-tx-muted uppercase block">
+                                                    <span className="hidden font-mono-custom text-[10px] text-tx-muted uppercase ">
                                                         Slug: {p.slug}
                                                     </span>
                                                 </div>
@@ -74,7 +77,7 @@ const ProductAuditPage = () => {
                                         </td>
 
                                         <td className="py-4 px-4 font-mono-custom text-tx-primary">
-                                            {p.moq.value} {p.moq.unit.toUpperCase()}
+                                            {p.moq?.value ?? "-"} {p.moq?.unit ? String(p.moq.unit).toUpperCase() : ""}
                                         </td>
 
                                         <td className="py-4 px-4 font-mono-custom">

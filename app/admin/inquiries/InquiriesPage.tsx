@@ -3,15 +3,25 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { INITIAL_INQUIRIES } from '@/lib/mockData';
+import { archiveInquiryAction } from '@/controllers/inquiryController';
+import type { Inquiry } from '@/lib/types';
 
-export default function InquiriesPage() {
+interface InquiriesPageProps {
+  initialInquiries: Inquiry[];
+}
+
+export default function InquiriesPage({ initialInquiries }: InquiriesPageProps) {
   const router = useRouter();
-  const [inquiries, setInquiries] = useState(INITIAL_INQUIRIES);
+  const [inquiries, setInquiries] = useState(initialInquiries);
 
-  const handleArchiveInquiry = (id: string) => {
-    setInquiries((prev) => prev.filter((item) => item.id !== id));
-    toast.success('Inquiry archived in mock mode');
+  const handleArchiveInquiry = async (id: string) => {
+    try {
+      await archiveInquiryAction(id);
+      setInquiries((prev) => prev.filter((item) => item._id !== id));
+      toast.success('Inquiry archived successfully');
+    } catch (error) {
+      toast.error('Unable to archive inquiry.');
+    }
   };
 
   const handleOpenProduct = (slug: string) => {
@@ -52,7 +62,7 @@ export default function InquiriesPage() {
               </thead>
               <tbody className="divide-y divide-gray-50 text-tx-secondary">
                 {inquiries.map((inq, idx) => (
-                  <tr key={inq.id || idx} className="hover:bg-bg-subtle/50 transition-colors">
+                  <tr key={inq._id || idx} className="hover:bg-bg-subtle/50 transition-colors">
                     <td className="py-3 px-3">
                       <div className="font-semibold text-tx-primary">{inq.companyName}</div>
                       <div className="text-[10px] text-tx-muted">{inq.contactName} ({inq.contactEmail})</div>
@@ -84,7 +94,7 @@ export default function InquiriesPage() {
                     <td className="py-3 px-3 text-right">
                       <button
                         type="button"
-                        onClick={() => handleArchiveInquiry(inq.id)}
+                        onClick={() => void handleArchiveInquiry(inq._id)}
                         className="cursor-pointer text-[10px] text-red-500 hover:text-red-700 font-bold uppercase transition-colors"
                         title="Review and Archive"
                       >
