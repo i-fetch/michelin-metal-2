@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
-export default function AdminShell({ children }: { children: React.ReactNode }) {
+interface AdminShellProps {
+  children: React.ReactNode;
+  productCount: number;
+  inquiryCount: number;
+}
+
+export default function AdminShell({ children, productCount, inquiryCount }: AdminShellProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -30,6 +36,8 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         collapsed={collapsed}
         mobileOpen={mobileOpen}
         onCloseMobile={() => setMobileOpen(false)}
+        productCount={productCount}
+        inquiryCount={inquiryCount}
       />
 
       <div className="flex flex-col flex-1 h-full overflow-hidden min-w-0">

@@ -6,19 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface QuoteModalProps {
   product: Product;
   onClose: () => void;
-  onSubmitInquiry: (inquiry: {
-    id: string;
-    productTitle: string;
-    productSlug: string;
-    companyName: string;
-    contactName: string;
-    contactEmail: string;
-    quantityRequested: number;
-    quantityUnit: string;
-    inquiryType: string;
-    notes?: string;
-    createdAt: string;
-  }) => void;
+  onSubmitInquiry: (formData: FormData) => Promise<void>;
 }
 
 export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteModalProps) {
@@ -29,31 +17,36 @@ export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteM
   const [inquiryType, setInquiryType] = useState("Commercial Price Quote");
   const [notes, setNotes] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError(null);
 
     if (!companyName || !contactName || !contactEmail || !quantity) {
-      alert("Please complete all required fields.");
+      setSubmitError("Please complete all required fields.");
       return;
     }
 
-    const newInquiry = {
-      id: "inq-" + Date.now(),
-      productTitle: product.title,
-      productSlug: product.slug,
-      companyName,
-      contactName,
-      contactEmail,
-      quantityRequested: Number(quantity),
-      quantityUnit: product.moq.unit,
-      inquiryType,
-      notes,
-      createdAt: new Date().toISOString(),
-    };
+    const formData = new FormData(e.currentTarget);
+    formData.set("productTitle", product.title);
+    formData.set("productSlug", product.slug);
+    formData.set("quantityRequested", String(quantity));
+    formData.set("quantityUnit", product.moq.unit);
+    formData.set("inquiryType", inquiryType);
+    formData.set("notes", notes);
 
-    onSubmitInquiry(newInquiry);
-    setIsSuccess(true);
+    try {
+      setIsSubmitting(true);
+      await onSubmitInquiry(formData);
+      setIsSuccess(true);
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Unable to submit your inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -135,6 +128,7 @@ export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteM
                     <Building className="absolute left-3 top-3.5 h-4 w-4 text-tx-muted" />
                     <input
                       id="company-name"
+                      name="companyName"
                       type="text"
                       required
                       placeholder="e.g. Global Alloys Inc"
@@ -151,6 +145,7 @@ export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteM
                   </label>
                   <input
                     id="contact-name"
+                    name="contactName"
                     type="text"
                     required
                     placeholder="e.g. Dr. Sarah Miller"

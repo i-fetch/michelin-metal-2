@@ -1,83 +1,15 @@
+// ProductAuditForm.tsx 
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ExternalLink, Save } from "lucide-react";
 import { toast } from "sonner";
-import type { Product } from "@/lib/types";
-import { CATEGORIES } from "@/lib/types";
+import type { Product, ProductFormData } from "@/lib/types";
+import { BADGE_OPTIONS, buildSlug, CATEGORIES, defaultFormData, FORM_OPTIONS, getFormDataFromProduct, GRADE_OPTIONS, HAZARD_OPTIONS, PURITY_OPTIONS, SOURCE_OPTIONS, ZINC_CONTENT_OPTIONS } from "@/lib/types";
 
 type FormMode = "create" | "edit";
 
-interface ProductFormData {
-  title: string;
-  slug: string;
-  description: string;
-  categorySlug: string;
-  categoryName: string;
-  badge: string;
-  moqValue: number;
-  moqUnit: "kg" | "tonne";
-  specs: {
-    grade: string;
-    form: string;
-    purity: string;
-    zincContent: string;
-    source: string;
-    hazardCompliance: string;
-  };
-  applications: string[];
-  images: string[];
-}
-
-const defaultFormData: ProductFormData = {
-  title: "",
-  slug: "",
-  description: "",
-  categorySlug: CATEGORIES[0].slug,
-  categoryName: CATEGORIES[0].name,
-  badge: "",
-  moqValue: 100,
-  moqUnit: "tonne",
-  specs: {
-    grade: "",
-    form: "",
-    purity: "",
-    zincContent: "",
-    source: "",
-    hazardCompliance: "",
-  },
-  applications: [],
-  images: [],
-};
-
-const buildSlug = (value: string) =>
-  value
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-_]/g, "");
-
-const getFormDataFromProduct = (product: Product): ProductFormData => ({
-  title: product.title,
-  slug: product.slug,
-  description: product.description,
-  categorySlug: product.category.slug,
-  categoryName: product.category.name,
-  badge: product.badge ?? "",
-  moqValue: product.moq.value,
-  moqUnit: product.moq.unit,
-  specs: {
-    grade: product.specs.grade ?? "",
-    form: product.specs.form ?? "",
-    purity: product.specs.purity ?? "",
-    zincContent: product.specs.zincContent ?? "",
-    source: product.specs.source ?? "",
-    hazardCompliance: product.specs.hazardCompliance ?? "",
-  },
-  applications: product.applications ?? [],
-  images: product.images ?? [],
-});
 
 interface ProductAuditFormProps {
   mode: FormMode;
@@ -90,6 +22,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
   const [formData, setFormData] = useState<ProductFormData>(defaultFormData);
   const [newAppInput, setNewAppInput] = useState("");
   const [newImageInput, setNewImageInput] = useState("");
+  const [newFiles, setNewFiles] = useState<File[]>([]);
   const [isAILoading, setIsAILoading] = useState(false);
 
   useEffect(() => {
@@ -111,23 +44,62 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
     }
   };
 
-  const handleSaveProduct = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const handleSaveProduct = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    try {
-      if (isEditMode) {
-        console.log("Updating product:", product?._id, formData);
-        toast.success("Product update simulated successfully.");
-      } else {
-        console.log("Creating product:", formData);
-        toast.success("Product creation simulated successfully.");
-      }
-      router.push("/admin/products-auditing");
-    } catch (error) {
-      console.error("Save error:", error);
-      toast.error("Failed to save product.");
+  try {
+    const payload = {
+      title: formData.title,
+      slug: formData.slug,
+      description: formData.description,
+      categoryName: formData.categoryName,
+      categorySlug: formData.categorySlug,
+      badge: formData.badge,
+      moqValue: formData.moqValue,
+      moqUnit: formData.moqUnit,
+
+      grade: formData.specs.grade,
+      form: formData.specs.form,
+      purity: formData.specs.purity,
+      source: formData.specs.source,
+      hazardCompliance: formData.specs.hazardCompliance,
+      zincContent: formData.specs.zincContent,
+
+      applications: formData.applications,
+
+      // IMPORTANT: only URLs or already-uploaded IDs
+      images: formData.images,
+    };
+
+    const endpoint = isEditMode
+      ? "/api/update-product"
+      : "/api/create-product";
+
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(
+        isEditMode && product?._id
+          ? { ...payload, id: product._id }
+          : payload
+      ),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data?.message || "Request failed");
     }
-  };
+
+    toast.success(isEditMode ? "Product updated" : "Product created");
+    router.push("/admin/products-auditing");
+  } catch (error) {
+    console.error("Save error:", error);
+    toast.error("Failed to save product.");
+  }
+};
 
   return (
     <div className="space-y-6 text-left" id="subview-admin-form">
@@ -182,9 +154,11 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
                 required
                 placeholder="ultrafine-reactive-zinc-dust"
                 value={formData.slug}
-                onChange={(e) => setFormData((prev) => ({ ...prev, slug: buildSlug(e.target.value) }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none bg-bg-subtle font-mono-custom text-tx-primary"
+                readOnly
+                title="Auto-generated from product title"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs bg-bg-subtle font-mono-custom text-tx-primary cursor-not-allowed"
               />
+              <p className="text-[11px] text-tx-secondary mt-1">Auto-generated from the <strong>Product Title</strong>. Slug is product-specific (e.g. <em>ultrafine-reactive-zinc-dust</em>), not the category.</p>
             </div>
           </div>
 
@@ -215,13 +189,37 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
 
             <div>
               <label className="block text-xs font-semibold text-tx-secondary mb-1">Status Badge Overlay</label>
-              <input
-                type="text"
-                placeholder="e.g. Premium Active, Eco-Certified"
-                value={formData.badge}
-                onChange={(e) => setFormData((prev) => ({ ...prev, badge: e.target.value }))}
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
-              />
+              <div className="grid gap-2">
+                <select
+                  value={formData.badgeOption}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setFormData((prev) => ({ ...prev, badgeOption: val, badge: val === "Custom" ? prev.badge : val }));
+                  }}
+                  className="w-full rounded-lg border border-green-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-900 focus:border-brand-green outline-none"
+                >
+                  <option value="">Select a badge</option>
+                  {BADGE_OPTIONS.map((badge) => (
+                    <option key={badge} value={badge}>
+                      {badge}
+                    </option>
+                  ))}
+                </select>
+
+                {formData.badgeOption === "Custom" ? (
+                  <input
+                    type="text"
+                    placeholder="Custom badge text"
+                    value={formData.badge}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, badge: e.target.value }))}
+                    className="w-full rounded-lg border border-green-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
+                  />
+                ) : formData.badgeOption ? (
+                  <div className="hidden rounded-lg border border-green-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-900">
+                    Selected badge: <strong>{formData.badgeOption}</strong>
+                  </div>
+                ) : null}
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
@@ -271,70 +269,130 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono-custom">
             <div>
               <label className="block text-xs font-semibold text-tx-secondary mb-1 font-sans">Quality Grade Name</label>
-              <input
-                type="text"
-                placeholder="Active Pharmaceutical / Class A Maritime"
+              <select
                 value={formData.specs.grade}
                 onChange={(e) => setFormData((p) => ({ ...p, specs: { ...p.specs, grade: e.target.value } }))}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
-              />
+              >
+                <option value="">Select grade</option>
+                {GRADE_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+                {formData.specs.grade && !GRADE_OPTIONS.includes(formData.specs.grade as (typeof GRADE_OPTIONS)[number]) ? (
+                  <option value={formData.specs.grade}>
+                    Custom: {formData.specs.grade}
+                  </option>
+                ) : null}
+              </select>
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-tx-secondary mb-1 font-sans">Physical Form Element</label>
-              <input
-                type="text"
-                placeholder="Finely precipitated powder / Granules"
+              <select
                 value={formData.specs.form}
                 onChange={(e) => setFormData((p) => ({ ...p, specs: { ...p.specs, form: e.target.value } }))}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
-              />
+              >
+                <option value="">Select form</option>
+                {FORM_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+                {formData.specs.form && !FORM_OPTIONS.includes(formData.specs.form as (typeof FORM_OPTIONS)[number]) ? (
+                  <option value={formData.specs.form}>
+                    Custom: {formData.specs.form}
+                  </option>
+                ) : null}
+              </select>
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-tx-secondary mb-1 font-sans">Chemical Purity %</label>
-              <input
-                type="text"
-                placeholder="99.92% / 98.5%"
+              <select
                 value={formData.specs.purity}
                 onChange={(e) => setFormData((p) => ({ ...p, specs: { ...p.specs, purity: e.target.value } }))}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
-              />
+              >
+                <option value="">Select purity</option>
+                {PURITY_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+                {formData.specs.purity && !PURITY_OPTIONS.includes(formData.specs.purity as (typeof PURITY_OPTIONS)[number]) ? (
+                  <option value={formData.specs.purity}>
+                    Custom: {formData.specs.purity}
+                  </option>
+                ) : null}
+              </select>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono-custom">
             <div>
               <label className="block text-xs font-semibold text-tx-secondary mb-1 font-sans">Zinc Content Fraction %</label>
-              <input
-                type="text"
-                placeholder="80.3% / 98.5%"
+              <select
                 value={formData.specs.zincContent}
                 onChange={(e) => setFormData((p) => ({ ...p, specs: { ...p.specs, zincContent: e.target.value } }))}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
-              />
+              >
+                <option value="">Select zinc content</option>
+                {ZINC_CONTENT_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+                {formData.specs.zincContent && !ZINC_CONTENT_OPTIONS.includes(formData.specs.zincContent as (typeof ZINC_CONTENT_OPTIONS)[number]) ? (
+                  <option value={formData.specs.zincContent}>
+                    Custom: {formData.specs.zincContent}
+                  </option>
+                ) : null}
+              </select>
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-tx-secondary mb-1 font-sans">Extraction Source Loop</label>
-              <input
-                type="text"
-                placeholder="Hydrogen Reduction Loop / Electrolytic"
+              <select
                 value={formData.specs.source}
                 onChange={(e) => setFormData((p) => ({ ...p, specs: { ...p.specs, source: e.target.value } }))}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none"
-              />
+              >
+                <option value="">Select source</option>
+                {SOURCE_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+                {formData.specs.source && !SOURCE_OPTIONS.includes(formData.specs.source as (typeof SOURCE_OPTIONS)[number]) ? (
+                  <option value={formData.specs.source}>
+                    Custom: {formData.specs.source}
+                  </option>
+                ) : null}
+              </select>
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-tx-secondary mb-1 font-sans">Hazard Compliance Class (ADR/GHS)</label>
-              <input
-                type="text"
-                placeholder="GHS Class 9 Aquatic Toxicity"
+              <select
                 value={formData.specs.hazardCompliance}
                 onChange={(e) => setFormData((p) => ({ ...p, specs: { ...p.specs, hazardCompliance: e.target.value } }))}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none col-span-1"
-              />
+              >
+                <option value="">Select hazard compliance</option>
+                {HAZARD_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+                {formData.specs.hazardCompliance && !HAZARD_OPTIONS.includes(formData.specs.hazardCompliance as (typeof HAZARD_OPTIONS)[number]) ? (
+                  <option value={formData.specs.hazardCompliance}>
+                    Custom: {formData.specs.hazardCompliance}
+                  </option>
+                ) : null}
+              </select>
             </div>
           </div>
         </div>
@@ -393,32 +451,50 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
           </h3>
 
           <div className="space-y-3">
-            <div className="flex space-x-2">
-              <input
-                type="url"
-                placeholder="Paste raw Unsplash/industrial image online URL anchor"
-                value={newImageInput}
-                onChange={(e) => setNewImageInput(e.target.value)}
-                className="flex-grow rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none font-mono-custom"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (newImageInput.trim()) {
-                    setFormData((p) => ({ ...p, images: [...p.images, newImageInput.trim()] }));
-                    setNewImageInput("");
-                  }
-                }}
-                className="cursor-pointer bg-tx-primary hover:bg-tx-secondary text-white px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors"
-              >
-                Add Image Link
-              </button>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+              <div className="flex-grow">
+                <input
+                  type="url"
+                  placeholder="Paste raw Unsplash/industrial image online URL anchor"
+                  value={newImageInput}
+                  onChange={(e) => setNewImageInput(e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-brand-green outline-none font-mono-custom"
+                />
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (newImageInput.trim()) {
+                      setFormData((p) => ({ ...p, images: [...p.images, newImageInput.trim()] }));
+                      setNewImageInput("");
+                    }
+                  }}
+                  className="cursor-pointer bg-tx-primary hover:bg-tx-secondary text-white px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors"
+                >
+                  Add Image Link
+                </button>
+                <label className="cursor-pointer bg-brand-gold hover:bg-tx-secondary text-white px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors"
+                >
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={(e) => {
+                      const files = Array.from(e.target.files || []);
+                      setNewFiles((prev) => [...prev, ...files]);
+                    }}
+                    className="hidden"
+                  />
+                  Upload From Device
+                </label>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-1" id="image-url-matrix">
               {formData.images.map((img, idx) => (
-                <div key={idx} className="relative aspect-16/10 rounded-lg overflow-hidden border bg-bg-subtle group">
-                  <img src={img} alt={`Product ${idx + 1}`} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                <div key={`ref-${idx}`} className="relative aspect-16/10 rounded-lg overflow-hidden border bg-bg-subtle group">
+                  <img src={/^[a-fA-F0-9]{24}$/.test(img) ? `/api/files/${img}` : img} alt={`Product ${idx + 1}`} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
                   <button
                     type="button"
                     onClick={() => setFormData((p) => ({ ...p, images: p.images.filter((_, i) => i !== idx) }))}
@@ -429,6 +505,23 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
                   </button>
                   <div className="absolute bottom-0 inset-x-0 bg-black/70 py-0.5 text-center text-[8px] text-gray-300 font-mono-custom truncate px-1">
                     Img {idx + 1}
+                  </div>
+                </div>
+              ))}
+
+              {newFiles.map((f, idx) => (
+                <div key={`file-${idx}`} className="relative aspect-16/10 rounded-lg overflow-hidden border bg-bg-subtle group">
+                  <img src={URL.createObjectURL(f)} alt={f.name} className="h-full w-full object-cover" />
+                  <button
+                    type="button"
+                    onClick={() => setNewFiles((prev) => prev.filter((_, i) => i !== idx))}
+                    className="cursor-pointer absolute top-1.5 right-1.5 bg-black/75 hover:bg-red-600 font-bold text-white h-5 w-5 rounded-full flex items-center justify-center text-xs transition-colors"
+                    title="Remove selected file"
+                  >
+                    ×
+                  </button>
+                  <div className="absolute bottom-0 inset-x-0 bg-black/70 py-0.5 text-center text-[8px] text-gray-300 font-mono-custom truncate px-1">
+                    {f.name}
                   </div>
                 </div>
               ))}
@@ -450,7 +543,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
             className="cursor-pointer px-6 py-2.5 rounded-lg bg-brand-green text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-green/95 transition-all inline-flex items-center space-x-2"
           >
             <Save className="h-4 w-4" />
-            <span>{isEditMode ? "Save Changes" : "Save to MongoDB Schema"}</span>
+            <span>{isEditMode ? "Save Changes" : "Save"}</span>
           </button>
         </div>
       </form>

@@ -9,19 +9,26 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onNavigate }: ProductCardProps) {
-  const primaryImage = product.images?.[0] || "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&auto=format&fit=crop&q=60";
+  const resolveImageSrc = (img?: string) => {
+    if (!img) return "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&auto=format&fit=crop&q=60";
+    // if looks like a MongoDB ObjectId (GridFS id), serve via API
+    if (/^[a-fA-F0-9]{24}$/.test(img)) return `/api/files/${img}`;
+    return img;
+  };
+
+  const primaryImage = resolveImageSrc(product.images?.[0]);
 
   return (
-    <div 
-      className="group relative flex flex-col overflow-hidden rounded-xl border border-border-subtle bg-white transition-all hover:-translate-y-1 hover:shadow-lg"
+    <div
+      className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border-subtle bg-white transition-all hover:-translate-y-1 hover:shadow-lg"
       id={`product-card-${product._id}`}
     >
       {/* Top Image block */}
-      <div className="relative aspect-16/10 w-full overflow-hidden bg-bg-subtle">
+      <div className="relative h-52 w-full overflow-hidden bg-bg-subtle sm:h-56 md:h-60">
         <img
           src={primaryImage}
           alt={product.title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
         
@@ -39,16 +46,16 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
       </div>
 
       {/* Listing Content */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex h-full flex-1 flex-col p-5">
         <div className="flex-1">
-          <h3 
+          <h3
             onClick={() => onNavigate(product.slug)}
             className="cursor-pointer text-bebas text-lg font-normal tracking-wide text-tx-primary hover:text-brand-green transition-colors line-clamp-1"
           >
             {product.title}
           </h3>
-          
-          <p className="mt-2 text-xs text-tx-secondary line-clamp-2 leading-relaxed">
+
+          <p className="mt-2 text-xs text-tx-secondary line-clamp-2 leading-relaxed min-h-[2.75rem]">
             {product.description}
           </p>
 

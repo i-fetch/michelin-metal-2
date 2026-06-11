@@ -1,5 +1,4 @@
 "use client";
-import { INITIAL_INQUIRIES, INITIAL_PRODUCTS } from "@/lib/mockData";
 import { Database, Mail, Plus, Settings } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
@@ -10,6 +9,8 @@ interface SidebarProps {
   collapsed: boolean;
   mobileOpen: boolean;
   onCloseMobile: () => void;
+  productCount?: number;
+  inquiryCount?: number;
 }
 
 function getInitials(name: string): string {
@@ -21,7 +22,7 @@ function getInitials(name: string): string {
     .slice(0, 2);
 }
 
-export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: SidebarProps) {
+export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productCount, inquiryCount }: SidebarProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -152,7 +153,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
           >
             <Database className="h-4 w-4 shrink-0" />
             <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
-              Listings Auditing ({INITIAL_PRODUCTS.length})
+              Listings Auditing ({productCount})
             </span>
           </button>
 
@@ -185,7 +186,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile }: Sideba
           >
             <Mail className="h-4 w-4 shrink-0" />
             <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
-              B2B Trade Inquiries ({INITIAL_INQUIRIES.length})
+              B2B Trade Inquiries ({inquiryCount})
             </span>
           </button>
         </div>
