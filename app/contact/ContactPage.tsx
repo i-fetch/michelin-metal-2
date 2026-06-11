@@ -250,7 +250,7 @@ export default function ContactPage(): React.JSX.Element {
                   fontSize: 'clamp(3rem, 7.5vw, 6rem)'
                 }}
               >
-                Get Ins
+                Get In
                 <br />
                 <span className="text-[var(--clr-green)]">Touch</span>
               </motion.h1>
