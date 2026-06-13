@@ -4,13 +4,7 @@
 import Link from 'next/link'
 import { ArrowRight, MedalIcon } from 'lucide-react'
 import { motion, cubicBezier, Variants } from "framer-motion"
-
-const stats = [
-  { num: '10+', label: 'Years Active' },
-  { num: '50+', label: 'B2B Partners' },
-  { num: '100K+', label: 'Tonnes Processed' },
-  { num: '2+', label: 'Continents' },
-]
+import { useTranslations } from "next-intl";
 
 // ── Animation ─────────────────────────────
 const ease = cubicBezier(0.22, 1, 0.36, 1)
@@ -39,6 +33,14 @@ const item: Variants = {
 }
 
 export default function HeroHeader() {
+  const t = useTranslations("Hero");
+
+  const stats = [
+    { num: "10+", label: t("years") },
+    { num: "50+", label: t("partners") },
+    { num: "100K+", label: t("processed") },
+    { num: "2+", label: t("continents") },
+  ];
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────── */}
@@ -92,7 +94,7 @@ export default function HeroHeader() {
               className="tag-gold border inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium mb-5"
             >
               <MedalIcon className="text-gold-500" size={16} />
-              Metal Recycle Industry · West Africa
+              {t("tag")}
             </motion.div>
 
             {/* Heading */}
@@ -105,10 +107,10 @@ export default function HeroHeader() {
                 letterSpacing: '0.03em'
               }}
             >
-              TURNING METAL{' '}
-              <span style={{ color: 'var(--clr-green-light)' }}>WASTE</span>{' '}
-              INTO GLOBAL{' '}
-              <span style={{ color: 'var(--clr-gold)' }}>VALUE</span>
+              {t("title1")}{' '}
+              <span style={{ color: 'var(--clr-green-light)' }}>{t("waste")}</span>{' '}
+              {t("title2")}{' '}
+              <span style={{ color: 'var(--clr-gold)' }}>{t("value")}</span>
             </motion.h1>
 
             {/* Paragraph */}
@@ -120,8 +122,7 @@ export default function HeroHeader() {
                 fontWeight: 300
               }}
             >
-              Mechelin Metals Nigeria — sourcing, sorting, baling and distributing aluminium and non-ferrous metals to manufacturers across West Africa and the world.
-            </motion.p>
+              {t("description")}            </motion.p>
 
             {/* CTA */}
             <motion.div
@@ -129,7 +130,7 @@ export default function HeroHeader() {
               className="flex flex-wrap gap-4 mb-16"
             >
               <Link href="/products" className="btn btn-green">
-                Explore Products <ArrowRight size={15} />
+                {t("explore")}<ArrowRight size={15} />
               </Link>
 
               <Link
@@ -140,7 +141,7 @@ export default function HeroHeader() {
                   color: '#fff'
                 }}
               >
-                Our Story <ArrowRight size={15} />
+                {t("story")} <ArrowRight size={15} />
               </Link>
             </motion.div>
 

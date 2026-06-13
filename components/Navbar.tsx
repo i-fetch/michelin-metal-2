@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import Image from "next/image";
+// import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./lang/LanguageSwitcher";
 
 const links = [
   { href: "/", label: "Home", desc: "Main corporate portal" },
@@ -19,8 +21,31 @@ const links = [
 export default function Navbar(): React.JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const path = usePathname();
+  // const [isOpen, setIsOpen] = useState(false)
+  const [locale, setLocale] = useState("")
+  const router = useRouter();
 
-  useEffect(() => setIsMenuOpen(false), [path])
+  // const t = useTranslations("Navbar");
+  useEffect(() => {
+    setIsMenuOpen(false)
+    const cookieLocale = document.cookie
+      .split("; ").find(row => row.startsWith("MYNEXTAPP_LOCALE="))?.split("=")[1];
+
+    if (cookieLocale) {
+      setLocale(cookieLocale);
+    } else {
+      const browserLocale = navigator.language.slice(0, 2);
+      setLocale(browserLocale);
+      document.cookie = `MYNEXTAPP_LOCALE=${browserLocale}`;
+      router.refresh();
+    }
+  }, [router, path]);
+
+  const changeLocale = (newLocale: string) => {
+    setLocale(newLocale);
+    document.cookie = `MYNEXTAPP_LOCALE=${newLocale}`;
+    router.refresh();
+  }
 
   return (
     <>
@@ -64,6 +89,7 @@ export default function Navbar(): React.JSX.Element {
               const isActive = path === link.href;
 
               return (
+
                 <Link
                   key={link.href}
                   href={link.href}
@@ -78,8 +104,17 @@ export default function Navbar(): React.JSX.Element {
                     />
                   )}
                 </Link>
+
               );
             })}
+
+            {/* Language Switcher Desktop */}
+            <div className="hidden xl:flex items-center ml-4 min-w-[140px]">
+              <LanguageSwitcher
+                locale={locale}
+                changeLocale={changeLocale}
+              />
+            </div>
           </div>
 
           {/* ── Right side ────────────────────────────────────────── */}
@@ -118,62 +153,57 @@ export default function Navbar(): React.JSX.Element {
                          z-50 p-8 sm:p-12 flex flex-col justify-between"
             >
 
-              <div className="flex items-center justify-between border-b border-white/20 pb-6">
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-2">
-                  <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
-                    <Image
-                      src="/logo.png"
-                      width={20}
-                      height={20}
-                      className="w-full h-full object-cover"
-                      alt="Mechelin Metals"
-                      priority
-                      unoptimized
-                    />
-                  </div>
 
-                  <div className="flex flex-col leading-none">
-                    <h1
-                      className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
-                      style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
-                    >
-                      MECHELIN METALS
-                    </h1>
-                    <span
-                      className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
-                      style={{ color: 'var(--tx-faint)' }}
-                    >
-                      NIGERIA
-                    </span>
-                  </div>
-                </Link>
 
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="w-8 h-8 rounded-full border border-white/30 bg-white/20 backdrop-blur-xl"
+              {/* Drawer Header */}
+  <div className="grid grid-cols-[48px_1fr_48px] items-center gap-3 border-b border-white/20 pb-5">
+  <Link
+    href="/"
+    className="w-12 h-12 rounded-xl overflow-hidden bg-[var(--bg-subtle)]"
+  >
+    <Image
+      src="/logo.png"
+      width={48}
+      height={48}
+      className="w-full h-full object-cover"
+      alt="Mechelin Metals"
+      priority
+      unoptimized
+    />
+  </Link>
+
+  <LanguageSwitcher
+    locale={locale}
+    changeLocale={changeLocale}
+  />
+
+  <button
+    onClick={() => setIsMenuOpen(false)}
+    className="w-12 h-12 rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] flex items-center justify-center"
+  >
+    <X size={18} />
+  </button>
+</div>
+              {/* Drawer Links */}
+              <nav className="flex flex-col space-y-8 my-auto">                {links.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
                 >
-                  ✕
-                </button>
-              </div>
-
-              <nav className="flex flex-col space-y-6 my-auto">
-                {links.map((link) => (
-                  <React.Fragment key={link.href}>
-                    <Link className="block" href={link.href}>
-                      <h2 className="text-2xl font-black text-[var(--clr-green)] font-display"
-                      >
-                        {link.label}
-                      </h2>
-                      <p className="text-xs text-[var(--tx-secondary)]">
-                        {link.desc}
-                      </p>
-                    </Link>
-                    <hr className="border-t border-white/20" />
-                  </React.Fragment>
-                ))}
+                  <Link href={link.href} onClick={() => setIsMenuOpen(false)} className="group block">
+                    <h2 className="text-xl font-bold tracking-wider text-[var(--tx-primary)] group-hover:text-[var(--clr-green)] transition-colors">
+                      {link.label}
+                    </h2>
+                    <p className="text-xs text-[var(--tx-muted)]">{link.desc}</p>
+                  </Link>
+                </motion.div>
+              ))}
               </nav>
 
+
+              {/* Drawer Footer */}
               <div className="border-t border-white/20 pt-6">
                 <Link
                   href="/contact"
@@ -183,6 +213,7 @@ export default function Navbar(): React.JSX.Element {
                 </Link>
               </div>
 
+
             </motion.aside>
           </>
         )}
@@ -190,3 +221,6 @@ export default function Navbar(): React.JSX.Element {
     </>
   );
 }
+
+
+

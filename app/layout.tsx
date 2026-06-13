@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 import './globals.css'
-
 import SessionWrapper from '@/components/SessionWrapper/SessionWrapper'
 import ScrollToTopButton from '@/components/ScrollToTop'
-
 import { Bebas_Neue, DM_Sans, DM_Mono, Geist } from 'next/font/google'
 import { cn } from "@/lib/utils";
 import { Toaster } from 'sonner'
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale, getMessages } from "next-intl/server"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const display = Bebas_Neue({
   weight: '400',
@@ -54,10 +54,15 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const messages = await getMessages();
+  const locale = await getLocale();
   return (
-    <html
-      lang="en"
+    <html lang={locale}
       // Removed all traces of the "dark" class flag completely
       className={cn(display.variable, body.variable, mono.variable, "font-sans", geist.variable)}
       style={{ colorScheme: 'light' }}
@@ -65,11 +70,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       data-scroll-behavior="smooth"
     >
       <body cz-shortcut-listen="true" className="antialiased bg-app text-tx-primary">
-        <SessionWrapper>
-          {children}
-          <Toaster />
-          <ScrollToTopButton />
-        </SessionWrapper>
+        <NextIntlClientProvider messages={messages} >
+          <SessionWrapper>
+            {children}
+            <Toaster />
+            <ScrollToTopButton />
+          </SessionWrapper>
+        </NextIntlClientProvider>
       </body>
     </html>
   )
