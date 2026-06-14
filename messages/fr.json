@@ -1,4 +1,17 @@
 {
+  "Navbar": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "products": "Produits",
+    "services": "Services",
+    "contact": "Contact",
+    "homeDesc": "Portail principal de l'entreprise",
+    "aboutDesc": "Notre histoire et nos capacités",
+    "productsDesc": "Catégories de métaux industriels",
+    "servicesDesc": "Infrastructure mondiale d'expédition",
+    "contactDesc": "Obtenir des devis professionnels",
+    "getQuotes": "Demander un Devis"
+  },
   "Hero": {
     "tag": "Industrie du recyclage des métaux · Afrique de l'Ouest",
     "title1": "TRANSFORMER LES DÉCHETS",
@@ -8,7 +21,6 @@
     "description": "Mechelin Metals Nigeria — approvisionnement, tri, mise en balles et distribution d'aluminium et de métaux non ferreux.",
     "explore": "Explorer les Produits",
     "story": "Notre Histoire",
-
     "years": "Années d'activité",
     "partners": "Partenaires B2B",
     "processed": "Tonnes Traitées",

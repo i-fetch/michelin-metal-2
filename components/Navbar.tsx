@@ -214,7 +214,7 @@ export default function Navbar(): React.JSX.Element {
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      <h2 className="text-2xl font-black text-[var(--clr-green)] font-display">
+                      <h2 className="text-2xl font-black text-[var(--clr-green)] font-display tracking-wider">
                         {link.label}
                       </h2>
 

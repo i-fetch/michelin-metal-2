@@ -1,4 +1,17 @@
 {
+  "Navbar": {
+    "home": "首页",
+    "about": "关于我们",
+    "products": "产品",
+    "services": "服务",
+    "contact": "联系我们",
+    "homeDesc": "企业官方网站",
+    "aboutDesc": "我们的历史与实力",
+    "productsDesc": "工业金属类别",
+    "servicesDesc": "全球运输基础设施",
+    "contactDesc": "获取企业报价",
+    "getQuotes": "获取报价"
+  },
   "Hero": {
     "tag": "金属回收行业 · 西非",
     "title1": "将金属",
@@ -8,7 +21,6 @@
     "description": "Mechelin Metals Nigeria——采购、分拣、打包和分销铝及有色金属。",
     "explore": "查看产品",
     "story": "关于我们",
-
     "years": "运营年数",
     "partners": "B2B合作伙伴",
     "processed": "处理吨数",

@@ -1,4 +1,17 @@
 {
+  "Navbar": {
+    "home": "홈",
+    "about": "회사 소개",
+    "products": "제품",
+    "services": "서비스",
+    "contact": "문의하기",
+    "homeDesc": "기업 공식 포털",
+    "aboutDesc": "회사 연혁 및 역량",
+    "productsDesc": "산업용 금속 카테고리",
+    "servicesDesc": "글로벌 물류 인프라",
+    "contactDesc": "기업 견적 문의",
+    "getQuotes": "견적 요청"
+  },
   "Hero": {
     "tag": "금속 재활용 산업 · 서아프리카",
     "title1": "금속",
@@ -8,7 +21,6 @@
     "description": "Mechelin Metals Nigeria는 알루미늄 및 비철금속의 수집, 분류, 압축 및 유통을 수행합니다.",
     "explore": "제품 보기",
     "story": "회사 소개",
-
     "years": "운영 연수",
     "partners": "B2B 파트너",
     "processed": "처리 톤수",

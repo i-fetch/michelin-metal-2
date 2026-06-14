@@ -1,4 +1,17 @@
 {
+  "Navbar": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "services": "Services",
+    "contact": "Contact",
+    "homeDesc": "Main corporate portal",
+    "aboutDesc": "Our history & capabilities",
+    "productsDesc": "Industrial metal categories",
+    "servicesDesc": "Global shipping infrastructure",
+    "contactDesc": "Get institutional quotes",
+    "getQuotes": "Get Quotes"
+  },
   "Hero": {
     "tag": "Metal Recycle Industry · West Africa",
     "title1": "TURNING METAL",
@@ -8,7 +21,6 @@
     "description": "Mechelin Metals Nigeria — sourcing, sorting, baling and distributing aluminium and non-ferrous metals to manufacturers across West Africa and the world.",
     "explore": "Explore Products",
     "story": "Our Story",
-
     "years": "Years Active",
     "partners": "B2B Partners",
     "processed": "Tonnes Processed",
