@@ -76,5 +76,80 @@
     "mapSouthKorea": "한국",
     "mapIndia": "인도",
     "ariaLabel": "글로벌 무역 네트워크"
+  },
+  "materials": {
+    "title": "우리의",
+    "highlight": "제품",
+    "browse": "전체 재료 보기",
+    "needCustom": "맞춤 조달이 필요하신가요?",
+    "ctaText": "산업용 금속을 주문 제작으로 공급합니다.",
+    "ctaButton": "견적 요청",
+    "categories": {
+      "nonFerrous": "비철금속",
+      "ferrous": "철금속",
+      "industrial": "산업용",
+      "autoScrap": "자동차 스크랩"
+    },
+    "items": {
+      "aluminum": {
+        "name": "알루미늄",
+        "desc": "고순도 알루미늄 스크랩으로 재용해 및 재가공에 적합합니다."
+      },
+      "castAluminum": {
+        "name": "주조 알루미늄",
+        "desc": "엔진 블록 및 산업용 주조 알루미늄 부품."
+      },
+      "ironSteel": {
+        "name": "철강",
+        "desc": "중량 고철 및 구조용 철강."
+      },
+      "condenser": {
+        "name": "콘덴서",
+        "desc": "구리-알루미늄이 포함된 냉각 장치 부품."
+      },
+      "ubcCans": {
+        "name": "UBC 캔",
+        "desc": "재활용 알루미늄 음료 캔."
+      },
+      "ferrousMetals": {
+        "name": "철계 금속",
+        "desc": "철근, 구조강 등 다양한 철 기반 금속."
+      },
+      "nonFerrousMetals": {
+        "name": "비철 금속",
+        "desc": "구리, 황동, 납, 아연 등."
+      },
+      "vehicleScrap": {
+        "name": "폐차",
+        "desc": "자동차 해체 금속 및 부품 회수."
+      }
+    }
+  },
+  "cta": {
+    "subtitle": "산업용 대량 공급 및 조달",
+    "title": "우리와 협력할 준비가 되셨나요?",
+    "description": "안정적인 원자재 공급이 필요하거나 고철 처리가 필요하든 — 저희 팀이 준비되어 있습니다.",
+    "primaryCta": "견적 요청",
+    "secondaryCta": "제품 보기",
+    "trustText": "서아프리카 산업 구매자 및 고철 업체들의 신뢰"
+  },
+  "footer": {
+    "brandDescription": "서아프리카 최고의 통합 금속 재활용 기업 — 고품질 재활용 원자재를 조달, 선별 및 국내외에 공급합니다.",
+    "navigation": "네비게이션",
+    "products": "제품",
+    "links": {
+      "about": "회사 소개",
+      "products": "제품",
+      "services": "서비스",
+      "contact": "문의"
+    },
+    "productList": {
+      "aluminiumBales": "알루미늄 베일",
+      "nonFerrousScrap": "비철 금속 스크랩",
+      "copperScrap": "구리 스크랩",
+      "brassScrap": "황동 스크랩",
+      "bulkSupply": "대량 공급"
+    },
+    "copyright": "모든 권리 보유"
   }
 }

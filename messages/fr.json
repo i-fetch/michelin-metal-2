@@ -76,5 +76,80 @@
     "mapSouthKorea": "Corée",
     "mapIndia": "Inde",
     "ariaLabel": "Réseaux Commerciaux Mondiaux"
+  },
+  "materials": {
+    "title": "NOS",
+    "highlight": "Produits",
+    "browse": "Voir tous les matériaux",
+    "needCustom": "Besoin d’un approvisionnement personnalisé ?",
+    "ctaText": "Nous fournissons des métaux de qualité industrielle sur demande.",
+    "ctaButton": "Obtenir un devis",
+    "categories": {
+      "nonFerrous": "Non ferreux",
+      "ferrous": "Ferreux",
+      "industrial": "Industriel",
+      "autoScrap": "Ferraille automobile"
+    },
+    "items": {
+      "aluminum": {
+        "name": "Aluminium",
+        "desc": "Déchets d'aluminium de haute pureté idéals pour la fusion et le retraitement."
+      },
+      "castAluminum": {
+        "name": "Aluminium moulé",
+        "desc": "Blocs moteurs, carters et composants industriels en aluminium moulé pour refonte."
+      },
+      "ironSteel": {
+        "name": "Fer & Acier",
+        "desc": "Ferraille lourde, acier broyé et fer structurel pour fours à arc électrique."
+      },
+      "condenser": {
+        "name": "Condenseur",
+        "desc": "Condenseurs de climatisation et de réfrigération riches en cuivre et aluminium."
+      },
+      "ubcCans": {
+        "name": "Canettes UBC",
+        "desc": "Canettes en aluminium compactées, parmi les matériaux les plus recyclés au monde."
+      },
+      "ferrousMetals": {
+        "name": "Métaux ferreux",
+        "desc": "Large gamme de ferraille à base de fer incluant acier et équipements industriels."
+      },
+      "nonFerrousMetals": {
+        "name": "Métaux non ferreux",
+        "desc": "Cuivre, laiton, bronze, plomb et zinc sous diverses formes prêtes à être traitées."
+      },
+      "vehicleScrap": {
+        "name": "Véhicules hors d’usage",
+        "desc": "Véhicules démontés pour récupération de pièces et métaux."
+      }
+    }
+  },
+  "cta": {
+    "subtitle": "Approvisionnement et achats industriels en gros",
+    "title": "PRÊT À COLLABORER AVEC NOUS ?",
+    "description": "Que vous ayez besoin d’un approvisionnement fiable en matières premières ou de déplacer des déchets métalliques — notre équipe est prête.",
+    "primaryCta": "Demander un devis",
+    "secondaryCta": "Voir les produits",
+    "trustText": "Approuvé par des acheteurs industriels et des ferrailleurs en Afrique de l’Ouest"
+  },
+  "footer": {
+    "brandDescription": "Entreprise leader en Afrique de l’Ouest dans le recyclage des métaux — collecte, tri et distribution de matières premières recyclées de haute qualité à l’échelle nationale et internationale.",
+    "navigation": "Navigation",
+    "products": "Produits",
+    "links": {
+      "about": "À propos",
+      "products": "Produits",
+      "services": "Services",
+      "contact": "Contact"
+    },
+    "productList": {
+      "aluminiumBales": "Balles d’aluminium",
+      "nonFerrousScrap": "Ferraille non ferreuse",
+      "copperScrap": "Cuivre",
+      "brassScrap": "Laiton",
+      "bulkSupply": "Approvisionnement en gros"
+    },
+    "copyright": "Tous droits réservés"
   }
 }

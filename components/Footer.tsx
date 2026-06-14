@@ -1,24 +1,31 @@
-import Link from 'next/link'
-import { MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react'
-import Image from 'next/image'
+"use client";
 
-const col1 = [
-  { href: '/about', label: 'About Us' },
-  { href: '/products', label: 'Products' },
-  { href: '/services', label: 'Services' },
-  { href: '/contact', label: 'Contact' },
-]
+import React from 'react';
+import Link from 'next/link';
+import { MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations('footer');
+
+  // Multi-language tracking array mapped inside the component execution scope
+  const dynamicLinks = [
+    { href: '/about', key: 'about' },
+    { href: '/products', key: 'products' },
+    { href: '/services', key: 'services' },
+    { href: '/contact', key: 'contact' },
+  ];
+
   return (
     <footer style={{ background: 'var(--bg-2)', borderTop: '1px solid var(--border)' }}>
       <div className="wrap px-5 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
 
-          {/* Brand col */}
+          {/* Brand Presentation Column */}
           <div className="md:col-span-5">
 
-            {/* Logo */}
+            {/* Logo Group */}
             <Link href="/" className="flex items-center gap-2">
               <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
                 <Image
@@ -48,10 +55,12 @@ export default function Footer() {
               </div>
             </Link>
 
-
+            {/* Localized Brand Pitch */}
             <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color: 'var(--tx-muted)' }}>
-              West Africa&apos;s foremost integrated metal recycling company — sourcing, sorting and distributing high-performance recycled raw materials nationally and globally.
+              {t('brandDescription')}
             </p>
+
+            {/* Structural Contacts Stack */}
             <div className="flex flex-col gap-3">
               {[
                 { icon: MapPin, text: 'No. 23 Nathan Okafor St, Awada Obosi, Anambra, Nigeria' },
@@ -67,45 +76,60 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links */}
+          {/* Navigation Route Map */}
           <div className="md:col-span-3 md:col-start-7">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--tx-faint)' }}>Navigation</p>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--tx-faint)' }}>
+              {t('navigation')}
+            </p>
             <ul className="space-y-2.5">
-              {col1.map(l => (
+              {dynamicLinks.map(l => (
                 <li key={l.href}>
-                  <Link href={l.href} className="flex items-center gap-1.5 text-sm transition-colors hover:gap-2.5"
-                    style={{ color: 'var(--tx-secondary)', fontFamily: 'var(--font-body)' }}>
+                  <Link 
+                    href={l.href} 
+                    className="flex items-center gap-1.5 text-sm transition-colors hover:gap-2.5"
+                    style={{ color: 'var(--tx-secondary)', fontFamily: 'var(--font-body)' }}
+                  >
                     <ArrowUpRight size={12} style={{ color: 'var(--clr-green)' }} />
-                    {l.label}
+                    {t(`links.${l.key}`)}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Products quick list */}
+          {/* Dynamic Products Catalog Subsection */}
           <div className="md:col-span-3">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--tx-faint)' }}>Products</p>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--tx-faint)' }}>
+              {t('products')}
+            </p>
             <ul className="space-y-2.5">
-              {['Aluminium Bales', 'Non-Ferrous Scrap', 'Copper Scrap', 'Brass Scrap', 'Bulk Supply'].map(p => (
-                <li key={p}>
-                  <Link href="/products" className="flex items-center gap-1.5 text-sm transition-colors hover:gap-2.5"
-                    style={{ color: 'var(--tx-secondary)' }}>
+              {Object.entries(t.raw('productList')).map(([key, value]) => (
+                <li key={key}>
+                  <Link 
+                    href="/products" 
+                    className="flex items-center gap-1.5 text-sm transition-colors hover:gap-2.5"
+                    style={{ color: 'var(--tx-secondary)' }}
+                  >
                     <ArrowUpRight size={12} style={{ color: 'var(--clr-green)' }} />
-                    {p}
+                    {String(value)}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
+
         </div>
       </div>
 
+      {/* Copyright Footer Baseboard */}
       <div style={{ borderTop: '1px solid var(--border)', padding: '1rem 0' }}>
         <div className="wrap px-5 text-center flex flex-col sm:flex-row items-center justify-center gap-2 text-xs" style={{ color: 'var(--tx-faint)' }}>
-          <span className="text-xs text-center">© {new Date().getFullYear()} Mechelin Metals Nigeria LTD <br className=""/> All rights reserved.</span>
+          <span className="text-xs text-center">
+            © {new Date().getFullYear()} Mechelin Metals Nigeria LTD <br /> 
+            {t('copyright')}
+          </span>
         </div>
       </div>
     </footer>
-  )
+  );
 }

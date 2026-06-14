@@ -76,5 +76,80 @@
     "mapSouthKorea": "韩国",
     "mapIndia": "印度",
     "ariaLabel": "全球贸易网络"
+  },
+  "materials": {
+    "title": "我们的",
+    "highlight": "产品",
+    "browse": "浏览全部材料",
+    "needCustom": "需要定制采购？",
+    "ctaText": "我们可按需求供应工业级金属。",
+    "ctaButton": "获取报价",
+    "categories": {
+      "nonFerrous": "有色金属",
+      "ferrous": "黑色金属",
+      "industrial": "工业类",
+      "autoScrap": "汽车废料"
+    },
+    "items": {
+      "aluminum": {
+        "name": "铝",
+        "desc": "高纯度铝废料，适用于熔炼与再加工。"
+      },
+      "castAluminum": {
+        "name": "铸铝",
+        "desc": "发动机壳体、变速箱外壳及工业铸铝部件。"
+      },
+      "ironSteel": {
+        "name": "钢铁",
+        "desc": "重型废钢及结构钢，用于电弧炉冶炼。"
+      },
+      "condenser": {
+        "name": "冷凝器",
+        "desc": "含铜铝的空调与制冷冷凝器材料。"
+      },
+      "ubcCans": {
+        "name": "铝罐",
+        "desc": "回收铝制饮料罐，用于再熔炼。"
+      },
+      "ferrousMetals": {
+        "name": "黑色金属",
+        "desc": "钢筋、结构钢及工业废铁材料。"
+      },
+      "nonFerrousMetals": {
+        "name": "有色金属",
+        "desc": "铜、黄铜、铅和锌等可回收金属。"
+      },
+      "vehicleScrap": {
+        "name": "报废车辆",
+        "desc": "拆解车辆用于金属与零部件回收。"
+      }
+    }
+  },
+  "cta": {
+    "subtitle": "工业级批量供应与采购",
+    "title": "准备好与我们合作了吗？",
+    "description": "无论您需要稳定的原材料供应，还是需要处理废金属——我们的团队都已准备就绪。",
+    "primaryCta": "获取报价",
+    "secondaryCta": "浏览产品",
+    "trustText": "深受西非工业买家和废金属商信赖"
+  },
+  "footer": {
+    "brandDescription": "西非领先的金属回收公司——采购、分类并分销高性能再生原材料，服务本地及全球市场。",
+    "navigation": "导航",
+    "products": "产品",
+    "links": {
+      "about": "关于我们",
+      "products": "产品",
+      "services": "服务",
+      "contact": "联系"
+    },
+    "productList": {
+      "aluminiumBales": "铝块",
+      "nonFerrousScrap": "有色金属废料",
+      "copperScrap": "铜废料",
+      "brassScrap": "黄铜废料",
+      "bulkSupply": "批量供应"
+    },
+    "copyright": "版权所有"
   }
 }
