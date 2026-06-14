@@ -147,64 +147,88 @@ export default function Navbar(): React.JSX.Element {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 180 }}
-              className="fixed top-0 right-0 h-full w-full sm:w-[460px]
-                         bg-white
-                         border-l border-white/20
-                         z-50 p-8 sm:p-12 flex flex-col justify-between"
+              className="
+                fixed top-0 right-0
+                h-full w-full sm:w-[460px]
+                bg-white
+                border-l border-white/20
+                z-[60]
+                p-6 sm:p-10
+                flex flex-col
+                overflow-y-auto
+              "
             >
 
+              <div className="flex items-center justify-between border-b border-white/20 pb-6 gap-4">
+                {/* Logo */}
+                <Link href="/" className="flex items-center gap-2 max-w-[50%] sm:max-w-none">
+                  <div className="w-12 h-12 rounded-md overflow-hidden flex items-center justify-center shrink-0">
+                    <Image
+                      src="/logo.png"
+                      width={20}
+                      height={20}
+                      className="w-full h-full object-cover"
+                      alt="Mechelin Metals"
+                      priority
+                      unoptimized
+                    />
+                  </div>
 
+                  <div className="flex flex-col leading-none">
+                    <h1
+                      className="text-sm sm:text-lg tracking-wider font-bold transition-colors duration-300"
+                      style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
+                    >
+                      MECHELIN METALS
+                    </h1>
+                    <span
+                      className="text-[6px] sm:text-[8px] uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+                      style={{ color: 'var(--tx-faint)' }}
+                    >
+                      NIGERIA
+                    </span>
+                  </div>
+                </Link>
 
-              {/* Drawer Header */}
-  <div className="grid grid-cols-[48px_1fr_48px] items-center gap-3 border-b border-white/20 pb-5">
-  <Link
-    href="/"
-    className="w-12 h-12 rounded-xl overflow-hidden bg-[var(--bg-subtle)]"
-  >
-    <Image
-      src="/logo.png"
-      width={48}
-      height={48}
-      className="w-full h-full object-cover"
-      alt="Mechelin Metals"
-      priority
-      unoptimized
-    />
-  </Link>
+                {/* Relocated Language Switcher and Close Buttons Layout */}
+                <div className="flex items-center gap-3 shrink-0">
+                  <LanguageSwitcher
+                    locale={locale}
+                    changeLocale={changeLocale}
+                  />
 
-  <LanguageSwitcher
-    locale={locale}
-    changeLocale={changeLocale}
-  />
+                  <button
+                    onClick={() => setIsMenuOpen(false)}
+                    className="w-8 h-8 rounded-full border border-slate-200/60 bg-slate-50 flex items-center justify-center text-xs font-bold text-[var(--tx-secondary)]"
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
 
-  <button
-    onClick={() => setIsMenuOpen(false)}
-    className="w-12 h-12 rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] flex items-center justify-center"
-  >
-    <X size={18} />
-  </button>
-</div>
-              {/* Drawer Links */}
-              <nav className="flex flex-col space-y-8 my-auto">                {links.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Link href={link.href} onClick={() => setIsMenuOpen(false)} className="group block">
-                    <h2 className="text-xl font-bold tracking-wider text-[var(--tx-primary)] group-hover:text-[var(--clr-green)] transition-colors">
-                      {link.label}
-                    </h2>
-                    <p className="text-xs text-[var(--tx-muted)]">{link.desc}</p>
-                  </Link>
-                </motion.div>
-              ))}
+              <nav className="flex flex-col gap-6 py-10 flex-1">
+                {links.map((link) => (
+                  <React.Fragment key={link.href}>
+                    <Link
+                      className="block"
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <h2 className="text-2xl font-black text-[var(--clr-green)] font-display">
+                        {link.label}
+                      </h2>
+
+                      <p className="text-xs text-[var(--tx-secondary)] mt-1">
+                        {link.desc}
+                      </p>
+                    </Link>
+
+                    <hr className="border-t border-white/20" />
+                  </React.Fragment>
+                ))}
               </nav>
 
-
-              {/* Drawer Footer */}
-              <div className="border-t border-white/20 pt-6">
+              <div className="border-t border-white/20 pt-6 mt-auto">
                 <Link
                   href="/contact"
                   className="block text-center py-4 bg-[var(--tx-primary)] text-white text-xs font-bold uppercase tracking-widest rounded-xl"
@@ -213,7 +237,6 @@ export default function Navbar(): React.JSX.Element {
                 </Link>
               </div>
 
-
             </motion.aside>
           </>
         )}
@@ -221,6 +244,3 @@ export default function Navbar(): React.JSX.Element {
     </>
   );
 }
-
-
-
