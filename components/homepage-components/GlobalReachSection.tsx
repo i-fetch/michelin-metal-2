@@ -3,40 +3,41 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Globe, ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function GlobalReachSection(): React.JSX.Element {
   const [activeCode, setActiveCode] = useState<string | null>(null);
-
+  const t = useTranslations("GlobalReach");
   const countries = useMemo(() => [
     {
       code: "NG",
-      name: "Nigeria",
+      name: t("nigeria"),
       flagUrl: "https://flagcdn.com/w160/ng.png",
       coordinates: { x: 510, y: 250 },
-      desc: "Headquarters & sourcing infrastructure across active industrial collection zones in Anambra, Lagos, and Port Harcourt."
+      desc: t("nigeriaDesc")
     },
     {
       code: "CN",
-      name: "China",
+      name: t("china"),
       flagUrl: "https://flagcdn.com/w160/cn.png",
       coordinates: { x: 730, y: 120 },
-      desc: "Primary industrial destination — delivering certified aluminium, ferrous profiles, and mixed scrap directly to large-scale smelting plants."
+      desc: t("chinaDesc")
     },
     {
       code: "KR",
-      name: "South Korea",
+      name: t("southKorea"),
       flagUrl: "https://flagcdn.com/w160/kr.png",
       coordinates: { x: 790, y: 110 },
-      desc: "Premium grade heavy steel and specialty foundry casting components supplied consistently to corporate manufacturing hubs."
+      desc: t("southKoreaDesc")
     },
     {
       code: "IN",
-      name: "India",
+      name: t("india"),
       flagUrl: "https://flagcdn.com/w160/in.png",
       coordinates: { x: 660, y: 160 },
-      desc: "High-purity non-ferrous and structured shredder scrap exports supporting growing national automotive and infrastructure pipelines."
+      desc: t("indiaDesc")
     }
   ], []);
 
@@ -44,7 +45,7 @@ export default function GlobalReachSection(): React.JSX.Element {
     <section 
       id="customers" 
       className="w-full bg-[var(--bg-main)] text-[var(--tx-primary)] py-20 md:py-32 overflow-hidden relative select-none"
-      aria-label="Global Trade Networks"
+      aria-label={t("ariaLabel")}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
@@ -59,7 +60,7 @@ export default function GlobalReachSection(): React.JSX.Element {
             style={{ fontFamily: "var(--font-body)" }}
           >
             <Globe size={12} className={activeCode ? "animate-spin-slow" : ""} />
-            Logistics &amp; Distribution
+            {t("badge")}
           </motion.div>
 
           <motion.h2 
@@ -70,7 +71,7 @@ export default function GlobalReachSection(): React.JSX.Element {
             className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            OUR <span className="text-[var(--clr-green)]">GLOBAL CUSTOMERS.</span>
+            {t("title")} <span className="text-[var(--clr-green)]">{t("highlight")}</span>
           </motion.h2>
 
           <motion.p 
@@ -81,7 +82,7 @@ export default function GlobalReachSection(): React.JSX.Element {
             className="text-[var(--tx-secondary)] text-sm md:text-base leading-relaxed font-normal max-w-2xl"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Facilitating heavy industrial metal distribution channels out of West Africa directly into primary processing centers across China, South Korea, and India.
+            {t("intro")}
           </motion.p>
         </div>
 
@@ -171,10 +172,10 @@ export default function GlobalReachSection(): React.JSX.Element {
             })}
 
             {/* GEOGRAPHIC TYPOGRAPHY MATRIX */}
-            <text x="510" y="278" textAnchor="middle" className={`text-[11px] font-black tracking-wider uppercase transition-colors duration-300 ${activeCode === "NG" ? "fill-emerald-800" : "fill-[var(--tx-primary)]"}`} style={{ fontFamily: "var(--font-body)" }}>Nigeria</text>
-            <text x="730" y="142" textAnchor="middle" className={`text-[10px] font-bold transition-colors duration-300 ${activeCode === "CN" ? "fill-emerald-700 font-extrabold" : "fill-[var(--tx-muted)]"}`} style={{ fontFamily: "var(--font-body)" }}>China</text>
-            <text x="790" y="94" textAnchor="middle" className={`text-[10px] font-bold transition-colors duration-300 ${activeCode === "KR" ? "fill-emerald-700 font-extrabold" : "fill-[var(--tx-muted)]"}`} style={{ fontFamily: "var(--font-body)" }}>S. Korea</text>
-            <text x="660" y="182" textAnchor="middle" className={`text-[10px] font-bold transition-colors duration-300 ${activeCode === "IN" ? "fill-emerald-700 font-extrabold" : "fill-[var(--tx-muted)]"}`} style={{ fontFamily: "var(--font-body)" }}>India</text>
+            <text x="510" y="278" textAnchor="middle" className={`text-[11px] font-black tracking-wider uppercase transition-colors duration-300 ${activeCode === "NG" ? "fill-emerald-800" : "fill-[var(--tx-primary)]"}`} style={{ fontFamily: "var(--font-body)" }}>t({t("nigeria")})</text>
+            <text x="730" y="142" textAnchor="middle" className={`text-[10px] font-bold transition-colors duration-300 ${activeCode === "CN" ? "fill-emerald-700 font-extrabold" : "fill-[var(--tx-muted)]"}`} style={{ fontFamily: "var(--font-body)" }}>t({t("china")})</text>
+            <text x="790" y="94" textAnchor="middle" className={`text-[10px] font-bold transition-colors duration-300 ${activeCode === "KR" ? "fill-emerald-700 font-extrabold" : "fill-[var(--tx-muted)]"}`} style={{ fontFamily: "var(--font-body)" }}>t({t("southKorea")})</text>
+            <text x="660" y="182" textAnchor="middle" className={`text-[10px] font-bold transition-colors duration-300 ${activeCode === "IN" ? "fill-emerald-700 font-extrabold" : "fill-[var(--tx-muted)]"}`} style={{ fontFamily: "var(--font-body)" }}>t({t("india")})</text>
           </svg>
         </motion.div>
 
@@ -203,7 +204,7 @@ export default function GlobalReachSection(): React.JSX.Element {
                 <div className="w-9 h-6 rounded border border-slate-200/80 overflow-hidden bg-slate-50 mb-4 shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105">
                   <img 
                     src={country.flagUrl} 
-                    alt={`${country.name} National Flag`}
+                    alt={t("nigeriaFlag")}
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />

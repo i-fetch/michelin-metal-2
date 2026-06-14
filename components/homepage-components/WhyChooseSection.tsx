@@ -2,66 +2,69 @@
 
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { 
-  UserCheck, 
-  History, 
-  Globe2, 
-  Truck, 
-  CreditCard, 
+import {
+  UserCheck,
+  History,
+  Globe2,
+  Truck,
+  CreditCard,
   Leaf,
   Award
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function WhyChooseSection(): React.JSX.Element {
+  const t = useTranslations("WhyChoose");
+
   const strengths = useMemo(() => [
     {
       icon: UserCheck,
-      title: "Leading Industry Experts",
-      desc: "Our team comprises seasoned metals specialists with deep knowledge of ferrous and non-ferrous material grading, processing standards, and export regulations."
+      title: t("expertTitle"),
+      desc: t("expertDesc")
     },
     {
       icon: History,
-      title: "Decade of Experience",
-      desc: "Over 10 years of operational excellence in metals sourcing, processing, and international trade from Nigeria to global markets."
+      title: t("experienceTitle"),
+      desc: t("experienceDesc")
     },
     {
       icon: Globe2,
-      title: "Global Trade Connections",
-      desc: "Established trade relationships with buyers in China, South Korea, India, and across West Africa — ensuring your materials reach the right markets."
+      title: t("globalTitle"),
+      desc: t("globalDesc")
     },
     {
       icon: Truck,
-      title: "Strong Logistics Support",
-      desc: "Full container loading, freight forwarding, documentation, and port clearance services managed by our in-house logistics team."
+      title: t("logisticsTitle"),
+      desc: t("logisticsDesc")
     },
     {
       icon: CreditCard,
-      title: "International Payment Capability",
-      desc: "We support Letters of Credit (LC), T/T Bank Transfers, and other internationally recognized payment instruments for seamless global trade."
+      title: t("paymentTitle"),
+      desc: t("paymentDesc")
     },
     {
       icon: Leaf,
-      title: "Sustainable Operations",
-      desc: "Our recycling processes meet international environmental standards, supporting your company's ESG goals and sustainability commitments."
+      title: t("sustainabilityTitle"),
+      desc: t("sustainabilityDesc")
     }
-  ], []);
+  ], [t]);
 
   return (
-    <section 
-      id="why" 
+    <section
+      id="why"
       className="w-full bg-[var(--bg-main)] text-[var(--tx-primary)] py-20 md:py-32 overflow-hidden relative"
       aria-label="Corporate Strengths"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        
+
         {/* ── TWO-COLUMN ASYMMETRICAL CANVAS LINK ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* LEFT COLUMN: STICKY BRAND HEADLINE ANCHOR */}
           <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -70,10 +73,10 @@ export default function WhyChooseSection(): React.JSX.Element {
               style={{ fontFamily: "var(--font-body)" }}
             >
               <Award size={12} />
-              Enterprise Capabilities
+              {t("badge")}
             </motion.div>
 
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -81,11 +84,13 @@ export default function WhyChooseSection(): React.JSX.Element {
               className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.02]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              WHY CHOOSE <br />
-              <span className="text-[var(--clr-green)]">MECHELIN METALS.</span>
+              {t("title")} <br />
+              <span className="text-[var(--clr-green)]">
+                {t("highlight")}
+              </span>
             </motion.h2>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -93,8 +98,7 @@ export default function WhyChooseSection(): React.JSX.Element {
               className="text-[var(--tx-secondary)] text-sm md:text-base leading-relaxed font-normal"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Trusted by heavy manufacturers and industrial foundries across four continents to deliver processed metal cargo exactly to assay specifications.
-            </motion.p>
+              {t("intro")}</motion.p>
           </div>
 
           {/* RIGHT COLUMN: CONTINUOUS INTEGRATED FEATURE LIST */}
@@ -116,7 +120,7 @@ export default function WhyChooseSection(): React.JSX.Element {
                   </div>
 
                   {/* Title */}
-                  <h3 
+                  <h3
                     className="text-lg font-bold tracking-wider text-[var(--tx-primary)] mb-2.5 transition-colors duration-200 group-hover:text-emerald-800"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
@@ -124,7 +128,7 @@ export default function WhyChooseSection(): React.JSX.Element {
                   </h3>
 
                   {/* Description */}
-                  <p 
+                  <p
                     className="text-[var(--tx-secondary)] text-xs md:text-sm leading-relaxed font-normal m-0"
                     style={{ fontFamily: "var(--font-body)" }}
                   >

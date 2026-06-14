@@ -9,23 +9,25 @@ import ThemeToggle from "./ThemeToggle";
 import Image from "next/image";
 // import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./lang/LanguageSwitcher";
-
-const links = [
-  { href: "/", label: "Home", desc: "Main corporate portal" },
-  { href: "/about", label: "About", desc: "Our history & capabilities" },
-  { href: "/products", label: "Products", desc: "Industrial metal categories" },
-  { href: "/services", label: "Services", desc: "Global shipping infrastructure" },
-  { href: "/contact", label: "Contact", desc: "Get institutional quotes" },
-];
+import { useTranslations } from "next-intl";
 
 export default function Navbar(): React.JSX.Element {
+  const t = useTranslations("Navbar");
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const path = usePathname();
   // const [isOpen, setIsOpen] = useState(false)
   const [locale, setLocale] = useState("")
   const router = useRouter();
+  const links = [
+    { href: "/", label: t("home"), desc: t("homeDesc") },
+    { href: "/about", label: t("about"), desc: t("aboutDesc") },
+    { href: "/products", label: t("products"), desc: t("productsDesc") },
+    { href: "/services", label: t("services"), desc: t("servicesDesc") },
+    { href: "/contact", label: t("contact"), desc: t("contactDesc") },
+  ];
 
-  // const t = useTranslations("Navbar");
+
   useEffect(() => {
     setIsMenuOpen(false)
     const cookieLocale = document.cookie
@@ -233,7 +235,7 @@ export default function Navbar(): React.JSX.Element {
                   href="/contact"
                   className="block text-center py-4 bg-[var(--tx-primary)] text-white text-xs font-bold uppercase tracking-widest rounded-xl"
                 >
-                  Get Quotes
+                  {t("getQuotes")}
                 </Link>
               </div>
 
