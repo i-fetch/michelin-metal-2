@@ -49,9 +49,9 @@ export default function WhatWeDeal(): React.JSX.Element {
       },
       {
         icon: "🔧",
-        name: "Ferrous Metals",
+        name: "Non-Ferrous Metals",
         desc: "Magnetic and non-magnetic ferrous metals from vehicles, buildings, and appliances.",
-        actionKey: "Ferrous Metals",
+        actionKey: "Non-Ferrous Metals",
       },
     ],
     []
@@ -135,7 +135,8 @@ export default function WhatWeDeal(): React.JSX.Element {
               {/* CTA */}
               <button
                 onClick={() => handleScrollToCalculator(item.actionKey)}
-                className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
+                className="mt-6 hidden items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
+                // className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
               >
                 Check Value Rate
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

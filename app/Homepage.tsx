@@ -11,6 +11,7 @@ import HeroHeader from '@/components/homepage-components/HeroHeader'
 import CTASection from '@/components/CallToAction'
 import { ArrowRight, Package } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import WhatWeDeal from '@/components/homepage-components/WhatWeDeal'
 
 
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
@@ -30,6 +31,9 @@ export default function Homepage() {
 
          {/* ── WHY CHOOSE US ───────────────────────────────── */}
          <WhyChooseSection />
+
+         {/* ── WHAT WE DEAL ───────────────────────────────── */}
+         <WhatWeDeal />
 
          {/* ── GLOBAL REACH ─────────────────────────────────── */}
          <GlobalReachSection />

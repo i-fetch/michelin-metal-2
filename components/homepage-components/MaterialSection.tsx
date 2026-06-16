@@ -53,13 +53,6 @@ const MATERIALS_CONFIG = [
     accent: "#16a34a",
   },
   {
-    id: 6,
-    catKey: "ferrous",
-    idKey: "ferrousMetals",
-    img: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?w=700&q=80",
-    accent: "#b45309",
-  },
-  {
     id: 7,
     catKey: "nonFerrous",
     idKey: "nonFerrousMetals",
