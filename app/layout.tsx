@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   keywords: [
     'metal recycling Nigeria',
     'aluminium scrap',
-    'ferrous metals',
+    'non-ferrous metals',
     'bulk raw materials',
     'West Africa',
     'Anambra',
