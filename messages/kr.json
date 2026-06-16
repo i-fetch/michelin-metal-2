@@ -151,5 +151,37 @@
       "bulkSupply": "대량 공급"
     },
     "copyright": "모든 권리 보유"
+  },
+  "aboutpage": {
+    "hero": {
+      "badge": "기업 인프라",
+      "title": "MECHELIN METALS NIGERIA 소개",
+      "subtitle": "10년간의 중공업 운영 경험과 글로벌 시장 대응."
+    },
+    "story": {
+      "badge": "우리의 역사",
+      "title": "10년 이상의 성장 과정",
+      "p1": "Mechelin Metals Nigeria LTD는 서아프리카의 대표 금속 재활용 기업입니다.",
+      "p2": "산업 인프라를 활용하여 금속을 수집 및 가공합니다.",
+      "cta": "제품 보기"
+    },
+    "vision": {
+      "vision": {
+        "title": "비전",
+        "body": "지속 가능한 금속 재활용의 글로벌 리더가 되는 것."
+      },
+      "mission": {
+        "title": "미션",
+        "body": "혁신을 통해 금속 재활용 산업을 혁신합니다."
+      }
+    },
+    "cta": {
+      "subtitle": "산업 공급 및 조달",
+      "title": "협력할 준비가 되셨나요?",
+      "description": "원자재 공급 및 금속 스크랩 처리 서비스를 제공합니다.",
+      "primary": "견적 요청",
+      "secondary": "제품 보기",
+      "trust": "서아프리카 산업 구매자들이 신뢰"
+    }
   }
 }

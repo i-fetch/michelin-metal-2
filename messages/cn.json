@@ -151,5 +151,37 @@
       "bulkSupply": "批量供应"
     },
     "copyright": "版权所有"
+  },
+  "aboutpage": {
+    "hero": {
+      "badge": "企业基础设施",
+      "title": "关于 MECHELIN NIGERIA 金属公司",
+      "subtitle": "十年重工业运营，面向全球市场。"
+    },
+    "story": {
+      "badge": "我们的历史",
+      "title": "十余年的发展历程",
+      "p1": "Mechelin Metals Nigeria LTD 是西非领先的金属回收与加工企业。",
+      "p2": "我们利用工业基础设施进行材料回收与处理。",
+      "cta": "浏览产品"
+    },
+    "vision": {
+      "vision": {
+        "title": "我们的愿景",
+        "body": "成为全球可持续金属回收的领先企业。"
+      },
+      "mission": {
+        "title": "我们的使命",
+        "body": "通过创新推动金属回收行业变革。"
+      }
+    },
+    "cta": {
+      "subtitle": "工业供应与采购",
+      "title": "准备好与我们合作了吗？",
+      "description": "提供原材料供应或废金属回收服务。",
+      "primary": "获取报价",
+      "secondary": "浏览产品",
+      "trust": "深受西非工业买家信赖"
+    }
   }
 }
