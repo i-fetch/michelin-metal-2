@@ -1,5 +1,4 @@
 {
-
   "Navbar": {
     "home": "Home",
     "about": "About",
@@ -200,6 +199,38 @@
       "sustainabilityTitle": "Sustainable Operations",
       "sustainabilityDesc": "Our recycling processes meet international environmental standards, supporting your company's ESG goals and sustainability commitments."
     },
+    "WhatWeDeal": {
+      "sectionTag": "What We Deal In",
+      "title": "Our Major Metals",
+      "intro": "We trade, recycle, and supply premium-quality metals for manufacturing, foundry, and industrial purposes. Each grade is carefully sorted, bailed, and prepared to meet exacting customer specifications.",
+      "cta": "Check Value Rate",
+      "metals": {
+        "aluminium": {
+          "name": "Aluminium",
+          "desc": "Premium-grade sorted aluminium scrap, bailed and ready for smelting or direct manufacturing use."
+        },
+        "castAluminium": {
+          "name": "Cast Aluminium",
+          "desc": "High-purity cast aluminium sourced from engines, machinery, and automotive components."
+        },
+        "castIron": {
+          "name": "Cast Iron",
+          "desc": "Sorted cast iron scrap suitable for foundry operations and metal reprocessing."
+        },
+        "condenser": {
+          "name": "Condenser",
+          "desc": "Copper and aluminium condensers from HVAC and refrigeration equipment, carefully processed."
+        },
+        "ubc": {
+          "name": "UBC",
+          "desc": "Used Beverage Cans — cleaned, sorted, and bailed aluminium UBC for remelting and recycling."
+        },
+        "ferrousMetals": {
+          "name": "Ferrous Metals",
+          "desc": "All kinds of ferrous metals — magnetic and non-magnetic — from vehicles, buildings, and appliances."
+        }
+      }
+    },
     "GlobalReach": {
       "badge": "Logistics & Distribution",
       "title": "OUR",
@@ -306,7 +337,6 @@
       },
       "copyright": "All rights reserved"
     }
-
   },
   "contact": {
     "title": "Contact Us",
