@@ -3,13 +3,13 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import {
-  UserCheck,
-  History,
-  Globe2,
-  Truck,
-  CreditCard,
-  Leaf,
-  Award
+  Award,
+  // Globe2,
+  // CalendarClock,
+  // Truck,
+  // ShieldCheck,
+  // Leaf,
+  ArrowRight,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -18,129 +18,168 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export default function WhyChooseSection(): React.JSX.Element {
   const t = useTranslations("WhyChoose");
 
-  const strengths = useMemo(() => [
-    {
-      icon: UserCheck,
-      title: t("expertTitle"),
-      desc: t("expertDesc")
-    },
-    {
-      icon: History,
-      title: t("experienceTitle"),
-      desc: t("experienceDesc")
-    },
-    {
-      icon: Globe2,
-      title: t("globalTitle"),
-      desc: t("globalDesc")
-    },
-    {
-      icon: Truck,
-      title: t("logisticsTitle"),
-      desc: t("logisticsDesc")
-    },
-    {
-      icon: CreditCard,
-      title: t("paymentTitle"),
-      desc: t("paymentDesc")
-    },
-    {
-      icon: Leaf,
-      title: t("sustainabilityTitle"),
-      desc: t("sustainabilityDesc")
-    }
-  ], [t]);
+  const strengths = useMemo(
+    () => [
+      {
+        icon: "🏆",
+        title: t("expertTitle"),
+        desc: t("expertDesc"),
+      },
+      {
+        icon: "📆",
+        title: t("experienceTitle"),
+        desc: t("experienceDesc"),
+      },
+      {
+        icon: "🌍",
+        title: t("globalTitle"),
+        desc: t("globalDesc"),
+      },
+      {
+        icon: "🚚",
+        title: t("logisticsTitle"),
+        desc: t("logisticsDesc"),
+      },
+      {
+        icon: "🛡️",
+        title: t("paymentTitle"),
+        desc: t("paymentDesc"),
+      },
+      {
+        icon: "🌱",
+        title: t("sustainabilityTitle"),
+        desc: t("sustainabilityDesc"),
+      },
+    ],
+    [t]
+  );
 
   return (
     <section
       id="why"
-      className="w-full bg-[var(--bg-main)] text-[var(--tx-primary)] py-20 md:py-32 overflow-hidden relative"
-      aria-label="Corporate Strengths"
+      className="relative overflow-hidden bg-[var(--bg-main)] py-24 lg:py-36"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      {/* Decorative Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-emerald-500/5 blur-3xl rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-emerald-400/5 blur-3xl rounded-full" />
+      </div>
 
-        {/* ── TWO-COLUMN ASYMMETRICAL CANVAS LINK ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-20">
 
-          {/* LEFT COLUMN: STICKY BRAND HEADLINE ANCHOR */}
-          <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
+          {/* LEFT CONTENT */}
+          <div className="lg:col-span-4 lg:sticky lg:top-28 h-fit">
             <motion.div
-              initial={{ opacity: 0, y: -8 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, ease: EASE }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase"
-              style={{ fontFamily: "var(--font-body)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <Award size={12} />
-              {t("badge")}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-semibold tracking-widest uppercase">
+                <Award size={14} />
+                {t("badge")}
+              </div>
+
+              <h2 className="mt-6 text-4xl md:text-5xl xl:text-6xl font-black leading-tight text-[var(--tx-primary)]">
+                {t("title")}
+                <span className="block text-[var(--clr-green)]">
+                  {t("highlight")}
+                </span>
+              </h2>
+
+              <p className="mt-6 text-base leading-relaxed text-[var(--tx-secondary)] max-w-md">
+                {t("intro")}
+              </p>
+
+              {/* Trust Metrics */}
+              <div className="grid grid-cols-3 gap-5 mt-10">
+                <div>
+                  <h3 className="text-3xl font-black text-[var(--clr-green)]">
+                    10+
+                  </h3>
+                  <p className="text-xs text-[var(--tx-secondary)]">
+                    Years Experience
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-3xl font-black text-[var(--clr-green)]">
+                    25+
+                  </h3>
+                  <p className="text-xs text-[var(--tx-secondary)]">
+                    Countries
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-3xl font-black text-[var(--clr-green)]">
+                    500+
+                  </h3>
+                  <p className="text-xs text-[var(--tx-secondary)]">
+                    Deliveries
+                  </p>
+                </div>
+              </div>
+
+              <button className="group mt-10 inline-flex items-center gap-3 rounded-full bg-[var(--clr-green)] text-white px-6 py-3 font-semibold transition-all hover:shadow-xl hover:shadow-emerald-500/20">
+                Learn More
+                <ArrowRight
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </button>
             </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.02]"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {t("title")} <br />
-              <span className="text-[var(--clr-green)]">
-                {t("highlight")}
-              </span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="text-[var(--tx-secondary)] text-sm md:text-base leading-relaxed font-normal"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              {t("intro")}</motion.p>
           </div>
 
-          {/* RIGHT COLUMN: CONTINUOUS INTEGRATED FEATURE LIST */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14 lg:pl-6">
-            {strengths.map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.6, ease: EASE, delay: index * 0.05 }}
-                  className="group flex flex-col text-left border-l-2 border-slate-100 hover:border-[var(--clr-green)] pl-6 transition-colors duration-300"
-                >
-                  {/* Micro Icon Marker */}
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center bg-slate-50 border border-slate-100 text-[var(--tx-muted)] group-hover:bg-emerald-50 group-hover:border-emerald-100 group-hover:text-[var(--clr-green)] transition-all duration-300 mb-5">
-                    <IconComponent size={15} strokeWidth={2.2} />
-                  </div>
+          {/* RIGHT FEATURES */}
+          <div className="lg:col-span-8">
+            <div className="grid sm:grid-cols-2 gap-6">
+              {strengths.map((item, index) => {
+                // const Icon = item.icon;
 
-                  {/* Title */}
-                  <h3
-                    className="text-lg font-bold tracking-wider text-[var(--tx-primary)] mb-2.5 transition-colors duration-200 group-hover:text-emerald-800"
-                    style={{ fontFamily: "var(--font-display)" }}
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.08,
+                      ease: EASE,
+                    }}
+                    whileHover={{
+                      y: -6,
+                    }}
+                    className="group relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 backdrop-blur-sm p-8 shadow-sm hover:shadow-2xl transition-all duration-500"
                   >
-                    {item.title}
-                  </h3>
+                    {/* Gradient Hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-emerald-50 via-transparent to-transparent" />
 
-                  {/* Description */}
-                  <p
-                    className="text-[var(--tx-secondary)] text-xs md:text-sm leading-relaxed font-normal m-0"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {item.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
+                    <div className="relative z-10">
+                      {/* <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[var(--clr-green)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <Icon size={26} />
+                      </div> */}
+                      <div className="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center text-3xl">
+                        {item.icon}
+                      </div>
+
+                      <h3 className="text-xl font-bold text-[var(--tx-primary)] mb-3">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-sm leading-relaxed text-[var(--tx-secondary)]">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
 
         </div>
-
       </div>
     </section>
   );

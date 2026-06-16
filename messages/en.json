@@ -1,10 +1,5 @@
 {
-<<<<<<< HEAD
-  "homepage": {
-    "Navbar": {
-      "home": "Home",
-      "about": "About",
-=======
+
   "Navbar": {
     "home": "Home",
     "about": "About",
@@ -153,7 +148,6 @@
     "products": "Products",
     "links": {
       "about": "About Us",
->>>>>>> ac08c12f83fb68b8cf8717871ba0994dfadb89b8
       "products": "Products",
       "services": "Services",
       "contact": "Contact",
@@ -178,7 +172,6 @@
       "processed": "Tonnes Processed",
       "continents": "Continents"
     },
-<<<<<<< HEAD
     "About": {
       "tag": "About The Company",
       "title": "NIGERIA'S FOREMOST INTEGRATED METAL RECYCLER",
@@ -313,9 +306,7 @@
       },
       "copyright": "All rights reserved"
     }
-=======
-    "copyright": "All rights reserved"
->>>>>>> ac08c12f83fb68b8cf8717871ba0994dfadb89b8
+
   },
   "contact": {
     "title": "Contact Us",
