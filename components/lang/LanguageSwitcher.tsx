@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const languages = [
-  { value: "en", label: "English",  native: "English",  short: "EN", flag: "🇬🇧" },
-  { value: "kr", label: "Korean",   native: "한국어",    short: "KR", flag: "🇰🇷" },
-  { value: "fr", label: "French",   native: "Français", short: "FR", flag: "🇫🇷" },
-  { value: "cn", label: "Chinese",  native: "中文",      short: "CN", flag: "🇨🇳" },
+  { value: "en", label: "English", native: "English",  short: "EN", flag: "https://flagcdn.com/w40/gb.png" },
+  { value: "kr", label: "Korean",  native: "한국어",    short: "KR", flag: "https://flagcdn.com/w40/kr.png" },
+  { value: "fr", label: "French",  native: "Français", short: "FR", flag: "https://flagcdn.com/w40/fr.png" },
+  { value: "cn", label: "Chinese", native: "中文",      short: "CN", flag: "https://flagcdn.com/w40/cn.png" },
 ]
 
 interface Props {
@@ -121,6 +121,7 @@ export default function LanguageSwitcher({ locale, changeLocale }: Props) {
                     <span className="text-[10px] font-medium tracking-wide text-muted-foreground/60 uppercase">
                       {lang.short}
                     </span>
+                    
                     <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: isActive ? 1 : 0 }}
