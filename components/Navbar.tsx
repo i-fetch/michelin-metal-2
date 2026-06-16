@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import Image from "next/image";
-// import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./lang/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
@@ -16,7 +15,6 @@ export default function Navbar(): React.JSX.Element {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const path = usePathname();
-  // const [isOpen, setIsOpen] = useState(false)
   const [locale, setLocale] = useState("")
   const router = useRouter();
   const links = [

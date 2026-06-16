@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, BarChart3, CheckCircle, ClipboardList, Globe2, Layers, Package, Recycle, Settings, Truck } from 'lucide-react'
 import Navbar from '@/components/Navbar'
@@ -93,6 +94,9 @@ const localFadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } }
 };
+
+
+export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
 export default function ServicePage() {
   const heroContainerRef = useRef<HTMLDivElement>(null);
