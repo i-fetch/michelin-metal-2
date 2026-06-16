@@ -99,6 +99,10 @@ const localFadeUp = {
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
 export default function ServicePage() {
+  const t = useTranslations("cta2");
+
+
+
   const heroContainerRef = useRef<HTMLDivElement>(null);
 
   // ── PARALLAX LOGISTICS ENGINE ──
@@ -398,6 +402,23 @@ export default function ServicePage() {
           icon: <ArrowRight size={16} />,
         }}
         trustText="Trusted by industrial buyers across West Africa"
+      />
+
+      <CTASection
+        icon={<Package size={28} />}
+        subtitle={t("subtitle")}
+        title={t("title")}
+        description={t("description")}
+        primaryCta={{
+          label: t("primaryCta"),
+          href: '/contact',
+          icon: <ArrowRight size={16} />,
+        }}
+        secondaryCta={{
+          label: t("secondaryCta"),
+          href: '/products',
+        }}
+        trustText={t("trustText")}
       />
 
       <Footer />

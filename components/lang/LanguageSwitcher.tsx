@@ -35,8 +35,7 @@ export default function LanguageSwitcher({ locale, changeLocale }: Props) {
             w-auto
             min-w-[70px]
             h-9
-            rounded-full
-            border-border-subtle
+            rounded-md
             bg-[var(--bg-surface)]
             hover:bg-[var(--bg-subtle)]
             px-3
@@ -57,7 +56,7 @@ export default function LanguageSwitcher({ locale, changeLocale }: Props) {
 
         <SelectContent
           position="popper"
-          className="z-[9999] min-w-[120px] rounded-xl border-border-subtle bg-white/80 backdrop-blur-xl shadow-2xl"
+          className="z-[9999] min-w-[120px] rounded-xl border border-subtle bg-white/80 backdrop-blur-xl shadow-2xl"
         >
           {languages.map((lang) => (
             <SelectItem

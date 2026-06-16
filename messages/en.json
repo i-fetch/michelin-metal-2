@@ -1,5 +1,8 @@
 {
-  "Navbar": {
+
+ "homepage":{
+
+   "Navbar": {
     "home": "Home",
     "about": "About",
     "products": "Products",
@@ -133,6 +136,14 @@
     "secondaryCta": "Browse Products",
     "trustText": "Trusted by industrial buyers and scrap dealers across West Africa"
   },
+  "cta2": {
+    "subtitle": "Industrial Bulk Supply & Procurement",
+    "title": "READY TO PARTNER WITH US?",
+    "description": "Whether you need reliable raw material supply or have scrap metal to move — our team is ready.",
+    "primaryCta": "Request Quote",
+    "secondaryCta": "Browse Products",
+    "trustText": "Trusted by industrial buyers and scrap dealers across West Africa"
+  },
   "footer": {
     "brandDescription": "West Africa's foremost integrated metal recycling company — sourcing, sorting and distributing high-performance recycled raw materials nationally and globally.",
     "navigation": "Navigation",
@@ -152,4 +163,24 @@
     },
     "copyright": "All rights reserved"
   }
+ },
+ 
+  "contact": {
+    "title": "Contact Us",
+    "description": "Reach out to our team for inquiries, quotes, or partnership opportunities. We are here to assist you with your metal sourcing and recycling needs.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Submit"
+    },
+    "address": {
+      "line1": "123 Industrial Avenue",
+      "line2": "Lagos, Nigeria"
+    },
+    "phone": "+234 123 456 7890",
+    "emailAddress": "info@mechelinmetals.com"
+  
+  }
+
 }
