@@ -9,6 +9,8 @@ import Footer from '@/components/Footer'
 import { useRef } from 'react'
 import Image from 'next/image'
 import CTASection from '@/components/CallToAction'
+import { useTranslations } from 'next-intl'
+
 
 const services = [
   {
