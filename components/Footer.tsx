@@ -1,3 +1,4 @@
+// Footer.tsx
 "use client";
 
 import React from 'react';
@@ -16,6 +17,14 @@ export default function Footer() {
     { href: '/services', key: 'services' },
     { href: '/contact', key: 'contact' },
   ];
+
+  const productKeys = [
+    "aluminiumBales",
+    "nonFerrousScrap",
+    "copperScrap",
+    "brassScrap",
+    "bulkSupply",
+  ] as const;
 
   return (
     <footer style={{ background: 'var(--bg-2)', borderTop: '1px solid var(--border)' }}>
@@ -84,8 +93,8 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {dynamicLinks.map(l => (
                 <li key={l.href}>
-                  <Link 
-                    href={l.href} 
+                  <Link
+                    href={l.href}
                     className="flex items-center gap-1.5 text-sm transition-colors hover:gap-2.5"
                     style={{ color: 'var(--tx-secondary)', fontFamily: 'var(--font-body)' }}
                   >
@@ -103,15 +112,15 @@ export default function Footer() {
               {t('products')}
             </p>
             <ul className="space-y-2.5">
-              {Object.entries(t.raw('productList')).map(([key, value]) => (
+              {productKeys.map((key) => (
                 <li key={key}>
-                  <Link 
-                    href="/products" 
+                  <Link
+                    href="/products"
                     className="flex items-center gap-1.5 text-sm transition-colors hover:gap-2.5"
-                    style={{ color: 'var(--tx-secondary)' }}
+                    style={{ color: "var(--tx-secondary)" }}
                   >
-                    <ArrowUpRight size={12} style={{ color: 'var(--clr-green)' }} />
-                    {String(value)}
+                    <ArrowUpRight size={12} style={{ color: "var(--clr-green)" }} />
+                    {t(`productList.${key}`)}
                   </Link>
                 </li>
               ))}
@@ -125,7 +134,7 @@ export default function Footer() {
       <div style={{ borderTop: '1px solid var(--border)', padding: '1rem 0' }}>
         <div className="wrap px-5 text-center flex flex-col sm:flex-row items-center justify-center gap-2 text-xs" style={{ color: 'var(--tx-faint)' }}>
           <span className="text-xs text-center">
-            © {new Date().getFullYear()} Mechelin Metals Nigeria LTD <br /> 
+            © {new Date().getFullYear()} Mechelin Metals Nigeria LTD <br />
             {t('copyright')}
           </span>
         </div>
