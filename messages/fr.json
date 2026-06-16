@@ -36,6 +36,38 @@
     "experienceValue": "10+",
     "experienceLabel": "Années d’Expérience dans l’Industrie"
   },
+  "WhatWeDealIn": {
+    "sectionTag": "Ce que nous proposons",
+    "title": "Nos principaux métaux",
+    "intro": "Nous commercialisons, recyclons et fournissons des métaux de haute qualité pour les secteurs de la fabrication, de la fonderie et de l'industrie. Chaque lot est soigneusement trié, mis en balles et préparé selon des normes strictes.",
+    "cta": "Vérifier la valeur",
+    "metals": {
+      "aluminium": {
+        "name": "Aluminium",
+        "desc": "Déchets d’aluminium triés de qualité supérieure, mis en balles et prêts pour la fusion ou la fabrication."
+      },
+      "castAluminium": {
+        "name": "Aluminium coulé",
+        "desc": "Aluminium coulé de haute pureté provenant de moteurs, machines et pièces automobiles."
+      },
+      "castIron": {
+        "name": "Fonte",
+        "desc": "Déchets de fonte triés adaptés aux fonderies et au retraitement des métaux."
+      },
+      "condenser": {
+        "name": "Condenseur",
+        "desc": "Condenseurs en cuivre et aluminium provenant d’équipements HVAC et de réfrigération."
+      },
+      "ubc": {
+        "name": "UBC (canettes)",
+        "desc": "Canettes en aluminium usagées nettoyées, triées et mises en balles pour recyclage."
+      },
+      "ferrousMetals": {
+        "name": "Métaux ferreux",
+        "desc": "Tous types de métaux ferreux provenant de véhicules, bâtiments et appareils."
+      }
+    }
+  },
   "WhyChoose": {
     "badge": "Capacités de l’Entreprise",
     "title": "POURQUOI CHOISIR",
