@@ -140,6 +140,7 @@ const localFadeUp = {
    CONTACT PAGE
 ───────────────────────────────────────────────────────────── */
 export default function ContactPage(): React.JSX.Element {
+  
   const [form, setForm] = useState({
     name: '', company: '', email: '', phone: '',
     country: '', type: '', product: '', volume: '',

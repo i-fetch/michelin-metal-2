@@ -1,5 +1,8 @@
 {
-  "Navbar": {
+
+ "homepage":{
+
+   "Navbar": {
     "home": "Home",
     "about": "About",
     "products": "Products",
@@ -160,4 +163,24 @@
     },
     "copyright": "All rights reserved"
   }
+ },
+ 
+  "contact": {
+    "title": "Contact Us",
+    "description": "Reach out to our team for inquiries, quotes, or partnership opportunities. We are here to assist you with your metal sourcing and recycling needs.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Submit"
+    },
+    "address": {
+      "line1": "123 Industrial Avenue",
+      "line2": "Lagos, Nigeria"
+    },
+    "phone": "+234 123 456 7890",
+    "emailAddress": "info@mechelinmetals.com"
+  
+  }
+
 }
