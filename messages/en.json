@@ -133,6 +133,14 @@
     "secondaryCta": "Browse Products",
     "trustText": "Trusted by industrial buyers and scrap dealers across West Africa"
   },
+  "cta2": {
+    "subtitle": "Industrial Bulk Supply & Procurement",
+    "title": "READY TO PARTNER WITH US?",
+    "description": "Whether you need reliable raw material supply or have scrap metal to move — our team is ready.",
+    "primaryCta": "Request Quote",
+    "secondaryCta": "Browse Products",
+    "trustText": "Trusted by industrial buyers and scrap dealers across West Africa"
+  },
   "footer": {
     "brandDescription": "West Africa's foremost integrated metal recycling company — sourcing, sorting and distributing high-performance recycled raw materials nationally and globally.",
     "navigation": "Navigation",
