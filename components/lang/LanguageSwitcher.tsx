@@ -51,8 +51,12 @@ export default function LanguageSwitcher({ locale, changeLocale }: Props) {
           "focus-visible:ring-2 focus-visible:ring-[var(--clr-green)]"
         )}
       >
-        <Globe className="h-[15px] w-[15px] text-[var(--clr-green)] shrink-0" />
-        <span className="text-base leading-none">{current.flag}</span>
+        {/* <Globe className="h-[15px] w-[15px] text-[var(--clr-green)] shrink-0" /> */}
+        <img
+          src={current.flag}
+          alt={`${current.label} flag`}
+          className="w-5 h-[15px] rounded-[3px] object-cover border border-black/[0.08]"
+        />
         <span>{current.short}</span>
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}
@@ -107,17 +111,19 @@ export default function LanguageSwitcher({ locale, changeLocale }: Props) {
                         : "hover:bg-[#f0fdf4]"
                     )}
                   >
-                    <span className="text-xl leading-none w-6 text-center">
-                      {lang.flag}
+                    <img
+                    src={lang.flag}
+                    alt={`${lang.label} flag`}
+                    className="w-5 h-[15px] rounded-[3px] object-cover border border-black/[0.08]"
+                  />
+                  <div className="flex flex-col flex-1 gap-px">
+                    <span className="text-[13px] font-medium text-foreground leading-tight">
+                      {lang.label}
                     </span>
-                    <div className="flex flex-col flex-1 gap-px">
-                      <span className="text-[13px] font-medium text-foreground leading-tight">
-                        {lang.label}
-                      </span>
-                      <span className="text-[11px] text-muted-foreground leading-tight">
-                        {lang.native}
-                      </span>
-                    </div>
+                    <span className="text-[11px] text-muted-foreground leading-tight">
+                      {lang.native}
+                    </span>
+                  </div>
                     <span className="text-[10px] font-medium tracking-wide text-muted-foreground/60 uppercase">
                       {lang.short}
                     </span>

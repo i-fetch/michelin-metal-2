@@ -151,37 +151,5 @@
       "bulkSupply": "Approvisionnement en gros"
     },
     "copyright": "Tous droits réservés"
-  },
-  "aboutpage": {
-    "hero": {
-      "badge": "Infrastructure d'entreprise",
-      "title": "À PROPOS DE MECHELIN METALS NIGERIA.",
-      "subtitle": "Une décennie d'activités industrielles lourdes pour le marché mondial."
-    },
-    "story": {
-      "badge": "Notre héritage",
-      "title": "PLUS D'UNE DÉCENNIE DE CONSTRUCTION",
-      "p1": "Mechelin Metals Nigeria LTD est une entreprise de récupération et de transformation des métaux en Afrique de l'Ouest.",
-      "p2": "Nous utilisons des infrastructures industrielles pour collecter et traiter les matériaux.",
-      "cta": "Explorer les produits"
-    },
-    "vision": {
-      "vision": {
-        "title": "Notre vision",
-        "body": "Devenir le leader mondial du recyclage durable des métaux."
-      },
-      "mission": {
-        "title": "Notre mission",
-        "body": "Révolutionner le recyclage des métaux grâce à l’innovation durable."
-      }
-    },
-    "cta": {
-      "subtitle": "Approvisionnement industriel",
-      "title": "PRÊT À COLLABORER ?",
-      "description": "Nous fournissons des matériaux ou récupérons vos déchets métalliques.",
-      "primary": "Demander un devis",
-      "secondary": "Voir les produits",
-      "trust": "Fait confiance par les acheteurs industriels en Afrique de l'Ouest"
-    }
   }
 }

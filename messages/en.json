@@ -323,38 +323,6 @@
     },
     "phone": "+234 123 456 7890",
     "emailAddress": "info@mechelinmetals.com"
-  },
-  "aboutpage": {
-    
-    "hero": {
-      "badge": "Enterprise Infrastructure",
-      "title": "ABOUT MECHELIN METALS NIGERIA.",
-      "subtitle": "A decade of heavy industry operations, institutionalised for the global market."
-    },
-    "story": {
-      "badge": "Our Legacy",
-      "title": "MORE THAN A DECADE IN THE MAKING",
-      "p1": "Mechelin Metals Nigeria LTD is West Africa’s foremost integrated structural reclamation and metal processing corporation.",
-      "p2": "We leverage captive resources and institutional machinery infrastructures to source and process materials.",
-      "cta": "Explore Product Portfolio"
-    },
-    "vision": {
-      "vision": {
-        "title": "Our Vision",
-        "body": "To become the leading provider of sustainable metals recycling solutions globally."
-      },
-      "mission": {
-        "title": "Our Mission",
-        "body": "To revolutionize metal recycling through innovation and sustainable practices."
-      }
-    },
-    "cta": {
-      "subtitle": "Industrial Bulk Supply & Procurement",
-      "title": "READY TO PARTNER WITH US?",
-      "description": "Whether you need raw materials or have scrap to move, we are ready.",
-      "primary": "Request Quote",
-      "secondary": "Browse Products",
-      "trust": "Trusted by industrial buyers across West Africa"
-    }
   }
+
 }
