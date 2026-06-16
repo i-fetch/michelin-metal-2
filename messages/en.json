@@ -1,8 +1,5 @@
 {
-
- "homepage":{
-
-   "Navbar": {
+  "Navbar": {
     "home": "Home",
     "about": "About",
     "products": "Products",
@@ -162,9 +159,7 @@
       "bulkSupply": "Bulk Supply"
     },
     "copyright": "All rights reserved"
-  }
- },
- 
+  },
   "contact": {
     "title": "Contact Us",
     "description": "Reach out to our team for inquiries, quotes, or partnership opportunities. We are here to assist you with your metal sourcing and recycling needs.",
@@ -180,8 +175,5 @@
     },
     "phone": "+234 123 456 7890",
     "emailAddress": "info@mechelinmetals.com"
-  
   }
-  
-
 }
