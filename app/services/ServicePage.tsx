@@ -142,7 +142,7 @@ export default function ServicePage() {
         <div className="absolute inset-0 z-[1] pointer-events-none select-none">
 
           {/* MASK A: Pure white structural block gradient to neutralize asset noise directly underneath the text layout */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-white/85 to-white/10 md:from-white md:via-white/95 md:via-white/80 md:to-white/5" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/10 md:from-white md:via-white/95 md:to-white/5" />
 
           {/* MASK B: Micro-diffused backdrop blur sheet — separates complex image details from crisp text typography */}
           <div className="absolute top-0 bottom-0 left-0 w-full md:w-[70%] bg-white/20 backdrop-blur-[4px] [mask-image:linear-gradient(to_right,white_50%,transparent_100%)]" />
