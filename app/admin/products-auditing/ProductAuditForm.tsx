@@ -23,7 +23,6 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
   const [newAppInput, setNewAppInput] = useState("");
   const [newImageInput, setNewImageInput] = useState("");
   const [newFiles, setNewFiles] = useState<File[]>([]);
-  const [isAILoading, setIsAILoading] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -35,71 +34,63 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
     setFormData((prev) => ({ ...prev, title: value, slug: buildSlug(value) }));
   };
 
-  const runAISpecWizard = async () => {
-    setIsAILoading(true);
+  
+  const handleSaveProduct = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     try {
-      toast.info("AI Specs Assistant will be available soon.");
-    } finally {
-      setIsAILoading(false);
+      const payload = {
+        title: formData.title,
+        slug: formData.slug,
+        description: formData.description,
+        categoryName: formData.categoryName,
+        categorySlug: formData.categorySlug,
+        badge: formData.badge,
+        moqValue: formData.moqValue,
+        moqUnit: formData.moqUnit,
+
+        grade: formData.specs.grade,
+        form: formData.specs.form,
+        purity: formData.specs.purity,
+        source: formData.specs.source,
+        hazardCompliance: formData.specs.hazardCompliance,
+        zincContent: formData.specs.zincContent,
+
+        applications: formData.applications,
+
+        // IMPORTANT: only URLs or already-uploaded IDs
+        images: formData.images,
+      };
+
+      const endpoint = isEditMode
+        ? "/api/update-product"
+        : "/api/create-product";
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          isEditMode && product?._id
+            ? { ...payload, id: product._id }
+            : payload
+        ),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data?.message || "Request failed");
+      }
+
+      toast.success(isEditMode ? "Product updated" : "Product created");
+      router.push("/admin/products-auditing");
+    } catch (error) {
+      console.error("Save error:", error);
+      toast.error("Failed to save product.");
     }
   };
-
-const handleSaveProduct = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-
-  try {
-    const payload = {
-      title: formData.title,
-      slug: formData.slug,
-      description: formData.description,
-      categoryName: formData.categoryName,
-      categorySlug: formData.categorySlug,
-      badge: formData.badge,
-      moqValue: formData.moqValue,
-      moqUnit: formData.moqUnit,
-
-      grade: formData.specs.grade,
-      form: formData.specs.form,
-      purity: formData.specs.purity,
-      source: formData.specs.source,
-      hazardCompliance: formData.specs.hazardCompliance,
-      zincContent: formData.specs.zincContent,
-
-      applications: formData.applications,
-
-      // IMPORTANT: only URLs or already-uploaded IDs
-      images: formData.images,
-    };
-
-    const endpoint = isEditMode
-      ? "/api/update-product"
-      : "/api/create-product";
-
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(
-        isEditMode && product?._id
-          ? { ...payload, id: product._id }
-          : payload
-      ),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data?.message || "Request failed");
-    }
-
-    toast.success(isEditMode ? "Product updated" : "Product created");
-    router.push("/admin/products-auditing");
-  } catch (error) {
-    console.error("Save error:", error);
-    toast.error("Failed to save product.");
-  }
-};
 
   return (
     <div className="space-y-6 text-left" id="subview-admin-form">
@@ -121,10 +112,12 @@ const handleSaveProduct = async (e: React.FormEvent<HTMLFormElement>) => {
             }
           }}
           disabled={!product}
-          className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow hover:bg-green-700 transition-all self-start sm:self-auto disabled:opacity-50"
+          // className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow hover:bg-green-700 transition-all self-start sm:self-auto disabled:opacity-50"
+          className="text-xs font-bold cursor-pointer flex items-center space-x-2 rounded-lg bg-brand-green p-2 text-white shadow transition-all hover:bg-green-700 self-start sm:self-auto"
+
         >
           <ExternalLink className="h-4 w-4" />
-          <span>{product ? "Review Product" : "Review after save"}</span>
+          <span>{product ? "Review Product" : "Review"}</span>
         </button>
       </div>
 

@@ -3,7 +3,7 @@
 
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Globe } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -76,21 +76,25 @@ export default function WhatWeDeal(): React.JSX.Element {
 
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
+
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-widest text-emerald-600 font-semibold"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, ease: EASE }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase"
+            style={{ fontFamily: "var(--font-body)" }}
           >
+            <Globe size={12} className="" />
             What We Deal In
-          </motion.p>
+          </motion.div>
 
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
-            className="text-4xl md:text-5xl font-black mt-3"
+            className="text-4xl md:text-5xl font-black mt-3 tracking-wide"
           >
             Our Major Metals
           </motion.h2>
@@ -123,7 +127,7 @@ export default function WhatWeDeal(): React.JSX.Element {
               </div>
 
               {/* TITLE */}
-              <h3 className="text-lg font-bold mb-2 group-hover:text-emerald-700 transition-colors">
+              <h3 className="tracking-wider text-lg font-bold mb-2 group-hover:text-emerald-700 transition-colors">
                 {item.name}
               </h3>
 
@@ -136,7 +140,7 @@ export default function WhatWeDeal(): React.JSX.Element {
               <button
                 onClick={() => handleScrollToCalculator(item.actionKey)}
                 className="mt-6 hidden items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
-                // className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
+              // className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
               >
                 Check Value Rate
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

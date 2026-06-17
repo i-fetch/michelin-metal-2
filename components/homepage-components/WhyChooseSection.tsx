@@ -81,7 +81,7 @@ export default function WhyChooseSection(): React.JSX.Element {
                 {t("badge")}
               </div>
 
-              <h2 className="mt-6 text-4xl md:text-5xl xl:text-6xl font-black leading-tight text-[var(--tx-primary)]">
+              <h2 className="tracking-wide mt-6 text-4xl md:text-5xl xl:text-6xl font-black leading-tight text-[var(--tx-primary)]">
                 {t("title")}
                 <span className="block text-[var(--clr-green)]">
                   {t("highlight")}
@@ -95,7 +95,7 @@ export default function WhyChooseSection(): React.JSX.Element {
               {/* Trust Metrics */}
               <div className="grid grid-cols-3 gap-5 mt-10">
                 <div>
-                  <h3 className="text-3xl font-black text-[var(--clr-green)]">
+                  <h3 className="text-3xl font-black tracking-wide text-[var(--clr-green)]">
                     10+
                   </h3>
                   <p className="text-xs text-[var(--tx-secondary)]">
@@ -104,7 +104,7 @@ export default function WhyChooseSection(): React.JSX.Element {
                 </div>
 
                 <div>
-                  <h3 className="text-3xl font-black text-[var(--clr-green)]">
+                  <h3 className="text-3xl font-black tracking-wide text-[var(--clr-green)]">
                     25+
                   </h3>
                   <p className="text-xs text-[var(--tx-secondary)]">
@@ -113,7 +113,7 @@ export default function WhyChooseSection(): React.JSX.Element {
                 </div>
 
                 <div>
-                  <h3 className="text-3xl font-black text-[var(--clr-green)]">
+                  <h3 className="text-3xl font-black tracking-wide text-[var(--clr-green)]">
                     500+
                   </h3>
                   <p className="text-xs text-[var(--tx-secondary)]">
@@ -165,7 +165,7 @@ export default function WhyChooseSection(): React.JSX.Element {
                         {item.icon}
                       </div>
 
-                      <h3 className="text-xl font-bold text-[var(--tx-primary)] mb-3">
+                      <h3 className="tracking-wide text-xl font-bold text-[var(--tx-primary)] mb-3">
                         {item.title}
                       </h3>
 

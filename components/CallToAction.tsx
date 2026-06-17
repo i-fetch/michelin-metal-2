@@ -45,7 +45,7 @@ export default function CTASection({
 
    return (
       <section
-         className="relative overflow-hidden py-24"
+         className="relative overflow-hidden py-24 bg-green-600"
          style={{
             background: backgroundStyle[backgroundVariant],
          }}
@@ -53,8 +53,11 @@ export default function CTASection({
          {/* Decorative blobs (only for default) */}
          {backgroundVariant === 'default' && (
             <>
-               <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-[var(--clr-green-alpha)] blur-3xl" />
-               <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-[var(--clr-gold-alpha)] blur-3xl" />
+               <div className="absolute w-full h-full " />
+               {/* <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-green-600 blur-3xl" /> */}
+               {/* <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-[var(--clr-green-alpha)] blur-3xl" /> */}
+               {/* <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-green-600 blur-3xl" /> */}
+               {/* <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-[var(--clr-gold-alpha)] blur-3xl" /> */}
             </>
          )}
 

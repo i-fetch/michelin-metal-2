@@ -15,13 +15,13 @@ const ProductAuditPage = ({ products }: ProductAuditPageProps) => {
             <div className="space-y-6 text-left" id="subview-admin-products">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                        <h2 className="text-bebas text-3xl text-tx-primary tracking-wide">Listing Master Audit List</h2>
+                        <h2 className="text-bebas text-3xl text-tx-primary tracking-wider">Master Audit Listing</h2>
                         <p className="text-xs text-tx-secondary">Total active database components with full schema validation guidelines.</p>
                     </div>
 
                     <button
                         onClick={() => router.push("/admin/products-auditing/new")}
-                        className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow transition-all hover:bg-green-700 disabled:opacity-50 animate-pulse self-start sm:self-auto"
+                        className="text-[10px] cursor-pointer flex items-center space-x-2 rounded-lg bg-brand-green p-2 text-white shadow transition-all hover:bg-green-700 disabled:opacity-5 self-start sm:self-auto"
                     >
                         <Plus className="h-4 w-4" />
                         <span>Add New Material</span>
@@ -34,12 +34,12 @@ const ProductAuditPage = ({ products }: ProductAuditPageProps) => {
                         <table className="w-full text-left text-xs border-collapse">
                             <thead>
                                 <tr className="bg-bg-subtle border-b border-border-subtle text-tx-muted uppercase font-semibold">
-                                    <th className="py-3 px-4">Material Identity</th>
-                                    <th className="py-3 px-4">Classification</th>
-                                    <th className="py-3 px-4">Purity specs</th>
-                                    <th className="py-3 px-4">Min order (MOQ)</th>
-                                    <th className="py-3 px-4">Hazard ADR</th>
-                                    <th className="py-3 px-4 text-center">Form Audit</th>
+                                    <th className="text-[10px] py-3 px-4">Material Identity</th>
+                                    <th className="text-[10px] py-3 px-4">Classification</th>
+                                    <th className="text-[10px] py-3 px-4">Purity specs</th>
+                                    <th className="text-[10px] py-3 px-4">Min order (MOQ)</th>
+                                    <th className="text-[10px] py-3 px-4">Hazard ADR</th>
+                                    <th className="text-[10px] py-3 px-4 text-center">Form Audit</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100 text-tx-secondary">

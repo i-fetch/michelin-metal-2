@@ -7,6 +7,8 @@ import { Eye, EyeOff, ArrowRight, Recycle, ShieldCheck, Globe, Package } from "l
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation"
 import { toast } from "sonner";
+import Link from "next/link";
+import Image from "next/image";
 
 /* ─────────────────────────────────────────────────────────────
    ANIMATED LEFT PANEL — floating stat nodes
@@ -233,21 +235,35 @@ export default function SigninPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center"
-            style={{ background: "var(--clr-green-alpha)", border: "1px solid rgba(22,163,74,0.2)" }}
-          >
-            <Recycle size={16} style={{ color: "var(--clr-green)" }} />
-          </div>
-          <div>
-            <p className="font-black text-sm uppercase tracking-widest leading-none"
-              style={{ fontFamily: "var(--font-display)", color: "var(--tx-primary)" }}>
-              Mechelin
-            </p>
-            <p className="text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--tx-muted)" }}>
-              Admin Console
-            </p>
-          </div>
+            {/* Logo */}
+          <Link href="#" className="flex items-center gap-2">
+            <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
+              <Image
+                src="/logo.png"
+                width={20}
+                height={20}
+                className="w-full h-full object-cover"
+                alt="Mechelin Metals"
+                priority
+                unoptimized
+              />
+            </div>
+
+            <div className="flex flex-col leading-none">
+              <h1
+                className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
+                style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
+              >
+                MECHELIN METALS
+              </h1>
+              <span
+                className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+                style={{ color: 'var(--tx-faint)' }}
+              >
+                NIGERIA LIMITED
+              </span>
+            </div>
+          </Link>
         </motion.div>
 
         <div className="w-full max-w-[400px]">
@@ -259,20 +275,19 @@ export default function SigninPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="tag mb-4">Admin Access</p>
+            <p className="tag mb-4">Admin Access CMS Panel</p>
             <h1
-              className="font-black leading-none mb-2"
+              className="font-black leading-none mb-2 tracking-wider"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(2rem, 4vw, 2.8rem)",
                 color: "var(--tx-primary)",
-                letterSpacing: "-0.025em",
               }}
             >
               Welcome back
             </h1>
             <p className="text-sm" style={{ color: "var(--tx-muted)" }}>
-              Sign in to your admin dashboard
+              Sign in to your admin dashboard to manage product listings and inquiries.
             </p>
           </motion.div>
 
@@ -394,7 +409,7 @@ export default function SigninPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            Mechelin Metals Nigeria PVT LTD &copy; {new Date().getFullYear()}
+            Mechelin Metals Nigeria LTD &copy; {new Date().getFullYear()}
           </motion.p>
 
         </div>
