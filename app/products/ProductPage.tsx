@@ -11,19 +11,12 @@ import {
 import ProductCard from './ProductCard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import type { Product, ProductCategory } from '@/lib/types';
+import type { Product } from '@/lib/types';
 
 interface ProductPageProps {
   products: Product[];
 }
 
-// const PRODUCT_CATEGORIES: ProductCategory[] = [
-//   { name: 'Zinc Oxide', slug: 'zinc-oxide' },
-//   { name: 'Zinc Dust', slug: 'zinc-dust' },
-//   { name: 'Zinc Granules', slug: 'zinc-granules' },
-//   { name: 'Copper & Alloys', slug: 'copper-alloys' },
-//   { name: 'Chemical Compounds', slug: 'chemical-compounds' },
-// ];
 
 export default function ProductPage({ products }: ProductPageProps) {
   const router = useRouter();
@@ -90,8 +83,8 @@ export default function ProductPage({ products }: ProductPageProps) {
               color: 'var(--tx-primary)',
             }}
           >
-            PRODUCTS &<br />
-            <span style={{ color: 'var(--clr-green)' }}>MATERIALS</span>
+            PRODUCTS &<br className='hidden lg:block' />
+            <span style={{ color: 'var(--clr-green)' }}>{" "}MATERIALS</span>
           </h1>
 
           <p className="text-lg max-w-xl" style={{ color: 'var(--tx-muted)', fontWeight: 300 }}>
@@ -126,7 +119,7 @@ export default function ProductPage({ products }: ProductPageProps) {
           {/* Header */}
           <div className="flex justify-between border-b pb-4">
             <div>
-              <h2 className="text-3xl font-bold">Product Explorer</h2>
+              <h2 className="text-3xl font-bold tracking-wide">Product Explorer</h2>
               <p className="text-sm text-gray-500">Search and filter materials</p>
             </div>
 
