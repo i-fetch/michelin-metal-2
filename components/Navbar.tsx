@@ -51,7 +51,7 @@ export default function Navbar(): React.JSX.Element {
     <>
       {/* ── GLASS NAVBAR LAYER ── */}
       <nav className="relative w-full bg-white/30 backdrop-blur-2xl border-b border-white/20 z-40">
-        <div className="border max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-5 flex items-center justify-between">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
@@ -84,7 +84,7 @@ export default function Navbar(): React.JSX.Element {
           </Link>
 
           {/* Desktop links */}
-          <div className="border hidden lg:flex items-center gap-8 mx-auto px-6">
+          <div className="hidden lg:flex items-center gap-8 mx-auto px-6">
             {links.map((link) => {
               const isActive = path === link.href;
 
