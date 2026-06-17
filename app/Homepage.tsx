@@ -5,7 +5,7 @@ import Footer from '@/components/Footer'
 import AboutSection from '@/components/homepage-components/AboutSection'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 import GlobalReachSection from '@/components/homepage-components/GlobalReachSection'
-import MaterialsSection from '@/components/homepage-components/MaterialSection'
+// import MaterialsSection from '@/components/homepage-components/MaterialSection'
 import HeroHeader from '@/components/homepage-components/HeroHeader'
 
 import CTASection from '@/components/CallToAction'
@@ -32,15 +32,14 @@ export default function Homepage() {
          {/* ── WHY CHOOSE US ───────────────────────────────── */}
          <WhyChooseSection />
 
-         {/* ── WHAT WE DEAL ───────────────────────────────── */}
-         <WhatWeDeal />
-
          {/* ── GLOBAL REACH ─────────────────────────────────── */}
          <GlobalReachSection />
 
-        
          {/* ── PRODUCTS PREVIEW ─────────────────────────────── */}
-         <MaterialsSection />
+         {/* <MaterialsSection /> */}
+
+         {/* ── WHAT WE DEAL ───────────────────────────────── */}
+         <WhatWeDeal />
 
          {/* ── CTA ──────────────────────────────────────────── */}
          <CTASection

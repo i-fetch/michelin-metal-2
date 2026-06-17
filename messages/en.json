@@ -157,186 +157,14 @@
       "contactDesc": "Get institutional quotes",
       "getQuotes": "Request Quotes"
     },
-    "Hero": {
-      "tag": "Metal Recycle Industry · West Africa",
-      "title1": "TURNING METAL",
-      "waste": "WASTE",
-      "title2": "INTO GLOBAL",
-      "value": "VALUE",
-      "description": "Mechelin Metals Nigeria — sourcing, sorting, baling and distributing aluminium and non-ferrous metals to manufacturers across West Africa and the world.",
-      "explore": "Explore Products",
-      "story": "Our Story",
-      "years": "Years Active",
-      "partners": "B2B Partners",
-      "processed": "Tonnes Processed",
-      "continents": "Continents"
+    "productList": {
+      "aluminiumBales": "Aluminium Bales",
+      "nonFerrousScrap": "Non-Ferrous Scrap",
+      "copperScrap": "Copper Scrap",
+      "brassScrap": "Brass Scrap",
+      "bulkSupply": "Bulk Supply"
     },
-    "About": {
-      "tag": "About The Company",
-      "title": "NIGERIA'S FOREMOST INTEGRATED METAL RECYCLER",
-      "description1": "Mechelin Metals Nigeria LTD leverages captive resources and advanced capabilities to source, sort and bale aluminium waste, distributing it as raw material to manufacturers. We handle all types of non-ferrous metals for sale, scrapping, conversion and foundry purposes.",
-      "description2": "Formally incorporated in 2023, our team has been active in the industry for over a decade — building infrastructure and global distribution networks that benefit both industry and environment.",
-      "button": "Read Full Story",
-      "imageAlt": "Scrap metal processing",
-      "experienceValue": "10+",
-      "experienceLabel": "Years of Industry Experience"
-    },
-    "WhyChoose": {
-      "badge": "Enterprise Capabilities",
-      "title": "WHY CHOOSE",
-      "highlight": "MECHELIN METALS.",
-      "intro": "Trusted by heavy manufacturers and industrial foundries across four continents to deliver processed metal cargo exactly to assay specifications.",
-      "expertTitle": "Leading Industry Experts",
-      "expertDesc": "Our team comprises seasoned metals specialists with deep knowledge of ferrous and non-ferrous material grading, processing standards, and export regulations.",
-      "experienceTitle": "Decade of Experience",
-      "experienceDesc": "Over 10 years of operational excellence in metals sourcing, processing, and international trade from Nigeria to global markets.",
-      "globalTitle": "Global Trade Connections",
-      "globalDesc": "Established trade relationships with buyers in China, South Korea, India, and across West Africa — ensuring your materials reach the right markets.",
-      "logisticsTitle": "Strong Logistics Support",
-      "logisticsDesc": "Full container loading, freight forwarding, documentation, and port clearance services managed by our in-house logistics team.",
-      "paymentTitle": "International Payment Capability",
-      "paymentDesc": "We support Letters of Credit (LC), T/T Bank Transfers, and other internationally recognized payment instruments for seamless global trade.",
-      "sustainabilityTitle": "Sustainable Operations",
-      "sustainabilityDesc": "Our recycling processes meet international environmental standards, supporting your company's ESG goals and sustainability commitments."
-    },
-    "WhatWeDeal": {
-      "sectionTag": "What We Deal In",
-      "title": "Our Major Metals",
-      "intro": "We trade, recycle, and supply premium-quality metals for manufacturing, foundry, and industrial purposes. Each grade is carefully sorted, bailed, and prepared to meet exacting customer specifications.",
-      "cta": "Check Value Rate",
-      "metals": {
-        "aluminium": {
-          "name": "Aluminium",
-          "desc": "Premium-grade sorted aluminium scrap, bailed and ready for smelting or direct manufacturing use."
-        },
-        "castAluminium": {
-          "name": "Cast Aluminium",
-          "desc": "High-purity cast aluminium sourced from engines, machinery, and automotive components."
-        },
-        "castIron": {
-          "name": "Cast Iron",
-          "desc": "Sorted cast iron scrap suitable for foundry operations and metal reprocessing."
-        },
-        "condenser": {
-          "name": "Condenser",
-          "desc": "Copper and aluminium condensers from HVAC and refrigeration equipment, carefully processed."
-        },
-        "ubc": {
-          "name": "UBC",
-          "desc": "Used Beverage Cans — cleaned, sorted, and bailed aluminium UBC for remelting and recycling."
-        },
-        "ferrousMetals": {
-          "name": "Ferrous Metals",
-          "desc": "All kinds of ferrous metals — magnetic and non-magnetic — from vehicles, buildings, and appliances."
-        }
-      }
-    },
-    "GlobalReach": {
-      "badge": "Logistics & Distribution",
-      "title": "OUR",
-      "highlight": "GLOBAL CUSTOMERS.",
-      "intro": "Facilitating heavy industrial metal distribution channels out of West Africa directly into primary processing centers across China, South Korea, and India.",
-      "nigeria": "Nigeria",
-      "china": "China",
-      "southKorea": "South Korea",
-      "india": "India",
-      "nigeriaDesc": "Headquarters & sourcing infrastructure across active industrial collection zones in Anambra, Lagos, and Port Harcourt.",
-      "chinaDesc": "Primary industrial destination — delivering certified aluminium, ferrous profiles, and mixed scrap directly to large-scale smelting plants.",
-      "southKoreaDesc": "Premium grade heavy steel and specialty foundry casting components supplied consistently to corporate manufacturing hubs.",
-      "indiaDesc": "High-purity non-ferrous and structured shredder scrap exports supporting growing national automotive and infrastructure pipelines.",
-      "nigeriaFlag": "Nigeria National Flag",
-      "chinaFlag": "China National Flag",
-      "southKoreaFlag": "South Korea National Flag",
-      "indiaFlag": "India National Flag",
-      "mapNigeria": "Nigeria",
-      "mapChina": "China",
-      "mapSouthKorea": "S. Korea",
-      "mapIndia": "India",
-      "ariaLabel": "Global Trade Networks"
-    },
-    "materials": {
-      "title": "OUR",
-      "highlight": "Products",
-      "browse": "Browse All Materials",
-      "needCustom": "Need custom sourcing?",
-      "ctaText": "We supply industrial-grade metals on demand.",
-      "ctaButton": "Get Quote",
-      "categories": {
-        "nonFerrous": "Non-Ferrous",
-        "ferrous": "Ferrous",
-        "industrial": "Industrial",
-        "autoScrap": "Auto Scrap"
-      },
-      "items": {
-        "aluminum": {
-          "name": "Aluminum",
-          "desc": "High-purity aluminum scrap ideal for smelting and reprocessing. Available in various grades including 6061 and 6063."
-        },
-        "castAluminum": {
-          "name": "Cast Aluminum",
-          "desc": "Engine blocks, transmission housings, and industrial cast aluminum components for remelting into new alloy products."
-        },
-        "ironSteel": {
-          "name": "Iron & Steel",
-          "desc": "Heavy melting scrap (HMS 1&2), shredded steel, and structural iron for electric arc furnaces and foundry use."
-        },
-        "condenser": {
-          "name": "Condenser",
-          "desc": "Air-conditioning and refrigeration condensers with high copper-aluminum content for efficient material recovery."
-        },
-        "ubcCans": {
-          "name": "UBC Cans",
-          "desc": "Baled used beverage cans — one of the most recycled aluminum products globally, ideal for remelting into new sheet material."
-        },
-        "ferrousMetals": {
-          "name": "Ferrous Metals",
-          "desc": "Comprehensive range of iron-based scrap including structural steel, rebar, plate steel, and industrial equipment scrap."
-        },
-        "nonFerrousMetals": {
-          "name": "Non-Ferrous Metals",
-          "desc": "Copper, brass, bronze, lead, and zinc in various forms — wires, pipes, fittings, and sheets — ready for processing."
-        },
-        "vehicleScrap": {
-          "name": "Vehicle Scrap",
-          "desc": "End-of-life vehicles stripped and processed — engine blocks, body panels, axles, and mixed metal recovery from automotive sources."
-        }
-      }
-    },
-    "cta": {
-      "subtitle": "Industrial Bulk Supply & Procurement",
-      "title": "READY TO PARTNER WITH US?",
-      "description": "Whether you need reliable raw material supply or have scrap metal to move — our team is ready.",
-      "primaryCta": "Request Quote",
-      "secondaryCta": "Browse Products",
-      "trustText": "Trusted by industrial buyers and scrap dealers across West Africa"
-    },
-    "cta2": {
-      "subtitle": "Industrial Bulk Supply & Procurement",
-      "title": "READY TO PARTNER WITH US?",
-      "description": "Whether you need reliable raw material supply or have scrap metal to move — our team is ready.",
-      "primaryCta": "Request Quote",
-      "secondaryCta": "Browse Products",
-      "trustText": "Trusted by industrial buyers and scrap dealers across West Africa"
-    },
-    "footer": {
-      "brandDescription": "West Africa's foremost integrated metal recycling company — sourcing, sorting and distributing high-performance recycled raw materials nationally and globally.",
-      "navigation": "Navigation",
-      "products": "Products",
-      "links": {
-        "about": "About Us",
-        "products": "Products",
-        "services": "Services",
-        "contact": "Contact"
-      },
-      "productList": {
-        "aluminiumBales": "Aluminium Bales",
-        "nonFerrousScrap": "Non-Ferrous Scrap",
-        "copperScrap": "Copper Scrap",
-        "brassScrap": "Brass Scrap",
-        "bulkSupply": "Bulk Supply"
-      },
-      "copyright": "All rights reserved"
-    }
+    "copyright": "All rights reserved"
   },
   "contact": {
     "title": "Contact Us",
@@ -354,5 +182,4 @@
     "phone": "+234 123 456 7890",
     "emailAddress": "info@mechelinmetals.com"
   }
-
 }
