@@ -108,16 +108,16 @@ export default function Navbar(): React.JSX.Element {
               );
             })}
 
-         
+
           </div>
 
-             {/* Language Switcher Desktop */}
-            <div className="hidden xl:flex items-center ml-4 min-w-[140px]">
-              <LanguageSwitcher
-                locale={locale}
-                changeLocale={changeLocale}
-              />
-            </div>
+          {/* Language Switcher Desktop */}
+          <div className="hidden xl:flex items-center ml-4 min-w-[140px]">
+            <LanguageSwitcher
+              locale={locale}
+              changeLocale={changeLocale}
+            />
+          </div>
 
           {/* ── Right side ────────────────────────────────────────── */}
           <div className="flex items-center gap-3">
@@ -151,7 +151,7 @@ export default function Navbar(): React.JSX.Element {
               transition={{ type: "spring", damping: 30, stiffness: 180 }}
               className="
                 fixed top-0 right-0
-                h-full w-full sm:w-[460px]
+                h-screen w-full sm:w-[460px]
                 bg-white
                 border-l border-white/20
                 z-[60]
@@ -210,7 +210,7 @@ export default function Navbar(): React.JSX.Element {
 
               <nav className="flex flex-col gap-6 py-10 flex-1">
                 {links.map((link) => (
-                  <React.Fragment key={link.href}>
+                  <span key={link.href} className="">
                     <Link
                       className="block"
                       href={link.href}
@@ -226,7 +226,7 @@ export default function Navbar(): React.JSX.Element {
                     </Link>
 
                     <hr className="border-t border-white/20" />
-                  </React.Fragment>
+                  </span>
                 ))}
               </nav>
 
