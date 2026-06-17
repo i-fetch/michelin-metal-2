@@ -21,10 +21,10 @@ const ProductAuditPage = ({ products }: ProductAuditPageProps) => {
 
                     <button
                         onClick={() => router.push("/admin/products-auditing/new")}
-                        className="text-[10px] cursor-pointer flex items-center space-x-2 rounded-lg bg-brand-green p-2 text-white shadow transition-all hover:bg-green-700 disabled:opacity-5 self-start sm:self-auto"
+                        className="text-xs cursor-pointer flex items-center space-x-2 rounded-lg bg-brand-green p-2 text-white shadow transition-all hover:bg-green-700 disabled:opacity-5 self-start sm:self-auto"
                     >
-                        <Plus className="h-4 w-4" />
-                        <span>Add New Material</span>
+                        <Plus className="h-4 w-4 border rounded-full" />
+                        <span>Add</span>
                     </button>
                 </div>
 

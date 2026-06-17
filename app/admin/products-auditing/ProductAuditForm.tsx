@@ -112,8 +112,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
             }
           }}
           disabled={!product}
-          // className="cursor-pointer inline-flex items-center space-x-2 rounded-lg bg-brand-green px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow hover:bg-green-700 transition-all self-start sm:self-auto disabled:opacity-50"
-          className="text-xs font-bold cursor-pointer flex items-center space-x-2 rounded-lg bg-brand-green p-2 text-white shadow transition-all hover:bg-green-700 self-start sm:self-auto"
+          className="text-xs cursor-pointer flex items-center space-x-2 rounded-lg bg-brand-green p-2 text-white shadow transition-all hover:bg-green-700 self-start sm:self-auto"
 
         >
           <ExternalLink className="h-4 w-4" />
@@ -123,7 +122,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
 
       <form onSubmit={handleSaveProduct} className="bg-white rounded-xl border border-border-subtle p-6 space-y-6">
         <div className="space-y-4">
-          <h3 className="font-bebas text-lg tracking-wider text-tx-primary border-b border-gray-100 pb-1 uppercase">
+          <h3 className="text-lg tracking-wider text-tx-primary border-b border-gray-100 pb-1 uppercase">
             1. Core Catalog Metadata
           </h3>
 
@@ -412,7 +411,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
                     setNewAppInput("");
                   }
                 }}
-                className="cursor-pointer bg-tx-primary hover:bg-tx-secondary text-white px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors"
+                className="cursor-pointer bg-tx-primary hover:bg-tx-secondary text-white p-2 rounded-lg text-xs font-bold uppercase transition-colors"
               >
                 Add Bullet
               </button>
@@ -444,7 +443,8 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
           </h3>
 
           <div className="space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+            <div className="flex flex-col gap-2">
+            {/* <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2"> */}
               <div className="flex-grow">
                 <input
                   type="url"
@@ -463,11 +463,11 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
                       setNewImageInput("");
                     }
                   }}
-                  className="cursor-pointer bg-tx-primary hover:bg-tx-secondary text-white px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors"
+                  className="cursor-pointer bg-tx-primary hover:bg-tx-secondary text-white p-2 rounded-lg text-xs font-bold uppercase transition-colors"
                 >
-                  Add Image Link
+                  Add via Link
                 </button>
-                <label className="cursor-pointer bg-brand-gold hover:bg-tx-secondary text-white px-4 py-2 rounded-lg text-xs font-bold uppercase transition-colors"
+                <label className="cursor-pointer bg-brand-gold hover:bg-tx-secondary text-white p-2 rounded-lg text-xs font-bold uppercase transition-colors"
                 >
                   <input
                     type="file"

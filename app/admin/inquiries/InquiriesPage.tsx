@@ -19,7 +19,7 @@ export default function InquiriesPage({ initialInquiries }: InquiriesPageProps) 
       await archiveInquiryAction(id);
       setInquiries((prev) => prev.filter((item) => item._id !== id));
       toast.success('Inquiry archived successfully');
-    } catch (error) {
+    } catch {
       toast.error('Unable to archive inquiry.');
     }
   };
@@ -37,7 +37,7 @@ export default function InquiriesPage({ initialInquiries }: InquiriesPageProps) 
 
       <div className="rounded-xl border border-border-subtle bg-white p-5 space-y-4 shadow-xs">
         <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-          <h4 className="font-bebas text-lg uppercase text-tx-primary">Client Submissions Queue</h4>
+          <h4 className="tracking-wide font-bebas text-lg uppercase text-tx-primary">Client Submissions Queue</h4>
           <span className="rounded-full bg-gold-brand text-white text-[10px] font-bold px-2.5 py-0.5">
             {inquiries.length} Active Requests
           </span>
