@@ -151,7 +151,7 @@ function MaterialCard({
 
           {/* DYNAMIC TRANSLATED BADGE */}
           <div
-            className="absolute top-3 left-3 text-[10px] font-bold uppercase px-2 py-1 rounded-md"
+            className="hidden absolute top-3 left-3 text-[10px] font-bold uppercase px-2 py-1 rounded-md"
             style={{
               background: "rgba(255,255,255,0.9)",
               color: item.accent,
@@ -161,7 +161,8 @@ function MaterialCard({
           </div>
 
           {/* ACTION INTERACTION ICON */}
-          <div className="absolute top-3 right-3 w-9 h-9 rounded-xl bg-white/90 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div className="hidden absolute top-3 right-3 w-9 h-9 rounded-xl bg-white/90 backdrop-blur items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          {/* <div className="absolute top-3 right-3 w-9 h-9 rounded-xl bg-white/90 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition"> */}
             <ArrowUpRight size={14} className="text-slate-900" />
           </div>
         </div>
@@ -273,6 +274,7 @@ export default function MaterialsSection() {
         </div>
 
         {/* CALL TO ACTION BOTTOM OVERLAY */}
+        {/* <div className="hidden mt-10 p-6 rounded-xl bg-white border border-slate-100 flex-col sm:flex-row justify-between items-start sm:items-center gap-4"> */}
         <div className="mt-10 p-6 rounded-xl bg-white border border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <p className="font-bold text-slate-900">

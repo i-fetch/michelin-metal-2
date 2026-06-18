@@ -122,7 +122,8 @@ export default function HeroHeader() {
                 fontWeight: 300
               }}
             >
-              {t("description")}            </motion.p>
+              {t("description")}
+            </motion.p>
 
             {/* CTA */}
             <motion.div
@@ -168,7 +169,7 @@ export default function HeroHeader() {
                   transition={{ delay: i * 0.08 }}
                   className="py-5 px-6 text-center"
                 >
-                  <p className="stat-num tracking-wider">{s.num}</p>
+                  <p className=" tracking-wider ">{s.num}</p>
                   <p className="text-xs uppercase tracking-widest mt-1 text-[var(--tx-muted)]">
                     {s.label}
                   </p>
