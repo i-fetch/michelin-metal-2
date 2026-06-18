@@ -183,5 +183,37 @@
       "bulkSupply": "Approvisionnement en gros"
     },
     "copyright": "Tous droits réservés"
+  },
+  "whatWeDeal": {
+    "badge": "Nos domaines d’activité",
+    "title": "Nos principaux métaux",
+    "description": "Nous commercialisons, recyclons et fournissons des métaux de qualité supérieure pour les applications industrielles. Chaque qualité est traitée selon des normes de spécification strictes.",
+    "cta": "Vérifier le taux de valeur",
+    "metals": {
+      "aluminium": {
+        "name": "Aluminium",
+        "desc": "Ferraille d’aluminium triée de qualité supérieure, compactée et prête pour la fusion ou l’utilisation directe en fabrication."
+      },
+      "castAluminium": {
+        "name": "Aluminium moulé",
+        "desc": "Aluminium moulé de haute pureté provenant de moteurs, machines et composants automobiles."
+      },
+      "castIron": {
+        "name": "Fonte",
+        "desc": "Ferraille de fonte triée adaptée aux opérations de fonderie et au retraitement des métaux."
+      },
+      "condenser": {
+        "name": "Condenseur",
+        "desc": "Condenseurs en cuivre et aluminium issus d’équipements HVAC et de réfrigération, soigneusement traités."
+      },
+      "ubc": {
+        "name": "UBC",
+        "desc": "Canettes usagées de boissons — nettoyées, triées et compactées pour le recyclage."
+      },
+      "nonFerrous": {
+        "name": "Métaux non ferreux",
+        "desc": "Métaux ferreux magnétiques et non magnétiques provenant de véhicules, bâtiments et appareils."
+      }
+    }
   }
 }

@@ -4,6 +4,7 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Globe } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -15,46 +16,47 @@ type MetalItem = {
 };
 
 export default function WhatWeDeal(): React.JSX.Element {
+  const t = useTranslations("whatWeDeal");
   const metals: MetalItem[] = useMemo(
     () => [
       {
         icon: "🔩",
-        name: "Aluminium",
-        desc: "Premium-grade sorted aluminium scrap, bailed and ready for smelting or direct manufacturing use.",
+        name: t("metals.aluminium.name"),
+        desc: t("metals.aluminium.desc"),
         actionKey: "Aluminium",
       },
       {
         icon: "⚙️",
-        name: "Cast Aluminium",
-        desc: "High-purity cast aluminium sourced from engines, machinery, and automotive components.",
+        name: t("metals.castAluminium.name"),
+        desc: t("metals.castAluminium.desc"),
         actionKey: "Cast Aluminium",
       },
       {
         icon: "🏗️",
-        name: "Cast Iron",
-        desc: "Sorted cast iron scrap suitable for foundry operations and metal reprocessing.",
+        name: t("metals.castIron.name"),
+        desc: t("metals.castIron.desc"),
         actionKey: "Cast Iron",
       },
       {
         icon: "❄️",
-        name: "Condenser",
-        desc: "Copper and aluminium condensers from HVAC and refrigeration equipment, carefully processed.",
+        name: t("metals.condenser.name"),
+        desc: t("metals.condenser.desc"),
         actionKey: "Condenser",
       },
       {
         icon: "🥤",
-        name: "UBC",
-        desc: "Used Beverage Cans — cleaned, sorted, and bailed aluminium UBC for recycling.",
+        name: t("metals.ubc.name"),
+        desc: t("metals.ubc.desc"),
         actionKey: "UBC",
       },
       {
         icon: "🔧",
-        name: "Non-Ferrous Metals",
-        desc: "Magnetic and non-magnetic ferrous metals from vehicles, buildings, and appliances.",
+        name: t("metals.nonFerrous.name"),
+        desc: t("metals.nonFerrous.desc"),
         actionKey: "Non-Ferrous Metals",
       },
     ],
-    []
+    [t]
   );
 
   const handleScrollToCalculator = (key: string) => {
@@ -86,7 +88,7 @@ export default function WhatWeDeal(): React.JSX.Element {
             style={{ fontFamily: "var(--font-body)" }}
           >
             <Globe size={12} className="" />
-            What We Deal In
+            {t("badge")}
           </motion.div>
 
           <motion.h2
@@ -96,12 +98,11 @@ export default function WhatWeDeal(): React.JSX.Element {
             transition={{ delay: 0.05 }}
             className="text-4xl md:text-5xl font-black mt-3 tracking-wide"
           >
-            Our Major Metals
+            {t("title")}
           </motion.h2>
 
           <p className="text-sm md:text-base text-[var(--tx-secondary)] mt-5 leading-relaxed">
-            We trade, recycle, and supply premium-quality metals for industrial
-            applications. Each grade is processed to meet strict specification standards.
+            {t("description")}
           </p>
         </div>
 
@@ -142,7 +143,7 @@ export default function WhatWeDeal(): React.JSX.Element {
                 className="mt-6 hidden items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
               // className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 hover:text-emerald-500 transition"
               >
-                Check Value Rate
+                {t("cta")}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>

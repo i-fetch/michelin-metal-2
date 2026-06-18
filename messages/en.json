@@ -166,20 +166,44 @@
     },
     "copyright": "All rights reserved"
   },
-  "contact": {
-    "title": "Contact Us",
-    "description": "Reach out to our team for inquiries, quotes, or partnership opportunities. We are here to assist you with your metal sourcing and recycling needs.",
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "submit": "Submit"
-    },
-    "address": {
-      "line1": "123 Industrial Avenue",
-      "line2": "Lagos, Nigeria"
-    },
-    "phone": "+234 123 456 7890",
-    "emailAddress": "info@mechelinmetals.com"
+
+  "whatWeDeal": {
+    "badge": "What We Deal In",
+    "title": "Our Major Metals",
+    "description": "We trade, recycle, and supply premium-quality metals for industrial applications. Each grade is processed to meet strict specification standards.",
+
+    "cta": "Check Value Rate",
+
+    "metals": {
+      "aluminium": {
+        "name": "Aluminium",
+        "desc": "Premium-grade sorted aluminium scrap, bailed and ready for smelting or direct manufacturing use."
+      },
+
+      "castAluminium": {
+        "name": "Cast Aluminium",
+        "desc": "High-purity cast aluminium sourced from engines, machinery, and automotive components."
+      },
+
+      "castIron": {
+        "name": "Cast Iron",
+        "desc": "Sorted cast iron scrap suitable for foundry operations and metal reprocessing."
+      },
+
+      "condenser": {
+        "name": "Condenser",
+        "desc": "Copper and aluminium condensers from HVAC and refrigeration equipment, carefully processed."
+      },
+
+      "ubc": {
+        "name": "UBC",
+        "desc": "Used Beverage Cans — cleaned, sorted, and bailed aluminium UBC for recycling."
+      },
+
+      "nonFerrous": {
+        "name": "Non-Ferrous Metals",
+        "desc": "Magnetic and non-magnetic ferrous metals from vehicles, buildings, and appliances."
+      }
+    }
   }
 }

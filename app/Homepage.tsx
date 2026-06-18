@@ -19,6 +19,7 @@ export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company
 
 export default function Homepage() {
    const t = useTranslations("cta");
+   
 
    return (
       <>
@@ -58,7 +59,6 @@ export default function Homepage() {
             }}
             trustText={t("trustText")}
          />
-
 
          <Footer />
       </>

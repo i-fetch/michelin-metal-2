@@ -36,7 +36,6 @@
     "experienceValue": "10+",
     "experienceLabel": "行业经验"
   },
-  
   "WhatWeDeal": {
     "sectionTag": "我们经营的产品",
     "title": "主要金属类别",
@@ -69,7 +68,6 @@
       }
     }
   },
-
   "WhyChoose": {
     "badge": "企业实力",
     "title": "为什么选择",
@@ -185,5 +183,37 @@
       "bulkSupply": "批量供应"
     },
     "copyright": "版权所有"
+  },
+  "whatWeDeal": {
+    "badge": "我们的业务范围",
+    "title": "我们的主要金属",
+    "description": "我们为工业应用提供优质金属的贸易、回收和供应服务。每个等级均按照严格的规格标准进行处理。",
+    "cta": "查看价值价格",
+    "metals": {
+      "aluminium": {
+        "name": "铝",
+        "desc": "高品质分类铝废料，已打包，可直接用于冶炼或制造。"
+      },
+      "castAluminium": {
+        "name": "铸铝",
+        "desc": "来自发动机、机械设备和汽车部件的高纯度铸铝。"
+      },
+      "castIron": {
+        "name": "铸铁",
+        "desc": "经过分类的铸铁废料，适用于铸造厂和金属再加工。"
+      },
+      "condenser": {
+        "name": "冷凝器",
+        "desc": "来自暖通空调和制冷设备的铜铝冷凝器，经过精细处理。"
+      },
+      "ubc": {
+        "name": "饮料铝罐",
+        "desc": "使用过的饮料铝罐——已清洁、分类并打包用于回收。"
+      },
+      "nonFerrous": {
+        "name": "有色金属",
+        "desc": "来自车辆、建筑和家电的磁性及非磁性金属材料。"
+      }
+    }
   }
 }

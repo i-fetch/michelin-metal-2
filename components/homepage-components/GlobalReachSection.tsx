@@ -39,7 +39,7 @@ export default function GlobalReachSection(): React.JSX.Element {
       coordinates: { x: 660, y: 160 },
       desc: t("indiaDesc")
     }
-  ], []);
+  ], [t]);
 
   return (
     <section 
