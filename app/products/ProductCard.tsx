@@ -1,6 +1,8 @@
 import React from "react";
 import { ArrowRight, Package } from "lucide-react";
 import { Product } from "@/lib/types";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: Product;
@@ -17,6 +19,7 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
   };
 
   const primaryImage = resolveImageSrc(product.images?.[0]);
+  const router = useRouter();
 
   return (
     <div
@@ -31,7 +34,7 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
           className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
-        
+
         {/* Floating Grade Badge */}
         {product.badge && (
           <span className="absolute top-3 left-3 rounded-full bg-tx-primary px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-white shadow-sm">
@@ -85,13 +88,14 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
             </span>
           </div>
 
-          <button
-            onClick={() => onNavigate(product.slug)}
+          <Link
+            href={`/products/${product.slug}`}
+            target="_blank"
             className="cursor-pointer group inline-flex items-center space-x-1.5 text-xs font-semibold text-brand-green transition-all hover:text-brand-green/80"
           >
             <span>RFQ & Specs</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

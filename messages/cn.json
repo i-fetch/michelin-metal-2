@@ -36,7 +36,6 @@
     "experienceValue": "10+",
     "experienceLabel": "行业经验"
   },
-  
   "WhatWeDeal": {
     "sectionTag": "我们经营的产品",
     "title": "主要金属类别",
@@ -69,7 +68,6 @@
       }
     }
   },
-
   "WhyChoose": {
     "badge": "企业实力",
     "title": "为什么选择",
@@ -185,5 +183,282 @@
       "bulkSupply": "批量供应"
     },
     "copyright": "版权所有"
-  }
+  },
+  "whatWeDeal": {
+    "badge": "我们的业务范围",
+    "title": "我们的主要金属",
+    "description": "我们为工业应用提供优质金属的贸易、回收和供应服务。每个等级均按照严格的规格标准进行处理。",
+    "cta": "查看价值价格",
+    "metals": {
+      "aluminium": {
+        "name": "铝",
+        "desc": "高品质分类铝废料，已打包，可直接用于冶炼或制造。"
+      },
+      "castAluminium": {
+        "name": "铸铝",
+        "desc": "来自发动机、机械设备和汽车部件的高纯度铸铝。"
+      },
+      "castIron": {
+        "name": "铸铁",
+        "desc": "经过分类的铸铁废料，适用于铸造厂和金属再加工。"
+      },
+      "condenser": {
+        "name": "冷凝器",
+        "desc": "来自暖通空调和制冷设备的铜铝冷凝器，经过精细处理。"
+      },
+      "ubc": {
+        "name": "饮料铝罐",
+        "desc": "使用过的饮料铝罐——已清洁、分类并打包用于回收。"
+      },
+      "nonFerrous": {
+        "name": "有色金属",
+        "desc": "来自车辆、建筑和家电的磁性及非磁性金属材料。"
+      }
+    }
+  },
+  "aboutpage": {
+    "hero": {
+      "badge": "企业基础设施",
+      "titleLine1": "关于 MECHELIN",
+      "titleLine2": "METALS NIGERIA",
+      "description": "十年的重工业运营经验，为全球市场而打造。尼日利亚领先的综合金属回收、工业提取及跨洲分销企业。"
+    },
+    "story": {
+      "badge": "我们的传承",
+      "title": "十余年的发展历程",
+      "paragraph1": "Mechelin Metals Nigeria LTD 是西非领先的综合金属回收与加工企业。虽然公司于2023年正式成立，但我们的行业经验已超过十年。",
+      "paragraph2": "我们利用先进设备和工业基础设施采购并安全处理有色及黑色金属，为制造业、铸造厂及冶炼企业提供原材料。",
+      "button": "浏览产品目录"
+    },
+    "stats": {
+      "performance": "业绩",
+      "metricTonnes": "累计运输吨数",
+      "yearsPresence": "行业经验年数"
+    },
+    "visionMission": {
+      "visionTitle": "我们的愿景",
+      "visionBody": "成为全球领先的可持续金属回收解决方案提供商，通过创新、安全和高效材料回收推动循环经济发展。",
+      "missionTitle": "我们的使命",
+      "missionBody": "通过技术创新和可持续实践，将废弃金属转化为高品质原材料，推动金属回收行业变革。"
+    },
+    "timeline": {
+      "badge": "发展历程",
+      "title": "重要里程碑",
+      "items": {
+        "2013": {
+          "title": "进入工业市场",
+          "event": "开始在西非重型废金属行业进行资产采购和运营部署。"
+        },
+        "2018": {
+          "title": "基础设施扩展",
+          "event": "建立区域集散中心并与本地制造商建立合作关系。"
+        },
+        "2022": {
+          "title": "全球物流渠道",
+          "event": "开通跨境海运物流网络，为亚洲重工业供应原材料。"
+        },
+        "2023": {
+          "title": "企业注册成立",
+          "event": "正式以 Mechelin Metals Nigeria LTD 名义运营。"
+        },
+        "2024": {
+          "title": "加工能力扩展",
+          "event": "引入工业打包设备，大幅提升处理能力。"
+        },
+        "2026": {
+          "title": "数字采购平台",
+          "event": "推出企业级 B2B 平台，实现全球供应商与采购商无缝连接。"
+        }
+      }
+    },
+    "registration": {
+      "badge": "合规与注册",
+      "title": "注册及法定信息",
+      "companyName": "公司名称",
+      "businessEntity": "企业类型",
+      "industryClassification": "行业分类",
+      "incorporationTarget": "成立年份",
+      "sourcingFootprint": "采购区域",
+      "headquartersAddress": "总部地址",
+      "operationalBranch": "运营分部",
+      "companyNameValue": "Mechelin Metals Nigeria LTD",
+      "businessEntityValue": "私人股份有限公司",
+      "industryClassificationValue": "工业回收与金属材料再利用",
+      "incorporationTargetValue": "2023",
+      "sourcingFootprintValue": "西非贸易区域 / 尼日利亚物流中心",
+      "headquartersAddressValue": "No. 23 Nathan Okafor Street, Awada Obosi, Anambra",
+      "operationalBranchValue": "No. 32 Louis Mbanefo Street, Woliwo Layout, Anambra"
+    },
+    "cta": {
+      "subtitle": "工业大宗供应与采购",
+      "title": "准备与我们合作吗？",
+      "description": "无论您需要稳定的原材料供应，还是需要处理废旧金属，我们的团队随时为您服务。",
+      "primary": "申请报价",
+      "secondary": "浏览产品",
+      "trustText": "深受西非工业买家及废金属贸易商信赖"
+    }
+  },
+  "servicePage": {
+    "hero": {
+      "badge": "能力与解决方案",
+      "title1": "我们的工业",
+      "title2": "服务。",
+      "description": "端到端冶金加工体系——从原材料收集、高密度打包到安全的跨境海运物流全流程工程化设计。"
+    },
+    "sections": {
+      "fullSpectrum": "全谱系交付",
+      "everythingMetal": "全流程金属处理",
+      "industriesTitle": "我们服务的行业",
+      "industriesBadge": "下游基础设施",
+      "whyTitle": "为何大宗买家选择 MECHELIN",
+      "whyBadge": "Mechelin 的差异化优势",
+      "coverageTitle": "服务覆盖范围",
+      "submitRequest": "提交运营请求"
+    },
+    "services": [
+      {
+        "title": "金属采购与收集",
+        "desc": "遍布西非的大型采购网络，从汽车拆解厂、拆迁工地、工厂及家庭收集废金属。",
+        "features": [
+          "现场收集与上门提货",
+          "大宗采购，价格具有竞争力",
+          "覆盖尼日利亚东南部广泛网络",
+          "按吨透明定价"
+        ]
+      },
+      {
+        "title": "分拣与分类",
+        "desc": "通过人工与机械方式按类型、等级与纯度分离金属，确保无污染纯净批次。",
+        "features": [
+          "磁力分离铁金属",
+          "经验操作人员手工分级",
+          "铝、铜、黄铜、铅分离",
+          "提供等级证书"
+        ]
+      },
+      {
+        "title": "打包与加工",
+        "desc": "分拣后金属被清洁、切割并压缩成高密度金属包，用于冶炼或出口。",
+        "features": [
+          "液压打包定制规格",
+          "重型废料切割",
+          "捆扎或松散打包选项",
+          "可定制尺寸"
+        ]
+      },
+      {
+        "title": "物流与配送",
+        "desc": "从阿南布拉工厂到客户现场的全程物流支持——本地制造商或国际进口商。",
+        "features": [
+          "尼日利亚全国公路运输",
+          "出口集装箱装载",
+          "拉各斯港 FOB 交付",
+          "实时运输协调"
+        ]
+      },
+      {
+        "title": "国内与全球分销",
+        "desc": "为本地及国际制造商提供高性能再生原材料。",
+        "features": [
+          "供应尼日利亚制造商",
+          "出口至全球买家",
+          "支持大宗合同",
+          "港口文件支持"
+        ]
+      },
+      {
+        "title": "B2B大宗供应合同",
+        "desc": "面向需要稳定大批量供应的制造商——结构化合同，保证数量与交付周期。",
+        "features": [
+          "月度/季度供应合同",
+          "专属客户经理",
+          "优先处理",
+          "灵活调整供应量"
+        ]
+      },
+      {
+        "title": "废金属咨询",
+        "desc": "不确定如何处理工业废料？我们提供评估、分类及最佳回收或销售建议。",
+        "features": [
+          "免费初步咨询",
+          "现场废料评估",
+          "等级与价值估算",
+          "环保合规证书"
+        ]
+      },
+      {
+        "title": "定制材料处理",
+        "desc": "按客户精确规格准备金属——用于铸造、冶炼或出口级用途。",
+        "features": [
+          "定制切割与粉碎",
+          "合金专属分类",
+          "出口级装箱",
+          "提供材料数据表"
+        ]
+      }
+    ],
+    "industries": [
+      "铝冶炼厂",
+      "钢铁厂",
+      "铸造厂",
+      "出口贸易商",
+      "制造工厂",
+      "建筑行业"
+    ],
+    "whyPoints": [
+      {
+        "title": "一体化运营",
+        "desc": "我们直接管理完整回收链，消除中间交易环节，提高效率。"
+      },
+      {
+        "title": "稳定纯度标准",
+        "desc": "严格分级与质量控制确保每批材料符合纯度要求。"
+      },
+      {
+        "title": "持续大规模供货能力",
+        "desc": "工业级规模支持持续高需求供货。"
+      },
+      {
+        "title": "灵活执行条款",
+        "desc": "根据客户采购结构提供现货或长期合同方案。"
+      },
+      {
+        "title": "环保合规体系",
+        "desc": "所有流程均生成数据支持企业可持续发展目标。"
+      }
+    ],
+    "coverage": [
+      [
+        "采购网络",
+        "尼日利亚东南部及西南部"
+      ],
+      [
+        "加工设施",
+        "阿瓦达奥博西，阿南布拉州"
+      ],
+      [
+        "国内配送",
+        "所有主要工业城市"
+      ],
+      [
+        "出口枢纽",
+        "拉各斯阿帕帕港"
+      ],
+      [
+        "国际线路",
+        "西非、亚洲、欧洲"
+      ],
+      [
+        "运营时间",
+        "周一–周六 | 08:00 – 18:00"
+      ]
+    ]
+  },
+  "serviceCta": {
+      "subtitle": "大宗工业供应",
+      "title": "讨论您的冶金业务开销？",
+      "description": "从独立定制的处理批次到专用的企业磨坊分配设置——我们为您量身定制符合各项参数的的策略性解决方案。",
+      "primaryCta": "发起 B2B 咨询",
+      "trustText": "深受西非各地工业买家的信赖"
+    }
 }

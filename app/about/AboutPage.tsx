@@ -9,16 +9,9 @@ import Footer from '@/components/Footer'
 import { useRef } from 'react'
 import WhyChooseSection from '@/components/homepage-components/WhyChooseSection'
 import CTASection from '@/components/CallToAction'
+import { useTranslations } from 'next-intl'
 
 
-const milestones = [
-    { year: '2013', title: 'Industrial Market Entry', event: 'Initial deployment and asset sourcing across active West African heavy scrap sectors.' },
-    { year: '2018', title: 'Infrastructure Expansion', event: 'Established regional consolidation hubs and primary partnerships with local manufacturers.' },
-    { year: '2022', title: 'Global Forwarding Channels', event: 'Launched cross-border maritime logistics pipelines supplying heavy industries across Asia.' },
-    { year: '2023', title: 'Corporate Incorporation', event: 'Formally integrated operations under Mechelin Metals Nigeria LTD.' },
-    { year: '2024', title: 'Processing Scalability', event: 'Commissioned industrial baling machinery, significantly expanding processing capacities.' },
-    { year: '2026', title: 'Digital Procurement Infrastructure', event: 'Launched enterprise-grade B2B platform for seamless global supplier and buyer routing.' },
-]
 
 // Premium Motion Animation Orchestration
 const fadeUp = {
@@ -60,6 +53,8 @@ const localFadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } }
 };
 export default function AboutPage() {
+    const t = useTranslations("aboutpage");
+
     const heroContainerRef = useRef<HTMLDivElement>(null);
 
     // ── PARALLAX LOGISTICS ENGINE ──
@@ -67,6 +62,45 @@ export default function AboutPage() {
     const backgroundImageY = useTransform(scrollY, [0, 800], ["0%", "20%"]);
     const contentY = useTransform(scrollY, [0, 800], ["0%", "8%"]);
     const contentOpacity = useTransform(scrollY, [0, 500], [1, 0]);
+
+    const milestones = [
+        {
+            year: "2013",
+            title: t("timeline.items.2013.title"),
+            event: t("timeline.items.2013.event")
+        },
+
+        {
+            year: "2018",
+            title: t("timeline.items.2018.title"),
+            event: t("timeline.items.2018.event")
+        },
+
+        {
+            year: "2022",
+            title: t("timeline.items.2022.title"),
+            event: t("timeline.items.2022.event")
+        },
+
+        {
+            year: "2023",
+            title: t("timeline.items.2023.title"),
+            event: t("timeline.items.2023.event")
+        },
+
+        {
+            year: "2024",
+            title: t("timeline.items.2024.title"),
+            event: t("timeline.items.2024.event")
+        },
+
+        {
+            year: "2026",
+            title: t("timeline.items.2026.title"),
+            event: t("timeline.items.2026.event")
+        }
+    ];
+
     return (
         <div className="w-full min-h-screen bg-[var(--bg-main)] text-[var(--tx-primary)] antialiased selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden">
             <Navbar />
@@ -147,7 +181,7 @@ export default function AboutPage() {
                             className="inline-flex items-center w-max gap-2 px-4 py-1.5 rounded-full border border-emerald-600/15 bg-white text-[var(--clr-green)] text-[10px] font-bold tracking-widest uppercase mb-6 font-mono shadow-[0_4px_14px_rgba(0,0,0,0.04)]"
                         >
                             <Globe2 size={12} className="animate-[spin_10s_linear_infinite] text-emerald-600" />
-                            Enterprise Infrastructure
+                            {t("hero.badge")}
                         </motion.div>
 
                         {/* Ultra-Sharp Anti-Aliased Heading */}
@@ -157,9 +191,9 @@ export default function AboutPage() {
                                 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-wider leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
                                 style={{ fontFamily: 'var(--font-display)' }}
                             >
-                                ABOUT MECHELIN
+                                {t("hero.titleLine1")}
                                 <br />
-                                <span className="text-[var(--clr-green)]">METALS NIGERIA.</span>
+                                <span className="text-[var(--clr-green)]">{t("hero.titleLine2")}</span>
                             </motion.h1>
                         </div>
 
@@ -168,12 +202,12 @@ export default function AboutPage() {
                             variants={localFadeUp}
                             className="text-slate-900 font-medium text-base md:text-xl max-w-2xl leading-relaxed font-body tracking-tight subpixel-antialiased drop-shadow-[0_1px_4px_rgba(255,255,255,0.6)]"
                         >
-                            A decade of heavy industry operations, institutionalised for the global market.
-                            Nigeria&apos;s premier integrated metal reclamation, industrial extraction, and multi-continent distribution enterprise.
+                            {t("hero.description")}
                         </motion.p>
                     </motion.div>
                 </motion.div>
             </section>
+            
             {/* ── STORY SECTION ── */}
             <section className="py-20 md:py-32 border-t border-slate-100 bg-slate-50/30">
                 <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 grid md:grid-cols-12 gap-12 md:gap-16 items-center">
@@ -186,26 +220,26 @@ export default function AboutPage() {
                         variants={staggerContainer}
                     >
                         <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-slate-100/80 text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-6 font-sans">
-                            Our Legacy
+                            {t("story.badge")}
                         </motion.div>
                         <motion.h2
                             variants={fadeUp}
                             className="text-3xl sm:text-4xl md:text-5xl font-black tracking-wider text-slate-900 leading-none mb-6"
                             style={{ fontFamily: 'var(--font-display)' }}
                         >
-                            MORE THAN A DECADE IN THE MAKING
+                            {t("story.title")}
                         </motion.h2>
                         <motion.div variants={fadeUp} className="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed font-normal max-w-xl">
                             <p>
-                                Mechelin Metals Nigeria LTD is West Africa&apos;s foremost integrated structural reclamation and metal processing corporation. While formally incorporated in 2023, our foundation spans over ten years of deep operational deployment across active recycling, sorting, and supply chains.
+                                {t("story.paragraph1")}
                             </p>
                             <p>
-                                We leverage captive resources and institutional machinery infrastructures to source, safely process, and non-ferrous variants. Our materials feed directly into precision manufacturing lines, foundries, and domestic smelting conglomerates.
+                                {t("story.paragraph2")}
                             </p>
                         </motion.div>
                         <motion.div variants={fadeUp} className="mt-8">
                             <Link href="/products" className="inline-flex items-center justify-center gap-2 bg-[var(--clr-green)] hover:bg-emerald-700 text-white font-semibold text-xs md:text-sm px-6 py-3 rounded-xl shadow-sm transition-all duration-200 group">
-                                Explore Product Portfolio
+                                {t("story.button")}
                                 <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                             </Link>
                         </motion.div>
@@ -240,10 +274,10 @@ export default function AboutPage() {
                             className="absolute -bottom-6 -right-2 rounded-xl p-5 border border-slate-200 bg-white shadow-xl min-w-[200px] backdrop-blur-md"
                         >
                             <span className="flex items-center gap-2 text-[var(--clr-green)] font-mono text-[10px] font-bold tracking-wider uppercase mb-1">
-                                <TrendingUp size={12} /> Performance
+                                <TrendingUp size={12} /> {t("stats.performance")}
                             </span>
                             <p className="text-4xl font-black tracking-tight text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>100K+</p>
-                            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-1">Metric Tonnes Forwarded</p>
+                            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-1">{t("stats.metricTonnes")}</p>
                         </motion.div>
 
                         <motion.div
@@ -254,7 +288,7 @@ export default function AboutPage() {
                             className="absolute -top-4 -left-4 rounded-xl p-4 border border-emerald-600/10 bg-[var(--clr-green)] text-white shadow-xl min-w-[140px]"
                         >
                             <p className="text-3xl font-black tracking-tight leading-none" style={{ fontFamily: 'var(--font-display)' }}>10+</p>
-                            <p className="text-[10px] opacity-80 mt-1.5 uppercase font-bold tracking-widest leading-none">Years Industry Presence</p>
+                            <p className="text-[10px] opacity-80 mt-1.5 uppercase font-bold tracking-widest leading-none">{t("stats.yearsPresence")}</p>
                         </motion.div>
                     </div>
 
@@ -267,8 +301,8 @@ export default function AboutPage() {
                 <div className="wrap px-3 py-20 relative z-10">
                     <div className="grid md:grid-cols-2 gap-10">
                         {[
-                            { icon: Zap, title: 'Our Vision', body: 'To become the leading provider of sustainable metals recycling solutions globally — driving the circular economy through innovation, safety, and superior material recovery.' },
-                            { icon: TrendingUp, title: 'Our Mission', body: 'To revolutionize metal recycling by turning waste into high-quality raw materials through technological innovation and sustainable practices that benefit the environment.' },
+                            { icon: Zap, title: t("visionMission.visionTitle"), body: t("visionMission.visionBody") },
+                            { icon: TrendingUp, title: t("visionMission.missionTitle"), body: t("visionMission.missionBody") },
                         ].map(({ icon: Icon, title, body }) => (
                             <div key={title} className="flex gap-5">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -296,10 +330,10 @@ export default function AboutPage() {
                         className="flex flex-col items-start text-left mb-16"
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
-                            Corporate Roadmap
+                            {t("timeline.badge")}
                         </div>
                         <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-                            VISION &amp; MISSION ARCHITECTURE
+                            {t("timeline.title")}
                         </h2>
                     </motion.div>
 
@@ -356,10 +390,10 @@ export default function AboutPage() {
                         className="flex flex-col items-start text-left mb-20"
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
-                            The Ledger
+                            {t("timeline.badge")}
                         </div>
                         <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-                            HISTORICAL MILESTONES
+                            {t("timeline.title")}
                         </h2>
                     </motion.div>
 
@@ -433,21 +467,21 @@ export default function AboutPage() {
                                 variants={staggerContainer}
                             >
                                 <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-5 font-sans">
-                                    Compliance &amp; Incorporation
+                                    {t("registration.badge")}
                                 </motion.div>
                                 <motion.h2 variants={fadeUp} className="text-2xl sm:text-4xl font-black tracking-wider text-slate-900 mb-8" style={{ fontFamily: 'var(--font-display)' }}>
-                                    REGISTRATION &amp; STATUTORY DETAILS
+                                    {t("registration.title")}
                                 </motion.h2>
 
                                 <motion.div variants={fadeUp} className="border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">
                                     {[
-                                        ['Company Name', 'Mechelin Metals Nigeria LTD'],
-                                        ['Business Entity', 'Private Company Limited by Shares'],
-                                        ['Industry Classification', 'Industrial Reclamation & Solid Metallurgy Recyclables'],
-                                        ['Incorporation Target', '2023'],
-                                        ['Sourcing Footprint', 'West African Trade Basins / Nigerian National Logistics Hubs'],
-                                        ['Headquarters Address', 'No. 23 Nathan Okafor Street, Awada Obosi, Anambra'],
-                                        ['Operational Branch', 'No. 32 Louis Mbanefo Street, Woliwo Layout, Anambra'],
+                                        [t("registration.companyName"), t("registration.companyNameValue")],
+                                        [t("registration.businessEntity"), t("registration.businessEntityValue")],
+                                        [t("registration.industryClassification"), t("registration.industryClassificationValue")],
+                                        [t("registration.incorporationTarget"), t("registration.incorporationTargetValue")],
+                                        [t("registration.sourcingFootprint"), t("registration.sourcingFootprintValue")],
+                                        [t("registration.headquartersAddress"), t("registration.headquartersAddressValue")],
+                                        [t("registration.operationalBranch"), t("registration.operationalBranchValue")],
                                     ].map(([k, v], idx) => (
                                         <div
                                             key={k}
@@ -471,19 +505,19 @@ export default function AboutPage() {
 
             <CTASection
                 icon={<Package size={28} />}
-                subtitle="Industrial Bulk Supply & Procurement"
-                title="READY TO PARTNER WITH US?"
-                description="Whether you need reliable raw material supply or have scrap metal to move — our team is ready."
+                subtitle={t("cta.subtitle")}
+                title={t("cta.title")}
+                description={t("cta.description")}
                 primaryCta={{
-                    label: 'Request Quote',
+                    label: t("cta.primary"),
                     href: '/contact',
                     icon: <ArrowRight size={16} />,
                 }}
                 secondaryCta={{
-                    label: 'Browse Products',
+                    label: t("cta.secondary"),
                     href: '/products',
                 }}
-                trustText="Trusted by industrial buyers and scrap dealers across West Africa"
+                trustText={t("cta.trustText")}
             />
 
             <Footer />
