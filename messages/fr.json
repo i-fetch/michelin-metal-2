@@ -215,5 +215,250 @@
         "desc": "Métaux ferreux magnétiques et non magnétiques provenant de véhicules, bâtiments et appareils."
       }
     }
+  },
+  "aboutpage": {
+    "hero": {
+      "badge": "Infrastructure d'Entreprise",
+      "titleLine1": "À PROPOS DE MECHELIN",
+      "titleLine2": "METALS NIGERIA.",
+      "description": "Une décennie d'opérations dans l'industrie lourde, institutionnalisées pour le marché mondial. La principale entreprise nigériane intégrée de récupération des métaux, d'extraction industrielle et de distribution multi-continentale."
+    },
+    "story": {
+      "badge": "Notre Héritage",
+      "title": "PLUS D'UNE DÉCENNIE DE CONSTRUCTION",
+      "paragraph1": "Mechelin Metals Nigeria LTD est la principale société intégrée de récupération structurelle et de traitement des métaux en Afrique de l'Ouest. Bien qu'incorporée officiellement en 2023, notre fondation repose sur plus de dix ans d'expérience opérationnelle dans le recyclage, le tri et les chaînes d'approvisionnement.",
+      "paragraph2": "Nous exploitons des ressources dédiées et des infrastructures industrielles pour approvisionner et traiter en toute sécurité des métaux ferreux et non ferreux. Nos matériaux alimentent directement les lignes de fabrication de précision, les fonderies et les groupes de fusion.",
+      "button": "Explorer le Portefeuille de Produits"
+    },
+    "stats": {
+      "performance": "Performance",
+      "metricTonnes": "Tonnes Métriques Expédiées",
+      "yearsPresence": "Années de Présence Industrielle"
+    },
+    "visionMission": {
+      "visionTitle": "Notre Vision",
+      "visionBody": "Devenir le leader mondial des solutions durables de recyclage des métaux en stimulant l'économie circulaire grâce à l'innovation, à la sécurité et à une récupération supérieure des matériaux.",
+      "missionTitle": "Notre Mission",
+      "missionBody": "Révolutionner le recyclage des métaux en transformant les déchets en matières premières de haute qualité grâce à l'innovation technologique et aux pratiques durables."
+    },
+    "timeline": {
+      "badge": "Le Registre",
+      "title": "JALONS HISTORIQUES",
+      "items": {
+        "2013": {
+          "title": "Entrée sur le Marché Industriel",
+          "event": "Déploiement initial et approvisionnement en actifs dans les principaux secteurs de ferraille lourde d'Afrique de l'Ouest."
+        },
+        "2018": {
+          "title": "Expansion des Infrastructures",
+          "event": "Création de centres régionaux de consolidation et de partenariats stratégiques avec les fabricants locaux."
+        },
+        "2022": {
+          "title": "Canaux Mondiaux d’Expédition",
+          "event": "Lancement de corridors logistiques maritimes transfrontaliers desservant les industries lourdes en Asie."
+        },
+        "2023": {
+          "title": "Constitution de l’Entreprise",
+          "event": "Intégration officielle des opérations sous Mechelin Metals Nigeria LTD."
+        },
+        "2024": {
+          "title": "Évolutivité du Traitement",
+          "event": "Mise en service de machines industrielles de mise en balles augmentant considérablement la capacité de traitement."
+        },
+        "2026": {
+          "title": "Infrastructure Numérique d’Approvisionnement",
+          "event": "Lancement d’une plateforme B2B de niveau entreprise reliant fournisseurs et acheteurs mondiaux."
+        }
+      }
+    },
+    "registration": {
+      "badge": "Conformité et Incorporation",
+      "title": "ENREGISTREMENT ET INFORMATIONS STATUTAIRES",
+      "companyName": "Nom de l'Entreprise",
+      "businessEntity": "Entité Juridique",
+      "industryClassification": "Classification Industrielle",
+      "incorporationTarget": "Date d’Incorporation",
+      "sourcingFootprint": "Zone d’Approvisionnement",
+      "headquartersAddress": "Adresse du Siège",
+      "operationalBranch": "Agence Opérationnelle",
+      "companyNameValue": "Mechelin Metals Nigeria LTD",
+      "businessEntityValue": "Société Privée à Responsabilité Limitée par Actions",
+      "industryClassificationValue": "Recyclage Industriel et Métallurgie des Matériaux",
+      "incorporationTargetValue": "2023",
+      "sourcingFootprintValue": "Bassins Commerciaux Ouest-Africains / Centres Logistiques Nigérians",
+      "headquartersAddressValue": "No. 23 Nathan Okafor Street, Awada Obosi, Anambra",
+      "operationalBranchValue": "No. 32 Louis Mbanefo Street, Woliwo Layout, Anambra"
+    },
+    "cta": {
+      "subtitle": "Approvisionnement et Achat Industriel en Gros",
+      "title": "PRÊT À COLLABORER AVEC NOUS ?",
+      "description": "Que vous ayez besoin d’un approvisionnement fiable en matières premières ou que vous souhaitiez expédier de la ferraille, notre équipe est prête.",
+      "primary": "Demander un Devis",
+      "secondary": "Voir les Produits",
+      "trustText": "Approuvé par les acheteurs industriels et négociants en ferraille à travers l'Afrique de l'Ouest"
+    }
+  },
+  "servicePage": {
+    "hero": {
+      "badge": "Capacités et solutions",
+      "title1": "NOS SERVICES",
+      "title2": "INDUSTRIELS.",
+      "description": "Structures de traitement métallurgique de bout en bout — conçues depuis la collecte de matières premières et le conditionnement haute densité jusqu’à une logistique maritime transfrontalière sécurisée."
+    },
+    "sections": {
+      "fullSpectrum": "Livraison à spectre complet",
+      "everythingMetal": "TOUT LE MÉTAL, DE BOUT EN BOUT",
+      "industriesTitle": "INDUSTRIES QUE NOUS FOURNISSONS",
+      "industriesBadge": "Infrastructure en aval",
+      "whyTitle": "POURQUOI LES ACHETEURS EN VOLUME PASSENT PAR MECHELIN",
+      "whyBadge": "La différence Mechelin",
+      "coverageTitle": "COUVERTURE DES SERVICES",
+      "submitRequest": "Soumettre une demande opérationnelle"
+    },
+    "services": [
+      {
+        "title": "Approvisionnement et collecte de métaux",
+        "desc": "Réseau d’approvisionnement étendu à travers l’Afrique de l’Ouest pour collecter des déchets métalliques provenant de casses automobiles, chantiers de démolition, usines et ménages.",
+        "features": [
+          "Collecte et ramassage sur site",
+          "Achat en gros à des tarifs compétitifs",
+          "Réseau étendu dans le sud-est du Nigeria",
+          "Tarification transparente à la tonne"
+        ]
+      },
+      {
+        "title": "Tri et classification",
+        "desc": "Séparation manuelle et mécanique de tous les métaux par type, grade et pureté — garantissant des lots propres et sans contamination.",
+        "features": [
+          "Séparation magnétique des métaux ferreux",
+          "Classification manuelle par opérateurs expérimentés",
+          "Séparation de l’aluminium, cuivre, laiton, plomb",
+          "Certificats de grade disponibles"
+        ]
+      },
+      {
+        "title": "Mise en balles et traitement",
+        "desc": "Après tri, les métaux sont nettoyés, découpés selon spécifications et compressés en balles haute densité prêtes pour la fonderie ou l’exportation.",
+        "features": [
+          "Mise en balles hydraulique selon spécifications",
+          "Découpe de déchets lourds sur mesure",
+          "Options de balles attachées ou libres",
+          "Dimensions de balles personnalisées"
+        ]
+      },
+      {
+        "title": "Logistique et livraison",
+        "desc": "Logistique complète depuis notre site d’Anambra jusqu’à votre installation — fabricant local ou importateur international.",
+        "features": [
+          "Transport routier à travers le Nigeria",
+          "Chargement de conteneurs pour exportation",
+          "Livraison FOB port de Lagos",
+          "Coordination des expéditions en temps réel"
+        ]
+      },
+      {
+        "title": "Distribution nationale et mondiale",
+        "desc": "Fourniture de matières premières recyclées haute performance aux fabricants locaux et internationaux.",
+        "features": [
+          "Approvisionnement des fabricants nigérians",
+          "Exportation vers les acheteurs mondiaux",
+          "Contrats de volume disponibles",
+          "Support documentaire portuaire"
+        ]
+      },
+      {
+        "title": "Contrats d’approvisionnement B2B en gros",
+        "desc": "Pour les fabricants nécessitant un approvisionnement régulier à haut volume — contrats structurés avec volumes et délais garantis.",
+        "features": [
+          "Contrats mensuels/trimestriels",
+          "Gestion de compte dédiée",
+          "Traitement prioritaire",
+          "Ajustements de volume flexibles"
+        ]
+      },
+      {
+        "title": "Consultation en métaux recyclés",
+        "desc": "Vous ne savez pas quoi faire de vos déchets industriels ? Nous évaluons, classifions et recommandons la meilleure voie de recyclage ou de vente.",
+        "features": [
+          "Consultation initiale gratuite",
+          "Évaluation sur site",
+          "Estimation de grade et de valeur",
+          "Certificats de conformité environnementale"
+        ]
+      },
+      {
+        "title": "Préparation de matériaux sur mesure",
+        "desc": "Métaux préparés selon les spécifications exactes des acheteurs — pour fonderie, fusion ou exportation.",
+        "features": [
+          "Découpe et broyage sur mesure",
+          "Tri spécifique des alliages",
+          "Conteneurisation prête à l’export",
+          "Fiches techniques disponibles"
+        ]
+      }
+    ],
+    "industries": [
+      "Fonderies d’aluminium",
+      "Aciéries",
+      "Fonderies",
+      "Commerçants exportateurs",
+      "Usines de fabrication",
+      "Industrie de la construction"
+    ],
+    "whyPoints": [
+      {
+        "title": "Opérations intégrées",
+        "desc": "Nous gérons directement les chaînes de récupération complètes, éliminant les intermédiaires pour une efficacité maximale."
+      },
+      {
+        "title": "Critères de pureté constants",
+        "desc": "Des normes strictes de classification et un contrôle qualité rigoureux garantissent la conformité à chaque cycle."
+      },
+      {
+        "title": "Capacité de charge soutenue",
+        "desc": "Notre infrastructure industrielle permet de répondre en continu aux demandes à haut volume."
+      },
+      {
+        "title": "Conditions d’exécution adaptables",
+        "desc": "Nous structurons les transactions selon vos besoins — achats spot ou contrats structurés."
+      },
+      {
+        "title": "Conformité environnementale",
+        "desc": "Chaque processus génère des données pour soutenir vos objectifs de durabilité d’entreprise."
+      }
+    ],
+    "coverage": [
+      [
+        "Réseau d’approvisionnement",
+        "Sud-Est et Sud-Ouest du Nigeria"
+      ],
+      [
+        "Site de traitement",
+        "Awada Obosi, État d’Anambra"
+      ],
+      [
+        "Livraison nationale",
+        "Toutes les grandes villes industrielles"
+      ],
+      [
+        "Hub d’exportation",
+        "Terminal portuaire d’Apapa, Lagos"
+      ],
+      [
+        "Lignes internationales",
+        "Afrique de l’Ouest, Asie, Europe"
+      ],
+      [
+        "Horaires d’ouverture",
+        "Lun–Sam | 8h00 – 18h00"
+      ]
+    ]
+  },
+  "serviceCta": {
+    "subtitle": "Approvisionnement Industriel en Vrac",
+    "title": "DISCUTER DE VOS COÛTS MÉTALLURGIQUES ?",
+    "description": "Des lots de traitement personnalisés et isolés aux configurations d'allocation d'usines d'entreprise dédiées — nous concevons des réponses stratégiques adaptées à vos paramètres.",
+    "primaryCta": "Initier des Consultations B2B",
+    "trustText": "Reconnu par les acheteurs industriels à travers l'Afrique de l'Ouest"
   }
 }

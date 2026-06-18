@@ -11,59 +11,17 @@ import Image from 'next/image'
 import CTASection from '@/components/CallToAction'
 import { useTranslations } from 'next-intl'
 
-
-const services = [
-  {
-    icon: Recycle,
-    title: 'Metal Sourcing & Collection',
-    desc: 'Extensive sourcing network across West Africa to collect scrap from auto wreckers, demolition sites, factories and households.',
-    features: ['On-site collection and pickup', 'Bulk acquisition at competitive rates', 'Wide network across South-East Nigeria', 'Transparent per-tonne pricing']
-  },
-  {
-    icon: Settings,
-    title: 'Sorting & Classification',
-    desc: 'Manual and mechanical separation of all metals by type, grade, and purity — ensuring clean, contamination-free batches.',
-    features: ['Magnetic separation of ferrous metals', 'Manual grading by experienced operators', 'Separation of aluminium, copper, brass, lead', 'Grade certificates available']
-  },
-  {
-    icon: Package,
-    title: 'Baling & Processing',
-    desc: 'Post-sorting, metals are cleaned, cut to specification and compressed into high-density bales ready for smelting or export.',
-    features: ['Hydraulic baling to specification', 'Cut-to-size heavy scrap', 'Wire-bound or loose bale options', 'Custom bale dimensions']
-  },
-  {
-    icon: Truck,
-    title: 'Logistics & Delivery',
-    desc: 'Full logistics from our Anambra facility to your site — domestic manufacturer or international importer.',
-    features: ['Road freight across Nigeria', 'Container stuffing for export', 'FOB Lagos port delivery', 'Real-time shipment coordination']
-  },
-  {
-    icon: Globe2,
-    title: 'National & Global Distribution',
-    desc: 'Supply of high-performance recycled raw materials to manufacturers domestically and internationally.',
-    features: ['Domestic supply to Nigerian manufacturers', 'Export to global buyers', 'Volume contracts available', 'Port documentation support']
-  },
-  {
-    icon: BarChart3,
-    title: 'B2B Bulk Supply Contracts',
-    desc: 'For manufacturers requiring consistent high-volume supply — structured contracts with guaranteed volumes and timelines.',
-    features: ['Monthly/quarterly supply contracts', 'Dedicated account management', 'Priority processing', 'Flexible volume adjustments']
-  },
-  {
-    icon: ClipboardList,
-    title: 'Scrap Metal Consultation',
-    desc: 'Not sure what to do with your industrial scrap? We assess, classify and recommend the optimal recycling or sale route.',
-    features: ['Free initial consultation', 'On-site scrap assessment', 'Grade and value estimation', 'Environmental disposal certificates']
-  },
-  {
-    icon: Layers,
-    title: 'Custom Material Preparation',
-    desc: 'Metals prepared to exact buyer specifications — for foundry feed, smelter charge or export grade.',
-    features: ['Custom sizing and shredding', 'Alloy-specific sorting', 'Export-ready containerisation', 'Material data sheets on request']
-  },
+// Keeps static icons mapped sequentially to the translated services array
+const serviceIcons = [
+  Recycle,
+  Settings,
+  Package,
+  Truck,
+  Globe2,
+  BarChart3,
+  ClipboardList,
+  Layers,
 ]
-
-const industries = ['Aluminium Smelters', 'Steel Mills', 'Foundries', 'Export Traders', 'Manufacturing Plants', 'Construction Industry']
 
 // Premium Core Animations
 const fadeUp = {
@@ -97,13 +55,11 @@ const localFadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } }
 };
 
-
 export const metadata: Metadata = { title: "Nigeria's #1 Metal Recycling Company" }
 
 export default function ServicePage() {
-  const t = useTranslations("cta2");
-
-
+  const t = useTranslations("servicePage")
+  const tCta = useTranslations("serviceCta")
 
   const heroContainerRef = useRef<HTMLDivElement>(null);
 
@@ -112,6 +68,13 @@ export default function ServicePage() {
   const backgroundImageY = useTransform(scrollY, [0, 800], ["0%", "20%"]);
   const contentY = useTransform(scrollY, [0, 800], ["0%", "8%"]);
   const contentOpacity = useTransform(scrollY, [0, 500], [1, 0]);
+
+  // Safely parse i18n JSON values into arrays for UI rendering
+  const servicesArray = t.raw("services") as Array<{ title: string; desc: string; features: string[] }>;
+  const industriesArray = t.raw("industries") as string[];
+  const whyPointsArray = t.raw("whyPoints") as Array<{ title: string; desc: string }>;
+  const coverageArray = t.raw("coverage") as Array<[string, string]>;
+
   return (
     <div className="w-full min-h-screen bg-[var(--bg-main)] text-[var(--tx-primary)] antialiased selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden">
       <Navbar />
@@ -128,32 +91,21 @@ export default function ServicePage() {
           className="absolute inset-0 w-full h-full pointer-events-none will-change-transform"
         >
           <Image
-            src="/High-quality-industrial-scrap.jpg" // High-fidelity logistics / processing background asset
+            src="/High-quality-industrial-scrap.jpg"
             alt="Industrial Metallurgical Processing background"
             fill
             priority
             sizes="100vw"
             className="object-cover object-center scale-[1.05]"
           />
-
         </motion.div>
 
-        {/* ══ LAYER 2: THE CONTRAST STABILIZER MASK ENGINE (CRITICAL FOR READABILITY) ══ */}
+        {/* ══ LAYER 2: THE CONTRAST STABILIZER MASK ENGINE ══ */}
         <div className="absolute inset-0 z-[1] pointer-events-none select-none">
-
-          {/* MASK A: Pure white structural block gradient to neutralize asset noise directly underneath the text layout */}
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/10 md:from-white md:via-white/95 md:to-white/5" />
-
-          {/* MASK B: Micro-diffused backdrop blur sheet — separates complex image details from crisp text typography */}
           <div className="absolute top-0 bottom-0 left-0 w-full md:w-[70%] bg-white/20 backdrop-blur-[4px] [mask-image:linear-gradient(to_right,white_50%,transparent_100%)]" />
-
-          {/* MASK C: Top-down light-bleed controller to neutralize high-exposure highlights or bright sky lines */}
           <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-white/60 to-transparent" />
-
-          {/* MASK D: Horizon baseline fading anchor to seamlessly lock section into the white blocks layout below */}
           <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#ffffff] via-[#ffffff]/90 to-transparent" />
-
-          {/* Technical Brand Matrix Grid-Mesh Overlay */}
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
@@ -180,7 +132,7 @@ export default function ServicePage() {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/15 bg-white text-[var(--clr-green)] text-[10px] font-bold tracking-widest uppercase mb-6 font-mono shadow-[0_4px_14px_rgba(0,0,0,0.04)]"
             >
               <Layers size={12} className="text-emerald-600" />
-              Capabilities &amp; Solutions
+              {t("hero.badge")}
             </motion.div>
 
             {/* Ultra-Sharp Anti-Aliased Service Header */}
@@ -190,9 +142,9 @@ export default function ServicePage() {
                 className="tracking-wider text-4xl sm:text-6xl md:text-7xl font-black leading-[0.95] text-slate-950 subpixel-antialiased drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                OUR INDUSTRIAL
+                {t("hero.title1")}
                 <br />
-                <span className="text-[var(--clr-green)]">SERVICES.</span>
+                <span className="text-[var(--clr-green)]">{t("hero.title2")}</span>
               </motion.h1>
             </div>
 
@@ -201,8 +153,7 @@ export default function ServicePage() {
               variants={localFadeUp}
               className="text-slate-900 font-medium text-base md:text-xl max-w-2xl leading-relaxed font-body tracking-tight subpixel-antialiased drop-shadow-[0_1px_4px_rgba(255,255,255,0.6)]"
             >
-              End-to-end metallurgical processing structures—engineered from baseline raw material collection
-              and high-density packaging to secure cross-border maritime supply logistics.
+              {t("hero.description")}
             </motion.p>
           </motion.div>
         </motion.div>
@@ -219,10 +170,10 @@ export default function ServicePage() {
             className="flex flex-col items-start text-left mb-16"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
-              Full-Spectrum Delivery
+              {t("sections.fullSpectrum")}
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-              EVERYTHING METAL, END-TO-END
+            <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-[var(--clr-green)]" style={{ fontFamily: 'var(--font-display)' }}>
+              {t("sections.everythingMetal")}
             </h2>
           </motion.div>
 
@@ -233,37 +184,41 @@ export default function ServicePage() {
             viewport={{ once: true, margin: '-40px' }}
             variants={staggerContainer}
           >
-            {services.map((s) => (
-              <motion.div
-                key={s.title}
-                variants={fadeUp}
-                className="bg-white border border-slate-200/80 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 group flex min-h-full flex-col justify-between border-l-4 border-emerald-600"
-              >
-                <div>
-                  <div className="flex gap-4 items-start mb-6">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-600/5 border border-emerald-600/10 transition-transform duration-300 group-hover:scale-105 shrink-0">
-                      <s.icon size={18} className="text-emerald-600" />
+            {servicesArray?.map((s, index) => {
+              const IconComponent = serviceIcons[index] || Recycle;
+              return (
+                <motion.div
+                  key={s.title}
+                  variants={fadeUp}
+                  className="bg-white border border-slate-200/80 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 group flex min-h-full flex-col justify-between border-l-4 border-emerald-600"
+                >
+                  <div>
+                    <div className="flex gap-4 items-start mb-6">
+                      <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-600/5 border border-emerald-600/10 transition-transform duration-300 group-hover:scale-105 shrink-0">
+                        <IconComponent size={18} className="text-emerald-600" />
+                      </div>
+                      <h3 className="text-lg font-extrabold text-slate-900 pt-1 tracking-widest" style={{ fontFamily: 'var(--font-display)' }}>
+                        {s.title}
+                      </h3>
                     </div>
-                    <h3 className="text-lg font-extrabold text-slate-900 pt-1" style={{ fontFamily: 'var(--font-display)' }}>
-                      {s.title}
-                    </h3>
+
+                    <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-normal mb-6">
+                      {s.desc}
+                    </p>
                   </div>
 
-                  <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-normal mb-6">
-                    {s.desc}
-                  </p>
-                </div>
-
-                <ul className="grid sm:grid-cols-2 gap-y-2.5 gap-x-4 pt-4 border-t border-slate-100">
-                  {s.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-xs text-slate-600 font-normal">
-                      <CheckCircle size={13} className="text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+                  <ul className="grid sm:grid-cols-2 gap-y-2.5 gap-x-4 pt-4 border-t border-slate-100">
+                    {s.features?.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-xs text-slate-600 font-normal">
+                        <CheckCircle size={13} className="text-emerald-600 shrink-0 mt-0.5" />
+                        
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -279,10 +234,10 @@ export default function ServicePage() {
             className="flex flex-col items-center text-center mb-16"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/10 bg-emerald-50/70 text-[var(--clr-green)] text-[10px] font-bold tracking-wider uppercase mb-4 font-sans">
-              Downstream Infrastructure
+              {t("sections.industriesBadge")}
             </div>
             <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-              INDUSTRIES WE SUPPLY
+              {t("sections.industriesTitle")}
             </h2>
           </motion.div>
 
@@ -293,7 +248,7 @@ export default function ServicePage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            {industries.map((ind) => (
+            {industriesArray?.map((ind) => (
               <motion.div
                 key={ind}
                 variants={fadeUp}
@@ -324,25 +279,19 @@ export default function ServicePage() {
                 className="space-y-4"
               >
                 <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 text-[10px] font-bold tracking-wider uppercase mb-2 font-sans">
-                  The Mechelin Difference
+                  {t("sections.whyBadge")}
                 </motion.div>
                 <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-wider text-slate-900 mb-8" style={{ fontFamily: 'var(--font-display)' }}>
-                  WHY BULK BUYERS ROUTE THROUGH MECHELIN
+                  {t("sections.whyTitle")}
                 </motion.h2>
 
                 <motion.div variants={fadeUp} className="divide-y divide-slate-200/70 border-t border-b border-slate-200/70">
-                  {[
-                    ['Integrated Operations', 'We directly manage full recovery pipelines, clearing out intermediate trading layers to anchor high efficiency.'],
-                    ['Consistent Purity Criteria', 'Strict grading guidelines and rigorous QA ensure allocations fulfill designated purity specs on every run.'],
-                    ['Sustained Cargo Capacities', 'Our industrial-scale footprint ensures high-volume bulk requests are matched continuously month after month.'],
-                    ['Adaptable Execution Terms', 'We engineer transactional criteria around your procurement layout, offering spot purchasing and structured terms.'],
-                    ['Environmental Framework Compliance', 'Every operational process generates data frameworks to bolster your modern corporate sustainability objectives.'],
-                  ].map(([t, d]) => (
-                    <div key={t} className="flex gap-4 py-5 group">
+                  {whyPointsArray?.map(({ title, desc }) => (
+                    <div key={title} className="flex gap-4 py-5 group">
                       <CheckCircle size={16} className="text-emerald-600 mt-1 shrink-0 transition-transform duration-200 group-hover:scale-110" />
                       <div>
-                        <p className="font-extrabold text-sm text-slate-900 mb-1" style={{ fontFamily: 'var(--font-body)' }}>{t}</p>
-                        <p className="text-xs md:text-sm text-slate-500 font-normal leading-relaxed">{d}</p>
+                        <p className="font-extrabold text-sm text-slate-900 mb-1" style={{ fontFamily: 'var(--font-body)' }}>{title}</p>
+                        <p className="text-xs md:text-sm text-slate-500 font-normal leading-relaxed">{desc}</p>
                       </div>
                     </div>
                   ))}
@@ -360,18 +309,11 @@ export default function ServicePage() {
                 className="bg-white border border-slate-200/80 p-8 md:p-10 rounded-2xl shadow-xl relative overflow-hidden"
               >
                 <h3 className="text-xl font-black text-slate-900 tracking-tight mb-6 uppercase" style={{ fontFamily: 'var(--font-display)' }}>
-                  SERVICE COVERAGE BALANCES
+                  {t("sections.coverageTitle")}
                 </h3>
 
                 <div className="divide-y divide-slate-100">
-                  {[
-                    ['Sourcing Network', 'South-East & South-West Nigeria'],
-                    ['Processing Facility', 'Awada Obosi, Anambra State'],
-                    ['Domestic Delivery', 'All Major Industrial Cities'],
-                    ['Export Hub', 'Apapa Port Terminal, Lagos'],
-                    ['International Lines', 'West Africa, Asia, Europe'],
-                    ['Operational Hours', 'Mon–Sat | 8:00am – 6:00pm'],
-                  ].map(([k, v]) => (
+                  {coverageArray?.map(([k, v]) => (
                     <div key={k} className="flex justify-between items-center py-4 gap-4">
                       <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{k}</span>
                       <span className="text-xs md:text-sm font-semibold text-slate-800 text-right">{v}</span>
@@ -380,7 +322,7 @@ export default function ServicePage() {
                 </div>
 
                 <Link href="/contact" className="inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs md:text-sm px-6 py-4 rounded-xl mt-6 transition-all duration-200 shadow-sm group">
-                  Submit Operational Request
+                  {t("sections.submitRequest")}
                   <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                 </Link>
               </motion.div>
@@ -390,37 +332,25 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* ── INTERACTIVE GLOBAL INDUSTRIAL BLOCK ── */}
 
-      {/* CTA */}
+      
+
+      {/* CTA 2 (Dynamic Content Option) */}
       <CTASection
         icon={<Package size={28} />}
-        subtitle="Bulk Industrial Supply"
-        title="DISCUSS YOUR METALLURGICAL OVERHEADS?"
-        description="From isolated custom processing batches to dedicated corporate mill allocation setups — we engineer strategic answers suited to your parameters."
+        subtitle={tCta("subtitle")}
+        title={tCta("title")}
+        description={tCta("description")}
         primaryCta={{
-          label: 'Initiate B2B Consultations',
+          label: tCta("primaryCta"),
           href: '/contact',
           icon: <ArrowRight size={16} />,
         }}
-        trustText="Trusted by industrial buyers across West Africa"
-      />
-
-      <CTASection
-        icon={<Package size={28} />}
-        subtitle={t("subtitle")}
-        title={t("title")}
-        description={t("description")}
-        primaryCta={{
-          label: t("primaryCta"),
-          href: '/contact',
-          icon: <ArrowRight size={16} />,
-        }}
-        secondaryCta={{
-          label: t("secondaryCta"),
-          href: '/products',
-        }}
-        trustText={t("trustText")}
+        // secondaryCta={{
+        //   label: tCta("secondaryCta"),
+        //   href: '/products',
+        // }}
+        trustText={tCta("trustText")}
       />
 
       <Footer />

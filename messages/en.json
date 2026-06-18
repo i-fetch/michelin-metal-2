@@ -166,44 +166,282 @@
     },
     "copyright": "All rights reserved"
   },
-
   "whatWeDeal": {
     "badge": "What We Deal In",
     "title": "Our Major Metals",
     "description": "We trade, recycle, and supply premium-quality metals for industrial applications. Each grade is processed to meet strict specification standards.",
-
     "cta": "Check Value Rate",
-
     "metals": {
       "aluminium": {
         "name": "Aluminium",
         "desc": "Premium-grade sorted aluminium scrap, bailed and ready for smelting or direct manufacturing use."
       },
-
       "castAluminium": {
         "name": "Cast Aluminium",
         "desc": "High-purity cast aluminium sourced from engines, machinery, and automotive components."
       },
-
       "castIron": {
         "name": "Cast Iron",
         "desc": "Sorted cast iron scrap suitable for foundry operations and metal reprocessing."
       },
-
       "condenser": {
         "name": "Condenser",
         "desc": "Copper and aluminium condensers from HVAC and refrigeration equipment, carefully processed."
       },
-
       "ubc": {
         "name": "UBC",
         "desc": "Used Beverage Cans — cleaned, sorted, and bailed aluminium UBC for recycling."
       },
-
       "nonFerrous": {
         "name": "Non-Ferrous Metals",
         "desc": "Magnetic and non-magnetic ferrous metals from vehicles, buildings, and appliances."
       }
     }
+  },
+  "aboutpage": {
+    "hero": {
+      "badge": "Enterprise Infrastructure",
+      "titleLine1": "ABOUT MECHELIN",
+      "titleLine2": "METALS NIGERIA.",
+      "description": "A decade of heavy industry operations, institutionalised for the global market. Nigeria's premier integrated metal reclamation, industrial extraction, and multi-continent distribution enterprise."
+    },
+    "story": {
+      "badge": "Our Legacy",
+      "title": "MORE THAN A DECADE IN THE MAKING",
+      "paragraph1": "Mechelin Metals Nigeria LTD is West Africa's foremost integrated structural reclamation and metal processing corporation. While formally incorporated in 2023, our foundation spans over ten years of deep operational deployment across active recycling, sorting, and supply chains.",
+      "paragraph2": "We leverage captive resources and institutional machinery infrastructures to source, safely process, and non-ferrous variants. Our materials feed directly into precision manufacturing lines, foundries, and domestic smelting conglomerates.",
+      "button": "Explore Product Portfolio"
+    },
+    "stats": {
+      "performance": "Performance",
+      "metricTonnes": "Metric Tonnes Forwarded",
+      "yearsPresence": "Years Industry Presence"
+    },
+    "visionMission": {
+      "visionTitle": "Our Vision",
+      "visionBody": "To become the leading provider of sustainable metals recycling solutions globally — driving the circular economy through innovation, safety, and superior material recovery.",
+      "missionTitle": "Our Mission",
+      "missionBody": "To revolutionize metal recycling by turning waste into high-quality raw materials through technological innovation and sustainable practices that benefit the environment."
+    },
+    "timeline": {
+      "badge": "The Ledger",
+      "title": "HISTORICAL MILESTONES",
+      "items": {
+        "2013": {
+          "title": "Industrial Market Entry",
+          "event": "Initial deployment and asset sourcing across active West African heavy scrap sectors."
+        },
+        "2018": {
+          "title": "Infrastructure Expansion",
+          "event": "Established regional consolidation hubs and primary partnerships with local manufacturers."
+        },
+        "2022": {
+          "title": "Global Forwarding Channels",
+          "event": "Launched cross-border maritime logistics pipelines supplying heavy industries across Asia."
+        },
+        "2023": {
+          "title": "Corporate Incorporation",
+          "event": "Formally integrated operations under Mechelin Metals Nigeria LTD."
+        },
+        "2024": {
+          "title": "Processing Scalability",
+          "event": "Commissioned industrial baling machinery, significantly expanding processing capacities."
+        },
+        "2026": {
+          "title": "Digital Procurement Infrastructure",
+          "event": "Launched enterprise-grade B2B platform for seamless global supplier and buyer routing."
+        }
+      }
+    },
+    "registration": {
+      "badge": "Compliance & Incorporation",
+      "title": "REGISTRATION & STATUTORY DETAILS",
+      "companyName": "Company Name",
+      "businessEntity": "Business Entity",
+      "industryClassification": "Industry Classification",
+      "incorporationTarget": "Incorporation Target",
+      "sourcingFootprint": "Sourcing Footprint",
+      "headquartersAddress": "Headquarters Address",
+      "operationalBranch": "Operational Branch",
+      "companyNameValue": "Mechelin Metals Nigeria LTD",
+      "businessEntityValue": "Private Company Limited by Shares",
+      "industryClassificationValue": "Industrial Reclamation & Solid Metallurgy Recyclables",
+      "incorporationTargetValue": "2023",
+      "sourcingFootprintValue": "West African Trade Basins / Nigerian National Logistics Hubs",
+      "headquartersAddressValue": "No. 23 Nathan Okafor Street, Awada Obosi, Anambra",
+      "operationalBranchValue": "No. 32 Louis Mbanefo Street, Woliwo Layout, Anambra"
+    },
+    "cta": {
+      "subtitle": "Industrial Bulk Supply & Procurement",
+      "title": "READY TO PARTNER WITH US?",
+      "description": "Whether you need reliable raw material supply or have scrap metal to move — our team is ready.",
+      "primary": "Request Quote",
+      "secondary": "Browse Products",
+      "trustText": "Trusted by industrial buyers and scrap dealers across West Africa"
+    }
+  },
+  "servicePage": {
+    "hero": {
+      "badge": "Capabilities & Solutions",
+      "title1": "OUR INDUSTRIAL",
+      "title2": "SERVICES.",
+      "description": "End-to-end metallurgical processing structures—engineered from baseline raw material collection and high-density packaging to secure cross-border maritime supply logistics."
+    },
+    "sections": {
+      "fullSpectrum": "Full-Spectrum Delivery",
+      "everythingMetal": "EVERYTHING METAL, END-TO-END",
+      "industriesTitle": "INDUSTRIES WE SUPPLY",
+      "industriesBadge": "Downstream Infrastructure",
+      "whyTitle": "WHY BULK BUYERS ROUTE THROUGH MECHELIN",
+      "whyBadge": "The Mechelin Difference",
+      "coverageTitle": "SERVICE COVERAGE BALANCES",
+      "submitRequest": "Submit Operational Request"
+    },
+    "services": [
+      {
+        "title": "Metal Sourcing & Collection",
+        "desc": "Extensive sourcing network across West Africa to collect scrap from auto wreckers, demolition sites, factories and households.",
+        "features": [
+          "On-site collection and pickup",
+          "Bulk acquisition at competitive rates",
+          "Wide network across South-East Nigeria",
+          "Transparent per-tonne pricing"
+        ]
+      },
+      {
+        "title": "Sorting & Classification",
+        "desc": "Manual and mechanical separation of all metals by type, grade, and purity — ensuring clean, contamination-free batches.",
+        "features": [
+          "Magnetic separation of ferrous metals",
+          "Manual grading by experienced operators",
+          "Separation of aluminium, copper, brass, lead",
+          "Grade certificates available"
+        ]
+      },
+      {
+        "title": "Baling & Processing",
+        "desc": "Post-sorting, metals are cleaned, cut to specification and compressed into high-density bales ready for smelting or export.",
+        "features": [
+          "Hydraulic baling to specification",
+          "Cut-to-size heavy scrap",
+          "Wire-bound or loose bale options",
+          "Custom bale dimensions"
+        ]
+      },
+      {
+        "title": "Logistics & Delivery",
+        "desc": "Full logistics from our Anambra facility to your site — domestic manufacturer or international importer.",
+        "features": [
+          "Road freight across Nigeria",
+          "Container stuffing for export",
+          "FOB Lagos port delivery",
+          "Real-time shipment coordination"
+        ]
+      },
+      {
+        "title": "National & Global Distribution",
+        "desc": "Supply of high-performance recycled raw materials to manufacturers domestically and internationally.",
+        "features": [
+          "Domestic supply to Nigerian manufacturers",
+          "Export to global buyers",
+          "Volume contracts available",
+          "Port documentation support"
+        ]
+      },
+      {
+        "title": "B2B Bulk Supply Contracts",
+        "desc": "For manufacturers requiring consistent high-volume supply — structured contracts with guaranteed volumes and timelines.",
+        "features": [
+          "Monthly/quarterly supply contracts",
+          "Dedicated account management",
+          "Priority processing",
+          "Flexible volume adjustments"
+        ]
+      },
+      {
+        "title": "Scrap Metal Consultation",
+        "desc": "Not sure what to do with your industrial scrap? We assess, classify and recommend the optimal recycling or sale route.",
+        "features": [
+          "Free initial consultation",
+          "On-site scrap assessment",
+          "Grade and value estimation",
+          "Environmental disposal certificates"
+        ]
+      },
+      {
+        "title": "Custom Material Preparation",
+        "desc": "Metals prepared to exact buyer specifications — for foundry feed, smelter charge or export grade.",
+        "features": [
+          "Custom sizing and shredding",
+          "Alloy-specific sorting",
+          "Export-ready containerisation",
+          "Material data sheets on request"
+        ]
+      }
+    ],
+    "industries": [
+      "Aluminium Smelters",
+      "Steel Mills",
+      "Foundries",
+      "Export Traders",
+      "Manufacturing Plants",
+      "Construction Industry"
+    ],
+    "whyPoints": [
+      {
+        "title": "Integrated Operations",
+        "desc": "We directly manage full recovery pipelines, clearing out intermediate trading layers to anchor high efficiency."
+      },
+      {
+        "title": "Consistent Purity Criteria",
+        "desc": "Strict grading guidelines and rigorous QA ensure allocations fulfill designated purity specs on every run."
+      },
+      {
+        "title": "Sustained Cargo Capacities",
+        "desc": "Our industrial-scale footprint ensures high-volume bulk requests are matched continuously month after month."
+      },
+      {
+        "title": "Adaptable Execution Terms",
+        "desc": "We engineer transactional criteria around your procurement layout, offering spot purchasing and structured terms."
+      },
+      {
+        "title": "Environmental Framework Compliance",
+        "desc": "Every operational process generates data frameworks to bolster your modern corporate sustainability objectives."
+      }
+    ],
+    "coverage": [
+      [
+        "Sourcing Network",
+        "South-East & South-West Nigeria"
+      ],
+      [
+        "Processing Facility",
+        "Awada Obosi, Anambra State"
+      ],
+      [
+        "Domestic Delivery",
+        "All Major Industrial Cities"
+      ],
+      [
+        "Export Hub",
+        "Apapa Port Terminal, Lagos"
+      ],
+      [
+        "International Lines",
+        "West Africa, Asia, Europe"
+      ],
+      [
+        "Operational Hours",
+        "Mon–Sat | 8:00am – 6:00pm"
+      ]
+    ]
+  },
+  "serviceCta": {
+    "subtitle": "Bulk Industrial Supply",
+    "title": "DISCUSS YOUR METALLURGICAL OVERHEADS?",
+    "description": "From isolated custom processing batches to dedicated corporate mill allocation setups — we engineer strategic answers suited to your parameters.",
+    "primaryCta": "Initiate B2B Consultations",
+    "trustText": "Trusted by industrial buyers across West Africa"
   }
+  
 }
