@@ -181,7 +181,8 @@ export default function CTASection({
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
-                  className="mt-6 text-xs"
+                  // className="mt-6 text-xs"
+                  className="hidden mt-6 text-xs"
                   style={{
                      color: isSolid ? 'rgba(255,255,255,0.6)' : 'var(--tx-muted)',
                   }}
