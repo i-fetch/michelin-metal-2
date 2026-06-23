@@ -22,7 +22,7 @@ const InquirySchema = new Schema<IInquiry>(
         companyName: { type: String, required: true, trim: true },
         contactName: { type: String, required: true, trim: true },
         contactEmail: { type: String, required: true, lowercase: true, trim: true },
-        quantityRequested: { type: Number, required: true },
+        quantityRequested: { type: Number, required: true, min: 1 },
         quantityUnit: { type: String, required: true, trim: true },
         inquiryType: { type: String, required: true, trim: true },
         notes: { type: String, trim: true },

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import ProductDetailClient from "@/app/products/ProductDetailClient";
 import ProductDetailSkeleton from "@/components/ProductDetailSkeleton";
-import { createInquiryAction } from "@/controllers/inquiryController";
+// import { createInquiryAction } from "@/controllers/inquiryController";
 import type { Metadata } from "next";
 import { getProductBySlug } from "@/controllers/productController";
 
@@ -16,7 +16,7 @@ async function ProductDetailLoader({ slug }: { slug: string }) {
     notFound();
   }
 
-  return <ProductDetailClient product={product} onCreateInquiry={createInquiryAction} />;
+  return <ProductDetailClient product={product} />;
 }
 
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {

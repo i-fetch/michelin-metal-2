@@ -19,10 +19,10 @@ export async function getAllInquiries() {
     return Inquiry.find().sort({ createdAt: -1 }).lean();
 }
 
-export async function createInquiry(payload: InquiryPayload) {
-    await connectDB();
-    return Inquiry.create(payload);
-}
+// export async function createInquiry(payload: InquiryPayload) {
+//     await connectDB();
+//     return Inquiry.create(payload);
+// }
 
 export async function archiveInquiry(id: string) {
     await connectDB();
@@ -36,17 +36,17 @@ export async function archiveInquiryAction(id: string) {
     await archiveInquiry(id);
 }
 
-export async function createInquiryAction(formData: FormData) {
+// export async function createInquiryAction(formData: FormData) {
 
-    await createInquiry({
-        productTitle: String(formData.get('productTitle') || '').trim(),
-        productSlug: String(formData.get('productSlug') || '').trim(),
-        companyName: String(formData.get('companyName') || '').trim(),
-        contactName: String(formData.get('contactName') || '').trim(),
-        contactEmail: String(formData.get('contactEmail') || '').trim(),
-        quantityRequested: Number(formData.get('quantityRequested') || 0),
-        quantityUnit: String(formData.get('quantityUnit') || 'tonne').trim(),
-        inquiryType: String(formData.get('inquiryType') || '').trim(),
-        notes: String(formData.get('notes') || '').trim() || undefined,
-    });
-}
+//     await createInquiry({
+//         productTitle: String(formData.get('productTitle') || '').trim(),
+//         productSlug: String(formData.get('productSlug') || '').trim(),
+//         companyName: String(formData.get('companyName') || '').trim(),
+//         contactName: String(formData.get('contactName') || '').trim(),
+//         contactEmail: String(formData.get('contactEmail') || '').trim(),
+//         quantityRequested: Number(formData.get('quantityRequested') || 0),
+//         quantityUnit: String(formData.get('quantityUnit') || 'tonne').trim(),
+//         inquiryType: String(formData.get('inquiryType') || '').trim(),
+//         notes: String(formData.get('notes') || '').trim() || undefined,
+//     });
+// }

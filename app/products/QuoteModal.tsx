@@ -6,15 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 interface QuoteModalProps {
   product: Product;
   onClose: () => void;
-  onSubmitInquiry: (formData: FormData) => Promise<void>;
 }
 
-export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteModalProps) {
+export default function QuoteModal({ product, onClose }: QuoteModalProps) {
   const [companyName, setCompanyName] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
-  const [quantity, setQuantity] = useState<number>(product.moq.value);
   const [inquiryType, setInquiryType] = useState("Commercial Price Quote");
+  const [quantity, setQuantity] = useState<number>(product.moq.value);
   const [notes, setNotes] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,21 +36,36 @@ export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteM
       return;
     }
 
-    const formData = new FormData(e.currentTarget);
-    formData.set("productTitle", product.title);
-    formData.set("productSlug", product.slug);
-    formData.set("quantityRequested", String(quantity));
-    formData.set("quantityUnit", product.moq.unit);
-    formData.set("inquiryType", inquiryType);
-    formData.set("notes", notes);
-
     try {
       setIsSubmitting(true);
-      await onSubmitInquiry(formData);
+      
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productTitle: product.title,
+          productSlug: product.slug,
+          companyName,
+          contactName,
+          contactEmail,
+          inquiryType,
+          quantityRequested: quantity,
+          quantityUnit: product.moq.unit,
+          notes,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to submit inquiry");
+      }
+
       setIsSuccess(true);
     } catch (error) {
       console.error(error);
-      setSubmitError("Unable to submit your inquiry. Please try again.");
+      setSubmitError(error instanceof Error ? error.message : "Unable to submit your inquiry. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -102,7 +116,7 @@ export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteM
                 </div>
 
                 {/* Inquiry Type selection */}
-                <div>
+                {/* <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-tx-secondary mb-1.5">
                     Request Intent *
                   </label>
@@ -127,7 +141,7 @@ export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteM
                       </label>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
                 {/* Company Info */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -196,7 +210,7 @@ export default function QuoteModal({ product, onClose, onSubmitInquiry }: QuoteM
                       type="number"
                       required
                       min={product.moq.value}
-                      value={quantity}
+                      // value={quantity}
                       onChange={(e) => setQuantity(Math.max(product.moq.value, Number(e.target.value)))}
                       className="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none"
                     />

@@ -12,10 +12,9 @@ type InquiryAction = (formData: FormData) => Promise<void>;
 
 interface ProductDetailClientProps {
   product: Product;
-  onCreateInquiry: InquiryAction;
 }
 
-export default function ProductDetailClient({ product, onCreateInquiry }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product }: ProductDetailClientProps) {
   const router = useRouter();
   const [selectedProductForQuote, setSelectedProductForQuote] = useState<Product | null>(null);
 
@@ -160,9 +159,6 @@ export default function ProductDetailClient({ product, onCreateInquiry }: Produc
         <QuoteModal
           product={selectedProductForQuote}
           onClose={() => setSelectedProductForQuote(null)}
-          onSubmitInquiry={async (formData) => {
-            await onCreateInquiry(formData);
-          }}
         />
       )}
 
