@@ -214,7 +214,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
         </div>
 
         {/* Section 4: Configuration */}
-        <div className="pt-1">
+        <div className="hidden pt-1">
           <div style={{ borderTop: "1px solid var(--border-subtle)", margin: "8px 0" }} />
           <p
             className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"

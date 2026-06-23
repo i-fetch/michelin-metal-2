@@ -39,7 +39,7 @@ async function ensureDb() {
     return { mongoose, db } as { mongoose: typeof import("mongoose"); db: import("mongodb").Db };
 }
 
-async function uploadFilesToGridFS(files: (File | string)[]): Promise<string[]> {
+export async function uploadFilesToGridFS(files: (File | string)[]): Promise<string[]> {
     const { db, mongoose } = await ensureDb();
     const bucket = new mongoose.mongo.GridFSBucket(db);
 
@@ -47,8 +47,7 @@ async function uploadFilesToGridFS(files: (File | string)[]): Promise<string[]> 
 
     for (const f of files) {
         if (typeof f === "string") {
-            // already a reference (maybe a file id). If looks like ObjectId, keep it; else ignore
-            if (/^[a-fA-F0-9]{24}$/.test(f)) {
+            if (f.trim()) {
                 results.push(f);
             }
             continue;
