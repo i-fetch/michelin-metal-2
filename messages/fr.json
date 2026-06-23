@@ -460,5 +460,147 @@
     "description": "Des lots de traitement personnalisés et isolés aux configurations d'allocation d'usines d'entreprise dédiées — nous concevons des réponses stratégiques adaptées à vos paramètres.",
     "primaryCta": "Initier des Consultations B2B",
     "trustText": "Reconnu par les acheteurs industriels à travers l'Afrique de l'Ouest"
+  },
+  "locations": {
+    "tag": "Nous Trouver",
+    "title": "Nos",
+    "titleHighlight": "Emplacements",
+    "description": "Deux centres stratégiques dans l'État d'Anambra — le cœur industriel du Nigeria.",
+    "branches": [
+      {
+        "id": "branch1",
+        "tag": "Succursale 01",
+        "label": "Siège Social",
+        "title": "Awada, Obosi",
+        "address": "No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria.",
+        "note": "Accessible via Rainbow-Net derrière la caserne militaire d'Onitsha.",
+        "hours": "Lun – Sam: 8h – 18h"
+      },
+      {
+        "id": "branch2",
+        "tag": "Succursale 02",
+        "label": "Bureau Commercial",
+        "title": "Woliwo Layout, Onitsha",
+        "address": "No. 32 Louis Mbanefo Street, Woliwo Layout, Onitsha, Anambra State, Nigeria.",
+        "note": "Situé au cœur du district commercial d'Onitsha.",
+        "hours": "Lun – Ven: 8h – 17h"
+      }
+    ],
+    "getDirections": "Obtenir les directions"
+  },
+  "contactPage": {
+    "hero": {
+      "badge": "Contactez-nous",
+      "title1": "Prenez",
+      "title2": "Contact",
+      "description": "Prêt à sourcer des métaux, vendre des déchets ou explorer un partenariat stratégique d’approvisionnement ? Notre équipe est prête à traiter vos demandes institutionnelles."
+    },
+    "enquiryTypes": [
+      "Demande de produit",
+      "Achat en gros / Contrat",
+      "Vente de ferraille",
+      "Partenariat import / export",
+      "Informations générales",
+      "Autre"
+    ],
+    "productList": [
+      "Balles d’aluminium",
+      "Déchets d’aluminium (en vrac)",
+      "Acier de refusion lourde",
+      "Déchets de carrosserie",
+      "Fonte",
+      "Déchets de cuivre",
+      "Déchets de laiton",
+      "Déchets de plomb",
+      "Fourniture en vrac",
+      "Multiple / Autre"
+    ],
+    "quickContacts": [
+      {
+        "label": "Email",
+        "val": "mechelinmetalsnig@gmail.com"
+      },
+      {
+        "label": "WhatsApp",
+        "val": "Envoyer un message rapide"
+      },
+      {
+        "label": "Siège social",
+        "val": "Awada Obosi, Anambra"
+      },
+      {
+        "label": "Centre commercial",
+        "val": "Woliwo Layout, Onitsha"
+      }
+    ],
+    "form": {
+      "titleTag": "Formulaire de demande",
+      "title": "Envoyez-nous un message",
+      "fields": {
+        "fullName": "Nom complet",
+        "company": "Nom de l’entreprise",
+        "email": "Adresse email",
+        "phone": "Téléphone / WhatsApp",
+        "country": "Pays",
+        "type": "Type de demande",
+        "product": "Produit d’intérêt",
+        "volume": "Volume estimé",
+        "message": "Votre message",
+        "channel": "Canal de réponse préféré"
+      },
+      "placeholders": {
+        "fullName": "John Adeyemi",
+        "company": "Votre entreprise SARL",
+        "email": "vous@entreprise.com",
+        "phone": "+234 800 000 0000",
+        "country": "Nigeria",
+        "type": "Sélectionnez le type…",
+        "product": "Sélectionnez le produit…",
+        "volume": "ex. 25 tonnes / mois",
+        "message": "Décrivez vos besoins — grades, spécifications, port de livraison, délais…"
+      },
+      "channels": [
+        "email",
+        "whatsapp",
+        "appel"
+      ],
+      "buttons": {
+        "submit": "Envoyer la demande",
+        "sending": "Envoi…",
+        "successTitle": "Demande reçue !",
+        "successMessage": "Votre demande a été reçue. Un spécialiste vous répondra sous 1 jour ouvré.",
+        "another": "Envoyer une autre demande"
+      }
+    },
+    "sidebar": {
+      "contactDetails": "Coordonnées",
+      "businessHours": "Heures d’ouverture",
+      "explore": "Explorer",
+      "links": [
+        "Voir notre catalogue",
+        "Services industriels",
+        "À propos de Mechelin Metals"
+      ],
+      "details": {
+        "headOffice": "Siège social",
+        "email": "Email",
+        "phone": "Téléphone",
+        "phoneValue": "Disponible sur demande vérifiée"
+      },
+      "hours": [
+        {
+          "day": "Lun – Ven",
+          "time": "8h00 – 18h00"
+        },
+        {
+          "day": "Samedi",
+          "time": "8h00 – 14h00"
+        },
+        {
+          "day": "Dimanche",
+          "time": "Fermé"
+        }
+      ]
+    }
   }
 }

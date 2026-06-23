@@ -455,10 +455,152 @@
     ]
   },
   "serviceCta": {
-      "subtitle": "大宗工业供应",
-      "title": "讨论您的冶金业务开销？",
-      "description": "从独立定制的处理批次到专用的企业磨坊分配设置——我们为您量身定制符合各项参数的的策略性解决方案。",
-      "primaryCta": "发起 B2B 咨询",
-      "trustText": "深受西非各地工业买家的信赖"
+    "subtitle": "大宗工业供应",
+    "title": "讨论您的冶金业务开销？",
+    "description": "从独立定制的处理批次到专用的企业磨坊分配设置——我们为您量身定制符合各项参数的的策略性解决方案。",
+    "primaryCta": "发起 B2B 咨询",
+    "trustText": "深受西非各地工业买家的信赖"
+  },
+  "contactPage": {
+    "hero": {
+      "badge": "联系我们",
+      "title1": "取得",
+      "title2": "联系",
+      "description": "准备采购金属、出售废料或探索战略供应合作？我们的采购团队随时处理您的企业需求。"
+    },
+    "enquiryTypes": [
+      "产品咨询",
+      "批量采购 / 合同",
+      "废金属出售",
+      "进出口合作",
+      "一般信息",
+      "其他"
+    ],
+    "productList": [
+      "铝块",
+      "散装铝废料",
+      "重型熔炼钢",
+      "汽车车身废料",
+      "铸铁废料",
+      "铜废料",
+      "黄铜废料",
+      "铅废料",
+      "大宗原料供应",
+      "多种 / 其他"
+    ],
+    "quickContacts": [
+      {
+        "label": "电子邮件",
+        "val": "mechelinmetalsnig@gmail.com"
+      },
+      {
+        "label": "WhatsApp",
+        "val": "发送快速消息"
+      },
+      {
+        "label": "总部",
+        "val": "Awada Obosi, 阿南布拉州"
+      },
+      {
+        "label": "商业中心",
+        "val": "Onitsha Woliwo 区"
+      }
+    ],
+    "form": {
+      "titleTag": "咨询表单",
+      "title": "发送消息",
+      "fields": {
+        "fullName": "姓名",
+        "company": "公司名称",
+        "email": "电子邮箱",
+        "phone": "电话 / WhatsApp",
+        "country": "国家",
+        "type": "咨询类型",
+        "product": "感兴趣的产品",
+        "volume": "预计数量",
+        "message": "您的信息",
+        "channel": "首选回复方式"
+      },
+      "placeholders": {
+        "fullName": "John Adeyemi",
+        "company": "您的公司有限公司",
+        "email": "you@company.com",
+        "phone": "+234 800 000 0000",
+        "country": "尼日利亚",
+        "type": "请选择类型…",
+        "product": "请选择产品…",
+        "volume": "例如：25 吨 / 月",
+        "message": "请说明您的需求——规格、等级、港口、时间安排等…"
+      },
+      "channels": [
+        "电子邮件",
+        "WhatsApp",
+        "电话"
+      ],
+      "buttons": {
+        "submit": "提交咨询",
+        "sending": "发送中…",
+        "successTitle": "咨询已收到！",
+        "successMessage": "我们已收到您的咨询，专业人员将在1个工作日内回复。",
+        "another": "发送另一条咨询"
+      }
+    },
+    "sidebar": {
+      "contactDetails": "联系方式",
+      "businessHours": "营业时间",
+      "explore": "探索",
+      "links": [
+        "浏览产品目录",
+        "工业加工服务",
+        "关于 Mechelin Metals"
+      ],
+      "details": {
+        "headOffice": "总部",
+        "email": "邮箱",
+        "phone": "电话",
+        "phoneValue": "需验证后提供"
+      },
+      "hours": [
+        {
+          "day": "周一 – 周五",
+          "time": "8:00 – 18:00"
+        },
+        {
+          "day": "周六",
+          "time": "8:00 – 14:00"
+        },
+        {
+          "day": "周日",
+          "time": "休息"
+        }
+      ]
     }
+  },
+  "locations": {
+    "tag": "联系我们",
+    "title": "我们的",
+    "titleHighlight": "地点",
+    "description": "在阿南布拉州设立的两个战略中心——尼日利亚的工业枢纽。",
+    "branches": [
+      {
+        "id": "branch1",
+        "tag": "分部 01",
+        "label": "总部",
+        "title": "Awada, Obosi",
+        "address": "No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria.",
+        "note": "可通过位于奥尼查军营后方的 Rainbow-Net 进入。",
+        "hours": "周一 – 周六：8am – 6pm"
+      },
+      {
+        "id": "branch2",
+        "tag": "分部 02",
+        "label": "商务办公",
+        "title": "Woliwo Layout, Onitsha",
+        "address": "No. 32 Louis Mbanefo Street, Woliwo Layout, Onitsha, Anambra State, Nigeria.",
+        "note": "位于奥尼查商业区的中心位置。",
+        "hours": "周一 – 周五：8am – 5pm"
+      }
+    ],
+    "getDirections": "路线导航"
+  }
 }
