@@ -272,7 +272,7 @@ export default function QuoteModal({ product, onClose }: QuoteModalProps) {
 
                 <div className="bg-green-600/10 p-3 rounded text-[11px] font-mono-custom text-tx-muted w-full text-left">
                   <strong>ID:</strong> inq-{Date.now().toString().slice(-6)} <br />
-                  <strong>Status:</strong> QUEUED IN MONGODB SCHEMA
+                  <strong>Status:</strong> SENT
                 </div>
 
                 <button

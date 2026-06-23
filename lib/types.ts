@@ -69,6 +69,22 @@ export interface Inquiry {
   updatedAt?: string;
 }
 
+export interface Contact {
+  _id: string;
+  name: string;
+  company?: string;
+  email: string;
+  phone?: string;
+  country?: string;
+  type?: string;
+  product?: string;
+  volume?: string;
+  message: string;
+  channel: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 // export interface IInquiry {
 //   productTitle: string;
 //   productSlug: string;

@@ -152,15 +152,41 @@ export default function ContactPage(): React.JSX.Element {
   })
   const [done, setDone] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm(p => ({ ...p, [e.target.name]: e.target.value }))
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.name || !form.email || !form.message) return
+    if (!form.name || !form.email || !form.message) {
+      setSubmitError('Please fill in your name, email, and message.')
+      return
+    }
+
     setBusy(true)
-    setTimeout(() => { setBusy(false); setDone(true) }, 1400)
+    setSubmitError(null)
+
+    try {
+      const response = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      })
+
+      const result = await response.json()
+      if (!response.ok) {
+        throw new Error(result?.error || 'Failed to submit contact form')
+      }
+
+      setDone(true)
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Unable to submit your request. Please try again.')
+    } finally {
+      setBusy(false)
+    }
   }
 
   const reset = () => {

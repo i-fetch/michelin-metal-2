@@ -1,5 +1,5 @@
 "use client";
-import { Database, Mail, Plus, Settings } from "lucide-react";
+import { Database, Mail, Plus, Settings, UserCog } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ interface SidebarProps {
   onCloseMobile: () => void;
   productCount?: number;
   inquiryCount?: number;
+  contactsCount?: number;
 }
 
 function getInitials(name: string): string {
@@ -22,7 +23,7 @@ function getInitials(name: string): string {
     .slice(0, 2);
 }
 
-export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productCount, inquiryCount }: SidebarProps) {
+export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productCount, inquiryCount , contactsCount }: SidebarProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -44,13 +45,13 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
   // Modern Navigation Button Styler leveraging your CSS Variables
   const getLinkStyles = (hashPath: string) => {
     const isActive = pathname?.includes(hashPath) || (typeof window !== 'undefined' && window.location.hash.includes(hashPath));
-    
+
     const baseClasses = "w-full text-left text-xs font-semibold px-3 py-2.5 rounded-lg flex items-center gap-3 transition-all duration-200 group relative";
-    
+
     // Using your alpha values and text variables here
     const activeClasses = "bg-[var(--clr-green-alpha)] text-[var(--clr-green)]";
     const inactiveClasses = "text-[var(--tx-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--tx-primary)]";
-    
+
     return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
   };
 
@@ -70,18 +71,17 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
     >
       {/* ── Logo / Brand Area ── */}
       <div
-        className={`flex items-center gap-3 px-4 shrink-0 transition-all duration-200 ${
-          effectiveCollapsed ? "justify-center" : "justify-between"
-        }`}
+        className={`flex items-center gap-3 px-4 shrink-0 transition-all duration-200 ${effectiveCollapsed ? "justify-center" : "justify-between"
+          }`}
         style={{ height: "72px", borderBottom: "1px solid var(--border-subtle)" }}
       >
         <div className="flex items-center gap-3 overflow-hidden">
           {/* Logo container wrapper matching your subtle theme */}
-          <div 
+          <div
             className="shrink-0 rounded-lg overflow-hidden flex items-center justify-center p-1 w-9 h-9"
-            style={{ 
+            style={{
               backgroundColor: "var(--bg-subtle)",
-              border: "1px solid var(--border-subtle)" 
+              border: "1px solid var(--border-subtle)"
             }}
           >
             <Image
@@ -136,16 +136,16 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
 
       {/* ── Nav Links Navigation Area (Scrollable Engine) ── */}
       <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-        
+
         {/* Section 1: Catalog Auditing */}
         <div className="mb-2">
-          <p 
+          <p
             className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"
             style={{ color: "var(--tx-muted)", opacity: effectiveCollapsed ? 0 : 1 }}
           >
             {effectiveCollapsed ? "•" : "Catalog Auditing"}
           </p>
-          
+
           <button
             onClick={() => router.push("/admin/products-auditing")}
             className={getLinkStyles("/admin/products-auditing")}
@@ -172,7 +172,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
         {/* Section 2: Inquiries Desk */}
         <div className="pt-1 mb-2">
           <div style={{ borderTop: "1px solid var(--border-subtle)", margin: "8px 0" }} />
-          <p 
+          <p
             className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"
             style={{ color: "var(--tx-muted)", opacity: effectiveCollapsed ? 0 : 1 }}
           >
@@ -184,17 +184,39 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
             className={getLinkStyles("/admin/inquiries")}
             title={effectiveCollapsed ? "B2B Trade Inquiries" : undefined}
           >
-            <Mail className="h-4 w-4 shrink-0" />
+            <UserCog className="h-4 w-4 shrink-0" />
+
             <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
               B2B Trade Inquiries ({inquiryCount})
             </span>
           </button>
         </div>
+        {/* Section 3: Contacts  */}
+        <div className="pt-1 mb-2">
+          <div style={{ borderTop: "1px solid var(--border-subtle)", margin: "8px 0" }} />
+          <p
+            className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"
+            style={{ color: "var(--tx-muted)", opacity: effectiveCollapsed ? 0 : 1 }}
+          >
+            {effectiveCollapsed ? "•" : "Contacts"}
+          </p>
 
-        {/* Section 3: Configuration */}
+          <button
+            onClick={() => router.push("/admin/contacts")}
+            className={getLinkStyles("/admin/contacts")}
+            title={effectiveCollapsed ? "Contacts" : undefined}
+          >
+            <Mail className="h-4 w-4 shrink-0" />
+            <span className="truncate transition-opacity" style={{ opacity: effectiveCollapsed ? 0 : 1 }}>
+              Contacts ({contactsCount})
+            </span>
+          </button>
+        </div>
+
+        {/* Section 4: Configuration */}
         <div className="pt-1">
           <div style={{ borderTop: "1px solid var(--border-subtle)", margin: "8px 0" }} />
-          <p 
+          <p
             className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest block truncate transition-opacity duration-200"
             style={{ color: "var(--tx-muted)", opacity: effectiveCollapsed ? 0 : 1 }}
           >
@@ -217,15 +239,15 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
       {/* ── User Footer Panel ── */}
       <div
         className="shrink-0 p-3 flex flex-col gap-1.5"
-        style={{ 
+        style={{
           borderTop: "1px solid var(--border-subtle)",
-          backgroundColor: effectiveCollapsed ? "transparent" : "rgba(15, 23, 42, 0.01)" 
+          backgroundColor: effectiveCollapsed ? "transparent" : "rgba(15, 23, 42, 0.01)"
         }}
       >
         {/* User identification block */}
         <div
           className="flex items-center gap-3 p-2 rounded-xl transition-all duration-200"
-          style={{ 
+          style={{
             backgroundColor: effectiveCollapsed ? "transparent" : "var(--bg-subtle)",
             justifyContent: effectiveCollapsed ? "center" : "flex-start"
           }}
@@ -240,7 +262,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
           </div>
 
           {/* Name + email text container */}
-          <div 
+          <div
             className="flex flex-col min-w-0"
             style={{
               opacity: effectiveCollapsed ? 0 : 1,
@@ -275,8 +297,8 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
               ? "opacity-40 cursor-not-allowed"
               : "hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/20",
           ].join(" ")}
-          style={{ 
-            color: isSigningOut ? "var(--tx-muted)" : "var(--tx-secondary)" 
+          style={{
+            color: isSigningOut ? "var(--tx-muted)" : "var(--tx-secondary)"
           }}
         >
           <span className="shrink-0">
