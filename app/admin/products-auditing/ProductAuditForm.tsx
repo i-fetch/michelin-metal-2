@@ -23,6 +23,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
   const [newAppInput, setNewAppInput] = useState("");
   const [newImageInput, setNewImageInput] = useState("");
   const [newFiles, setNewFiles] = useState<File[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -34,12 +35,19 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
     setFormData((prev) => ({ ...prev, title: value, slug: buildSlug(value) }));
   };
 
-  
-  const handleSaveProduct = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSaveProduct = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+
+    if (isLoading) return;
+
+    setIsLoading(true);
 
     try {
       const payload = new FormData();
+
       payload.append("title", formData.title);
       payload.append("slug", formData.slug);
       payload.append("description", formData.description);
@@ -53,12 +61,23 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
       payload.append("form", formData.specs.form);
       payload.append("purity", formData.specs.purity);
       payload.append("source", formData.specs.source);
-      payload.append("hazardCompliance", formData.specs.hazardCompliance);
+      payload.append(
+        "hazardCompliance",
+        formData.specs.hazardCompliance
+      );
       payload.append("zincContent", formData.specs.zincContent);
-      payload.append("applications", formData.applications.join(","));
+      payload.append(
+        "applications",
+        formData.applications.join(",")
+      );
 
-      formData.images.forEach((image) => payload.append("images", image));
-      newFiles.forEach((file) => payload.append("images", file));
+      formData.images.forEach((image) =>
+        payload.append("images", image)
+      );
+
+      newFiles.forEach((file) =>
+        payload.append("images", file)
+      );
 
       if (isEditMode && product?._id) {
         payload.append("id", product._id);
@@ -79,11 +98,24 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
         throw new Error(data?.message || "Request failed");
       }
 
-      toast.success(isEditMode ? "Product updated" : "Product created");
+      toast.success(
+        isEditMode
+          ? "Product updated successfully."
+          : "Product created successfully."
+      );
+
       router.push("/admin/products-auditing");
+      router.refresh();
     } catch (error) {
-      console.error("Save error:", error);
-      toast.error("Failed to save product.");
+      console.error(error);
+
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Failed to save product."
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -439,7 +471,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
 
           <div className="space-y-3">
             <div className="flex flex-col gap-2">
-            {/* <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2"> */}
+              {/* <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2"> */}
               <div className="flex-grow">
                 <input
                   type="url"
@@ -528,10 +560,23 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
 
           <button
             type="submit"
-            className="cursor-pointer px-6 py-2.5 rounded-lg bg-brand-green text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-green/95 transition-all inline-flex items-center space-x-2"
+            disabled={isLoading}
+            className={`px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider inline-flex items-center space-x-2 transition-all ${isLoading
+                ? "bg-brand-green/60 cursor-not-allowed opacity-70"
+                : "bg-brand-green hover:bg-brand-green/95 cursor-pointer text-white"
+              }`}
           >
-            <Save className="h-4 w-4" />
-            <span>{isEditMode ? "Save Changes" : "Save"}</span>
+            <Save className={`h-4 w-4 ${isLoading ? "animate-pulse" : ""}`} />
+
+            <span>
+              {isLoading
+                ? isEditMode
+                  ? "Saving Changes..."
+                  : "Saving..."
+                : isEditMode
+                  ? "Save Changes"
+                  : "Save"}
+            </span>
           </button>
         </div>
       </form>
