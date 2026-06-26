@@ -202,8 +202,8 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, productC
           </p>
 
           <button
-            onClick={() => router.push("/admin/contacts")}
-            className={getLinkStyles("/admin/contacts")}
+            onClick={() => router.push("/admin/admin-contacts")}
+            className={getLinkStyles("/admin/admin-contacts")}
             title={effectiveCollapsed ? "Contacts" : undefined}
           >
             <Mail className="h-4 w-4 shrink-0" />
