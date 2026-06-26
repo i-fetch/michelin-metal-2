@@ -111,7 +111,7 @@
   },
   "materials": {
     "title": "NOS",
-    "highlight": "Produits",
+    "featuredProducts": "Produits en vedette",
     "browse": "Voir tous les matériaux",
     "needCustom": "Besoin d’un approvisionnement personnalisé ?",
     "ctaText": "Nous fournissons des métaux de qualité industrielle sur demande.",

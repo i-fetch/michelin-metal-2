@@ -111,7 +111,7 @@
   },
   "materials": {
     "title": "我们的",
-    "highlight": "产品",
+    "featuredProducts": "推荐产品",
     "browse": "浏览全部材料",
     "needCustom": "需要定制采购？",
     "ctaText": "我们可按需求供应工业级金属。",

@@ -111,7 +111,7 @@
   },
   "materials": {
     "title": "우리의",
-    "highlight": "제품",
+    "featuredProducts": "추천 상품",
     "browse": "전체 재료 보기",
     "needCustom": "맞춤 조달이 필요하신가요?",
     "ctaText": "산업용 금속을 주문 제작으로 공급합니다.",
