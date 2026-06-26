@@ -15,8 +15,8 @@ import Image from "next/image";
 ───────────────────────────────────────────────────────────── */
 const STATS = [
   { icon: Package, label: "Metal Categories", value: "8+" },
-  { icon: Globe,   label: "Export Markets",   value: "4+" },
-  { icon: Recycle, label: "Sustainable Ops",  value: "100%" },
+  { icon: Globe, label: "Export Markets", value: "4+" },
+  { icon: Recycle, label: "Sustainable Ops", value: "100%" },
 ];
 
 const FLOATING_WORDS = [
@@ -80,22 +80,35 @@ function LeftPanel() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="flex items-center gap-3 mb-2">
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: "rgba(22,163,74,0.15)", border: "1px solid rgba(22,163,74,0.3)" }}
-          >
-            <Recycle size={18} style={{ color: "#22c55e" }} />
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              width={20}
+              height={20}
+              className="w-full h-full object-cover"
+              alt="Mechelin Metals"
+              priority
+              unoptimized
+            />
           </div>
-          <div>
-            <p className="text-white font-black text-sm tracking-widest uppercase" style={{ fontFamily: "var(--font-display)" }}>
-              Mechelin
-            </p>
-            <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "rgba(34,197,94,0.7)" }}>
-              Metals Nigeria
-            </p>
+
+          <div className="flex flex-col leading-none">
+            <h1
+              className="text-lg sm:text-2xl tracking-wider font-bold transition-colors duration-300"
+              style={{ color: 'var(--clr-green)', fontFamily: 'var(--font-display)' }}
+            >
+              MECHELIN METALS
+            </h1>
+            <span
+              className="text-[8px] sm:text-xs uppercase tracking-[0.22em] font-semibold transition-colors duration-300"
+              style={{ color: 'var(--tx-faint)' }}
+            >
+              NIGERIA LIMITED
+            </span>
           </div>
-        </div>
+        </Link>
       </motion.div>
 
       {/* Middle — Big headline */}
@@ -116,7 +129,7 @@ function LeftPanel() {
               letterSpacing: "-0.02em",
             }}
           >
-            Nigeria&apos;s<br />
+            Nigeria&apos;s
             <span style={{ color: "#22c55e" }}>Premier</span><br />
             Metals Hub
           </h2>
@@ -176,7 +189,7 @@ function LeftPanel() {
       >
         <ShieldCheck size={13} style={{ color: "rgba(34,197,94,0.6)" }} />
         <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.25)" }}>
-          Secured admin environment · Mechelin Metals Nigeria PVT LTD
+          Secured admin environment · Mechelin Metals Nigeria LTD
         </p>
       </motion.div>
     </div>
@@ -209,7 +222,7 @@ export default function SigninPage() {
     })
 
     if (res?.ok) {
-        toast.success("Signed in successfully")
+      toast.success("Signed in successfully")
       router.push("/admin")
     } else {
       toast.error("Invalid credentials")
@@ -235,7 +248,7 @@ export default function SigninPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-            {/* Logo */}
+          {/* Logo */}
           <Link href="#" className="flex items-center gap-2">
             <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
               <Image
