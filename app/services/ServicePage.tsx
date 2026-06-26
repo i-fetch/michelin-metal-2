@@ -175,6 +175,11 @@ export default function ServicePage() {
             <h2 className="text-3xl sm:text-5xl font-black tracking-wider text-[var(--clr-green)]" style={{ fontFamily: 'var(--font-display)' }}>
               {t("sections.everythingMetal")}
             </h2>
+            <p className='text-slate-600'>
+              The Company leverages captive resources and advanced capabilities, that is to sourcing, soting and bailing of Aluminuim wastes and distributes same as raw materials to manufacturers.
+            </p>
+            <p className='text-slate-600'>
+              We also deal with all types of Metals from Vehicles, Household Appliances, Building materials and all kinds of Ferrous Metals and Non-Magnetic Metals for Sale, Scraping, Conversion or Metal Foundry purposes.</p>
           </motion.div>
 
           <motion.div
@@ -211,7 +216,7 @@ export default function ServicePage() {
                     {s.features?.map((f) => (
                       <li key={f} className="flex items-start gap-2 text-xs text-slate-600 font-normal">
                         <CheckCircle size={13} className="text-emerald-600 shrink-0 mt-0.5" />
-                        
+
                         <span>{f}</span>
                       </li>
                     ))}
@@ -333,7 +338,7 @@ export default function ServicePage() {
       </section>
 
 
-      
+
 
       {/* CTA 2 (Dynamic Content Option) */}
       <CTASection
