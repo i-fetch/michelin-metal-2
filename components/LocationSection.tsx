@@ -3,36 +3,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Clock, Navigation, ArrowRight, Building2, Store } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /* ─────────────────────────────────────────────────────────────
    DATA
 ───────────────────────────────────────────────────────────── */
-const BRANCHES = [
-  {
-    id: "branch1",
-    tag: "Branch 01",
-    label: "Head Office",
-    title: "Awada, Obosi",
-    address: "No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria.",
-    note: "Accessible through Rainbow-Net behind Army Barracks Onitsha.",
-    hours: "Mon – Sat: 8am – 6pm",
-    mapQuery: "6.125510,6.881252",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=6.125510,6.881252",
-    Icon: Building2,
-  },
-  {
-    id: "branch2",
-    tag: "Branch 02",
-    label: "Commercial Office",
-    title: "Woliwo Layout, Onitsha",
-    address: "No. 32 Louis Mbanefo Street, Woliwo Layout, Onitsha, Anambra State, Nigeria.",
-    note: "Located in the heart of Onitsha's commercial district.",
-    hours: "Mon – Fri: 8am – 5pm",
-    mapQuery: "6.134440,6.792250",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=6.134440,6.792250",
-    Icon: Store,
-  },
-];
+
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -40,6 +16,23 @@ const EASE = [0.22, 1, 0.36, 1] as const;
    LOCATIONS SECTION
 ───────────────────────────────────────────────────────────── */
 export default function LocationsSection() {
+  const t = useTranslations("locations");
+  const branches = t.raw("branches") as Array<any>;
+
+  const BRANCHES = [
+    {
+      ...branches[0],
+      mapQuery: "6.125510,6.881252",
+      mapsLink: "https://www.google.com/maps/search/?api=1&query=6.125510,6.881252",
+      Icon: Building2,
+    },
+    {
+      ...branches[1],
+      mapQuery: "6.134440,6.792250",
+      mapsLink: "https://www.google.com/maps/search/?api=1&query=6.134440,6.792250",
+      Icon: Store,
+    },
+  ];
   const [activeId, setActiveId] = useState("branch1");
   const active = BRANCHES.find((b) => b.id === activeId)!;
 
@@ -56,16 +49,16 @@ export default function LocationsSection() {
           transition={{ duration: 0.7, ease: EASE }}
           className="mb-16"
         >
-          <p className="tag mb-4">Find Us</p>
+          <p className="tag mb-4">{t("tag")}</p>
           <div className="gap-4">
             <h2
               className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider text-[var(--tx-primary)] leading-[1.05]"
             >
-              Our{" "}
-              <span style={{ color: "var(--clr-green)" }}>Locations</span>
+              {t("title")}{" "}
+              <span style={{ color: "var(--clr-green)" }}>{t("titleHighlight")}</span>
             </h2>
             <p className="text-sm md:text-base" style={{ color: "var(--tx-muted)" }}>
-              Two strategic hubs in Anambra State — Nigeria&apos;s industrial heartland.
+              {t("description")}
             </p>
           </div>
         </motion.div>
@@ -146,7 +139,7 @@ export default function LocationsSection() {
                         {b.tag}
                       </span>
                       <h4
-                        className="font-bold text-lg leading-tight"
+                        className="font-bold text-lg leading-tight tracking-widest"
                         style={{
                           fontFamily: "var(--font-display)",
                           color: isActive ? "var(--tx-primary)" : "var(--tx-secondary)",
@@ -304,7 +297,7 @@ export default function LocationsSection() {
                   className="btn btn-green shrink-0 flex items-center gap-2 text-xs"
                 >
                   <Navigation size={13} />
-                  Get Directions
+                  {t("getDirections")}
                 </a>
               </motion.div>
             </AnimatePresence>

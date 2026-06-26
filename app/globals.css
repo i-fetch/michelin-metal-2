@@ -493,9 +493,15 @@ h5 {
   border-radius: 8px;
 }
  
-@keyframes shimmerSlide {
+/* @keyframes shimmerSlide {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+} */
+
+ @keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 /* Custom scrollbar */
   ::-webkit-scrollbar {

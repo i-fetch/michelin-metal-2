@@ -7,9 +7,10 @@ interface AdminShellProps {
   children: React.ReactNode;
   productCount: number;
   inquiryCount: number;
+  contactsCount: number;
 }
 
-export default function AdminShell({ children, productCount, inquiryCount }: AdminShellProps) {
+export default function AdminShell({ children, productCount, inquiryCount, contactsCount }: AdminShellProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -38,6 +39,7 @@ export default function AdminShell({ children, productCount, inquiryCount }: Adm
         onCloseMobile={() => setMobileOpen(false)}
         productCount={productCount}
         inquiryCount={inquiryCount}
+        contactsCount={contactsCount}
       />
 
       <div className="flex flex-col flex-1 h-full overflow-hidden min-w-0">

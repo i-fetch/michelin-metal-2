@@ -18,38 +18,12 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import LocationsSection from '@/components/LocationSection'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 /* ─────────────────────────────────────────────────────────────
    DATA
 ───────────────────────────────────────────────────────────── */
-const ENQUIRY_TYPES = [
-  'Product Enquiry',
-  'Bulk Purchase / Contract',
-  'Scrap Metal Sale',
-  'Export / Import Partnership',
-  'General Information',
-  'Other',
-]
 
-const PRODUCT_LIST = [
-  'Aluminium Bales',
-  'Aluminium Scrap (Loose)',
-  'Heavy Melting Steel',
-  'Vehicle Body Scrap',
-  'Cast Iron Scrap',
-  'Copper Scrap',
-  'Brass Scrap',
-  'Lead Scrap',
-  'Bulk Raw Supply',
-  'Multiple / Other',
-]
-
-const QUICK_CONTACTS = [
-  { icon: Mail, label: 'Email Us', val: 'mechelinmetalsnig@gmail.com', href: 'mailto:mechelinmetalsnig@gmail.com' },
-  { icon: MessageSquare, label: 'WhatsApp', val: 'Send a quick message', href: 'https://wa.me/2348000000000' },
-  { icon: MapPin, label: 'Head Office', val: 'Awada Obosi, Anambra', href: '#locations' },
-  { icon: MapPin, label: 'Commercial Hub', val: 'Woliwo Layout, Onitsha', href: '#locations' },
-]
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -140,7 +114,37 @@ const localFadeUp = {
    CONTACT PAGE
 ───────────────────────────────────────────────────────────── */
 export default function ContactPage(): React.JSX.Element {
-  
+  const t = useTranslations("contactPage")
+
+  const ENQUIRY_TYPES = [
+    t("enquiryTypes.0"),
+    t("enquiryTypes.1"),
+    t("enquiryTypes.2"),
+    t("enquiryTypes.3"),
+    t("enquiryTypes.4"),
+    t("enquiryTypes.5"),
+  ]
+
+  const PRODUCT_LIST = [
+    t("productList.0"),
+    t("productList.1"),
+    t("productList.2"),
+    t("productList.3"),
+    t("productList.4"),
+    t("productList.5"),
+    t("productList.6"),
+    t("productList.7"),
+    t("productList.8"),
+    t("productList.9"),
+  ]
+
+  const QUICK_CONTACTS = [
+    { icon: Mail, label: t("quickContacts.0.label"), val: t("quickContacts.0.val"), href: 'mailto:mechelinmetalsnig@gmail.com' },
+    { icon: MessageSquare, label: t("quickContacts.1.label"), val: t("quickContacts.1.val"), href: 'https://wa.me/2348000000000' },
+    { icon: MapPin, label: t("quickContacts.2.label"), val: t("quickContacts.2.val"), href: '#locations' },
+    { icon: MapPin, label: t("quickContacts.3.label"), val: t("quickContacts.3.val"), href: '#locations' },
+  ]
+
   const [form, setForm] = useState({
     name: '', company: '', email: '', phone: '',
     country: '', type: '', product: '', volume: '',
@@ -148,15 +152,41 @@ export default function ContactPage(): React.JSX.Element {
   })
   const [done, setDone] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm(p => ({ ...p, [e.target.name]: e.target.value }))
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.name || !form.email || !form.message) return
+    if (!form.name || !form.email || !form.message) {
+      setSubmitError('Please fill in your name, email, and message.')
+      return
+    }
+
     setBusy(true)
-    setTimeout(() => { setBusy(false); setDone(true) }, 1400)
+    setSubmitError(null)
+
+    try {
+      const response = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      })
+
+      const result = await response.json()
+      if (!response.ok) {
+        throw new Error(result?.error || 'Failed to submit contact form')
+      }
+
+      setDone(true)
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Unable to submit your request. Please try again.')
+    } finally {
+      setBusy(false)
+    }
   }
 
   const reset = () => {
@@ -238,7 +268,7 @@ export default function ContactPage(): React.JSX.Element {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-600/15 bg-white text-[var(--clr-green)] text-[10px] font-bold tracking-widest uppercase mb-6 font-mono shadow-[0_4px_14px_rgba(0,0,0,0.04)]"
             >
               <MailQuestion size={12} className="text-emerald-600" />
-              Reach Us
+              {t("hero.badge")}
             </motion.div>
 
             {/* Ultra-Sharp Anti-Aliased Service Header */}
@@ -251,9 +281,9 @@ export default function ContactPage(): React.JSX.Element {
                   fontSize: 'clamp(3rem, 7.5vw, 6rem)'
                 }}
               >
-                Get In
+                {t("hero.title1")}
                 <br />
-                <span className="text-[var(--clr-green)]">Touch</span>
+                <span className="text-[var(--clr-green)]">{t("hero.title2")}</span>
               </motion.h1>
             </div>
 
@@ -262,8 +292,7 @@ export default function ContactPage(): React.JSX.Element {
               variants={localFadeUp}
               className="text-slate-900 font-medium text-base md:text-xl max-w-xl leading-relaxed font-body tracking-tight subpixel-antialiased drop-shadow-[0_1px_4px_rgba(255,255,255,0.6)]"
             >
-              Ready to source metals, sell scrap, or explore a strategic supply partnership?
-              Our procurement team is deployed to process your institutional requirements.
+              {t("hero.description")}
             </motion.p>
           </motion.div>
         </motion.div>
@@ -330,7 +359,7 @@ export default function ContactPage(): React.JSX.Element {
             {/* ── FORM ── */}
             <div className="lg:col-span-8">
               <FadeIn>
-                <p className="tag mb-4">Enquiry Form</p>
+                <p className="tag mb-4">{t("form.titleTag")}</p>
                 <h2
                   className="mb-10 leading-none tracking-wider"
                   style={{
@@ -340,7 +369,7 @@ export default function ContactPage(): React.JSX.Element {
                     color: 'var(--tx-primary)',
                   }}
                 >
-                  Send Us a{' '}
+                  {t("form.title")} {' '}
                   <span style={{ color: 'var(--clr-green)' }}>Message</span>
                 </h2>
               </FadeIn>
@@ -376,23 +405,19 @@ export default function ContactPage(): React.JSX.Element {
                         letterSpacing: '-0.01em',
                       }}
                     >
-                      Enquiry Received!
+                      {t("form.buttons.successTitle")}
                     </h3>
                     <p
                       className="text-sm leading-relaxed max-w-sm mx-auto mb-8"
                       style={{ color: 'var(--tx-secondary)' }}
                     >
-                      Thank you,{' '}
-                      <span className="font-semibold" style={{ color: 'var(--tx-primary)' }}>
-                        {form.name}
-                      </span>
-                      . Your enquiry has been received. A specialist will respond within 1 business day.
+                      {t("form.buttons.successMessage")}
                     </p>
                     <button
                       onClick={reset}
                       className="btn btn-green"
                     >
-                      Send Another Enquiry
+                      {t("form.buttons.another")}
                     </button>
                   </motion.div>
                 ) : (
@@ -407,19 +432,19 @@ export default function ContactPage(): React.JSX.Element {
                   >
                     {/* Row 1 */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <Field label="Full Name" required>
+                      <Field label={t("form.fields.fullName")} required>
                         <input
                           name="name" required value={form.name} onChange={set}
-                          placeholder="John Adeyemi"
+                          placeholder={t("form.placeholders.fullName")}
                           style={fieldBase}
                           onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                           onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
                         />
                       </Field>
-                      <Field label="Company Name">
+                      <Field label={t("form.fields.company")}>
                         <input
                           name="company" value={form.company} onChange={set}
-                          placeholder="Your Company Ltd"
+                          placeholder={t("form.placeholders.company")}
                           style={fieldBase}
                           onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                           onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
@@ -429,19 +454,19 @@ export default function ContactPage(): React.JSX.Element {
 
                     {/* Row 2 */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <Field label="Email Address" required>
+                      <Field label={t("form.fields.email")} required>
                         <input
                           type="email" name="email" required value={form.email} onChange={set}
-                          placeholder="you@company.com"
+                          placeholder={t("form.placeholders.email")}
                           style={fieldBase}
                           onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                           onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
                         />
                       </Field>
-                      <Field label="Phone / WhatsApp">
+                      <Field label={t("form.fields.phone")}>
                         <input
                           name="phone" value={form.phone} onChange={set}
-                          placeholder="+234 800 000 0000"
+                          placeholder={t("form.placeholders.phone")}
                           style={fieldBase}
                           onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                           onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
@@ -451,16 +476,16 @@ export default function ContactPage(): React.JSX.Element {
 
                     {/* Row 3 */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <Field label="Country">
+                      <Field label={t("form.fields.country")}>
                         <input
                           name="country" value={form.country} onChange={set}
-                          placeholder="Nigeria"
+                          placeholder={t("form.placeholders.country")}
                           style={fieldBase}
                           onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                           onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
                         />
                       </Field>
-                      <Field label="Enquiry Type">
+                      <Field label={t("form.fields.type")}>
                         <div className="relative">
                           <select
                             name="type" value={form.type} onChange={set}
@@ -468,7 +493,7 @@ export default function ContactPage(): React.JSX.Element {
                             onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                             onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
                           >
-                            <option value="">Select type…</option>
+                            <option value="">{t("form.placeholders.type")}</option>
                             {ENQUIRY_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                           </select>
                           <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: 'var(--tx-muted)' }} />
@@ -478,7 +503,7 @@ export default function ContactPage(): React.JSX.Element {
 
                     {/* Row 4 */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <Field label="Product of Interest">
+                      <Field label={t("form.fields.product")}>
                         <div className="relative">
                           <select
                             name="product" value={form.product} onChange={set}
@@ -486,16 +511,16 @@ export default function ContactPage(): React.JSX.Element {
                             onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                             onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
                           >
-                            <option value="">Select product…</option>
+                            <option value="">{t("form.placeholders.product")}</option>
                             {PRODUCT_LIST.map(p => <option key={p} value={p}>{p}</option>)}
                           </select>
                           <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: 'var(--tx-muted)' }} />
                         </div>
                       </Field>
-                      <Field label="Estimated Volume">
+                      <Field label={t("form.fields.volume")}>
                         <input
                           name="volume" value={form.volume} onChange={set}
-                          placeholder="e.g. 25 tonnes / month"
+                          placeholder={t("form.placeholders.volume")}
                           style={fieldBase}
                           onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                           onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
@@ -504,11 +529,11 @@ export default function ContactPage(): React.JSX.Element {
                     </div>
 
                     {/* Message */}
-                    <Field label="Your Message" required>
+                    <Field label={t("form.fields.message")} required>
                       <textarea
                         name="message" required value={form.message} onChange={set}
                         rows={5}
-                        placeholder="Tell us about your requirements — grades, specifications, delivery port, timeline…"
+                        placeholder={t("form.placeholders.message")}
                         style={{ ...fieldBase, resize: 'none' }}
                         onFocus={e => (e.target.style.borderColor = 'var(--clr-green)')}
                         onBlur={e => (e.target.style.borderColor = 'var(--border-subtle)')}
@@ -518,10 +543,10 @@ export default function ContactPage(): React.JSX.Element {
                     {/* Preferred channel */}
                     <div className="flex flex-col gap-2.5">
                       <p className="text-[10px] font-bold uppercase tracking-[0.14em]" style={{ color: 'var(--tx-muted)' }}>
-                        Preferred Response Channel
+                        {t("form.fields.channel")}
                       </p>
                       <div className="flex gap-6 flex-wrap">
-                        {['email', 'whatsapp', 'call'].map(ch => (
+                        {(t.raw("form.channels") as string[]).map((ch: string) => (
                           <label key={ch} className="flex items-center gap-2 cursor-pointer select-none">
                             <input
                               type="radio" name="channel" value={ch}
@@ -548,10 +573,10 @@ export default function ContactPage(): React.JSX.Element {
                               className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin"
                               style={{ display: 'inline-block' }}
                             />
-                            Sending…
+                            {t("form.buttons.sending")}
                           </>
                         ) : (
-                          <>Send Enquiry <Send size={14} /></>
+                          <>{t("form.buttons.submit")} <Send size={14} /></>
                         )}
                       </button>
                     </div>
@@ -577,13 +602,13 @@ export default function ContactPage(): React.JSX.Element {
                     className="text-xs font-bold uppercase tracking-[0.14em] mb-5"
                     style={{ color: 'var(--tx-muted)' }}
                   >
-                    Contact Details
+                    {t("sidebar.contactDetails")}
                   </h3>
                   <div className="flex flex-col gap-4">
                     {[
-                      { icon: MapPin, label: 'Head Office', val: 'No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria' },
-                      { icon: Mail, label: 'Email', val: 'mechelinmetalsnig@gmail.com' },
-                      { icon: Phone, label: 'Phone', val: 'Available on verified request' },
+                      { icon: MapPin, label: t("sidebar.details.headOffice"), val: t("sidebar.details.headOffice") },
+                      { icon: Mail, label: t("sidebar.details.email"), val: t("sidebar.details.email") },
+                      { icon: Phone, label: t("sidebar.details.phone"), val: t("sidebar.details.phoneValue") },
                     ].map(({ icon: Icon, label, val }) => (
                       <div key={label} className="flex gap-3 items-start">
                         <div
@@ -618,14 +643,10 @@ export default function ContactPage(): React.JSX.Element {
                     className="text-xs font-bold uppercase tracking-[0.14em] mb-4"
                     style={{ color: 'var(--tx-muted)' }}
                   >
-                    Business Hours
+                    {t("sidebar.businessHours")}
                   </h3>
                   <div className="flex flex-col gap-0">
-                    {[
-                      { day: 'Mon – Fri', time: '8:00am – 6:00pm', active: true },
-                      { day: 'Saturday', time: '8:00am – 2:00pm', active: true },
-                      { day: 'Sunday', time: 'Closed', active: false },
-                    ].map(({ day, time, active }, i) => (
+                    {(t.raw("sidebar.hours") as any[]).map(({ day, time }: any, i: number) => (
                       <div
                         key={day}
                         className="flex justify-between items-center py-3 text-xs"
@@ -636,7 +657,7 @@ export default function ContactPage(): React.JSX.Element {
                         <span style={{ color: 'var(--tx-secondary)' }}>{day}</span>
                         <span
                           className="font-semibold"
-                          style={{ color: active ? 'var(--tx-primary)' : 'var(--tx-muted)' }}
+                          style={{ color: time !== 'Closed' ? 'var(--tx-primary)' : 'var(--tx-muted)' }}
                         >
                           {time}
                         </span>
@@ -659,14 +680,14 @@ export default function ContactPage(): React.JSX.Element {
                     className="text-xs font-bold uppercase tracking-[0.14em] mb-4"
                     style={{ color: 'var(--clr-green)' }}
                   >
-                    Explore
+                    {t("sidebar.explore")}
                   </h3>
                   <div className="flex flex-col">
                     {[
-                      { href: '/products', label: 'Browse Our Catalogue' },
-                      { href: '/services', label: 'Industrial Processing Services' },
-                      { href: '/about', label: 'About Mechelin Metals' },
-                    ].map(({ href, label }, i) => (
+                      { href: '/products', label: t("sidebar.links.0") },
+                      { href: '/services', label: t("sidebar.links.1") },
+                      { href: '/about', label: t("sidebar.links.2") },
+                    ].map(({ href, label }: any, i: number) => (
                       <Link
                         key={href}
                         href={href}

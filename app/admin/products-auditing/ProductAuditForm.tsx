@@ -39,28 +39,30 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
     e.preventDefault();
 
     try {
-      const payload = {
-        title: formData.title,
-        slug: formData.slug,
-        description: formData.description,
-        categoryName: formData.categoryName,
-        categorySlug: formData.categorySlug,
-        badge: formData.badge,
-        moqValue: formData.moqValue,
-        moqUnit: formData.moqUnit,
+      const payload = new FormData();
+      payload.append("title", formData.title);
+      payload.append("slug", formData.slug);
+      payload.append("description", formData.description);
+      payload.append("categoryName", formData.categoryName);
+      payload.append("categorySlug", formData.categorySlug);
+      payload.append("badge", formData.badge);
+      payload.append("moqValue", String(formData.moqValue));
+      payload.append("moqUnit", formData.moqUnit);
 
-        grade: formData.specs.grade,
-        form: formData.specs.form,
-        purity: formData.specs.purity,
-        source: formData.specs.source,
-        hazardCompliance: formData.specs.hazardCompliance,
-        zincContent: formData.specs.zincContent,
+      payload.append("grade", formData.specs.grade);
+      payload.append("form", formData.specs.form);
+      payload.append("purity", formData.specs.purity);
+      payload.append("source", formData.specs.source);
+      payload.append("hazardCompliance", formData.specs.hazardCompliance);
+      payload.append("zincContent", formData.specs.zincContent);
+      payload.append("applications", formData.applications.join(","));
 
-        applications: formData.applications,
+      formData.images.forEach((image) => payload.append("images", image));
+      newFiles.forEach((file) => payload.append("images", file));
 
-        // IMPORTANT: only URLs or already-uploaded IDs
-        images: formData.images,
-      };
+      if (isEditMode && product?._id) {
+        payload.append("id", product._id);
+      }
 
       const endpoint = isEditMode
         ? "/api/update-product"
@@ -68,14 +70,7 @@ export default function ProductAuditForm({ mode, product }: ProductAuditFormProp
 
       const res = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-          isEditMode && product?._id
-            ? { ...payload, id: product._id }
-            : payload
-        ),
+        body: payload,
       });
 
       const data = await res.json();

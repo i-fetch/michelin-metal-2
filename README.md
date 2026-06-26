@@ -122,3 +122,103 @@ Set all env vars in the Vercel dashboard under Project → Settings → Environm
 npm run build
 npm start
 ```
+Products MODERN FILTER UI
+      {/* ================= MODERN FILTER UI ================= */}
+      <section className="section" style={{ background: 'var(--bg)' }}>
+        <div className="mx-auto max-w-7xl px-4 py-10 space-y-8">
+
+          {/* Header */}
+          <div className="flex justify-between border-b pb-4">
+            <div>
+              <h2 className="text-3xl font-bold tracking-wide">Product Explorer</h2>
+              <p className="text-sm text-gray-500">Search and filter materials</p>
+            </div>
+
+            <div className="text-sm text-gray-500">
+              Showing {filtered.length} / {products.length}
+            </div>
+          </div>
+
+          {/* Filters */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+            {/* Sidebar */}
+            <div className="space-y-4">
+
+              {/* Search */}
+              <div className="p-4 border rounded-xl bg-white">
+                <div className="flex items-center gap-2 mb-2">
+                  <Search size={14} />
+                  <span className="text-xs font-semibold">Search</span>
+                </div>
+
+                <input
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full border px-3 py-2 text-xs rounded-lg"
+                  placeholder="Search products..."
+                />
+              </div>
+
+              {/* Category */}
+              <div className="p-4 border rounded-xl bg-white">
+                <div className="flex items-center gap-2 mb-2">
+                  <Filter size={14} />
+                  <span className="text-xs font-semibold">Categories</span>
+                </div>
+
+                <button
+                  key="all"
+                  onClick={() => setSelectedCategorySlug(null)}
+                  className="text-xs w-full text-left py-1"
+                >
+                  All
+                </button>
+
+                {CATEGORIES.map((c) => (
+                  <button
+                    key={c.slug}
+                    onClick={() => setSelectedCategorySlug(c.slug)}
+                    className="text-xs w-full text-left py-1"
+                  >
+                    {c.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Reset */}
+              {(searchQuery || selectedCategorySlug) && (
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategorySlug(null);
+                  }}
+                  className="w-full py-2 text-xs bg-black text-white rounded-lg flex items-center justify-center gap-2"
+                >
+                  <RotateCcw size={12} />
+                  Reset
+                </button>
+              )}
+            </div>
+
+            {/* Results */}
+            <div className="lg:col-span-3 grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+              {filtered.length === 0 ? (
+                <div className="col-span-full text-center p-10 border rounded-xl">
+                  <AlertTriangle className="mx-auto mb-2" />
+                  No products found
+                </div>
+              ) : (
+                filtered.map((p) => (
+                  <ProductCard
+                    key={p._id}
+                    product={p}
+                    onNavigate={navigate}
+                  />
+                ))
+              )}
+            </div>
+
+          </div>
+        </div>
+      </section>

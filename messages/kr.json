@@ -455,10 +455,152 @@
     ]
   },
   "serviceCta": {
-      "subtitle": "대량 산업 공급",
-      "title": "귀사의 야금 관련 고정비에 대해 논의해 보시겠습니까?",
-      "description": "개별 맞춤형 가공 배치부터 전용 기업 밀 할당 설정에 이르기까지 — 당사는 귀사의 매개변수에 부합하는 전략적 해법을 설계합니다.",
-      "primaryCta": "B2B 상담 시작하기",
-      "trustText": "서아프리카 전역의 산업 바이어들이 신뢰하는 기업"
+    "subtitle": "대량 산업 공급",
+    "title": "귀사의 야금 관련 고정비에 대해 논의해 보시겠습니까?",
+    "description": "개별 맞춤형 가공 배치부터 전용 기업 밀 할당 설정에 이르기까지 — 당사는 귀사의 매개변수에 부합하는 전략적 해법을 설계합니다.",
+    "primaryCta": "B2B 상담 시작하기",
+    "trustText": "서아프리카 전역의 산업 바이어들이 신뢰하는 기업"
+  },
+  "locations": {
+    "tag": "연락처",
+    "title": "우리의",
+    "titleHighlight": "지점",
+    "description": "아남브라 주의 두 전략 거점 — 나이지리아의 산업 중심지.",
+    "branches": [
+      {
+        "id": "branch1",
+        "tag": "지점 01",
+        "label": "본사",
+        "title": "Awada, Obosi",
+        "address": "No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria.",
+        "note": "오니차 군부대 뒤 Rainbow-Net을 통해 접근 가능합니다.",
+        "hours": "월 – 토: 오전 8시 – 오후 6시"
+      },
+      {
+        "id": "branch2",
+        "tag": "지점 02",
+        "label": "영업소",
+        "title": "Woliwo Layout, Onitsha",
+        "address": "No. 32 Louis Mbanefo Street, Woliwo Layout, Onitsha, Anambra State, Nigeria.",
+        "note": "오니차 상업 지구의 중심에 위치합니다.",
+        "hours": "월 – 금: 오전 8시 – 오후 5시"
+      }
+    ],
+    "getDirections": "길 찾기"
+  },
+  "contactPage": {
+    "hero": {
+      "badge": "문의하기",
+      "title1": "연락",
+      "title2": "하기",
+      "description": "금속 조달, 스크랩 판매 또는 전략적 공급 파트너십을 원하시면 문의하세요. 당사 조달 팀이 기업 요구사항을 처리합니다."
+    },
+    "enquiryTypes": [
+      "제품 문의",
+      "대량 구매 / 계약",
+      "고철 판매",
+      "수출 / 수입 파트너십",
+      "일반 정보",
+      "기타"
+    ],
+    "productList": [
+      "알루미늄 베일",
+      "벌크 알루미늄 스크랩",
+      "중량 용해강",
+      "차량 차체 스크랩",
+      "주철 스크랩",
+      "구리 스크랩",
+      "황동 스크랩",
+      "납 스크랩",
+      "대량 원자재 공급",
+      "복합 / 기타"
+    ],
+    "quickContacts": [
+      {
+        "label": "이메일",
+        "val": "mechelinmetalsnig@gmail.com"
+      },
+      {
+        "label": "WhatsApp",
+        "val": "빠른 메시지 보내기"
+      },
+      {
+        "label": "본사",
+        "val": "Awada Obosi, 아남브라 주"
+      },
+      {
+        "label": "상업 허브",
+        "val": "Onitsha Woliwo 지역"
+      }
+    ],
+    "form": {
+      "titleTag": "문의 양식",
+      "title": "메시지 보내기",
+      "fields": {
+        "fullName": "성명",
+        "company": "회사명",
+        "email": "이메일 주소",
+        "phone": "전화 / WhatsApp",
+        "country": "국가",
+        "type": "문의 유형",
+        "product": "관심 제품",
+        "volume": "예상 물량",
+        "message": "메시지",
+        "channel": "선호 응답 채널"
+      },
+      "placeholders": {
+        "fullName": "John Adeyemi",
+        "company": "귀사 Ltd",
+        "email": "you@company.com",
+        "phone": "+234 800 000 0000",
+        "country": "나이지리아",
+        "type": "유형 선택…",
+        "product": "제품 선택…",
+        "volume": "예: 월 25톤",
+        "message": "요구사항을 알려주세요 — 등급, 사양, 배송 항구, 일정 등…"
+      },
+      "channels": [
+        "이메일",
+        "WhatsApp",
+        "전화"
+      ],
+      "buttons": {
+        "submit": "문의 보내기",
+        "sending": "전송 중…",
+        "successTitle": "문의가 접수되었습니다!",
+        "successMessage": "문의가 접수되었습니다. 담당자가 1영업일 내에 회신드립니다.",
+        "another": "다른 문의 보내기"
+      }
+    },
+    "sidebar": {
+      "contactDetails": "연락처",
+      "businessHours": "영업 시간",
+      "explore": "탐색",
+      "links": [
+        "카탈로그 보기",
+        "산업 가공 서비스",
+        "Mechelin Metals 소개"
+      ],
+      "details": {
+        "headOffice": "본사",
+        "email": "이메일",
+        "phone": "전화",
+        "phoneValue": "검증 후 제공"
+      },
+      "hours": [
+        {
+          "day": "월 – 금",
+          "time": "8:00 – 18:00"
+        },
+        {
+          "day": "토요일",
+          "time": "8:00 – 14:00"
+        },
+        {
+          "day": "일요일",
+          "time": "휴무"
+        }
+      ]
     }
+  }
 }

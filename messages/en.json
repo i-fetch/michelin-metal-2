@@ -442,6 +442,147 @@
     "description": "From isolated custom processing batches to dedicated corporate mill allocation setups — we engineer strategic answers suited to your parameters.",
     "primaryCta": "Initiate B2B Consultations",
     "trustText": "Trusted by industrial buyers across West Africa"
+  },
+  "locations": {
+    "tag": "Find Us",
+    "title": "Our",
+    "titleHighlight": "Locations",
+    "description": "Two strategic hubs in Anambra State — Nigeria's industrial heartland.",
+    "branches": [
+      {
+        "id": "branch1",
+        "tag": "Branch 01",
+        "label": "Head Office",
+        "title": "Awada, Obosi",
+        "address": "No. 23 Nathan Okafor Street, Awada Obosi, Anambra State, Nigeria.",
+        "note": "Accessible through Rainbow-Net behind Army Barracks Onitsha.",
+        "hours": "Mon – Sat: 8am – 6pm"
+      },
+      {
+        "id": "branch2",
+        "tag": "Branch 02",
+        "label": "Commercial Office",
+        "title": "Woliwo Layout, Onitsha",
+        "address": "No. 32 Louis Mbanefo Street, Woliwo Layout, Onitsha, Anambra State, Nigeria.",
+        "note": "Located in the heart of Onitsha's commercial district.",
+        "hours": "Mon – Fri: 8am – 5pm"
+      }
+    ],
+    "getDirections": "Get Directions"
+  },
+  "contactPage": {
+    "hero": {
+      "badge": "Reach Us",
+      "title1": "Get In",
+      "title2": "Touch",
+      "description": "Ready to source metals, sell scrap, or explore a strategic supply partnership? Our procurement team is deployed to process your institutional requirements."
+    },
+    "enquiryTypes": [
+      "Product Enquiry",
+      "Bulk Purchase / Contract",
+      "Scrap Metal Sale",
+      "Export / Import Partnership",
+      "General Information",
+      "Other"
+    ],
+    "productList": [
+      "Aluminium Bales",
+      "Aluminium Scrap (Loose)",
+      "Heavy Melting Steel",
+      "Vehicle Body Scrap",
+      "Cast Iron Scrap",
+      "Copper Scrap",
+      "Brass Scrap",
+      "Lead Scrap",
+      "Bulk Raw Supply",
+      "Multiple / Other"
+    ],
+    "quickContacts": [
+      {
+        "label": "Email Us",
+        "val": "mechelinmetalsnig@gmail.com"
+      },
+      {
+        "label": "WhatsApp",
+        "val": "Send a quick message"
+      },
+      {
+        "label": "Head Office",
+        "val": "Awada Obosi, Anambra"
+      },
+      {
+        "label": "Commercial Hub",
+        "val": "Woliwo Layout, Onitsha"
+      }
+    ],
+    "form": {
+      "titleTag": "Enquiry Form",
+      "title": "Send Us a Message",
+      "fields": {
+        "fullName": "Full Name",
+        "company": "Company Name",
+        "email": "Email Address",
+        "phone": "Phone / WhatsApp",
+        "country": "Country",
+        "type": "Enquiry Type",
+        "product": "Product of Interest",
+        "volume": "Estimated Volume",
+        "message": "Your Message",
+        "channel": "Preferred Response Channel"
+      },
+      "placeholders": {
+        "fullName": "John Adeyemi",
+        "company": "Your Company Ltd",
+        "email": "you@company.com",
+        "phone": "+234 800 000 0000",
+        "country": "Nigeria",
+        "type": "Select type…",
+        "product": "Select product…",
+        "volume": "e.g. 25 tonnes / month",
+        "message": "Tell us about your requirements — grades, specifications, delivery port, timeline…"
+      },
+      "channels": [
+        "email",
+        "whatsapp",
+        "call"
+      ],
+      "buttons": {
+        "submit": "Send Enquiry",
+        "sending": "Sending…",
+        "successTitle": "Enquiry Received!",
+        "successMessage": "Your enquiry has been received. A specialist will respond within 1 business day.",
+        "another": "Send Another Enquiry"
+      }
+    },
+    "sidebar": {
+      "contactDetails": "Contact Details",
+      "businessHours": "Business Hours",
+      "explore": "Explore",
+      "links": [
+        "Browse Our Catalogue",
+        "Industrial Processing Services",
+        "About Mechelin Metals"
+      ],
+      "details": {
+        "headOffice": "Head Office",
+        "email": "Email",
+        "phone": "Phone",
+        "phoneValue": "Available on verified request"
+      },
+      "hours": [
+        {
+          "day": "Mon – Fri",
+          "time": "8:00am – 6:00pm"
+        },
+        {
+          "day": "Saturday",
+          "time": "8:00am – 2:00pm"
+        },
+        {
+          "day": "Sunday",
+          "time": "Closed"
+        }
+      ]
+    }
   }
-  
 }
